@@ -1,0 +1,766 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>mongoDB的简单应用 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="mongoDB的简单应用">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-18 11:20" pubdate>
+        2021年3月18日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      34
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">mongoDB的简单应用</h1>
+            
+            <div class="markdown-body">
+              <p>MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。</p>
+<p>该文章大量文字摘自：<a target="_blank" rel="noopener" href="https://www.runoob.com/mongodb/mongodb-tutorial.html">MongoDB 教程 | 菜鸟教程 (runoob.com)</a></p>
+<h1 id="mongodb中的概念"><a href="#mongodb中的概念" class="headerlink" title="mongodb中的概念"></a>mongodb中的概念</h1><ul>
+<li>database：数据库</li>
+<li>collection：集合，对应sql中的数据库表（table）</li>
+<li>document：文档，对应sql中的数据（data）</li>
+<li>field：域，对应sql中的数据列（column）</li>
+<li>index：索引</li>
+<li>primary key：主键,MongoDB自动将_id字段设置为主键</li>
+</ul>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://www.mongodb.com/download-center/community">https://www.mongodb.com/download-center/community</a></p>
+<p>下载.msi版本，点击选择安装路径点击下一步即可</p>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><p>标准 URI 连接语法：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]</code></pre></div>
+<p>比如：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">mongodb://localhost:27017 # 连接到本机的27017端口的Mongodb数据库
+mongodb://root:1234@localhost/test # 使用用户名(root)和密码(1234)连接登录到指定数据库(test)
+mongodb://localhost/?safe=true # 以安全模式连接到数据库，端口不写默认27017</code></pre></div>
+<p>问号后面的选项为：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>replicaSet=name</td>
+<td>验证replica set的名称。 Impliesconnect=replicaSet.</td>
+</tr>
+<tr>
+<td>slaveOk=true\</td>
+<td>false</td>
+<td>true:在connect=direct模式下，驱动会连接第一台机器，即使这台服务器不是主。在connect=replicaSet模式下，驱动会发送所有的写请求到主并且把读取操作分布在其他从服务器。false: 在 connect=direct模式下，驱动会自动找寻主服务器. 在connect=replicaSet 模式下，驱动仅仅连接主服务器，并且所有的读写命令都连接到主服务器。</td>
+</tr>
+<tr>
+<td>safe=true\</td>
+<td>false</td>
+<td>true: 在执行更新操作之后，驱动都会发送getLastError命令来确保更新成功。(还要参考 wtimeoutMS).false: 在每次更新之后，驱动不会发送getLastError来确保更新成功。</td>
+</tr>
+<tr>
+<td>w=n</td>
+<td>驱动添加 { w : n } 到getLastError命令. 应用于safe=true。</td>
+</tr>
+<tr>
+<td>wtimeoutMS=ms</td>
+<td>驱动添加 { wtimeout : ms } 到 getlasterror 命令. 应用于 safe=true.</td>
+</tr>
+<tr>
+<td>fsync=true\</td>
+<td>false</td>
+<td>true: 驱动添加 { fsync : true } 到 getlasterror 命令.应用于 safe=true.false: 驱动不会添加到getLastError命令中。</td>
+</tr>
+<tr>
+<td>journal=true\</td>
+<td>false</td>
+<td>如果设置为 true, 同步到 journal (在提交到数据库前写入到实体中). 应用于 safe=true</td>
+</tr>
+<tr>
+<td>connectTimeoutMS=ms</td>
+<td>可以打开连接的时间。</td>
+</tr>
+<tr>
+<td>socketTimeoutMS=ms</td>
+<td>发送和接受sockets的时间。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="增"><a href="#增" class="headerlink" title="增"></a>增</h2><div class="code-wrapper"><pre><code class="hljs sql">use test</code></pre></div>
+<p>注意：NoSQL不能像mysql一样，使用use 数据库 之后添加新的集合之后才会出现名字</p>
+<h2 id="删"><a href="#删" class="headerlink" title="删"></a>删</h2><div class="code-wrapper"><pre><code class="hljs sql">db.dropDatabase()</code></pre></div>
+<h2 id="查"><a href="#查" class="headerlink" title="查"></a>查</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> databases</code></pre></div>
+<h1 id="数据表-集合"><a href="#数据表-集合" class="headerlink" title="数据表/集合"></a>数据表/集合</h1><h2 id="增-1"><a href="#增-1" class="headerlink" title="增"></a>增</h2><div class="code-wrapper"><pre><code class="hljs sql">db.createCollection(&quot;test&quot;)</code></pre></div>
+<h2 id="删-1"><a href="#删-1" class="headerlink" title="删"></a>删</h2><div class="code-wrapper"><pre><code class="hljs sql">db.test.drop()</code></pre></div>
+<h2 id="查-1"><a href="#查-1" class="headerlink" title="查"></a>查</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> tables</code></pre></div>
+<h1 id="数据记录行-文档"><a href="#数据记录行-文档" class="headerlink" title="数据记录行/文档"></a>数据记录行/文档</h1><h2 id="增-2"><a href="#增-2" class="headerlink" title="增"></a>增</h2><div class="code-wrapper"><pre><code class="hljs sql">db.test.insert(&#123;title: <span class="hljs-string">&#x27;MongoDB&#x27;</span>&#125;)</code></pre></div>
+<h2 id="删-2"><a href="#删-2" class="headerlink" title="删"></a>删</h2><p>删除所有数据</p>
+<div class="code-wrapper"><pre><code class="hljs sql">db.test.remove(&#123;&#125;)</code></pre></div>
+<p>删除指定数据</p>
+<div class="code-wrapper"><pre><code class="hljs sql">db.test.remove(&#123;<span class="hljs-string">&#x27;title&#x27;</span>:<span class="hljs-string">&#x27;MongoDB&#x27;</span>&#125;)</code></pre></div>
+<h2 id="查-2"><a href="#查-2" class="headerlink" title="查"></a>查</h2><p>查找全部</p>
+<div class="code-wrapper"><pre><code class="hljs sql">db.test.find().pretty()</code></pre></div>
+<p>查找指定数据<br><div class="code-wrapper"><pre><code class="hljs sql">db.test.find(&#123;&quot;by&quot;:&quot;test&quot;, &quot;title&quot;:&quot;MongoDB&quot;&#125;).pretty()</code></pre></div></p>
+<p>等于:db.col.find({“by”:”test”}).pretty()</p>
+<p>小于:db.col.find({“likes”:{$lt:50}}).pretty()</p>
+<p>小于或等于:db.col.find({“likes”:{$lte:50}}).pretty()</p>
+<p>大于:db.col.find({“likes”:{$gt:50}}).pretty()</p>
+<p>大于或等于:db.col.find({“likes”:{$gte:50}}).pretty()</p>
+<p>不等于:db.col.find({“likes”:{$ne:50}}).pretty()</p>
+<h2 id="改"><a href="#改" class="headerlink" title="改"></a>改</h2><div class="code-wrapper"><pre><code class="hljs sql">db.test.update(&#123;<span class="hljs-string">&#x27;title&#x27;</span>:<span class="hljs-string">&#x27;MongoDB&#x27;</span>&#125;,&#123;$<span class="hljs-keyword">set</span>:&#123;<span class="hljs-string">&#x27;title&#x27;</span>:<span class="hljs-string">&#x27;MongoDB&#x27;</span>&#125;&#125;)</code></pre></div>
+<h1 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h1><p>$type:检索集合中匹配的数据类型</p>
+<div class="code-wrapper"><pre><code class="hljs sql">db.col.find(&#123;&quot;title&quot; : &#123;$type : <span class="hljs-string">&#x27;string&#x27;</span>&#125;&#125;)</code></pre></div>
+<h1 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h1><p>limit：读取指定数量的数据记录</p>
+<div class="code-wrapper"><pre><code class="hljs sql">db.col.find(&#123;&#125;,&#123;&quot;title&quot;:<span class="hljs-number">1</span>,_id:<span class="hljs-number">0</span>&#125;).limit(<span class="hljs-number">2</span>)</code></pre></div>
+<p>skip：跳过指定数量的数据</p>
+<div class="code-wrapper"><pre><code class="hljs sql">db.col.find(&#123;&#125;,&#123;&quot;title&quot;:<span class="hljs-number">1</span>,_id:<span class="hljs-number">0</span>&#125;).limit(<span class="hljs-number">1</span>).<span class="hljs-keyword">skip</span>(<span class="hljs-number">1</span>)</code></pre></div>
+<p>sort：数据进行排序</p>
+<div class="code-wrapper"><pre><code class="hljs sql">db.col.find(&#123;&#125;,&#123;&quot;title&quot;:<span class="hljs-number">1</span>,_id:<span class="hljs-number">0</span>&#125;).sort(&#123;&quot;likes&quot;:<span class="hljs-number">-1</span>&#125;)</code></pre></div>
+<p>“likes”是字段;1是升序，-1是降序</p>
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><div class="code-wrapper"><pre><code class="hljs sql">db.test.createIndex(&#123;&quot;title&quot;:<span class="hljs-number">1</span>&#125;)</code></pre></div>
+<p>语法中”title”值为你要创建的索引字段，1 为指定按升序创建索引，如果你想按降序来创建索引指定为 -1 即可。</p>
+<h2 id="查看集合索引"><a href="#查看集合索引" class="headerlink" title="查看集合索引"></a>查看集合索引</h2><div class="code-wrapper"><pre><code class="hljs sql">db.test.getIndexes()</code></pre></div>
+<h2 id="查看集合索引大小"><a href="#查看集合索引大小" class="headerlink" title="查看集合索引大小"></a>查看集合索引大小</h2><div class="code-wrapper"><pre><code class="hljs sql">db.test.totalIndexSize()</code></pre></div>
+<h2 id="删除集合所有索引"><a href="#删除集合所有索引" class="headerlink" title="删除集合所有索引"></a>删除集合所有索引</h2><div class="code-wrapper"><pre><code class="hljs sql">db.test.dropIndexes()</code></pre></div>
+<h2 id="删除集合指定索引"><a href="#删除集合指定索引" class="headerlink" title="删除集合指定索引"></a>删除集合指定索引</h2><div class="code-wrapper"><pre><code class="hljs sql">db.test.dropIndex(&quot;索引名称&quot;)</code></pre></div>
+<h1 id="SQL转换Nosql"><a href="#SQL转换Nosql" class="headerlink" title="SQL转换Nosql"></a>SQL转换Nosql</h1><p>该章节是为了直观感受MongoDB中，调用的命令与sql对应关系。以test表为例：</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SHOW</span> DATABASES;
+
+<span class="hljs-keyword">DROP</span> DATABASE test;
+db.dropDatabase()
+
+<span class="hljs-keyword">CREATE</span> DATABASE test;
+use test;
+
+<span class="hljs-keyword">SHOW</span> TABLES;
+
+<span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> test;
+db.test.drop()
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> test(&#123;
+	id <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY AUTO_INCREMENT,
+	name string
+&#125;);
+db.createCollection(&quot;test&quot;)
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> test;
+db.test.find().pretty()
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">FROM</span> test;
+db.test.<span class="hljs-built_in">count</span>();
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> test <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+db.test.find(&#123;&quot;id&quot; : <span class="hljs-number">1</span>&#125;).pretty()
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> test <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">&lt;</span> <span class="hljs-number">1</span>;
+db.col.find(&#123;&quot;id&quot;:&#123;$lt:<span class="hljs-number">1</span>&#125;&#125;).pretty()
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> test <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">&lt;=</span> <span class="hljs-number">1</span>;
+db.col.find(&#123;&quot;id&quot;:&#123;$lte:<span class="hljs-number">50</span>&#125;&#125;).pretty()
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> test <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span>;
+db.col.find(&#123;&quot;id&quot;:&#123;$gt:<span class="hljs-number">50</span>&#125;&#125;).pretty()
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> test <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">&gt;=</span> <span class="hljs-number">1</span>;
+db.col.find(&#123;&quot;id&quot;:&#123;$gte:<span class="hljs-number">50</span>&#125;&#125;).pretty()
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> test <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">!=</span> <span class="hljs-number">1</span>;
+db.col.find(&#123;&quot;id&quot;:&#123;$ne:<span class="hljs-number">1</span>&#125;&#125;).pretty()
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> test  <span class="hljs-keyword">WHERE</span> name <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%l%&#x27;</span>;
+db.users.find(&#123;&quot;name&quot;:<span class="hljs-operator">/</span>l<span class="hljs-operator">/</span>&#125;); 
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> test  <span class="hljs-keyword">WHERE</span> name <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;l%&#x27;</span>;
+db.users.find(&#123;&quot;name&quot;:<span class="hljs-operator">/</span><span class="hljs-operator">^</span>l<span class="hljs-operator">/</span>&#125;); 
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> test <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> id <span class="hljs-keyword">DESC</span><span class="hljs-operator">/</span><span class="hljs-keyword">ASC</span>;
+db.col.find().sort(&#123;&quot;id&quot;:<span class="hljs-number">-1</span><span class="hljs-operator">/</span><span class="hljs-number">1</span>&#125;)
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> test <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span> LIMIT <span class="hljs-number">2</span>;
+db.test.find(&#123;&quot;id&quot; : <span class="hljs-number">1</span>&#125;).limit(<span class="hljs-number">2</span>)
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">USER</span> <span class="hljs-keyword">WHERE</span> type <span class="hljs-operator">=</span> &quot;book&quot;	
+var map1 <span class="hljs-operator">=</span> <span class="hljs-keyword">function</span> () &#123;emit(this.type, <span class="hljs-number">1</span>)&#125;;
+var reduce <span class="hljs-operator">=</span> <span class="hljs-keyword">function</span>(type , count)&#123;<span class="hljs-keyword">return</span> Array.<span class="hljs-built_in">sum</span>(count)&#125;
+db.test.mapReduce(map1 , reduce , &#123;query:&#123;type : &quot;book&quot;&#125; , <span class="hljs-keyword">out</span>:&quot;test&quot;&#125;).find()
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> test (id , name) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">1</span> , li);
+db.test.insert(&#123;&quot;id&quot; : <span class="hljs-number">1</span>,&quot;name&quot;: <span class="hljs-string">&#x27;li&#x27;</span>&#125;)
+
+UPDATE test <span class="hljs-keyword">SET</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;li&#x27;</span> <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+db.test.update(&#123;<span class="hljs-string">&#x27;name&#x27;</span>:<span class="hljs-string">&#x27;li&#x27;</span>&#125;,&#123;$<span class="hljs-keyword">set</span>:&#123;<span class="hljs-string">&#x27;id&#x27;</span>:<span class="hljs-number">1</span>&#125;&#125;)
+
+<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> test <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+db.test.remove(&#123;<span class="hljs-string">&#x27;id&#x27;</span>: <span class="hljs-number">1</span> &#125;)</code></pre></div>
+<h1 id="链接java"><a href="#链接java" class="headerlink" title="链接java"></a>链接java</h1><p>引入依赖</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.mongodb<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mongodb-driver<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.1.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+<p>链接到数据库</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">import</span> com.mongodb.MongoClient;
+<span class="hljs-keyword">import</span> com.mongodb.client.MongoDatabase;
+
+MongoDBJDBC &#123;
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> main（String args[]）&#123;
+      <span class="hljs-keyword">try</span>&#123;   
+         MongoClient mongoClient =<span class="hljs-keyword">new</span> MongoClient（“ localhost”，<span class="hljs-number">27017</span>）;
+       
+         <span class="hljs-comment">//连接到数据库</span>
+         MongoDatabase mongoDatabase = mongoClient.getDatabase（<span class="hljs-string">&quot;mysql&quot;</span>）;  
+       	 System.out.println（“成功连接到数据库”）;
+
+         mongoDatabase.createCollection（<span class="hljs-string">&quot;test&quot;</span>）;
+		 System.out.println（<span class="hljs-string">&quot;集合创建成功&quot;</span>）;
+
+		 MongoCollection &lt;Document&gt; collection = mongoDatabase.getCollection（<span class="hljs-string">&quot;test&quot;</span>）;
+
+		 FindIterable&lt;Document&gt; list = collection.find();<span class="hljs-comment">//获取文档集合</span>
+		 <span class="hljs-keyword">for</span>(Document doc: list)&#123;<span class="hljs-comment">//遍历集合中的文档输出数据</span>
+		    System.out.println(<span class="hljs-string">&quot;name:&quot;</span>+ doc.getString(<span class="hljs-string">&quot;name&quot;</span>) );
+		    System.out.println(<span class="hljs-string">&quot;sex:&quot;</span>+ doc.getString(<span class="hljs-string">&quot;sex&quot;</span>) );
+		    System.out.println(<span class="hljs-string">&quot;age:&quot;</span>+ doc.getDouble(<span class="hljs-string">&quot;age&quot;</span>) );<span class="hljs-comment">//默认为浮点型</span>
+		    System.out.println(<span class="hljs-string">&quot;address:&quot;</span>+ doc.getString(<span class="hljs-string">&quot;address&quot;</span>) );
+		    System.out.println(<span class="hljs-string">&quot;--------------------------&quot;</span>);
+		&#125;
+		
+		Map&lt;String, Object&gt; map=<span class="hljs-keyword">new</span> HashMap();
+		map.put(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;铁扇公主&quot;</span>);
+		map.put(<span class="hljs-string">&quot;sex&quot;</span>, <span class="hljs-string">&quot;女&quot;</span>);
+		map.put(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">35.0</span>);
+		map.put(<span class="hljs-string">&quot;address&quot;</span>, <span class="hljs-string">&quot;芭蕉洞&quot;</span>);     
+		Document doc=<span class="hljs-keyword">new</span> Document(map);       
+		collection.insertOne(doc);<span class="hljs-comment">//插入一条记录</span>
+
+		BasicDBObject bson=<span class="hljs-keyword">new</span> BasicDBObject(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;铁扇公主&quot;</span>);
+		collection.deleteOne(bson);<span class="hljs-comment">//删除记录（符合条件的第一条记录）</span>
+		
+		<span class="hljs-comment">//修改的条件</span>
+		BasicDBObject bson= <span class="hljs-keyword">new</span> BasicDBObject(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;红孩儿&quot;</span>);
+		<span class="hljs-comment">//修改后的值</span>
+		BasicDBObject bson2 = <span class="hljs-keyword">new</span> BasicDBObject(<span class="hljs-string">&quot;$set&quot;</span>,<span class="hljs-keyword">new</span> BasicDBObject(<span class="hljs-string">&quot;address&quot;</span>, <span class="hljs-string">&quot;南海&quot;</span>));
+		<span class="hljs-comment">//参数1：修改条件  参数2：修改后的值</span>
+		collection.updateOne(bson, bson2);
+
+      &#125; <span class="hljs-keyword">catch</span>（Exception e）&#123;
+        System.err.println（e.getClass（）。getName（）+“：” + e.getMessage（））;
+     &#125;
+   &#125;
+&#125;</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/mongodb/">mongodb</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/">非关系型数据库</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%BA%94%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">oracle数据库的基本应用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/mysql%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%BA%94%E7%94%A8/">
+                        <span class="hidden-mobile">mysql的基本应用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

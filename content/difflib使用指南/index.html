@@ -1,0 +1,639 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>difflib使用指南 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="difflib使用指南">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-06-28 09:55" pubdate>
+        2022年6月28日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      700 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      12
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">difflib使用指南</h1>
+            
+            <div class="markdown-body">
+              <p>此模块提供用于比较序列的类和函数。 例如，它可被用于比较文件，并可产生多种格式的不同文件差异信息，包括 HTML 和上下文以及统一的 diff 数据。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>无需安装，python3自带</p>
+<h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> difflib</code></pre></div>
+<h1 id="对比字符串"><a href="#对比字符串" class="headerlink" title="对比字符串"></a>对比字符串</h1><p>该逻辑使用的是<code>Differ()</code>，这个类的作用是比较由文本行组成的序列，并产生可供人阅读的差异或增量信息。输出的符号如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>‘-’</td>
+<td>包含在第一个系列行中，但不包含第二个</td>
+</tr>
+<tr>
+<td>‘+’</td>
+<td>包含在第二个系列行中，但不包含第一个</td>
+</tr>
+<tr>
+<td>’ ’</td>
+<td>两个系列行一致</td>
+</tr>
+<tr>
+<td>‘?’</td>
+<td>存在增量差异</td>
+</tr>
+<tr>
+<td>‘^’</td>
+<td>存在差异字符</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>思路：</p>
+<ol>
+<li>初始化<code>difflib.Differ()</code></li>
+<li>将文章用<code>splitlines</code>分开</li>
+<li>调用<code>compare()</code>比较，将比较结果转换成<code>list</code></li>
+<li>使用<code>&quot;&quot;.join</code>结果，输出</li>
+</ol>
+<p>需要比较的字段：</p>
+<div class="code-wrapper"><pre><code class="hljs python">a = <span class="hljs-string">&quot;&quot;&quot;egg\ndiff\njsjs&quot;&quot;&quot;</span>
+b = <span class="hljs-string">&quot;&quot;&quot;eggs\ndif\njson&quot;&quot;&quot;</span></code></pre></div>
+<p> 逻辑：</p>
+<div class="code-wrapper"><pre><code class="hljs python">d = difflib.Differ() <span class="hljs-comment"># 初始化</span>
+a = a.splitlines(keepends=<span class="hljs-literal">True</span>) <span class="hljs-comment"># 换行符分开a</span>
+b = b.splitlines(keepends=<span class="hljs-literal">True</span>) <span class="hljs-comment"># 换行符分开b</span>
+compare = <span class="hljs-string">&quot;&quot;</span>.join(<span class="hljs-built_in">list</span>(d.compare(a, b))) <span class="hljs-comment"># 比较，并转换成List，然后变成字符串</span>
+<span class="hljs-built_in">print</span>(compare) <span class="hljs-comment"># 输出</span></code></pre></div>
+<p>结果：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">- egg
++ eggs
+?    +
+- diff
+?    -
++ dif
+- jsjs+ json</code></pre></div>
+<h1 id="生成可视化HTML"><a href="#生成可视化HTML" class="headerlink" title="生成可视化HTML"></a>生成可视化HTML</h1><p>该逻辑使用的是<code>HtmlDiff()</code>，并使用<code>make_file</code>生成文件，形参作用如下：</p>
+<ul>
+<li><code>fromlines</code>：比较的源文本</li>
+<li><code>tolines</code>：比较的对象</li>
+<li><code>fromdesc</code>：在生成的HTML中源文本的标题</li>
+<li><code>todesc</code>：在生成的HTML中对象的标题</li>
+<li><code>charset</code>：生成HTML的编码格式</li>
+</ul>
+<p>思路：</p>
+<ol>
+<li>初始化<code>difflib.HtmlDiff()</code></li>
+<li>将文章用<code>splitlines</code>分开</li>
+<li>调用<code>make_file()</code>比较</li>
+<li>将结果输出到文件中</li>
+</ol>
+<p>文章：</p>
+<div class="code-wrapper"><pre><code class="hljs python">a = <span class="hljs-string">&quot;&quot;&quot;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer</span>
+<span class="hljs-string">eu lacus accumsan arcu fermentum euismod. Donec pulvinar porttitor</span>
+<span class="hljs-string">tellus. Aliquam venenatis. Donec facilisis pharetra tortor.  In nec</span>
+<span class="hljs-string">mauris eget magna consequat convallis. Nam sed sem vitae odio</span>
+<span class="hljs-string">pellentesque interdum. Sed consequat viverra nisl. Suspendisse arcu</span>
+<span class="hljs-string">metus, blandit quis, rhoncus ac, pharetra eget, velit. Mauris</span>
+<span class="hljs-string">urna. Morbi nonummy molestie orci. Praesent nisi elit, fringilla ac,</span>
+<span class="hljs-string">suscipit non, tristique vel, mauris. Curabitur vel lorem id nisl porta</span>
+<span class="hljs-string">adipiscing. Suspendisse eu lectus. In nunc. Duis vulputate tristique</span>
+<span class="hljs-string">enim. Donec quis lectus a justo imperdiet tempus.&quot;&quot;&quot;</span>
+
+b = <span class="hljs-string">&quot;&quot;&quot;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer</span>
+<span class="hljs-string">eu lacus accumsan arcu fermentum euismod. Donec pulvinar, porttitor</span>
+<span class="hljs-string">tellus. Aliquam venenatis. Donec facilisis pharetra tortor. In nec</span>
+<span class="hljs-string">mauris eget magna consequat convallis. Nam cras vitae mi vitae odio</span>
+<span class="hljs-string">pellentesque interdum. Sed consequat viverra nisl. Suspendisse arcu</span>
+<span class="hljs-string">metus, blandit quis, rhoncus ac, pharetra eget, velit. Mauris</span>
+<span class="hljs-string">urna. Morbi nonummy molestie orci. Praesent nisi elit, fringilla ac,</span>
+<span class="hljs-string">suscipit non, tristique vel, mauris. Curabitur vel lorem id nisl porta</span>
+<span class="hljs-string">adipiscing. Duis vulputate tristique enim. Donec quis lectus a justo</span>
+<span class="hljs-string">imperdiet tempus. Suspendisse eu lectus. In nunc. &quot;&quot;&quot;</span></code></pre></div>
+<p>逻辑：</p>
+<div class="code-wrapper"><pre><code class="hljs python">d = difflib.HtmlDiff() <span class="hljs-comment"># 初始化</span>
+a = a.splitlines(keepends=<span class="hljs-literal">True</span>) <span class="hljs-comment"># 换行符分开a</span>
+b = b.splitlines(keepends=<span class="hljs-literal">True</span>) <span class="hljs-comment"># 换行符分开b</span>
+out_file = <span class="hljs-string">&quot;./test.html&quot;</span> <span class="hljs-comment"># 定义输出文件的路径</span>
+result = d.make_file(fromlines=a, tolines=b, fromdesc=<span class="hljs-string">&quot;a&quot;</span>, todesc=<span class="hljs-string">&quot;b&quot;</span>, charset=<span class="hljs-string">&quot;UTF-8&quot;</span>) <span class="hljs-comment"># 生成文件</span>
+<span class="hljs-comment"># 写入文件</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(out_file, <span class="hljs-string">&#x27;w&#x27;</span>) <span class="hljs-keyword">as</span> file:
+    file.writelines(result)</code></pre></div>
+<p>输出：</p>
+<p><img src="../../image/image-20220628105132995.png" srcset="/my_world/img/loading.gif" lazyload alt="test.html"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/python/">python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/python%E5%9F%BA%E7%A1%80/">python基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/conda%E7%9A%84%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">conda的使用指南</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/python%E6%97%B6%E9%97%B4%E8%8E%B7%E5%8F%96/">
+                        <span class="hidden-mobile">python时间获取</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+@font-face{
+	font-family:'GenJyuuGothic-Normal-2';
+	src:url('../ttf/GenJyuuGothic-Normal-2.ttf');
+}
+@font-face{
+	font-family:'AguafinaScript-Regular';
+	src:url('../ttf/AguafinaScript-Regular.ttf');
+}
+@font-face{
+	font-family:'JiYingHuiPianYingYuan';
+	src:url('../ttf/JiYingHuiPianYingYuan.ttf');
+}
+@font-face{
+	font-family:'YangRenDongZhuShiTi-Bold-2';
+	src:url('../ttf/YangRenDongZhuShiTi-Bold-2.ttf');
+}
+@font-face{
+	font-family:'NotoSansSC-Light';
+	src:url('../ttf/NotoSansSC-Light.ttf');
+}
+/* -----------------
+----- 基本 --------
+-------------------*/
+/* 导航栏 */
+#navbar{
+	font-family:'JiYingHuiPianYingYuan';
+}
+.nav-item{
+	font-family:'JiYingHuiPianYingYuan';
+}
+/* 页面标题 */
+#subtitle{
+	font-family:'YangRenDongZhuShiTi-Bold-2';
+}
+/* 页面信息 */
+.page-header{
+	font-family:'YangRenDongZhuShiTi-Bold-2';
+}
+/* 页脚 */
+footer{
+	font-family:'GenJyuuGothic-Normal-2';
+}
+/* -----------------
+----- 首页 --------
+-------------------*/
+/* 首页展示标题 */
+.index-header{
+	font-family:'JiYingHuiPianYingYuan';
+}
+/* 首页描述 */
+.index-excerpt{
+	font-family:'GenJyuuGothic-Normal-2';
+}
+/* -----------------
+----- 文章 --------
+-------------------*/
+/* 文章标题 */
+.markdown-body h1,h2,h3,h4,h5,h6{
+	font-family:'NotoSansSC-Light';
+}
+/* 文章导航 */
+#toc-body{
+	font-family:'NotoSansSC-Light';
+}
+/* 文章正文、代码 */
+#board-ctn p,li{
+	font-family:'NotoSansSC-Light';
+}
+#board-ctn code{
+	font-family:'GenJyuuGothic-Normal-2';
+}
+/* -----------------
+----- 关于 --------
+-------------------*/
+/* 关于--副标题 */
+.about-intro{
+	font-family:'AguafinaScript-Regular';
+}
+/* 关于正文，代码 */
+.about-content .markdown-body p,li{
+	font-family:'GenJyuuGothic-Normal-2';
+}
+.about-content .markdown-body code{
+	font-family:'GenJyuuGothic-Normal-2';
+}
+/* 关于标题 */
+.about-content .markdown-body h1,h2,h3,h4,h5,h6{
+	font-family:'JiYingHuiPianYingYuan';
+}

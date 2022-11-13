@@ -1,0 +1,1205 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>线性代数公式大全（一） | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="线性代数公式大全（一）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-28 14:37" pubdate>
+        2021年10月28日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      101
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">线性代数公式大全（一）</h1>
+            
+            <div class="markdown-body">
+              <h1 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h1><ul>
+<li>行列式的定义与性质<ul>
+<li>本质定义（第一种定义）</li>
+<li>性质</li>
+<li>逆序数法定义（第二种定义）</li>
+<li>展开定理（第三种定义）</li>
+<li>几个重要的展开式<ul>
+<li>主对角线行列式</li>
+<li>副对角线行列式</li>
+<li>拉普拉斯展开式</li>
+<li>范德蒙德行列式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>行列式的计算<ul>
+<li>具体型<ul>
+<li>化为基本形</li>
+<li>递推法</li>
+<li>行列式表示的函数和方程</li>
+</ul>
+</li>
+<li>抽象型<ul>
+<li>用性质</li>
+<li>用公式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>余子式与代数余子式的计算</li>
+</ul>
+<h2 id="本质定义"><a href="#本质定义" class="headerlink" title="本质定义"></a>本质定义</h2><p>2阶行列式是由两个2维向量组成的，其（运算规则的）结果为以这两个向量为邻边的<strong>平行四边形的面积</strong>。</p>
+<p>3阶行列式是由三个3维向量$a<em>1=[a</em>{11},a<em>{12},a</em>{13}],a<em>2=[a</em>{21},a<em>{22},a</em>{23}],a<em>3=[a</em>{31},a<em>{32},a</em>{33}]$组成的，其（运算规则的）结果为以这三个向量为邻边的<strong>平行六面体的体积</strong></p>
+<p>n阶行列式是由n个n维向量$a<em>1=[a</em>{11},a<em>{12},\cdots,a</em>{1n}],a<em>2=[a</em>{21},a<em>{22},\cdots,a</em>{2n}],\cdots,a<em>n=[a</em>{n1},a<em>{n2},a</em>{nn}]$组成的，其（运算规则的）结果为以这n个向量为邻边的<strong>n维图形的体积</strong></p>
+<h2 id="行列式性质"><a href="#行列式性质" class="headerlink" title="行列式性质"></a>行列式性质</h2><ul>
+<li><p>行列互换，其值不变，即$|A| = |A^T|$</p>
+</li>
+<li><p>对调行列式的两行（或列），行列式变为其相反数</p>
+</li>
+<li><p>行列式的某行（或列）有公因子可以提取</p>
+</li>
+<li><p>若行列式某行（或列）的元素全是0，则该行列式为0</p>
+</li>
+<li><p>若行列式某两行（或两列）相同，则行列式为0</p>
+</li>
+<li><p>若行列式某两行（或两列）的元素成比例，则行列式为0</p>
+</li>
+<li><p>行列式某行（或列）为两个元素之和时，行列式可拆为两个行列式之和</p>
+<ul>
+<li><script type="math/tex; mode=display">
+\begin{vmatrix}
+ a+j & b & c\\
+ d+k & e & f\\
+ g+l & h & i
+\end{vmatrix}
+=
+\begin{vmatrix}
+ a & b & c\\
+ d & e & f\\
+ g & h & i
+\end{vmatrix}
++
+\begin{vmatrix}
+ j & b & c\\
+ k & e & f\\
+ l & h & i
+\end{vmatrix}</script></li>
+</ul>
+</li>
+<li><p><strong>行列式某行（或列）的倍数加到另一行（或者另一列），行列式不变</strong></p>
+</li>
+<li><p>行列式等于某行（或列）的元素与其代数余子式的积的和</p>
+<ul>
+<li>按行/列展开时，将行/列其他元素化成0，降低计算量</li>
+</ul>
+</li>
+<li>行列式某行（或某列）的元素与另一行（或列）元素的代数余子式的积的和为0</li>
+</ul>
+<h2 id="逆序数法定义"><a href="#逆序数法定义" class="headerlink" title="逆序数法定义"></a>逆序数法定义</h2><h3 id="排列"><a href="#排列" class="headerlink" title="排列"></a>排列</h3><p>由n个数$1,2，\cdots，n$组成的一个有序数组称为一个n级排列，如23145是一个5级排列，41352也是一个5级排列。n级排列共有n!个。</p>
+<h3 id="逆序"><a href="#逆序" class="headerlink" title="逆序"></a>逆序</h3><p>在一个n级排列$i_1,i_2,\cdots ,i_s,\cdots ,i_t,\cdots ,i_n$中，若$i_s &gt; i_t$，且$i_s$排在$i_t$前面，则称这两个数构成一个逆序。</p>
+<h3 id="逆序数"><a href="#逆序数" class="headerlink" title="逆序数"></a>逆序数</h3><p>一个排列中，逆序的总数称为该排列的逆序数，记作$ \tau(i_1,i_2,\cdots ,i_n) $,如$ \tau(231546)=3 $,$ \tau(621534)=8 $.由小到大顺排的排列称为自然排序，如12345，显然，自然排序的逆序数为0.</p>
+<h3 id="奇排列和偶排列"><a href="#奇排列和偶排列" class="headerlink" title="奇排列和偶排列"></a>奇排列和偶排列</h3><p>排列的逆序数为<strong>奇数</strong>时，该排列称为<strong>奇排列</strong>；排列的逆序数为<strong>偶数</strong>时，该排列称为<strong>偶排列</strong>。</p>
+<h2 id="n阶行列式的定义"><a href="#n阶行列式的定义" class="headerlink" title="n阶行列式的定义"></a>n阶行列式的定义</h2><script type="math/tex; mode=display">
+\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots &        & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn} \\
+\end{vmatrix} = \sum_{j_1 j_2 \cdots j_n} (-1)^{\tau(j_1 j_2 \cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{nj_n}</script><p>当列下标为奇排列时，应附加负号；当列下标为偶排列时，应附加正号</p>
+<h2 id="展开定理"><a href="#展开定理" class="headerlink" title="展开定理"></a>展开定理</h2><h3 id="余子式和代数余子式"><a href="#余子式和代数余子式" class="headerlink" title="余子式和代数余子式"></a>余子式和代数余子式</h3><p>把行列式中的元素$ a<em>{ij} $所在的i行元素和j列元素去掉，剩下的n-1行和n-1列元素按照元素原来的排列次序构成的n-1阶行列式，称为元素$a</em>{ij}$的余子式，记为$M<em>{ij}$，称$A</em>{ij} = (-1)^{i+j}M_{ij}$为元素的代数余子式</p>
+<script type="math/tex; mode=display">
+\begin{vmatrix}
+ 1 & 1 & 1\\
+ 0 & 2 & 1\\
+ 0 & 0 & 3
+\end{vmatrix}
+=A_{11} = (-1)^{1+1}
+\begin{vmatrix}
+2 & 1\\
+0 & 3
+\end{vmatrix}</script><h3 id="行列式展开"><a href="#行列式展开" class="headerlink" title="行列式展开"></a>行列式展开</h3><p>行列式的值等于行列式的某行（列）元素分别乘其相应的代数余子式后再求和，即</p>
+<script type="math/tex; mode=display">
+|A| = \begin{cases}
+a_{i1}A_{i1} + a_{i2}A_{i2} + \cdots + a_{in}A_{in} = \sum_{j = 1}^n a_{ij}A_{ij}(i = 1,2,\cdots,n)\\
+a_{1j}A_{1j} + a_{2j}A_{2j} + \cdots + a_{nj}A_{nj} = \sum_{i = 1}^n a_{ij}A_{ij}(j = 1,2,\cdots,n)
+\end{cases}</script><p>但行列式的某行（列）元素分别乘另一行（列）元素的代数余子式后再求和，结果为零，即</p>
+<script type="math/tex; mode=display">
+a_{i1}A_{k1} + a_{i2}A_{k2} + \cdots + a_{in}A_{kn} = 0,i \neq k\\
+a_{1j}A_{1k} + a_{2j}A_{2k} + \cdots + a_{nj}A_{nk} = 0(j \neq k)</script><h2 id="几个重要的行列式"><a href="#几个重要的行列式" class="headerlink" title="几个重要的行列式"></a>几个重要的行列式</h2><h3 id="主对角线行列式（上（下）三角行列式）"><a href="#主对角线行列式（上（下）三角行列式）" class="headerlink" title="主对角线行列式（上（下）三角行列式）"></a>主对角线行列式（上（下）三角行列式）</h3><script type="math/tex; mode=display">
+\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+0 & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots &        & \vdots \\
+0 & 0 & \cdots & a_{nn} \\
+\end{vmatrix} = \begin{vmatrix}
+a_{11} & 0 & \cdots & 0 \\
+a_{21} & a_{22} & \cdots & 0 \\
+\vdots & \vdots &        & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn} \\
+\end{vmatrix} = \begin{vmatrix}
+a_{11} & 0 & \cdots & 0 \\
+0 & a_{22} & \cdots & 0 \\
+\vdots & \vdots &        & \vdots \\
+0 & 0 & \cdots & a_{nn} \\
+\end{vmatrix} = \prod^n_{1 \le i < j \le n} (x_j - x_i)</script><h3 id="副对角线行列式"><a href="#副对角线行列式" class="headerlink" title="副对角线行列式"></a>副对角线行列式</h3><script type="math/tex; mode=display">
+\begin{vmatrix}
+a_{11} & a_{1,n-1} & \cdots & a_{1n} \\
+a_{21} & a_{2,n-1} & \cdots & 0 \\
+\vdots & \vdots &        & \vdots \\
+a_{n1} & 0 & \cdots & 0 \\
+\end{vmatrix} = \begin{vmatrix}
+0 & 0 & \cdots & a_{1n} \\
+0 & a_{2,n-1} & \cdots & a_{2n} \\
+\vdots & \vdots &        & \vdots \\
+a_{n1} & a_{n,n-1} & \cdots & a_{nn} \\
+\end{vmatrix} = \begin{vmatrix}
+0 & 0 & \cdots & a_{1n} \\
+0 & a_{2,n-1} & \cdots & 0 \\
+\vdots & \vdots &        & \vdots \\
+a_{n1} & 0 & \cdots & 0 \\
+\end{vmatrix} = (-1)^{\frac{n(n-1)}{2}}a_{1n}a_{2,n-1}\cdots a_{n1}</script><h3 id="拉普拉斯展开式"><a href="#拉普拉斯展开式" class="headerlink" title="拉普拉斯展开式"></a>拉普拉斯展开式</h3><p>设A为m阶矩阵，B为n阶矩阵，则</p>
+<script type="math/tex; mode=display">
+\begin{vmatrix}
+A & O \\
+O & B \\
+\end{vmatrix} = \begin{vmatrix}
+A & C \\
+O & B \\
+\end{vmatrix} = \begin{vmatrix}
+A & O \\
+C & B \\
+\end{vmatrix} = |A||B|</script><script type="math/tex; mode=display">
+\begin{vmatrix}
+O & A \\
+B & O \\
+\end{vmatrix} = \begin{vmatrix}
+C & A \\
+B & O \\
+\end{vmatrix} = \begin{vmatrix}
+O & A \\
+B & C \\
+\end{vmatrix} = (-1)^{mn}|A||B|</script><h3 id="范德蒙德行列式"><a href="#范德蒙德行列式" class="headerlink" title="范德蒙德行列式"></a>范德蒙德行列式</h3><script type="math/tex; mode=display">
+\begin{vmatrix}
+1 & 1 & \cdots & 1 \\
+x_1 & x_2 & \cdots & x_n \\
+x_1^2 & x_2^2 & \cdots & x_n^2 \\
+\vdots & \vdots &        & \vdots \\
+x_1^{n-1} & x_2^{n-1} & \cdots & x_n^{n-1} \\
+\end{vmatrix} =</script><h2 id="克拉默法则"><a href="#克拉默法则" class="headerlink" title="克拉默法则"></a>克拉默法则</h2><p>对方程组：</p>
+<p>(1)</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = 0\\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = 0\\
+\vdots \\
+a_{n1}x_1 + a_{n2}x_2 + \cdots + a_{nn}x_n = 0\\
+\end{cases}</script><p>(2)</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1\\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2\\
+\vdots \\
+a_{n1}x_1 + a_{n2}x_2 + \cdots + a_{nn}x_n = b_n\\
+\end{cases}</script><p>其中(1)为齐次线性方程组，(2)为非齐次线性方程组，由(1)得：</p>
+<script type="math/tex; mode=display">
+D = \begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots &        & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn} \\
+\end{vmatrix}</script><script type="math/tex; mode=display">
+D_1 = \begin{vmatrix}
+b_1 & a_{12} & \cdots & a_{1n} \\
+b_2 & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots &        & \vdots \\
+b_n & a_{n2} & \cdots & a_{nn} \\
+\end{vmatrix}</script><script type="math/tex; mode=display">
+D_n = \begin{vmatrix}
+a_{11} & a_{12} & \cdots & b_1 \\
+a_{21} & a_{22} & \cdots & b_2 \\
+\vdots & \vdots &        & \vdots \\
+a_{n1} & a_{n2} & \cdots & b_n \\
+\end{vmatrix}</script><p>若$D = 0$，方程有无穷多个解；若$D \neq 0$，方程有唯一解，则：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x_1 = \frac{D_1}{D}\\
+x_2 = \frac{D_2}{D}\\
+\vdots \\
+x_n = \frac{D_n}{D} 
+\end{cases}</script><h1 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h1><h2 id="章节概括"><a href="#章节概括" class="headerlink" title="章节概括"></a>章节概括</h2><ul>
+<li>矩阵的定义及其基本运算<ul>
+<li>定义</li>
+<li>基本运算<ul>
+<li>相等</li>
+<li>加法</li>
+<li>数乘矩阵</li>
+<li>矩阵的乘法</li>
+<li>转置矩阵</li>
+<li>向量的内积与正交</li>
+<li>施密特正交化</li>
+<li>矩阵的幂</li>
+<li>方阵乘积的行列式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>矩阵的逆<ul>
+<li>定义</li>
+<li>性质与公式</li>
+<li>用定义求逆矩阵</li>
+</ul>
+</li>
+<li>伴随矩阵<ul>
+<li>定义</li>
+<li>性质与公式</li>
+<li>用伴随矩阵求逆矩阵</li>
+</ul>
+</li>
+<li>初等交换与初等矩阵<ul>
+<li>初等变换</li>
+<li>初等矩阵<ul>
+<li>定义</li>
+<li>性质与公式</li>
+<li>用初等交换（初等矩阵）求逆矩阵</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>矩阵方程<ul>
+<li>AX = B</li>
+<li>XA = B</li>
+<li>AXB = C</li>
+</ul>
+</li>
+<li>矩阵的秩与等价矩阵<ul>
+<li>秩<ul>
+<li>定义</li>
+<li>初等交换不改变矩阵的秩</li>
+<li>几个重要式子</li>
+</ul>
+</li>
+<li>等价矩阵</li>
+</ul>
+</li>
+</ul>
+<h2 id="矩阵的本质"><a href="#矩阵的本质" class="headerlink" title="矩阵的本质"></a>矩阵的本质</h2><ol>
+<li>矩阵也是由若干行（列）向量拼成的</li>
+<li>矩阵不能运算，但是其若干行（列）向量之间可能存在某种关系</li>
+</ol>
+<h2 id="矩阵的基本运算"><a href="#矩阵的基本运算" class="headerlink" title="矩阵的基本运算"></a>矩阵的基本运算</h2><h3 id="相等"><a href="#相等" class="headerlink" title="相等"></a>相等</h3><p>$ A = (a<em>{ij})</em>{m \cdot n} = B = (b<em>{ij})</em>{s \cdot k} \Leftrightarrow m=s,n=k $且$ a<em>{ij} = b</em>{ij}(i = 1,2,\cdots,m;j = 1,2,\cdots,n) $，即A,B是同型矩阵，且对应元素相等</p>
+<h3 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h3><p>两个矩阵是同型矩阵，可以相加，即</p>
+<script type="math/tex; mode=display">
+C = A +B = (a_{ij})_{m \cdot n} + (b_{ij})_{m \cdot n} = (c_{ij})_{m \cdot n}</script><h3 id="数乘矩阵"><a href="#数乘矩阵" class="headerlink" title="数乘矩阵"></a>数乘矩阵</h3><p>设k是一个数，A是一个$m \cdot n$矩阵，数k和A的乘积称为数乘矩阵，即</p>
+<script type="math/tex; mode=display">
+kA = Ak = k\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots &        & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn} 
+\end{bmatrix} = \begin{bmatrix}
+ka_{11} & ka_{12} & \cdots & ka_{1n} \\
+ka_{21} & ka_{22} & \cdots & ka_{2n} \\
+\vdots & \vdots &        & \vdots \\
+ka_{m1} & ka_{m2} & \cdots & ka_{mn} 
+\end{bmatrix} = k(a_{ij})_{m \cdot n}</script><p>即A的每个元素都乘以k</p>
+<p>加法运算和数乘运算统称为矩阵的线性运算，满足下列运算规则</p>
+<ol>
+<li><strong>交换律</strong>：$A+B = B+A$</li>
+<li><strong>结合律</strong>：$（A+B)+C = A+(B+C)$</li>
+<li><strong>分配率</strong>：$k(A+B) = kA + kB，(k+l)A = kA + lA$</li>
+<li>数和矩阵相乘的结合律：$k(lA) = (kl)A = l(kA)$</li>
+</ol>
+<p>其中，A,B,C是同型矩阵，k,l是任意常数</p>
+<p>当用n阶方阵A计算行列式时，记成|A|，关于方阵行列式，有以下几点</p>
+<ol>
+<li>$ |kA| = k^n|A| \neq k|A|(n \ge 2,k\neq0,1) $</li>
+<li>一般地，$|A+B| \neq |A| + |B| $</li>
+<li>$ A \neq O $不能推断出$ |A| \neq 0 $</li>
+<li>$ A \neq B $不能推断出$ |A| \neq |B| $</li>
+</ol>
+<h3 id="矩阵的乘法"><a href="#矩阵的乘法" class="headerlink" title="矩阵的乘法"></a>矩阵的乘法</h3><p>设A是$m \cdot s$矩阵，B是$s \cdot n$矩阵（矩阵A的列数必须与矩阵B的行数相等），则A，B可以相乘，乘积AB是$m \cdot n$，记$ C = AB = (c<em>{ij})</em>{m \cdot n} $，C的第i行第j列元素$c_{ij}$是A的第i行的s个元素与B的第j列的s个对应元素两两乘积之和，即</p>
+<script type="math/tex; mode=display">
+c_{ij} = \sum_{k = 1}^s a_{ik}b_{kj} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{is}b_{sj}(i = 1,2,\cdots,m;j = 1,2,\cdots,n)</script><p>矩阵乘法满足下列运算规律</p>
+<ol>
+<li><strong>结合律</strong>：$ (A<em>{m \cdot s}B</em>{s \cdot r})C<em>{r \cdot n} = A</em>{m \cdot s}(B<em>{s \cdot r}C</em>{r \cdot n}) $</li>
+<li><strong>分配律</strong>：<ol>
+<li>$ A<em>{m \cdot s}(B</em>{s \cdot n}+C<em>{s \cdot n}) = A</em>{m \cdot s}B<em>{s \cdot n}+A</em>{m \cdot s}C_{s \cdot n} $</li>
+<li>$ (A<em>{m \cdot s}+B</em>{m \cdot s})C<em>{s \cdot n} = A</em>{m \cdot s}C<em>{s \cdot n} + B</em>{m \cdot s}C_{s \cdot n} $</li>
+</ol>
+</li>
+<li><strong>数乘与矩阵乘积的结合律</strong>：$ (kA<em>{m \cdot s})B</em>{s \cdot n} = k(A<em>{m \cdot s}B</em>{s \cdot n}) $</li>
+</ol>
+<p>要注意以下几点：</p>
+<ol>
+<li>矩阵的乘法一般情况下不满足交换律，即$ AB \neq BA $</li>
+<li>存在$A \neq O,B \neq O$，而$AB = O$的情况，故$AB = O$不能推出$A = O$或$B = O$</li>
+<li>$AB = AC \Rightarrow A(B -C) = O$，此时即使有$A \neq O$，一般也得不出$B = C$</li>
+</ol>
+<h2 id="转置矩阵"><a href="#转置矩阵" class="headerlink" title="转置矩阵"></a>转置矩阵</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><script type="math/tex; mode=display">
+设A = \begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots &        & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn} 
+\end{bmatrix},记A^T = \begin{bmatrix}
+a_{11} & a_{21} & \cdots & a_{m1} \\
+a_{12} & a_{22} & \cdots & a_{m2} \\
+\vdots & \vdots &        & \vdots \\
+a_{1n} & a_{2n} & \cdots & a_{mn} 
+\end{bmatrix}，称A^T为A的转置矩阵</script><h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><script type="math/tex; mode=display">
+(A^T)^T = A</script><script type="math/tex; mode=display">
+(kA)^T = kA^T(k为常数)</script><script type="math/tex; mode=display">
+(A \pm B)^T = A^T \pm B^T</script><script type="math/tex; mode=display">
+(AB)^T = B^TA^T</script><script type="math/tex; mode=display">
+\Lambda^T = \Lambda(对角矩阵)</script><script type="math/tex; mode=display">
+m = n时，|A^T| = |A|</script><h2 id="向量的内积与正交"><a href="#向量的内积与正交" class="headerlink" title="向量的内积与正交"></a>向量的内积与正交</h2><h3 id="内积"><a href="#内积" class="headerlink" title="内积"></a>内积</h3><p>设$\alpha = [a_1,a_2,\cdots,a_n]^T,\beta = [b_1,b_2,\cdots,b_n]^T $，则称</p>
+<script type="math/tex; mode=display">
+\alpha^T \beta = \sum_{i = 1}^n a_ib_i = a_1b_1 + a_2b_2 + \cdots + a_nb_n</script><p>为向量$\alpha,\beta$的内积，记作$(\alpha,\beta)$，即$ (\alpha,\beta) = \alpha^T \beta $</p>
+<h3 id="正交"><a href="#正交" class="headerlink" title="正交"></a>正交</h3><p>当$ \alpha^T \beta = 0 $时，称向量$\alpha,\beta$是正交向量</p>
+<h3 id="模"><a href="#模" class="headerlink" title="模"></a>模</h3><script type="math/tex; mode=display">
+||\alpha|| = \sqrt{\sum_{i = 1}^n \alpha^2_i}</script><p>称为向量$\alpha$的模（长度），当$||\alpha|| = 1$时，称$\alpha$为<strong>单位向量</strong></p>
+<h3 id="标准正交向量组"><a href="#标准正交向量组" class="headerlink" title="标准正交向量组"></a>标准正交向量组</h3><p>若列向量组$\alpha_1,\alpha_2,\cdots,\alpha_3$满足</p>
+<script type="math/tex; mode=display">
+\alpha_i^T\alpha_j = \begin{cases}
+0 & i \neq j \\
+1 & i = j
+\end{cases}</script><p>则称$\alpha_1,\alpha_2,\cdots,\alpha_3$为标准或单位正交向量组</p>
+<h3 id="施密特正交化过程"><a href="#施密特正交化过程" class="headerlink" title="施密特正交化过程"></a>施密特正交化过程</h3><p>线性无关向量组$\alpha_1,\alpha_2$的标准正交化（又称正交规范化）公式为</p>
+<script type="math/tex; mode=display">
+\beta_1 = \alpha_1</script><script type="math/tex; mode=display">
+\beta_2 = \alpha_2 - \frac{(\alpha_2,\beta_1)}{(\beta_1,\beta_1)}\beta_1</script><p>得到的$\beta_1,\beta_2$是正交向量组</p>
+<p>将$\beta_1,\beta_2$单位化，得</p>
+<script type="math/tex; mode=display">
+\eta_1 = \frac{\beta_1}{||\beta_1||}，\eta_1 = \frac{\beta_2}{||\beta_2||}</script><p>则$\eta_1,\eta_2$是标准正交向量组</p>
+<h2 id="矩阵的幂"><a href="#矩阵的幂" class="headerlink" title="矩阵的幂"></a>矩阵的幂</h2><p>A是一个n阶方阵，$ A^m = \overbrace{AA\cdots A}^{m个} $称为A的m次幂</p>
+<h2 id="方阵乘积的行列式"><a href="#方阵乘积的行列式" class="headerlink" title="方阵乘积的行列式"></a>方阵乘积的行列式</h2><p>设A,B是同阶方阵，则$|AB| = |A||B|$</p>
+<ol>
+<li><p>零矩阵：每个元素均为零的矩阵，记为$O$</p>
+</li>
+<li><p>单位矩阵：主对角元素均为1，其余元素均为零的n阶方阵，称为n阶单位矩阵，记成E（或I）</p>
+</li>
+<li><p>数量矩阵：数k和单位矩阵的乘积称为数量矩阵</p>
+</li>
+<li><p>对角矩阵：非主对角元素均为零的矩阵称为对角矩阵</p>
+</li>
+<li><p>上（下）三角矩阵：当$i &gt; (&lt;) j $时，$a_{ij} = 0 $的矩阵称为上（下）三角矩阵</p>
+</li>
+<li><p>对称矩阵：满足条件$A^T = A$的矩阵A称为对称矩阵，$A^T = A \Leftrightarrow a<em>{ij} = a</em>{ji}$</p>
+</li>
+<li><p>反对称矩阵：满足条件$A^T = -A$的矩阵A称为对称矩阵，</p>
+<script type="math/tex; mode=display">
+A^T = A \Leftrightarrow \begin{cases} 
+a_{ij} = -a_{ji},i \neq j\\
+a_{ii} = 0
+\end{cases}</script></li>
+<li><p>正交矩阵：设A是n阶方阵，满足$A^TA = E$，则称A是正交矩阵</p>
+</li>
+<li><p>分块矩阵</p>
+</li>
+</ol>
+<h2 id="矩阵的秩"><a href="#矩阵的秩" class="headerlink" title="矩阵的秩"></a>矩阵的秩</h2><p>设有矩阵A，则A的秩为<strong>非零子式的最高阶数</strong>，记作$rank(A)，简写为r(A)$，例子：</p>
+<script type="math/tex; mode=display">
+A = \begin{pmatrix}
+1 & 2 & 3\\
+4 & 5 & 6\\
+7 & 8 & 9\\
+\end{pmatrix},r(A) = 3</script><script type="math/tex; mode=display">
+A = \begin{pmatrix}
+1 & 2 & 3\\
+4 & 5 & 6\\
+0 & 0 & 0\\
+\end{pmatrix},r(A) = 2</script><h3 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h3><script type="math/tex; mode=display">
+若A = 0，则r(A) = 0。若A \neq 0，则r(A) \ge 1,A的秩最大为 max(m,n)</script><p>西尔韦斯特不等式：</p>
+<script type="math/tex; mode=display">
+如果 A 是一个 m*n 的矩阵，且 B 是 n*k 的矩阵，则rank(A) + rank(B) - n \le rank(AB)</script><script type="math/tex; mode=display">
+当AB = 0时，r(A) + r(B) \le n</script><script type="math/tex; mode=display">
+\begin{align}
+rank(A^*) = n,rank(A) = n\\
+rank(A^*) = 1,rank(A) = n-1\\
+rank(A^*) = 0,rank(A) < n-1\\
+\end{align}</script><script type="math/tex; mode=display">
+r(A+B) \le r(A) + r(B)</script><script type="math/tex; mode=display">
+max(r(A),r(B)) \le r(A,B) \le r(A) + r(B)</script><h2 id="单位矩阵"><a href="#单位矩阵" class="headerlink" title="单位矩阵"></a>单位矩阵</h2><script type="math/tex; mode=display">
+以三阶矩阵为例，E = \begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+\end{pmatrix}，E即是单位矩阵</script><h2 id="实对称矩阵"><a href="#实对称矩阵" class="headerlink" title="实对称矩阵"></a>实对称矩阵</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>如果有n阶矩阵A，其矩阵的元素都为实数，且<strong>矩阵A的转置等于其本身</strong>（$a<em>{ij}=a</em>{ji}$，$A^T = A$），(i,j为元素的脚标），则称A为实对称矩阵。</p>
+<h3 id="性质-2"><a href="#性质-2" class="headerlink" title="性质"></a>性质</h3><ol>
+<li><p>实对称矩阵<strong>A</strong>的不同特征值对应的特征向量是正交的。</p>
+</li>
+<li><p>实对称矩阵<strong>A</strong>的特征值都是实数。</p>
+</li>
+<li><p>n阶实对称矩阵<strong>A</strong>必可相似对角化，且相似对角阵上的元素即为矩阵本身特征值。</p>
+</li>
+<li><p>若<strong>A</strong>具有k重特征值$\lambda _0$必有k个线性无关的特征向量，或者说秩$r(\lambda E-A)$必为n-k，其中<strong>E</strong>为单位矩阵。</p>
+</li>
+<li><p>实对称矩阵A一定可正交相似对角化。</p>
+</li>
+<li>$A \simeq A^{-1}$</li>
+</ol>
+<h2 id="逆矩阵"><a href="#逆矩阵" class="headerlink" title="逆矩阵"></a>逆矩阵</h2><h3 id="矩阵可逆的充分必要条件"><a href="#矩阵可逆的充分必要条件" class="headerlink" title="矩阵可逆的充分必要条件"></a>矩阵可逆的充分必要条件</h3><script type="math/tex; mode=display">
+|A| \neq 0</script><script type="math/tex; mode=display">
+A^{-1} = \frac{1}{|A|}A^*</script><h3 id="性质-3"><a href="#性质-3" class="headerlink" title="性质"></a>性质</h3><p>设A，B是同阶可逆矩阵，则</p>
+<ol>
+<li>$ (A^{-1})^{-1} = A $</li>
+<li>$(kA)^{-1} = \frac{1}{k}A^{-1} (k \neq 0)$</li>
+<li>A,B也可逆，且$(AB)^{-1} = B^{-1}A^{-1}$</li>
+<li>$A^T$也可逆，且$(A^T)^{-1} = (A^{-1})^T$。此处可称为“穿脱”原则，即穿衣时先内后外，脱衣时先外后内</li>
+<li>$|A^{-1}| = |A|^{-1}$</li>
+<li>$ A^{-1}A = E $</li>
+<li>$r(|A|) = n$(矩阵A的阶层)</li>
+</ol>
+<h3 id="等价"><a href="#等价" class="headerlink" title="等价"></a>等价</h3><p>设A为n阶矩阵，则A可逆</p>
+<ol>
+<li>等价于$|A| \neq 0$</li>
+<li>等价于$r(A) = n$</li>
+<li>等价于$Ax = 0$只有零解</li>
+<li>等价于A的行列向量组线性无关</li>
+<li>等价于A的特征值均非零</li>
+</ol>
+<h3 id="逆矩阵的求法"><a href="#逆矩阵的求法" class="headerlink" title="逆矩阵的求法"></a>逆矩阵的求法</h3><p><strong>定义法</strong></p>
+<ol>
+<li>依定义，即求一个矩阵B，使$AB = E$，则A可逆，且$A^{-1} = B$</li>
+<li>将A分解成若干个可逆矩阵的乘积，因两个可逆矩阵的积仍是可逆矩阵，即若$A = BC$，其中，$B,C$均可逆，则A可逆，且$ A^{-1} = (BC)^{-1} = C^{-1}B^{-1}$</li>
+<li>一些简单分块矩阵的逆，若$A,B$均是可逆方阵，则</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+A & O\\
+O & B 
+\end{bmatrix}^{-1} = \begin{bmatrix}
+A^{-1} & O\\
+O & B^{-1}
+\end{bmatrix}</script><script type="math/tex; mode=display">
+\begin{bmatrix}
+O & A\\
+B & O 
+\end{bmatrix}^{-1} = \begin{bmatrix}
+O & B^{-1}\\
+A^{-1} & O
+\end{bmatrix}</script><p><strong>伴随矩阵法</strong></p>
+<p>利用$A^{-1} = \frac{1}{|A|}A^*$求逆矩阵，一般不用</p>
+<p><strong>初等变换法</strong></p>
+<p>$(A \vdots E)\overset{行变换}{\rightarrow} (E \vdots A^{-1})$</p>
+<p>矩阵有三种初等变换</p>
+<ol>
+<li>对调矩阵的两行</li>
+<li>矩阵的某行乘以非零常数倍</li>
+<li><strong>矩阵某行的倍数加到另一行</strong></li>
+</ol>
+<h3 id="克拉默法则求矩阵的逆矩阵"><a href="#克拉默法则求矩阵的逆矩阵" class="headerlink" title="克拉默法则求矩阵的逆矩阵"></a>克拉默法则求矩阵的逆矩阵</h3><script type="math/tex; mode=display">
+A = \begin{pmatrix}
+0 & 2 & -1 \\
+1 & 1 & 2 \\
+-1 & -1 & -1 \\
+\end{pmatrix}，求A^{-1}</script><script type="math/tex; mode=display">
+用\begin{bmatrix}
+A & B & C
+\end{bmatrix}^T分别替换A的第一、二、三列，并计算行列式</script><script type="math/tex; mode=display">
+\begin{vmatrix}
+ A & 2 & -1\\
+ B & 1 & 2\\
+ C & -1 & -1
+\end{vmatrix} = A\begin{vmatrix}
+1 & 2\\
+-1 & -1
+\end{vmatrix}-B\begin{vmatrix}
+2 & -1\\
+-1 & -1
+\end{vmatrix}+C\begin{vmatrix}
+2 & -1\\
+1 & 2
+\end{vmatrix}=A+3B+5C \Rightarrow \begin{bmatrix}
+1 & 3 & 5
+\end{bmatrix}</script><script type="math/tex; mode=display">
+\begin{vmatrix}
+0 & A & -1 \\
+1 & B & 2 \\
+-1 & C & -1 \\
+\end{vmatrix} = -A\begin{vmatrix}
+1 & 2\\
+-1 & -1
+\end{vmatrix}+B\begin{vmatrix}
+0 & -1\\
+-1 & -1
+\end{vmatrix}-C\begin{vmatrix}
+0 & -1\\
+1 & 2
+\end{vmatrix}=-A-B-C \Rightarrow \begin{bmatrix}
+-1 & -1 & -1
+\end{bmatrix}</script><script type="math/tex; mode=display">
+\begin{vmatrix}
+0 & 2 & A \\
+1 & 1 & B \\
+-1 & -1 & C \\
+\end{vmatrix} = A\begin{vmatrix}
+1 & 1\\
+-1 & -1
+\end{vmatrix}-B\begin{vmatrix}
+0 & 2\\
+-1 & -1
+\end{vmatrix}+C\begin{vmatrix}
+0 & 2\\
+1 & 1
+\end{vmatrix}=-2B-2C \Rightarrow \begin{bmatrix}
+0 & -2 & -2
+\end{bmatrix}</script><script type="math/tex; mode=display">
+将求的矩阵按行排好，再乘以矩阵得\begin{pmatrix}
+0 & 2 & -1 \\
+1 & 1 & 2 \\
+-1 & -1 & -1 \\
+\end{pmatrix}*\begin{pmatrix}
+1 & 3 & 5 \\
+-1 & -1 & -1 \\
+0 & -2 & -2 \\
+\end{pmatrix}=\begin{pmatrix}
+-2 & 0 & 0 \\
+0 & -2 & 0 \\
+0 & 0 & -2 \\
+\end{pmatrix}=-2E</script><script type="math/tex; mode=display">
+A^{-1} = -\frac{1}{2}\begin{pmatrix}
+1 & 3 & 5 \\
+-1 & -1 & -1 \\
+0 & -2 & -2 \\
+\end{pmatrix}</script><blockquote>
+<p>原视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yJ411A7Ym">克莱姆法则求矩阵的逆_哔哩哔哩_bilibili</a></p>
+</blockquote>
+<h2 id="伴随矩阵"><a href="#伴随矩阵" class="headerlink" title="伴随矩阵"></a>伴随矩阵</h2><p>设存在可逆矩阵A，$A<em>{ij}$是$a</em>{ij}$的代数余子式，$A^*$为A的伴随矩阵</p>
+<script type="math/tex; mode=display">
+A^*=\begin{pmatrix}
+A_{11} & A_{21} & \cdots & A_{n1}\\
+A_{12} & A_{22} & \cdots & A_{n2}\\
+\vdots & \vdots &        & \vdots\\
+A_{1n} & A_{2n} & \cdots & A_{nn}\\
+\end{pmatrix}</script><p>且有$ AA^<em> = A^</em>A = |A|E $</p>
+<h3 id="性质-4"><a href="#性质-4" class="headerlink" title="性质"></a>性质</h3><p>对任意n阶方阵A，都有伴随矩阵$A^*$，且有公式</p>
+<ol>
+<li>$ AA^<em> = A^</em>A = |A|E $</li>
+<li>$ |A^*| = |A|^{n-1}(A为n阶矩阵) $</li>
+</ol>
+<p>当$ |A| \neq 0 $时，有</p>
+<script type="math/tex; mode=display">
+(kA)^* = k^{n-1}A^*</script><script type="math/tex; mode=display">
+(A^*)^* = |A|^{n-2}A</script><script type="math/tex; mode=display">
+A^*A = |A|E</script><script type="math/tex; mode=display">
+A^* = |A|A^{-1}</script><script type="math/tex; mode=display">
+设A的特征向量为\lambda _n,A^*的特征向量 = \frac{|A|}{\lambda_1},\frac{|A|}{\lambda_2},\cdots,\frac{|A|}{\lambda_n}</script><script type="math/tex; mode=display">
+r(A^*) = \begin{cases}
+n && r(A) = n\\
+1 && r(A) = n-1\\
+0 && r(A) < n-1
+\end{cases}</script><h2 id="方阵的行列式"><a href="#方阵的行列式" class="headerlink" title="方阵的行列式"></a>方阵的行列式</h2><script type="math/tex; mode=display">
+|kA| = k^n|A|(A为n阶矩阵)</script><script type="math/tex; mode=display">
+A可逆,|A^{-1}| = \frac{1}{|A|}</script><h1 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h1><h2 id="章节概括-1"><a href="#章节概括-1" class="headerlink" title="章节概括"></a>章节概括</h2><ul>
+<li>向量与向量组的线性相关性<ul>
+<li>向量定义</li>
+<li>线性组合</li>
+<li>线性表出<ul>
+<li>能表出</li>
+<li>不能表出</li>
+</ul>
+</li>
+<li>线性相关性<ul>
+<li>相关</li>
+<li>无关</li>
+</ul>
+</li>
+<li>判别线性相关的七大定理</li>
+</ul>
+</li>
+<li>极大线性无关组与向量组的秩<ul>
+<li>极大线性无关组<ul>
+<li>定义</li>
+<li>求法</li>
+</ul>
+</li>
+<li>向量组的秩<ul>
+<li>定义</li>
+<li>重要定理和公式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>等价向量组<ul>
+<li>定义</li>
+<li>判别</li>
+<li>与等价矩阵的区别</li>
+</ul>
+</li>
+</ul>
+<h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><script type="math/tex; mode=display">
+\begin{pmatrix}
+a_{1} & a_{2} & \cdots & a_{n}
+\end{pmatrix}称为n维行向量，
+\begin{pmatrix}
+a_{1} \\
+\vdots \\
+a_{n}
+\end{pmatrix}称为n维列向量，构成向量的所有元素皆为零的向量称为零向量</script><h2 id="线性无关"><a href="#线性无关" class="headerlink" title="线性无关"></a>线性无关</h2><script type="math/tex; mode=display">
+若k_{1} \alpha_{1}+k_{2} \alpha_{2}+\cdots+k_{n} \alpha_{n} = 0，当且仅当k_{1} = k_{2} = \cdots = k_{n} = 0 时成立</script><script type="math/tex; mode=display">
+即齐次线性方程组只有零解，称向量组\alpha_{1}, \alpha_{2}, \cdots, \alpha_{n} \text { 线性无关 }</script><script type="math/tex; mode=display">
+A = (\alpha_1,\alpha_2,\cdots,\alpha_n),r(A) = n</script><h2 id="线性相关"><a href="#线性相关" class="headerlink" title="线性相关"></a>线性相关</h2><script type="math/tex; mode=display">
+存在不全为零的常数k_{1},k_{2},\cdots x_n,使得k_{1} \alpha_{1}+k_{2} \alpha_{2}+\cdots+k_{n} \alpha_{n} = 0成立</script><script type="math/tex; mode=display">
+即齐次线性方程组有非零解，称向量组\alpha_{1}, \alpha_{2}, \cdots, \alpha_{n} \text { 线性相关 }</script><script type="math/tex; mode=display">
+A = (\alpha_1,\alpha_2,\cdots,\alpha_n),r(A) < n</script><h2 id="向量组的线性表示"><a href="#向量组的线性表示" class="headerlink" title="向量组的线性表示"></a>向量组的线性表示</h2><script type="math/tex; mode=display">
+存在常数x_{1},x_{2},\cdots x_n,使得x_{1} \alpha_{1}+x_{2} \alpha_{2}+\cdots+x_{n} \alpha_{n} = \beta 成立</script><script type="math/tex; mode=display">
+称\beta 可由向量组\alpha_1,\alpha_2,\cdots,\alpha_n线性表示</script><script type="math/tex; mode=display">
+通常在线性方程组的基础解系中出现</script><h3 id="向量组相关性与线性表示理论"><a href="#向量组相关性与线性表示理论" class="headerlink" title="向量组相关性与线性表示理论"></a>向量组相关性与线性表示理论</h3><ol>
+<li>若$\alpha_1,\alpha_2,\cdots,\alpha_n$线性相关，则其中至少一个向量可由其余向量线性表示</li>
+<li>设$\alpha_1,\alpha_2,\cdots,\alpha_n$线性无关，而$\alpha_1,\alpha_2,\cdots,\alpha_n,\beta$线性相关，则$\beta$可由$\alpha_1,\alpha_2,\cdots,\alpha_n$线性表示，且表示方法唯一</li>
+<li>若一个向量组线性无关，则其中任意一个部分向量组也必然线性无关</li>
+<li>若一个向量组的一个部分向量组线性无关，则此向量组一定线性相关</li>
+<li>设$\alpha_1,\alpha_2,\cdots,\alpha_n$为n个n维向量，则$\alpha_1,\alpha_2,\cdots,\alpha_n$线性无关 =&gt; $|\alpha_1,\alpha_2,\cdots,\alpha_n| \neq 0$</li>
+<li>若一个向量组的个数大于维数（n），则此向量组一定线性相关</li>
+<li>设$\alpha_1^\prime,\alpha_2^\prime,\cdots,\alpha_n^\prime$为$\alpha_1,\alpha_2,\cdots,\alpha_n$扩充了分量的向量组，若向量组$\alpha_1,\alpha_2,\cdots,\alpha_n$线性无关，则向量组$\alpha_1^\prime,\alpha_2^\prime,\cdots,\alpha_n^\prime$也线性无关，反之不对</li>
+<li>若$\alpha_1,\alpha_2,\cdots,\alpha_n$为一个两两正交的非零向量组，则$\alpha_1,\alpha_2,\cdots,\alpha_n$线性无关</li>
+</ol>
+<h2 id="极大线性无关组"><a href="#极大线性无关组" class="headerlink" title="极大线性无关组"></a>极大线性无关组</h2><ol>
+<li>向量组$\alpha_1 , \alpha_2,\alpha_3,\cdots,\alpha_n$中存在含$r$个向量的<strong>线性无关</strong>的<strong>子</strong>向量组</li>
+<li>任意$r+1$个向量构成的字向量组（如果有）线性相关</li>
+</ol>
+<p>称含$r$个向量的线性无关的子向量组为向量组$\alpha_1 , \alpha_2,\alpha_3,\cdots,\alpha_n$的一个极大线性无关组</p>
+<p>$r$称为向量组$\alpha_1 , \alpha_2,\alpha_3,\cdots,\alpha_n$的秩</p>
+<h3 id="求极大线性无关组例子"><a href="#求极大线性无关组例子" class="headerlink" title="求极大线性无关组例子"></a>求极大线性无关组例子</h3><script type="math/tex; mode=display">
+\alpha_1 =(1,3,-1)^T, \alpha_2 = (0,1,0)^T,\alpha_3 = (0,-1,1)^T,\alpha_4 = (3,6,-1)^T,\alpha_5 = (-1,-6,5)^T</script><script type="math/tex; mode=display">
+(\alpha_1,\alpha_2,\alpha_3,\alpha_4,\alpha_5)  = \begin{pmatrix}
+1 & 0 & 0 & 3 & -1\\
+3 & 1 & -1 & 6 & -6\\
+-1 & 0 & 1 & -1 & 5\\
+\end{pmatrix} \rightarrow \begin{pmatrix}
+1 & 0 & 0 & 3 & -1\\
+0 & 1 & -1 & -3 & -3\\
+0 & 0 & 1 & 2 & 4\\
+\end{pmatrix}\rightarrow \begin{pmatrix}
+1 & 0 & 0 & 3 & -1\\
+0 & 1 & 0 & -1 & 1\\
+0 & 0 & 1 & 2 & 4\\
+\end{pmatrix}</script><script type="math/tex; mode=display">
+以上得一组极大线性无关组为\alpha_1,\alpha_2,\alpha_3</script><script type="math/tex; mode=display">
+\begin{cases}
+\alpha_4 = 3\alpha_1-\alpha_2+2\alpha_3\\
+\alpha_5 = -\alpha_1+\alpha_2+4\alpha_3\\
+\end{cases}</script><h2 id="向量秩的性质"><a href="#向量秩的性质" class="headerlink" title="向量秩的性质"></a>向量秩的性质</h2><ol>
+<li>矩阵的<strong>行向量组的秩</strong>、<strong>列向量组的秩</strong>及<strong>矩阵的秩</strong>都相等</li>
+<li>设$A=(\alpha_1,\alpha_2,\cdots,\alpha_m)$，$B = (\beta_1,\beta_2,\cdots,\beta_m)$为两个向量组，若<strong>A组可由B线性表示</strong>，则A组的秩不超过B组的秩（$r(A) &lt; r(B)$）</li>
+<li><strong>等价的向量组</strong>有<strong>相等的秩</strong>，$r(A) = r(B) = r(A,B)$，A，B为向量组矩阵，A和B等价。若两个向量组的秩相等，则两个向量组不一定等价。</li>
+</ol>
+<h2 id="向量单位化"><a href="#向量单位化" class="headerlink" title="向量单位化"></a>向量单位化</h2><h3 id="向量模"><a href="#向量模" class="headerlink" title="向量模"></a>向量模</h3><script type="math/tex; mode=display">
+设向量n = (a,b,c)^T，则模为:||n|| = \sqrt{a^2+b^2+c^2}</script><h3 id="单位向量"><a href="#单位向量" class="headerlink" title="单位向量"></a>单位向量</h3><script type="math/tex; mode=display">
+设向量n = (a,b,c)^T，则n的单位向量为n = \frac{1}{||n||}(a,b,c)</script><h2 id="向量内积"><a href="#向量内积" class="headerlink" title="向量内积"></a>向量内积</h2><script type="math/tex; mode=display">
+设有n维向量，x = (x_1,x_2,x_3,\cdots,x_n),y = (y_1,y_2,y_3,\cdots,y_n)</script><script type="math/tex; mode=display">
+[x,y] = x_1y_1+x_2y_2+x_3y_3+\cdots,x_ny_n,[x,y]称为向量x与y的内积</script><script type="math/tex; mode=display">
+||x|| = \sqrt{[x,x]} = \sqrt{x_1^2 + x_2^2 + x_3^2 + \cdots + x_n^2}</script><h2 id="向量正交"><a href="#向量正交" class="headerlink" title="向量正交"></a>向量正交</h2><script type="math/tex; mode=display">
+[x,y] = 0，称x,y正交，记x\perp y</script>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">数学公式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%85%AC%E5%BC%8F%E5%A4%A7%E5%85%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据结构公式大全</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/">
+                        <span class="hidden-mobile">线性表的概念总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

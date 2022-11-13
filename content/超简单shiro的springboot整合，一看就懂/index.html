@@ -1,0 +1,1082 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>超简单shiro的springboot整合，一看就懂 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="超简单shiro的springboot整合，一看就懂">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-13 17:11" pubdate>
+        2021年5月13日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      70
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">超简单shiro的springboot整合，一看就懂</h1>
+            
+            <div class="markdown-body">
+              <p>Apache Shiro是一个强大且易用的Java安全框架,执行身份验证、授权、密码和会话管理。使用Shiro的易于理解的API可以快速、轻松地获得任何应用程序，不论是从最小的移动应用程序到最大的网络和企业应用程序。shiro有三个核心的组件，分别是：Subject, SecurityManager 和 Realms.</p>
+<p>该文章已经整合到springboot框架大全里面了</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该文章只是作为一个框架供参考，在项目中需要灵活运用</p>
+<h2 id="什么是shiro"><a href="#什么是shiro" class="headerlink" title="什么是shiro"></a>什么是shiro</h2><p>Apache Shiro是一个强大且易用的Java安全框架,执行身份验证、授权、密码和会话管理。使用Shiro的易于理解的API可以快速、轻松地获得任何应用程序，不论是从最小的移动应用程序到最大的网络和企业应用程序。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/426671-4f553a3555dcf438.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp" srcset="/my_world/img/loading.gif" lazyload alt="简略图"></p>
+<p>shiro有三个核心的组件，分别是：Subject, SecurityManager 和 Realms.</p>
+<ul>
+<li><p>Subject：即“当前操作用户”。但是，在Shiro中，Subject这一概念并不仅仅指人，也可以是第三方进程、后台帐户（Daemon Account）或其他类似事物。它仅仅意味着”当前跟软件交互的东西”。Subject代表了当前用户的安全操作，SecurityManager则管理所有用户的安全操作。</p>
+</li>
+<li><p>SecurityManager：它是Shiro框架的核心，典型的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Facade模式/7557140">Facade模式</a>，Shiro通过SecurityManager来管理内部组件实例，并通过它来提供安全管理的各种服务。</p>
+</li>
+<li><p>Realm： Realm充当了Shiro与应用安全数据间的“桥梁”或者“连接器”。也就是说，当对用户执行认证（登录）和授权（访问控制）验证时，Shiro会从应用配置的Realm中查找用户及其权限信息。</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/426671-5458508e59ae958a.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp" srcset="/my_world/img/loading.gif" lazyload alt="顺序图"></p>
+<blockquote>
+<p>以上摘自百度百科<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/shiro/17753571">shiro</a>，有少许修改</p>
+</blockquote>
+<p>shiro的大体框架为：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/426671-d2c043d97b735c9e.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp" srcset="/my_world/img/loading.gif" lazyload alt="框架图"></p>
+<h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><p><strong>springboot</strong>整合shiro</p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>这里不得不提一嘴官网的QuickStart，下面是shiro的QuickStart：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://shiro.apache.org/10-minute-tutorial.html">10分钟入门shiro</a></p>
+</blockquote>
+<p>以下是QuickStart的全部代码，这里笔者自己注释了一下，分解可以看到有6个部分，大致是SecurityManagerFactory（安全管理的工厂，属于工厂模式）、SecurityManager（安全管理，三大核心之一）、Subject（对象，三大核心之一）、Authenticated（认证）、Role（角色）、Permitted（授权）</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.quickstart;
+
+<span class="hljs-keyword">import</span> org.apache.log4j.Logger;
+<span class="hljs-keyword">import</span> org.apache.shiro.SecurityUtils;
+<span class="hljs-keyword">import</span> org.apache.shiro.authc.*;
+<span class="hljs-keyword">import</span> org.apache.shiro.config.IniSecurityManagerFactory;
+<span class="hljs-keyword">import</span> org.apache.shiro.mgt.SecurityManager;
+<span class="hljs-keyword">import</span> org.apache.shiro.session.Session;
+<span class="hljs-keyword">import</span> org.apache.shiro.subject.Subject;
+<span class="hljs-keyword">import</span> org.apache.shiro.util.Factory;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QuickStart</span> </span>&#123;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Logger log = Logger.getLogger(QuickStart.class);
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-comment">//1.创建shiro工厂</span>
+        Factory&lt;SecurityManager&gt; factory = <span class="hljs-keyword">new</span> IniSecurityManagerFactory(<span class="hljs-string">&quot;classpath:shiro.ini&quot;</span>);
+        <span class="hljs-comment">//2.创建SecurityManager</span>
+        SecurityManager securityManager = factory.getInstance();
+        <span class="hljs-comment">//3.SecurityUtils设置SecurityManager</span>
+        SecurityUtils.setSecurityManager(securityManager);
+
+        <span class="hljs-comment">//4.获取Subject对象 *</span>
+        Subject currentUser = SecurityUtils.getSubject();
+        <span class="hljs-comment">//5.创建shiro的session</span>
+        Session session = currentUser.getSession();
+        session.setAttribute(<span class="hljs-string">&quot;someKey&quot;</span>, <span class="hljs-string">&quot;aValue&quot;</span>);<span class="hljs-comment">//设置session属性</span>
+        String value = (String) session.getAttribute(<span class="hljs-string">&quot;someKey&quot;</span>);
+        <span class="hljs-keyword">if</span> (value.equals(<span class="hljs-string">&quot;aValue&quot;</span>)) &#123;
+            log.info(<span class="hljs-string">&quot;Retrieved the correct value! [&quot;</span> + value + <span class="hljs-string">&quot;]&quot;</span>);
+        &#125;
+
+        <span class="hljs-comment">//判断该用户是否被认证</span>
+        <span class="hljs-keyword">if</span> (!currentUser.isAuthenticated()) &#123;
+            UsernamePasswordToken token = <span class="hljs-keyword">new</span> UsernamePasswordToken(<span class="hljs-string">&quot;lonestarr&quot;</span>, <span class="hljs-string">&quot;vespa&quot;</span>);
+            token.setRememberMe(<span class="hljs-keyword">true</span>);
+            <span class="hljs-keyword">try</span> &#123;
+                currentUser.login(token);
+            &#125; <span class="hljs-keyword">catch</span> (UnknownAccountException uae) &#123;
+                log.info(<span class="hljs-string">&quot;There is no user with username of &quot;</span> + token.getPrincipal());
+            &#125; <span class="hljs-keyword">catch</span> (IncorrectCredentialsException ice) &#123;
+                log.info(<span class="hljs-string">&quot;Password for account &quot;</span> + token.getPrincipal() + <span class="hljs-string">&quot; was incorrect!&quot;</span>);
+            &#125; <span class="hljs-keyword">catch</span> (LockedAccountException lae) &#123;
+                log.info(<span class="hljs-string">&quot;The account for username &quot;</span> + token.getPrincipal() + <span class="hljs-string">&quot; is locked.  &quot;</span> +
+                        <span class="hljs-string">&quot;Please contact your administrator to unlock it.&quot;</span>);
+            &#125;
+            <span class="hljs-comment">// ... catch more exceptions here (maybe custom ones specific to your application?</span>
+            <span class="hljs-keyword">catch</span> (AuthenticationException ae) &#123;
+                <span class="hljs-comment">//unexpected condition?  error?</span>
+            &#125;
+        &#125;
+
+        <span class="hljs-comment">//say who they are:</span>
+        <span class="hljs-comment">//print their identifying principal (in this case, a username):</span>
+        log.info(<span class="hljs-string">&quot;User [&quot;</span> + currentUser.getPrincipal() + <span class="hljs-string">&quot;] logged in successfully.&quot;</span>);
+
+        <span class="hljs-comment">//test a role:角色</span>
+        <span class="hljs-keyword">if</span> (currentUser.hasRole(<span class="hljs-string">&quot;schwartz&quot;</span>)) &#123;
+            log.info(<span class="hljs-string">&quot;May the Schwartz be with you!&quot;</span>);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            log.info(<span class="hljs-string">&quot;Hello, mere mortal.&quot;</span>);
+        &#125;
+
+        <span class="hljs-comment">//test a typed permission (not instance-level)粗粒度</span>
+        <span class="hljs-keyword">if</span> (currentUser.isPermitted(<span class="hljs-string">&quot;lightsaber:wield&quot;</span>)) &#123;
+            log.info(<span class="hljs-string">&quot;You may use a lightsaber ring.  Use it wisely.&quot;</span>);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            log.info(<span class="hljs-string">&quot;Sorry, lightsaber rings are for schwartz masters only.&quot;</span>);
+        &#125;
+
+        <span class="hljs-comment">//a (very powerful) Instance Level permission:细粒度</span>
+        <span class="hljs-keyword">if</span> (currentUser.isPermitted(<span class="hljs-string">&quot;winnebago:drive:eagle5&quot;</span>)) &#123;
+            log.info(<span class="hljs-string">&quot;You are permitted to &#x27;drive&#x27; the winnebago with license plate (id) &#x27;eagle5&#x27;.  &quot;</span> +
+                    <span class="hljs-string">&quot;Here are the keys - have fun!&quot;</span>);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            log.info(<span class="hljs-string">&quot;Sorry, you aren&#x27;t allowed to drive the &#x27;eagle5&#x27; winnebago!&quot;</span>);
+        &#125;
+
+        <span class="hljs-comment">//all done - log out!</span>
+        currentUser.logout();
+
+    &#125;
+&#125;</code></pre></div>
+<p>配置文件shiro.ini为：</p>
+<div class="code-wrapper"><pre><code class="hljs ini"><span class="hljs-comment"># =============================================================================</span>
+<span class="hljs-comment"># Tutorial INI configuration</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># Usernames/passwords are based on the classic Mel Brooks&#x27; film &quot;Spaceballs&quot; :)</span>
+<span class="hljs-comment"># =============================================================================</span>
+
+<span class="hljs-comment"># -----------------------------------------------------------------------------</span>
+<span class="hljs-comment"># Users and their (optional) assigned roles</span>
+<span class="hljs-comment"># username = password, role1, role2, ..., roleN</span>
+<span class="hljs-comment"># -----------------------------------------------------------------------------</span>
+<span class="hljs-section">[users]</span>
+<span class="hljs-attr">root</span> = secret, admin
+<span class="hljs-attr">guest</span> = guest, guest
+<span class="hljs-attr">presidentskroob</span> = <span class="hljs-number">12345</span>, president
+<span class="hljs-attr">darkhelmet</span> = ludicrousspeed, darklord, schwartz
+<span class="hljs-attr">lonestarr</span> = vespa, goodguy, schwartz
+
+<span class="hljs-comment"># -----------------------------------------------------------------------------</span>
+<span class="hljs-comment"># Roles with assigned permissions</span>
+<span class="hljs-comment"># roleName = perm1, perm2, ..., permN</span>
+<span class="hljs-comment"># -----------------------------------------------------------------------------</span>
+<span class="hljs-section">[roles]</span>
+<span class="hljs-attr">admin</span> = *
+<span class="hljs-attr">schwartz</span> = lightsaber:*
+<span class="hljs-attr">goodguy</span> = winnebago:drive:eagle5</code></pre></div>
+<p>log4j.properties几乎是固定的：</p>
+<div class="code-wrapper"><pre><code class="hljs properties"><span class="hljs-comment">### 设置###</span>
+<span class="hljs-meta">log4j.rootLogger</span> = <span class="hljs-string">debug,stdout,D,E</span>
+<span class="hljs-comment"></span>
+<span class="hljs-comment">### 输出信息到控制抬 ###</span>
+<span class="hljs-meta">log4j.appender.stdout</span> = <span class="hljs-string">org.apache.log4j.ConsoleAppender</span>
+<span class="hljs-meta">log4j.appender.stdout.Target</span> = <span class="hljs-string">System.out</span>
+<span class="hljs-meta">log4j.appender.stdout.layout</span> = <span class="hljs-string">org.apache.log4j.PatternLayout</span>
+<span class="hljs-meta">log4j.appender.stdout.layout.ConversionPattern</span> = <span class="hljs-string">[%-5p] %d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125; method:%l%n%m%n</span>
+<span class="hljs-comment"></span>
+<span class="hljs-comment">### 输出DEBUG 级别以上的日志到=E://logs/error.log ###</span>
+<span class="hljs-meta">log4j.appender.D</span> = <span class="hljs-string">org.apache.log4j.DailyRollingFileAppender</span>
+<span class="hljs-comment">#log4j.appender.D.File = E://logs/log.log</span>
+<span class="hljs-meta">log4j.appender.D.Append</span> = <span class="hljs-string">true</span>
+<span class="hljs-meta">log4j.appender.D.Threshold</span> = <span class="hljs-string">DEBUG </span>
+<span class="hljs-meta">log4j.appender.D.layout</span> = <span class="hljs-string">org.apache.log4j.PatternLayout</span>
+<span class="hljs-meta">log4j.appender.D.layout.ConversionPattern</span> = <span class="hljs-string">%-d&#123;yyyy-MM-dd HH:mm:ss&#125;  [ %t:%r ] - [ %p ]  %m%n</span>
+<span class="hljs-comment"></span>
+<span class="hljs-comment">### 输出ERROR 级别以上的日志到=E://logs/error.log ###</span>
+<span class="hljs-meta">log4j.appender.E</span> = <span class="hljs-string">org.apache.log4j.DailyRollingFileAppender</span>
+<span class="hljs-comment">#log4j.appender.E.File =E://logs/error.log</span>
+<span class="hljs-meta">log4j.appender.E.Append</span> = <span class="hljs-string">true</span>
+<span class="hljs-meta">log4j.appender.E.Threshold</span> = <span class="hljs-string">ERROR </span>
+<span class="hljs-meta">log4j.appender.E.layout</span> = <span class="hljs-string">org.apache.log4j.PatternLayout</span>
+<span class="hljs-meta">log4j.appender.E.layout.ConversionPattern</span> = <span class="hljs-string">%-d&#123;yyyy-MM-dd HH:mm:ss&#125;  [ %t:%r ] - [ %p ]  %m%n</span></code></pre></div>
+<p>pom.xml</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- shiro的核心包 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.shiro<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>shiro-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.4.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- log4j --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.17<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+<h2 id="整合springboot"><a href="#整合springboot" class="headerlink" title="整合springboot"></a>整合springboot</h2><h3 id="配置类和realm"><a href="#配置类和realm" class="headerlink" title="配置类和realm"></a>配置类和realm</h3><p>在springboot中自定义shiro的配置类ShiroConfig，并在方法前添加@Configuration（标准的springboot配置类注解），<strong>config类中所有的方法前都应该加上@Bean，让spring托管方法</strong></p>
+<p>首先引入realm，这里的自定义realm命名为UserRealm，创建一个UserRealm类，并继承AuthorizingRealm类：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.config;
+
+<span class="hljs-keyword">import</span> org.apache.shiro.realm.AuthorizingRealm;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserRealm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AuthorizingRealm</span> </span>&#123;
+
+    <span class="hljs-comment">//授权</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> AuthorizationInfo <span class="hljs-title">doGetAuthorizationInfo</span><span class="hljs-params">(PrincipalCollection principalCollection)</span> </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;执行了 =&gt; 授权方法doGetAuthorizationInfo&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+
+    <span class="hljs-comment">//认证</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doGetAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken authenticationToken)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;执行了 =&gt; 认证方法doGetAuthenticationInfo&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+&#125;
+</code></pre></div>
+<p>在ShiroConfig类添加方法：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//创建realm对象，需要自定义</span>
+<span class="hljs-meta">@Bean</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> UserRealm <span class="hljs-title">getUserRealm</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> UserRealm();
+&#125;</code></pre></div>
+<p>其次引入SecurityManager，这里使用DefaultWebSecurityManager，形参中用@Qualifier指定realm方法引入UserRealm：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//DefaultWebSecurityManager--&gt;获取UserRealm</span>
+<span class="hljs-meta">@Bean</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> DefaultWebSecurityManager <span class="hljs-title">getDefaultWebSecurityManager</span><span class="hljs-params">(<span class="hljs-meta">@Qualifier(&quot;getUserRealm&quot;)</span> UserRealm userRealm)</span></span>&#123;
+    DefaultWebSecurityManager securityManager = <span class="hljs-keyword">new</span> DefaultWebSecurityManager();
+    securityManager.setRealm(userRealm);<span class="hljs-comment">//关联realm</span>
+    <span class="hljs-keyword">return</span> securityManager;
+&#125;</code></pre></div>
+<p>最后加入Factory，这里用ShiroFilterFactoryBean，获取DefaultWebSecurityManager的方法同上：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//ShiroFilterFactoryBean--&gt;获取DefaultWebSecurityManager</span>
+<span class="hljs-meta">@Bean</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> ShiroFilterFactoryBean <span class="hljs-title">getShiroFilterFactoryBean</span><span class="hljs-params">(<span class="hljs-meta">@Qualifier(&quot;getDefaultWebSecurityManager&quot;)</span> DefaultWebSecurityManager defaultWebSecurityManager)</span></span>&#123;
+    ShiroFilterFactoryBean bean = <span class="hljs-keyword">new</span> ShiroFilterFactoryBean();
+    <span class="hljs-comment">// 设置安全管理器</span>
+    bean.setSecurityManager(defaultWebSecurityManager);
+    <span class="hljs-keyword">return</span> bean;
+&#125;</code></pre></div>
+<p>三个方法在config类中是串起来的，顺序是UserRealm—&gt;DefaultWebSecurityManager—&gt;ShiroFilterFactoryBean</p>
+<h3 id="添加测试页面"><a href="#添加测试页面" class="headerlink" title="添加测试页面"></a>添加测试页面</h3><p>引入thymeleaf</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- springboot thymeleaf starter --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+<p>添加主页index，两个页面add，update和登录页面login.html</p>
+<p>index.html</p>
+<div class="code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">&quot;http://www.thymeleaf.org&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Index<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">&quot;$&#123;msg&#125;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">&quot;@&#123;/user/add&#125;&quot;</span>&gt;</span>add<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> | <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">&quot;@&#123;/user/update&#125;&quot;</span>&gt;</span>update<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<p>login.html</p>
+<div class="code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">&quot;http://www.thymeleaf.org&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/loginCheck&quot;</span>&gt;</span>
+    请输入账号: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;</span>
+    请输入密码: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;password&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;password&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<p>add.html和update.html添加1级标题即可</p>
+<h3 id="添加controller"><a href="#添加controller" class="headerlink" title="添加controller"></a>添加controller</h3><p>用一个controller测试即可，命名为exampleController，并为页面添加链接</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">index</span><span class="hljs-params">(Model model)</span></span>&#123;
+    model.addAttribute(<span class="hljs-string">&quot;msg&quot;</span>,<span class="hljs-string">&quot;hello shiro&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;index&quot;</span>;
+&#125;
+<span class="hljs-meta">@RequestMapping(&quot;/user/update&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">update</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;update&quot;</span>;
+&#125;
+<span class="hljs-meta">@RequestMapping(&quot;/user/add&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">add</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;add&quot;</span>;
+&#125;
+<span class="hljs-meta">@RequestMapping(&quot;/login&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">login</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;login&quot;</span>;
+&#125;</code></pre></div>
+<p>至此所有工作准备完毕</p>
+<h2 id="登录拦截"><a href="#登录拦截" class="headerlink" title="登录拦截"></a>登录拦截</h2><p>由shiro的内置过滤器完成，有5大选项：</p>
+<ul>
+<li>anon:无需认证可以访问</li>
+<li>authc: 必须认证了才能访问</li>
+<li>user:必须拥有 记住我 功能才能用</li>
+<li>perms: 拥有对某个资源的权限才能访问</li>
+<li>role: 拥有某个角色权限才能访问</li>
+</ul>
+<p>在ShiroConfig类的ShiroFilterFactoryBean操作方法中引入过滤器，完整的方法如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//ShiroFilterFactoryBean--&gt;获取DefaultWebSecurityManager</span>
+<span class="hljs-meta">@Bean</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> ShiroFilterFactoryBean <span class="hljs-title">getShiroFilterFactoryBean</span><span class="hljs-params">(<span class="hljs-meta">@Qualifier(&quot;getDefaultWebSecurityManager&quot;)</span> DefaultWebSecurityManager defaultWebSecurityManager)</span></span>&#123;
+    ShiroFilterFactoryBean bean = <span class="hljs-keyword">new</span> ShiroFilterFactoryBean();
+    <span class="hljs-comment">// 设置安全管理器</span>
+    bean.setSecurityManager(defaultWebSecurityManager);
+
+    <span class="hljs-comment">// 添加shiro的内置过滤器</span>
+    <span class="hljs-comment">/*</span>
+<span class="hljs-comment">        anon:无需认证可以访问</span>
+<span class="hljs-comment">        authc: 必须认证了才能访问</span>
+<span class="hljs-comment">        user:必须拥有 记住我 功能才能用</span>
+<span class="hljs-comment">        perms: 拥有对某个资源的权限才能访问</span>
+<span class="hljs-comment">        role: 拥有某个角色权限才能访问</span>
+<span class="hljs-comment">     */</span>
+    Map&lt;String, String&gt; filterChainDefinitionMap = <span class="hljs-keyword">new</span> LinkedHashMap&lt;&gt;();
+
+    filterChainDefinitionMap.put(<span class="hljs-string">&quot;/user/*&quot;</span>,<span class="hljs-string">&quot;authc&quot;</span>);
+
+    bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+    <span class="hljs-comment">//设置登录请求</span>
+    bean.setLoginUrl(<span class="hljs-string">&quot;/login&quot;</span>);
+    <span class="hljs-keyword">return</span> bean;
+&#125;</code></pre></div>
+<p>可以看到，/user/下面的请求全部被拦截，必须认证了才能访问。在没有认证的时候，会跳转至/login。</p>
+<h2 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h2><p>登录其实就是一个认证的过程，在controller中添加/loginCheck的操作逻辑</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/loginCheck&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">loginCheck</span><span class="hljs-params">(String username,String password)</span></span>&#123;
+    System.out.println(<span class="hljs-string">&quot;获取账号密码:username: &quot;</span>+username+<span class="hljs-string">&quot;,password: &quot;</span>+password);
+    Subject subject = SecurityUtils.getSubject();<span class="hljs-comment">//获取当前用户</span>
+    UsernamePasswordToken token = <span class="hljs-keyword">new</span> UsernamePasswordToken(username,password);<span class="hljs-comment">//封装登录数据</span>
+    System.out.println(<span class="hljs-string">&quot;验证登录&quot;</span>);
+    <span class="hljs-keyword">try</span> &#123;
+        subject.login(token);<span class="hljs-comment">//验证登录</span>
+    &#125; <span class="hljs-keyword">catch</span> (UnknownAccountException uae) &#123;
+        System.out.println(<span class="hljs-string">&quot;用户名错误&quot;</span>);
+    &#125; <span class="hljs-keyword">catch</span> (IncorrectCredentialsException ice) &#123;
+        System.out.println(<span class="hljs-string">&quot;密码错误&quot;</span>);
+    &#125; <span class="hljs-keyword">catch</span> (LockedAccountException lae) &#123;
+        System.out.println(<span class="hljs-string">&quot;账号被锁定&quot;</span>);
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;index&quot;</span>;
+&#125;</code></pre></div>
+<p>在执行subject.login(token);方法时，会将token输送到UserRealm中的doGetAuthenticationInfo()方法，验证是否正确即可</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//认证</span>
+ <span class="hljs-meta">@Override</span>
+ <span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doGetAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken authenticationToken)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+     System.out.println(<span class="hljs-string">&quot;执行了 =&gt; 认证方法doGetAuthenticationInfo&quot;</span>);
+     <span class="hljs-comment">//从数据库获取账号密码</span>
+     User user = <span class="hljs-keyword">new</span> User();
+     String username = <span class="hljs-string">&quot;root&quot;</span>;
+     user.setUsername(username);
+     String password = <span class="hljs-string">&quot;1234&quot;</span>;
+     user.setPassword(password);
+     String perms = <span class="hljs-string">&quot;user:add&quot;</span>;
+     user.setPerms(perms);
+
+     UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+     <span class="hljs-keyword">if</span>(!token.getUsername().equals(username))&#123;
+         <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<span class="hljs-comment">//返回错误 UnknownAccountException</span>
+     &#125;
+     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleAuthenticationInfo(user,user.getPassword(),<span class="hljs-string">&quot;&quot;</span>);<span class="hljs-comment">//principal放存放着账户对象:USER</span>
+ &#125;</code></pre></div>
+<h2 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h2><p>每个账户都有相应的权限，某些功能不能给某些没有该权限的人使用。首先限制url的权限，在过滤器中添加即可</p>
+<div class="code-wrapper"><pre><code class="hljs java">ShiroFilterFactoryBean bean = <span class="hljs-keyword">new</span> ShiroFilterFactoryBean();
+<span class="hljs-comment">// 设置安全管理器</span>
+bean.setSecurityManager(defaultWebSecurityManager);
+
+<span class="hljs-comment">// 添加shiro的内置过滤器</span>
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">    anon:无需认证可以访问</span>
+<span class="hljs-comment">    authc: 必须认证了才能访问</span>
+<span class="hljs-comment">    user:必须拥有 记住我 功能才能用</span>
+<span class="hljs-comment">    perms: 拥有对某个资源的权限才能访问</span>
+<span class="hljs-comment">    role: 拥有某个角色权限才能访问</span>
+<span class="hljs-comment"> */</span>
+Map&lt;String, String&gt; filterChainDefinitionMap = <span class="hljs-keyword">new</span> LinkedHashMap&lt;&gt;();
+
+<span class="hljs-comment">/* 先检测授权后检测拦截，越在上面的优先度越大,未经授权跳转到指定页面 */</span>
+filterChainDefinitionMap.put(<span class="hljs-string">&quot;/user/add&quot;</span>,<span class="hljs-string">&quot;perms[user:add]&quot;</span>);
+filterChainDefinitionMap.put(<span class="hljs-string">&quot;/user/update&quot;</span>,<span class="hljs-string">&quot;perms[user:update]&quot;</span>);
+
+filterChainDefinitionMap.put(<span class="hljs-string">&quot;/user/*&quot;</span>,<span class="hljs-string">&quot;authc&quot;</span>);
+
+bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+<span class="hljs-comment">//设置登录请求</span>
+bean.setLoginUrl(<span class="hljs-string">&quot;/login&quot;</span>);
+<span class="hljs-comment">//未授权页面</span>
+bean.setUnauthorizedUrl(<span class="hljs-string">&quot;/unau&quot;</span>);
+<span class="hljs-keyword">return</span> bean;</code></pre></div>
+<p>一定要注意授权和拦截的顺序，并且授权是有优先度的。可以看到未授权也会跳转到相应的url，在controller添加即可：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/unau&quot;)</span>
+<span class="hljs-meta">@ResponseBody</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">unauthorized</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;未经授权无法访问&quot;</span>;
+&#125;</code></pre></div>
+<p>最后在UserRealm中添加授权逻辑</p>
+<div class="code-wrapper"><pre><code class="hljs java">    <span class="hljs-comment">//授权</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> AuthorizationInfo <span class="hljs-title">doGetAuthorizationInfo</span><span class="hljs-params">(PrincipalCollection principalCollection)</span> </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;执行了 =&gt; 授权方法doGetAuthorizationInfo&quot;</span>);
+
+        SimpleAuthorizationInfo info = <span class="hljs-keyword">new</span> SimpleAuthorizationInfo();
+<span class="hljs-comment">//        info.addStringPermission(&quot;user:add&quot;);//为账户添加user:add权限</span>
+        System.out.println(<span class="hljs-string">&quot;开始授权&quot;</span>);
+
+        <span class="hljs-comment">//拿到登录对象</span>
+        Subject subject = SecurityUtils.getSubject();
+        User currentUser = (User) subject.getPrincipal();<span class="hljs-comment">//拿到User对象</span>
+        <span class="hljs-comment">//设置当前用户的权限</span>
+        info.addStringPermission(currentUser.getPerms());
+
+        <span class="hljs-keyword">return</span> info;
+    &#125;</code></pre></div>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>将所有的代码统一，QuickStart和user对象在上面已经总结完成，这是springboot中各类的所有代码：</p>
+<p>ShiroConfig.java</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.config;
+
+<span class="hljs-keyword">import</span> org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+<span class="hljs-keyword">import</span> org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Qualifier;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;
+
+<span class="hljs-keyword">import</span> java.util.LinkedHashMap;
+<span class="hljs-keyword">import</span> java.util.Map;
+
+<span class="hljs-meta">@Configuration</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShiroConfig</span> </span>&#123;
+    <span class="hljs-comment">/*</span>
+<span class="hljs-comment">        三大核心</span>
+<span class="hljs-comment">        realm</span>
+<span class="hljs-comment">        subject</span>
+<span class="hljs-comment">        SecurityManager</span>
+<span class="hljs-comment">     */</span>
+
+    <span class="hljs-comment">//创建realm对象，需要自定义</span>
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> UserRealm <span class="hljs-title">getUserRealm</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> UserRealm();
+    &#125;
+
+    <span class="hljs-comment">//DefaultWebSecurityManager--&gt;获取UserRealm</span>
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> DefaultWebSecurityManager <span class="hljs-title">getDefaultWebSecurityManager</span><span class="hljs-params">(<span class="hljs-meta">@Qualifier(&quot;getUserRealm&quot;)</span> UserRealm userRealm)</span></span>&#123;
+        DefaultWebSecurityManager securityManager = <span class="hljs-keyword">new</span> DefaultWebSecurityManager();
+        securityManager.setRealm(userRealm);<span class="hljs-comment">//关联realm</span>
+        <span class="hljs-keyword">return</span> securityManager;
+    &#125;
+
+    <span class="hljs-comment">//ShiroFilterFactoryBean--&gt;获取DefaultWebSecurityManager</span>
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ShiroFilterFactoryBean <span class="hljs-title">getShiroFilterFactoryBean</span><span class="hljs-params">(<span class="hljs-meta">@Qualifier(&quot;getDefaultWebSecurityManager&quot;)</span> DefaultWebSecurityManager defaultWebSecurityManager)</span></span>&#123;
+        ShiroFilterFactoryBean bean = <span class="hljs-keyword">new</span> ShiroFilterFactoryBean();
+        <span class="hljs-comment">// 设置安全管理器</span>
+        bean.setSecurityManager(defaultWebSecurityManager);
+
+        <span class="hljs-comment">// 添加shiro的内置过滤器</span>
+        <span class="hljs-comment">/*</span>
+<span class="hljs-comment">            anon:无需认证可以访问</span>
+<span class="hljs-comment">            authc: 必须认证了才能访问</span>
+<span class="hljs-comment">            user:必须拥有 记住我 功能才能用</span>
+<span class="hljs-comment">            perms: 拥有对某个资源的权限才能访问</span>
+<span class="hljs-comment">            role: 拥有某个角色权限才能访问</span>
+<span class="hljs-comment">         */</span>
+        Map&lt;String, String&gt; filterChainDefinitionMap = <span class="hljs-keyword">new</span> LinkedHashMap&lt;&gt;();
+
+        <span class="hljs-comment">/* 先检测授权后检测拦截，越在上面的优先度越大,未经授权跳转到指定页面 */</span>
+        filterChainDefinitionMap.put(<span class="hljs-string">&quot;/user/add&quot;</span>,<span class="hljs-string">&quot;perms[user:add]&quot;</span>);
+        filterChainDefinitionMap.put(<span class="hljs-string">&quot;/user/update&quot;</span>,<span class="hljs-string">&quot;perms[user:update]&quot;</span>);
+
+        filterChainDefinitionMap.put(<span class="hljs-string">&quot;/user/*&quot;</span>,<span class="hljs-string">&quot;authc&quot;</span>);
+
+        bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+        <span class="hljs-comment">//设置登录请求</span>
+        bean.setLoginUrl(<span class="hljs-string">&quot;/login&quot;</span>);
+        <span class="hljs-comment">//未授权页面</span>
+        bean.setUnauthorizedUrl(<span class="hljs-string">&quot;/unau&quot;</span>);
+        <span class="hljs-keyword">return</span> bean;
+    &#125;
+&#125;
+</code></pre></div>
+<p>UserRealm.java</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.config;
+
+<span class="hljs-keyword">import</span> com.example.pojo.User;
+<span class="hljs-keyword">import</span> org.apache.shiro.SecurityUtils;
+<span class="hljs-keyword">import</span> org.apache.shiro.authc.*;
+<span class="hljs-keyword">import</span> org.apache.shiro.authz.AuthorizationInfo;
+<span class="hljs-keyword">import</span> org.apache.shiro.authz.SimpleAuthorizationInfo;
+<span class="hljs-keyword">import</span> org.apache.shiro.realm.AuthorizingRealm;
+<span class="hljs-keyword">import</span> org.apache.shiro.subject.PrincipalCollection;
+<span class="hljs-keyword">import</span> org.apache.shiro.subject.Subject;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserRealm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AuthorizingRealm</span> </span>&#123;
+
+    <span class="hljs-comment">//授权</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> AuthorizationInfo <span class="hljs-title">doGetAuthorizationInfo</span><span class="hljs-params">(PrincipalCollection principalCollection)</span> </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;执行了 =&gt; 授权方法doGetAuthorizationInfo&quot;</span>);
+
+        SimpleAuthorizationInfo info = <span class="hljs-keyword">new</span> SimpleAuthorizationInfo();
+<span class="hljs-comment">//        info.addStringPermission(&quot;user:add&quot;);//为账户添加user:add权限</span>
+        System.out.println(<span class="hljs-string">&quot;开始授权&quot;</span>);
+
+        <span class="hljs-comment">//拿到登录对象</span>
+        Subject subject = SecurityUtils.getSubject();
+        User currentUser = (User) subject.getPrincipal();<span class="hljs-comment">//拿到User对象</span>
+        <span class="hljs-comment">//设置当前用户的权限</span>
+        info.addStringPermission(currentUser.getPerms());
+
+        <span class="hljs-keyword">return</span> info;
+    &#125;
+
+    <span class="hljs-comment">//认证</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doGetAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken authenticationToken)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;执行了 =&gt; 认证方法doGetAuthenticationInfo&quot;</span>);
+        <span class="hljs-comment">//从数据库获取账号密码</span>
+        User user = <span class="hljs-keyword">new</span> User();
+        String username = <span class="hljs-string">&quot;root&quot;</span>;
+        user.setUsername(username);
+        String password = <span class="hljs-string">&quot;1234&quot;</span>;
+        user.setPassword(password);
+        String perms = <span class="hljs-string">&quot;user:add&quot;</span>;
+        user.setPerms(perms);
+
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+        <span class="hljs-keyword">if</span>(!token.getUsername().equals(username))&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<span class="hljs-comment">//返回错误 UnknownAccountException</span>
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleAuthenticationInfo(user,user.getPassword(),<span class="hljs-string">&quot;&quot;</span>);<span class="hljs-comment">//principal放存放着账户对象:USER</span>
+    &#125;
+&#125;</code></pre></div>
+<p>exampleController.java</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.controller;
+
+<span class="hljs-keyword">import</span> org.apache.shiro.SecurityUtils;
+<span class="hljs-keyword">import</span> org.apache.shiro.authc.*;
+<span class="hljs-keyword">import</span> org.apache.shiro.subject.Subject;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;
+<span class="hljs-keyword">import</span> org.springframework.ui.Model;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;
+
+<span class="hljs-meta">@Controller</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">exampleController</span> </span>&#123;
+    <span class="hljs-meta">@RequestMapping(&quot;/&quot;)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">index</span><span class="hljs-params">(Model model)</span></span>&#123;
+        model.addAttribute(<span class="hljs-string">&quot;msg&quot;</span>,<span class="hljs-string">&quot;hello shiro&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;index&quot;</span>;
+    &#125;
+    <span class="hljs-meta">@RequestMapping(&quot;/user/update&quot;)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">update</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;update&quot;</span>;
+    &#125;
+    <span class="hljs-meta">@RequestMapping(&quot;/user/add&quot;)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">add</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;add&quot;</span>;
+    &#125;
+    <span class="hljs-meta">@RequestMapping(&quot;/login&quot;)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">login</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;login&quot;</span>;
+    &#125;
+&#125;</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/springboot/">springboot</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/shiro/">shiro</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E5%AE%89%E5%85%A8%E6%A1%86%E6%9E%B6/">安全框架</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/%E6%91%98%E5%BD%95-%E4%B9%94%E5%B8%83%E6%96%AF%E4%BA%8E2005%E5%B9%B4%E5%9C%A8%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%A4%A7%E5%AD%A6%E7%9A%84%E6%BC%94%E8%AE%B2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">摘录--乔布斯于2005年在斯坦福大学的演讲</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/poco%E7%9A%84%E8%B6%85%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95/">
+                        <span class="hidden-mobile">poco的超简单用法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

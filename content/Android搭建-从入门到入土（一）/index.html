@@ -1,0 +1,1156 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>Android搭建--从入门到入土（一） | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Android搭建--从入门到入土（一）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-30 16:07" pubdate>
+        2022年5月30日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      134
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Android搭建--从入门到入土（一）</h1>
+            
+            <div class="markdown-body">
+              <p>安卓（Android）是一种基于Linux内核（不包含GNU的自由及开放源代码的操作系统。主要使用于移动设备，如智能手机和平板电脑，由美国Google领导及开发。Android操作系统最初由安迪·鲁宾开发，主要支持手机。2005年8月由Google收购注资。2007年11月，Google与84家硬件制造商、软件开发商及电信营运商组建开放手机联盟共同研发改良Android系统。随后Google以Apache开源许可证的授权方式，发布了Android的源代码。第一部Android智能手机发布于2008年10月。Android逐渐扩展到平板电脑及其他领域上，如电视、数码相机、游戏机、智能手表等。2011年第一季度，Android在全球的市场份额首次超过塞班系统，跃居全球第一。 2013年的第四季度，Android平台手机的全球市场份额已经达到78.1%。2013年09月24日谷歌开发的操作系统Android在迎来了5岁生日，全世界采用这款系统的设备数量已经达到10亿台。</p>
+<p><strong>Android 开发优势</strong></p>
+<ul>
+<li>开放源代码</li>
+<li>众多开发者及强大的社区</li>
+<li>不断增长的市场</li>
+<li>国际化的 App 集成</li>
+<li>低廉的开发成本</li>
+<li>更高的成功几率</li>
+<li>丰富的开发环境</li>
+</ul>
+<h1 id="Android开发环境搭建"><a href="#Android开发环境搭建" class="headerlink" title="Android开发环境搭建"></a>Android开发环境搭建</h1><h2 id="JAVA环境搭建"><a href="#JAVA环境搭建" class="headerlink" title="JAVA环境搭建"></a>JAVA环境搭建</h2><p>目前使用稳定的jdk11，搭建教程如下：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-environment-setup.html">Java 开发环境配置 | 菜鸟教程 (runoob.com)</a></p>
+</blockquote>
+<p>jdk各大版本的下载地址：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/downloads/">Java Downloads | Oracle</a></p>
+</blockquote>
+<h2 id="Android-SDK"><a href="#Android-SDK" class="headerlink" title="Android SDK"></a>Android SDK</h2><h2 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h2><p>目前受欢迎的开发Android的IDE有如下：</p>
+<ul>
+<li>Android Studio</li>
+<li>Eclipse（附带Android插件）</li>
+<li>Intellij Idea</li>
+</ul>
+<h3 id="IDEA搭建Android环境"><a href="#IDEA搭建Android环境" class="headerlink" title="IDEA搭建Android环境"></a>IDEA搭建Android环境</h3><h1 id="第一个安卓程序"><a href="#第一个安卓程序" class="headerlink" title="第一个安卓程序"></a>第一个安卓程序</h1><p>首先在idea中新建一个安卓程序</p>
+<p>点击new，在Generators中选择Android，并选择Basic Activity</p>
+<p><img src="../../image/image-20220531105621296.png" srcset="/my_world/img/loading.gif" lazyload alt=""></p>
+<p>输入相关信息后，点击create，注意<strong>代码保存的路径中不能有中文</strong></p>
+<p><img src="../../image/image-20220531105819653.png" srcset="/my_world/img/loading.gif" lazyload alt=""></p>
+<p>选择AVD Manager，下载一个虚拟机，这里选择Pixel 2，并且API选择为30</p>
+<p><img src="../../image/image-20220531110302380.png" srcset="/my_world/img/loading.gif" lazyload alt="选择安卓虚拟机"></p>
+<p><img src="../../image/image-20220531110322010.png" srcset="/my_world/img/loading.gif" lazyload alt="选择API"></p>
+<p>启动虚拟机（点击绿色播放ICON）</p>
+<p><img src="../../image/image-20220531110400954.png" srcset="/my_world/img/loading.gif" lazyload alt=""></p>
+<p>运行项目，等待build完成后即可在虚拟机中看到我们的第一个安卓项目，注意API要求的java版本，这里要求的是java11，如果低于该版本则报错，当然也可以改成jdk1.8</p>
+<p><img src="../../image/image-20220531110619723.png" srcset="/my_world/img/loading.gif" lazyload alt=""></p>
+<p><img src="../../image/image-20220531110810011.png" srcset="/my_world/img/loading.gif" lazyload alt="报错"></p>
+<h1 id="项目目录详解"><a href="#项目目录详解" class="headerlink" title="项目目录详解"></a>项目目录详解</h1><blockquote>
+<p>源自<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/2968.html">Android使用XML文件定义用户界面 (biancheng.net)</a></p>
+</blockquote>
+<p>新建项目后，目录如下：</p>
+<p><img src="../../image/5-1Z401113Z5Y7.jpg" srcset="/my_world/img/loading.gif" lazyload alt="项目目录"></p>
+<p>下面对 Android 目录进行简单介绍：</p>
+<ul>
+<li>以<code>.</code>开头的目录是 IDE 生成的辅助目录，无须用户干预。</li>
+<li>HelloAndroid 文件夹是模块目录，编程工作主要集中在这个目录中，相当于使用 Eclipse 构建的工程文件夹，包含 build、src、res 等文件夹。</li>
+<li>res 目录为 Android 工程中所使用的资源目录，用户 UI 所涉及的资源基本都放置在该目录下。res 目录下的每一项资源文件都会由 AAPT（Android Asset Packaging Tool）为其生成一个对应的 public static final 类型的 ID 号，放置到 build 目录下的 R.java 文件中，Android 系统根据该 ID 号来访问对应资源。</li>
+<li>build 目录由 IDE 自动生成，不需要用户修改，由系统维护。</li>
+<li>res/drawable/ 目录用来存放工程中使用到的图片文件，drawable 之后的 hdpi、ldpi、mdpi 分别放高分辨率、低分辨率和中分辨率的图片以适应不同分辨率的手机，Android 系统会根据用户手机的配置信息自动选取合适分辨率的图片文件，无须程序员干预。</li>
+<li>res/layout/ 目录下存放着定义 UI 布局文件用的 XML 文件，默认文件名为 main.xml。</li>
+<li>res/values/ 目录下存放着用于存储工程中所使用到的一些字符串信息的文件，默认文件名为 strings.xml。</li>
+</ul>
+<h1 id="Android四大核心组件"><a href="#Android四大核心组件" class="headerlink" title="Android四大核心组件"></a>Android四大核心组件</h1><blockquote>
+<p>源自：<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/2918.html">Android四大核心组件：Activity+Service+BroadcastReceiver+ContentProvider (biancheng.net)</a></p>
+</blockquote>
+<h2 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h2><p>Activity 是 Android 应用程序核心组件中最基本的一种，是用户和应用程序交互的窗口。</p>
+<p>在 Android 应用程序中，一个 Activity 通常对应一个单独的视图。一个 Android 应用程序是由一个或多个 Activity 组成的，这些 Activity 相当于 Web 应用程序中的网页，用于显示信息，并且相互之间可以进行跳转。和网页跳转不同的是，Activity 之间的跳转可以有返回值。</p>
+<p>新打开一个视图时，之前的那个视图会被置为暂停状态，并且压入历史堆栈中，用户可以通过回退操作返回以前打开过的视图。Activity 是由 Android 系统进行维护的，它有自己的生命周期，即“产生、运行、销毁”，但是在这个过程中会调用许多方法，如创建 onCreate()、激活 onStart()、恢复 onResume()、暂停 onPause()、停止 onStop()、销毁 onDestroy()和重启 onRestart() 等。</p>
+<h2 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h2><p>Service 是一种类似于 Activity 但是没有视图的程序，它没有用户界面，可以在后台运行很长时间，相当于操作系统中的一个服务。</p>
+<p>Android 定义了两种类型的 Service，即本地 Service 和远程 Service。本地 Service 是只能由承载该 Service 的应用程序访问的组件，而远程 Service 是供在设备上运行的其他应用程序远程访问的 Service。</p>
+<p>通过 Context.startService(Intent service) 可以启动一个 Service，通过 Context. bindService() 可以绑定一个 Service。</p>
+<h2 id="BroadcastReceiver"><a href="#BroadcastReceiver" class="headerlink" title="BroadcastReceiver"></a>BroadcastReceiver</h2><p>BroadcastReceiver 的意思是“广播接收者”，顾名思义，它用来接收来自系统和其他应用程序的广播，并做出回应。</p>
+<p>在 Android 系统中，当有特定事件发生时就会产生相应的广播。广播体现在方方面面。例如，当开机过程完成后，系统会产生一条广播，接收到这条广播就能实现开机启动服务的功能；当网络状态改变时，系统会产生一条广播，接收到这条广播就能及时地做出提示和保存数据等操作；当电池电量改变时，系统会产生一条广播，接收到这条广播就能在电量低时告知用户及时保存进度等。</p>
+<p>BroadcastReceiver 不能生成 UI，通过 NotificationManager 来通知用户有事件发生，对于用户来说是隐式的。</p>
+<p>BroadcastReceiver 的 2 种注册方式：</p>
+<ul>
+<li>在 AndroidManifest. xml 中进行静态注册；</li>
+<li>在运行时的代码中使用 Context.registerReceiver() 进行动态注册。</li>
+</ul>
+<p>只要注册了 BroadcastReceiver，即使对应的事件广播来临时应用程序并未启动，系统也会自动启动该应用程序对事件进行处理。另外，用户还可以通过 Context.sendBroadcast() 将自己的 Intent 对象广播给其他的应用程序。</p>
+<h2 id="ContentProvider"><a href="#ContentProvider" class="headerlink" title="ContentProvider"></a>ContentProvider</h2><p>文件、数据库等数据在 Android 系统内是私有的，仅允许被特定应用程序直接使用。在两个程序之间，数据的交换或共享由 ContentProvider 实现。</p>
+<p>ContentProvider 类实现了一组标准方法的接口，从而能够让其他的应用保存或读取 ContentProvider 提供的各种数据类型。</p>
+<h2 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h2><p>Intent 并不是 Android 应用程序四大核心组件之一，但是其重要性无可替代，因此在这里我们做一下简单介绍。</p>
+<p>Android 应用程序核心组件中的三大核心组件 —— Activity、Service、BroadcastReceiver。通过消息机制被启动激活，而所使用的消息就是 Intent。Intent 是对即将要进行的操作的抽象描述，承担了 Android 应用程序三大核心组件相互之间的通信功能。</p>
+<h1 id="Activity的生命周期"><a href="#Activity的生命周期" class="headerlink" title="Activity的生命周期"></a>Activity的生命周期</h1><p><img src="../../image/image-20220607155340410.png" srcset="/my_world/img/loading.gif" lazyload alt="安卓生命周期"></p>
+<h2 id="activity三种状态"><a href="#activity三种状态" class="headerlink" title="activity三种状态"></a>activity三种状态</h2><p><strong>active</strong>：当Activity运行在屏幕前台(处于当前任务活动栈的最上面)，此时它获取了焦点能响应用户的操作，属于活动状态，同一个时刻只会有一个Activity处于活动(Active)。</p>
+<p><strong>paused</strong>：当Activity失去焦点但仍对用户可见(如在它之上有另一个透明的Activity或Toast、AlertDialog等弹出窗口时)它处于暂停状态。暂停的Activity仍然是存活状态(它保留着所有的状态和成员信息并保持和窗口管理器的连接)，但是当系统内存极小时可以被系统杀掉。</p>
+<p><strong>stoped</strong>：完全被另一个Activity遮挡时处于停止状态，它仍然在内存中保留着所有的状态和成员信息。只是对用户不可见，当其他地方需要内存时它往往被系统杀掉。</p>
+<h2 id="activity七个方法"><a href="#activity七个方法" class="headerlink" title="activity七个方法"></a>activity七个方法</h2><p><strong>onCreate()</strong>：当Activity第一次被实例化的时候系统会调用，整个生命周期只调用1次这个方法。通常用于初始化设置，为Activity设置所要使用的布局文件，为按钮绑定监听器等静态的设置操作。</p>
+<p><strong>onStart()</strong>：当Activity可见未获得用户焦点不能交互时系统会调用。</p>
+<p><strong>onRestart()</strong>：当Activity已经停止然后重新被启动时系统会调用。</p>
+<p><strong>onResume()</strong>：当Activity可见且获得用户焦点能交互时系统会调用。</p>
+<p><strong>onPause()</strong>：用来存储持久数据。到这一步是可见但不可交互的，系统会停止动画等消耗CPU的事情。从上文的描述已经知道，应该在这里保存你的一些数据，因为这个时候你的程序的优先级降低，有可能被系统收回。</p>
+<p><strong>onStop()</strong>：当Activity被新的Activity完全覆盖不可见时被系统调用。</p>
+<p><strong>onDestroy()</strong>：当Activity（用户调用finish()或系统由于内存不足）被系统销毁杀掉时系统调用，（整个生命周期只调用1次）用来释放onCreate()方法中创建的资源，如结束线程等。</p>
+<h2 id="一个activity的启动过程"><a href="#一个activity的启动过程" class="headerlink" title="一个activity的启动过程"></a>一个activity的启动过程</h2><ol>
+<li>第一个Activity的启动顺序：onCreate() -&gt; onStart() -&gt; onResume()</li>
+<li>当另一个Activity启动时：第一个Activity onPause() -&gt; 第二个Activity onCreate() -&gt; onStart() -&gt; onResume() -&gt; 第一个Activity onStop()</li>
+<li>当返回到第一个Activity时：第二个Activity onPause() -&gt; 第一个Activity onRestart() -&gt; onStart()-&gt; onResume() -&gt; 第二个Activity onStop() -&gt; onDestroy()</li>
+</ol>
+<p>每一个Activity都处于某一个状态，对于开发者来说，是无法控制其应用程序处于某一个状态的，这些均由系统来完成。</p>
+<h1 id="Android-GUI编程"><a href="#Android-GUI编程" class="headerlink" title="Android GUI编程"></a>Android GUI编程</h1><blockquote>
+<p>本章节文章源自：<a target="_blank" rel="noopener" href="http://c.biancheng.net/android/40/">Android GUI（图形用户界面）开发 (biancheng.net)</a></p>
+</blockquote>
+<h2 id="View和ViewGroup"><a href="#View和ViewGroup" class="headerlink" title="View和ViewGroup"></a>View和ViewGroup</h2><p>Android 系统中的所有 UI 类都是建立在 View 和 ViewGroup 两个类的基础之上的，所有 View 的子类称为 Widget，所有 ViewGroup 的子类称为 Layout。</p>
+<p>Activity 是 Android 应用程序与用户交互的接口，每一个屏幕视图都对应一个 Activity。</p>
+<p>Activity 本身无法显示在屏幕上，其更像一个用于装载可显示组件的容器。就好比一个 <a target="_blank" rel="noopener" href="http://c.biancheng.net/jsp/">JSP</a> 页面，它本身并没有显示出来任何东西，负责显示的是 JSP 页面内的各种 HTML 标签，而 JSP 页面好比一个容器，负责将这些表情装载到页面内。</p>
+<p>那么在 Android 应用程序里，谁才是真正负责显示的那部分呢？答案是 View 和 ViewGroup，其中 ViewGroup 是 View 的子类。</p>
+<p>Android UI 界面是通过 View（视图）和 ViewGroup 及其派生类组合而成的。</p>
+<p>View 是所有 UI 组件的基类，基本上所有的高级 UI 组件都是继承 View 类实现的，如 TextView（文本框）、Button、List、EditText（编辑框）、Checkbox 等。一个 View 在屏幕占据一块矩形区域，负责渲染这块矩形区域，也可以处理这块矩形区域发生的事件，并可以设置该区域是否可见以及获取焦点等。</p>
+<p>ViewGroup 是容纳这些组件的容器，其本身也是从 View 中派生出来的，它继承于 Android.view.View，功能就是装载和管理下一层的 View 对象或 ViewGroup 对象，也就是说它是一个容纳其他元素的容器，负责对添加进来的 View 和 ViewGroup 进行管理和布局。</p>
+<p>View 和 ViewGroup 的关系如图所示：</p>
+<p><img src="../../image/image-20220607162017573.png" srcset="/my_world/img/loading.gif" lazyload alt="关系图"></p>
+<p>可以看到，ViewGroup 可以包含一个或任意个 View（视图），也可以包含作为更低层次的子 ViewGroup，而子 ViewGroup 又可以包含下一层的叶子节点的 View 和 ViewGroup。这种灵活的层次关系可以形成复杂的 UI 布局。</p>
+<p>在开发过程中形成的用户界面 UI 一般来自于 View 和 ViewGroup 类的直接子类或者间接子类。</p>
+<p>例如，View 派生出的直接子类有 AnalogClock、ImageView、KeyboardView、ProgressBar、Space、SurfaceView、TextView、TextureView、ViewGroup、ViewStub 等。</p>
+<p>ViewGroup 派生出的直接子类有 AbsoluteLayout、FragmentBreadCrumbs、FrameLayout、GridLayout、LinearLayout、RelativeLayout、SlidingDrawer 等。</p>
+<h2 id="XML文件定义用户界面"><a href="#XML文件定义用户界面" class="headerlink" title="XML文件定义用户界面"></a>XML文件定义用户界面</h2><p>单击打开 values 文件夹下的 string.xml 文件显示出如下代码：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">resources</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hello&quot;</span>&gt;</span>Hello Android!<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;app_name&quot;</span>&gt;</span>HelloAndroid<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">resources</span>&gt;</span></code></pre></div>
+<p>文件的开头部分<code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</code>定义了 XML 的版本号和字符编码，这个部分在所有的 XML 文件中都会有，由系统自动添加，不需要修改。</p>
+<p>\<resources> 标签定义了 hello 和 app_name 两个变量，可以被 HelloAndroid 工程直接使用。当该文件被修改时，gen 目录下的 R.java 文件也会跟随进行更新。</p>
+<p>双击 main.xml 文件，代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;vertical&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/textView1&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/hello&quot;</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span></code></pre></div>
+<p>在 <LinearLayout ...> 和 \</LinearLayout> 之间可以添加各种 UI 组件并设置组件的相关属性，例如组件的高度、宽度、内容等，后边会详细介绍各种常见组件的使用方法。</p>
+<p>在 HelloAndroid 实例中添加的是一个 TextView 组件，相当于一个显示内容的标签。Android SDK 提供了<code>@[&lt;package_ name&gt;:]&lt;resource_type&gt;/&lt;resource_name&gt;</code>方式，以便于从 XML 文件中访问工程的资源。</p>
+<p>下面简单介绍一下 TextView 中的属性：</p>
+<ul>
+<li>android:layout_width=”fill_parent” 指定其宽度覆盖满容器的宽。</li>
+<li>android:layout_height= “wrap_content” 指定其高度跟随其显示内容变化。</li>
+<li>android:id=”@+id/textView1” 指明该 TextView 的 ID 值为 R.java 文件中 ID 类的成员常量 textView1。</li>
+<li>android:text=”@string/hello” 指明该 TextView 组件显示的内容为资源文件 string.xml 中定义的 hello 变量的内容。</li>
+<li>android:text 属性也可以直接指定要显示的字符串，但是在实际的工程开发过程中不鼓励这种方式，而应该使用资源文件中的变量，因为这样便于工程维护和国际化。</li>
+</ul>
+<p>在本教程中，为了节省篇幅，部分显示内容简单的组件使用了字符串直接赋值的方法。</p>
+<p>Android 工程中使用到的资源文件都会在 gen 目录下的 R.java 中生成对应项，由系统为每个资源分配一个十六进制的整型数值，唯一标明每个资源。</p>
+<p>HelloAndroid 工程中的 R.java 文件代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">R</span> </span>&#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">attr</span> </span>&#123;
+    &#125;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">drawable</span> </span>&#123;
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> ic_launcher = <span class="hljs-number">0x7f020000</span>;
+    &#125;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">id</span> </span>&#123;
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> textView1 = <span class="hljs-number">0x7f050000</span>;
+    &#125;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">layout</span> </span>&#123;
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> main = <span class="hljs-number">0x7f030000</span>;
+    &#125;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">string</span> </span>&#123;
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> app_name = <span class="hljs-number">0x7f040001</span>;
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> hello = <span class="hljs-number">0x7f040000</span>;
+    &#125;
+&#125;</code></pre></div>
+<p>由该文件可见，R 为静态最终类。其中 public static final class layout 代表的是 res/layout 文件夹的内容，layout 类的每个整型常量代表该文件夹下的一个 XML 布局文件。</p>
+<p>例如，public static final int main 代表的是 main.xml 文件，0x7f030000 为系统 main.xml 文件生成的整型数值。在 Android 工程中根据该数值找到 main.xml 文件。public static final class string 代表的是 res/values/strings.xml 文件，string 类中的每个整型常量型成员代表 strings.xml 文件中定义的一个变量。例如，public static final int app_name 代表 strings.xml 中定义的 app_name 变量，public static final int hello 代表 stings.xml 文件中定义的 hello 变量。</p>
+<p>在工程开发过程中，可以通过 [<package_name>.]R.<resource_type>.<resource_name> 方式来访问 R 中定义的任意资源。其中：</p>
+<ul>
+<li>package_name 为资源文件被放置的包路径，一般可以省略。</li>
+<li>resource_type 为资源类型，例如 layout、string、color、drawable、menu 等。</li>
+<li>resource_ name 指的是为资源文件在类中定义的整型常量的名字。</li>
+</ul>
+<p>请看下面的例子：</p>
+<div class="code-wrapper"><pre><code class="hljs java">setContentView(R.layout.main);</code></pre></div>
+<p>这行代码中，通过 R.layout.main 找到了布局文件 main.xml，并通过 setContentView 方法将其设置为当前 Activity 的视图。要从视图中查找某个组件，需要使用 findViewById 方法，通过组件 ID 获取组件的对象。</p>
+<p>例如，要获取 main.xml 中的 TextView 组件对象，需要执行以下代码：</p>
+<div class="code-wrapper"><pre><code class="hljs java">TextView textview=(TextView)findViewById(R.id.textView1);</code></pre></div>
+<h2 id="Android五大布局"><a href="#Android五大布局" class="headerlink" title="Android五大布局"></a>Android五大布局</h2><p><img src="../../image/image-20220607163454707.png" srcset="/my_world/img/loading.gif" lazyload alt="五大布局"></p>
+<h3 id="FrameLayout"><a href="#FrameLayout" class="headerlink" title="FrameLayout"></a>FrameLayout</h3><p>FrameLayout 又称单帧布局，是 Android 所提供的布局方式里最简单的布局方式，它指定屏幕上的一块空白区域，在该区域填充一个单一对象。例如图片、文字、按钮等。</p>
+<p>应用程序开发人员不能为 FrameLayout 中填充的组件指定具体填充位置，默认情况下，这些组件都将被固定在屏幕的左上角，后放入的组件会放在前一个组件上进行覆盖填充，形成部分遮挡或全部遮挡。</p>
+<p>开发人员可以通过组件的 android:layout_gravity 属性对组件位置进行适当的修改。</p>
+<p>实例 FrameLayoutDemo 演示了 FrameLayout 的布局效果。该布局中共有 4 个 TextView 组件，前 3 个组件以默认方式放置到布局中，第 4 个组件修改 gravity 属性后放置到布局中，运行效果如图所示。</p>
+<p><img src="http://c.biancheng.net/uploads/allimg/190401/5-1Z401163A3602.jpg" srcset="/my_world/img/loading.gif" lazyload alt="FrameLayout的布局效果"></p>
+<p>实例 FrameLayoutDemo 中的布局文件 main.xml 的代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">FrameLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span>&gt;</span>
+   
+    <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/text1&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:textColor</span>=<span class="hljs-string">&quot;#00ff00&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:textsize</span>=<span class="hljs-string">&quot;1OOdip&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/first&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/text2&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:textColor</span>=<span class="hljs-string">&quot;#00ffff&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:textsize</span>=<span class="hljs-string">&quot;70dip&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/second&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/text3&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:textColor</span>=<span class="hljs-string">&quot;#ffOOOO&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:textsize</span>=<span class="hljs-string">&quot;40dip&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/third&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/text4&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:textColor</span>=<span class="hljs-string">&quot;#fffffOO&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:textSize</span>=<span class="hljs-string">&quot;40dip&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_gravity</span>=<span class="hljs-string">&quot;bottom&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/forth&quot;</span>/&gt;</span>
+   
+<span class="hljs-tag">&lt;/<span class="hljs-name">FrameLayout</span>&gt;</span></code></pre></div>
+<p>其中：</p>
+<div class="code-wrapper"><pre><code class="hljs xml">android:layout_width=&quot;wrap_content&quot;
+android:layout_height=&quot;wrap_content&quot;</code></pre></div>
+<p>表明 FrameLayout 布局覆盖了整个屏幕空间。</p>
+<p>实例 FrameLayoutDemo 中的 strings.xml 文件内容如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">resources</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;app_name&quot;</span>&gt;</span>FrameLayoutDemo<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;first&quot;</span>&gt;</span>第一层<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;second&quot;</span>&gt;</span>第二层<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;third&quot;</span>&gt;</span>第三层<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;forth&quot;</span>&gt;</span>第四层<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">resources</span>&gt;</span></code></pre></div>
+<p>从运行后的结果可见，前 3 个被放置到 FrameLayout 的 TextView 组件都是以屏幕左上角为基点进行叠加的。第4个 TextView 因为设置了 android:layout_gravity=”bottom” 属性而显示到了布局的下方。可自行将 android:layout_gravity 属性值修改为其他属性，查看运行效果。</p>
+<h3 id="LinearLayout"><a href="#LinearLayout" class="headerlink" title="LinearLayout"></a>LinearLayout</h3><p>LinearLayout 又称线性布局，该布局应该是 Android 视图设计中最经常使用的布局。该布局可以使放入其中的组件以水平方式或者垂直方式整齐排列，通过 android:orientation 属性指定具体的排列方式，通过 weight 属性设置每个组件在布局中所占的比重。</p>
+<p>实例 LinearLayoutDemo 演示了 LinearLayout 布局的使用方法，效果如图所示。</p>
+<p><img src="http://c.biancheng.net/uploads/allimg/190402/5-1Z402100601X5.PNG" srcset="/my_world/img/loading.gif" lazyload alt=""></p>
+<p>实例 LinearLayoutDemo 中的 strings.xml 文件代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">resources</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;app_name&quot;</span>&gt;</span>LinearLayoutDemo<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;red&quot;</span>&gt;</span>red<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;yellow&quot;</span>&gt;</span>yellow<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;green&quot;</span>&gt;</span>green<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;blue&quot;</span>&gt;</span>blue<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;row1&quot;</span>&gt;</span>row one<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;row2&quot;</span>&gt;</span>row two<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;row3&quot;</span>&gt;</span>row three<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;row4&quot;</span>&gt;</span>row four<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">resources</span>&gt;</span></code></pre></div>
+<p>实例 LinearLayoutDemo 中的布局文件 main.xml 代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;vertical&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;horizontal&quot;</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_gravity</span>=<span class="hljs-string">&quot;center_horizontal&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:background</span>=<span class="hljs-string">&quot;#aa0000&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/red&quot;</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_gravity</span>=<span class="hljs-string">&quot;center_horizontal&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:background</span>=<span class="hljs-string">&quot;#00aa00&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/green&quot;</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_gravity</span>=<span class="hljs-string">&quot;center_horizontal&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:background</span>=<span class="hljs-string">&quot;#0000aa&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/blue&quot;</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_gravity</span>=<span class="hljs-string">&quot;center_horizontal&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:background</span>=<span class="hljs-string">&quot;#aaaa00&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/yellow&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;vertical&quot;</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/row1&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:textSize</span>=<span class="hljs-string">&quot;15pt&quot;</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/row2&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:textSize</span>=<span class="hljs-string">&quot;15pt&quot;</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/row3&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:textSize</span>=<span class="hljs-string">&quot;15pt&quot;</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/row4&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:textSize</span>=<span class="hljs-string">&quot;15pt&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span></code></pre></div>
+<p>该布局中放置了两个 LinearLayout 布局对象。</p>
+<p>第一个 LinearLayout 布局通过 android:orientation=”horizontal” 属性将布局设置为横向线性排列。</p>
+<p>第二个 LinearLayout 布局通过 android:orientation=”vertical” 属性将布局设置为纵向线性排列。</p>
+<p>每个 LinearLayout 布局中都放入了 4 个 TextView，并通过 android:layout_weight 属性设置每个组件在布局中所占的比重相同，即各组件大小相同。</p>
+<p>layout_weight 用于定义一个线性布局中某组件的重要程度。所有的组件都有一个 layout_weight 值，默认为 0。意思是需要显示多大的视图就占据多大的屏幕空间。若赋值为大于 0 的值，则将可用的空间分割，分割的大小取决于当前的 layout_weight 数值与其他空间的 layout_weight 值的比率。</p>
+<p>例如水平方向上有两个按钮，每个按钮的 layout_weight 数值都设置为 1，那么这两个按钮平分宽度；若第一个为 1，第二个为 2，则可将空间的三分之一分给第一个，三分之二分给第二个。</p>
+<p>将 LinearLayoutDemo 中水平 LinearLayout 的第 4 个 TextView 的 android:layout_weight 属性赋值为 2，运行效果如图所示。</p>
+<p><img src="http://c.biancheng.net/uploads/allimg/190402/5-1Z402095929C3.PNG" srcset="/my_world/img/loading.gif" lazyload alt="修改android:layout_weight属性"></p>
+<p>LinearLayout 布局可使用嵌套。活用 LinearLayou 布局可以设计出各种各样漂亮的布局方式。</p>
+<h3 id="RelativeLayout"><a href="#RelativeLayout" class="headerlink" title="RelativeLayout"></a>RelativeLayout</h3><p>RelativeLayout 又称相对布局。从名称上可以看出，这种布局方式是以一种让组件以相对于容器或者相对于容器中的另一个组件的相对位置进行放置的布局方式。</p>
+<p>RelativeLayout 布局提供了一些常用的布局设置属性用于确定组件在视图中的相对位置。下面列举了 RelativeLayout 相关属性及其所代表的含义。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>android:layout_above=”@id/xxx”</td>
+<td>将控件置于给定 ID 控件之上</td>
+</tr>
+<tr>
+<td>android:layout_below=”@id/xxx”</td>
+<td>将控件置于给定 ID 控件之下</td>
+</tr>
+<tr>
+<td>android:layout_toLeftOf=”@id/xxx”</td>
+<td>将控件的右边缘和给定 ID 控件的左边缘对齐</td>
+</tr>
+<tr>
+<td>android:layout_toRightOf=”@id/xxx”</td>
+<td>将控件的左边缘和给定 ID 控件的右边缘对齐</td>
+</tr>
+<tr>
+<td>android:layout_alignBaseline=”@id/xxx”</td>
+<td>将控件的 baseline 与给定 ID 的 baseline 对齐</td>
+</tr>
+<tr>
+<td>android:layout_alignTop=”@id/xxx”</td>
+<td>将控件的上边缘和给定 ID 控件的上边缘对齐</td>
+</tr>
+<tr>
+<td>android:layout_alignBottom=”@id/xxx”</td>
+<td>将控件的底边缘和给定 ID 控件的底边缘对齐</td>
+</tr>
+<tr>
+<td>android:layout_alignLeft=”@id/xxx”</td>
+<td>将控件的左边缘和给定 ID 控件的左边缘对齐</td>
+</tr>
+<tr>
+<td>android:layout_alignRight=”@id/xxx”</td>
+<td>将控件的右边缘和给定 ID 控件的右边缘对齐</td>
+</tr>
+<tr>
+<td>android:layout_alignParentLeft=”true”</td>
+<td>将控件的左边缘和父控件的左边缘对齐</td>
+</tr>
+<tr>
+<td>android:layout_alignParentTop=”true”</td>
+<td>将控件的上边缘和父控件的上边缘对齐</td>
+</tr>
+<tr>
+<td>android:layout_alignParentRight=”true”</td>
+<td>将控件的右边缘和父控件的右边缘对齐</td>
+</tr>
+<tr>
+<td>android:layout_alignParentBottom=”true”</td>
+<td>将控件的底边缘和父控件的底边缘对齐</td>
+</tr>
+<tr>
+<td>android:layout_centerInParent=”true”</td>
+<td>将控件置于父控件的中心位置</td>
+</tr>
+<tr>
+<td>android:layout_centerHorizontal=”true”</td>
+<td>将控件置于水平方向的中心位置</td>
+</tr>
+<tr>
+<td>android:layout_centerVertical=”true”</td>
+<td>将控件置于垂直方向的中心位置</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>实例 RelativeLayoutDemo 演示了相对布局的使用方法，其运行效果如图所示。</p>
+<p><img src="http://c.biancheng.net/uploads/allimg/190402/5-1Z402105010N8.PNG" srcset="/my_world/img/loading.gif" lazyload alt="RelativeLayout布局效果"></p>
+<p>实例 RelativeLayoutDemo 中的布局文件 main.xml 代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">RelativeLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;fill_parent&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/label&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/hello&quot;</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">EditText</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/enter&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_alignParentLeft</span>=<span class="hljs-string">&quot;true&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_below</span>=<span class="hljs-string">&quot;@+id/label&quot;</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/button1&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_alignParentRight</span>=<span class="hljs-string">&quot;true&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_below</span>=<span class="hljs-string">&quot;@+id/enter&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/butltext&quot;</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/ok&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_alignBottom</span>=<span class="hljs-string">&quot;@+id/button1&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_alignParentLeft</span>=<span class="hljs-string">&quot;true&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/but2text&quot;</span> /&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">RelativeLayout</span>&gt;</span></code></pre></div>
+<p>该 RelativeLayout 布局的过程如下：</p>
+<p>1）放置一个 ID 为 label 的 TextView 组件。</p>
+<p>2）通过 android:layout_below=”@+id/label” 属性将 ID 为 enter 的组件 EditText 放置到 TextView 的下面。</p>
+<p>3）在布局中加入一个 ID 为 button1 的 Button，通过 android:layout_below=”@+id/enter” 属性将该 Button 放置到 enter 的下面，通过 android:layout_alignParentRight= “true” 属性将 Button 放置到相对布局的右侧。</p>
+<p>4）在相对布局中加入一个名为 ok 的 Button，通过 android:layout_alignBottom=”@+ id/button1” 属性将该 Button 底边与 button1 对齐，通过 android:layout_alignParentLeft =”true” 属性将该 Button 放置到布局的左边。</p>
+<h3 id="TableLayout"><a href="#TableLayout" class="headerlink" title="TableLayout"></a>TableLayout</h3><p>TableLayout 又称为表格布局，以行列的方式管理组件。</p>
+<p>TableLayout 布局没有边框，可以由多个 TableRow 对象或者其他组件组成，每个 TableRow 可以由多个单元格组成，每个单元格是一个 View。TableRow 不需要设置宽度 layout_width 和高度 layout_height，其宽度一定是 match_parent，即自动填满父容器，高度一定为 wrap_content，即根据内容改变高度。但对于 TableRow 中的其他组件来说，是可以设置宽度和高度的，只是必须是 wrap_content 或者 fill_parent。</p>
+<p>实例 TableLayoutDemo 演示了使用 TableLayout 制作 UI 的方法，效果如图所示。</p>
+<p><img src="http://c.biancheng.net/uploads/allimg/190402/5-1Z40211252R28.PNG" srcset="/my_world/img/loading.gif" lazyload alt="TableLayout布局效果"></p>
+<p>实例 TableLayoutDemo 中 strings.xml 的代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">resources</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hello&quot;</span>&gt;</span>Hello World,TableLayout!<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;app_name&quot;</span>&gt;</span>TableLayoutDemo<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;column1&quot;</span>&gt;</span>第一行第一列<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;column2&quot;</span>&gt;</span>第一行第二列<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;column3&quot;</span>&gt;</span>第一行第三列<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;empty&quot;</span>&gt;</span>最左面的可伸缩TextView<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;row2column2&quot;</span>&gt;</span>第二行第三列<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;row2column3&quot;</span>&gt;</span>End<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">string</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;merger&quot;</span>&gt;</span>合并三个单元格<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">resources</span>&gt;</span></code></pre></div>
+<p>实例 TableLayoutDemo 中的布局文件 main.xml 的代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">TableLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;fill_parent&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">TableRow</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span> <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/column1&quot;</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span> <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/column2&quot;</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span> <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/column3&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">TableRow</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:background</span>=<span class="hljs-string">&quot;#fff000&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:gravity</span>=<span class="hljs-string">&quot;center&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;单独的一个TextView&quot;</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">TableRow</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_span</span>=<span class="hljs-string">&quot;3&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:gravity</span>=<span class="hljs-string">&quot;center_horizontal&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/merger&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:textColor</span>=<span class="hljs-string">&quot;#f00&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">TableRow</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:background</span>=<span class="hljs-string">&quot;#fa05&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;单独的一个TextView&quot;</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">TableRow</span> <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span> <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/empty&quot;</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;@string/row2column2&quot;</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;string/row2column3&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">TableRow</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">TableLayout</span>&gt;</span></code></pre></div>
+<p>布局文件 main.xml 在 TableLayout 布局内添加了两个 TableRow 和两个 TextView，形成了如图 6 所示的效果。从运行效果看，第一行和第五行都没能完全显示。</p>
+<p>TableLayout 布局提供了几个特殊属性，可以实现以下特殊效果。</p>
+<ul>
+<li>android:shrinkColumns 属性：该属性用于设置可收缩的列。当可收缩的列太宽以至于布局内的其他列不能完全显示时，可收缩列会纵向延伸，压缩自己所占的空间，以便于其他列可以完全显示出来。android:shrinkColumns=”1” 表示将第 2 列设置为可收缩列，列数从 0 开始。</li>
+<li>android:stretchColumns 属性：该属性用于设置可伸展的列。可伸展的列会自动扩展长度以填满所有可用空间。android:stretchColumns=”1” 表示将第 2 列设置为可伸展的列。</li>
+<li>android:collapseColumns 属性：该属性用于设置隐藏列。android:collapseColumns=”1” 表示将第 2 列隐藏不显示。</li>
+</ul>
+<p>在\<TableLayout> 标签添加属性 android:shrinkColumns=”0”，再次运行，效果如图 7 所示，可以看出第一行和第五行都完全显示出来了。</p>
+<p><img src="http://c.biancheng.net/uploads/allimg/190402/5-1Z402130319260.PNG" srcset="/my_world/img/loading.gif" lazyload alt="完全显示的效果"></p>
+<h3 id="AbsoluteLayout"><a href="#AbsoluteLayout" class="headerlink" title="AbsoluteLayout"></a>AbsoluteLayout</h3><p>AbsoluteLayout 又称绝对布局，放入该布局的组件需要通过 android:layout_x 和 android:layout_y 两个属性指定其准确的坐标值，并显示在屏幕上。</p>
+<p>理论上，AbsoluteLayout 布局可用以完成任何的布局设计，灵活性很大，但是在实际的工程应用中不提倡使用这种布局。因为使用这种布局不但需要精确计算每个组件的大小，增大运算量，而且当应用程序在不同屏幕尺寸的手机上运行时会产生不同效果。</p>
+<p>实例 AbsoluteLayoutDemo 演示了 AbsoluteLayout 布局的使用方法，效果如图所示。</p>
+<p><img src="http://c.biancheng.net/uploads/allimg/190402/5-1Z402140446426.png" srcset="/my_world/img/loading.gif" lazyload alt="AbsoluteLayout布局效果"></p>
+<p>实例 AbsoluteLayoutDemo 的布局文件 main.xml 代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">AbsoluteLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;match_parent&quot;</span> &gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/button1&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_x</span>=<span class="hljs-string">&quot;32px&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_y</span>=<span class="hljs-string">&quot;53px&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;Button&quot;</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/button2&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_x</span>=<span class="hljs-string">&quot;146px&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_y</span>=<span class="hljs-string">&quot;53px&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;Button&quot;</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/button3&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_x</span>=<span class="hljs-string">&quot;85px&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_y</span>=<span class="hljs-string">&quot;135px&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;Button&quot;</span> /&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">AbsoluteLayout</span>&gt;</span></code></pre></div>
+<p>其中：</p>
+<div class="code-wrapper"><pre><code class="hljs avrasm"><span class="hljs-symbol">android:</span>layout_x=<span class="hljs-string">&quot;85px&quot;</span>
+<span class="hljs-symbol">android:</span>layout_y=<span class="hljs-string">&quot;135px&quot;</span></code></pre></div>
+<p>表示将组件放置到以屏幕左上角为坐标原点的坐标系下，x 值为 85 像素、y 值为 135 像素的位置。</p>
+<p>在这里简单介绍一下 Android 系统常用的尺寸类型的单位。</p>
+<ul>
+<li>像素：缩写为 px。表示屏幕上的物理像素。</li>
+<li>磅：points，缩写为 pt。1pt 等于 1 英寸的 1/72，常用于印刷业。</li>
+<li>放大像素：sp。主要用于字体的显示，Android 默认使用 sp 作为字号单位。</li>
+<li>密度独立像素：缩写为 dip 或 dp。该尺寸使用 160dp 的屏幕作为参考，然后用该屏幕映射到实际屏幕，在不同分辨率的屏幕上会有相应的缩放效果以适用于不同分辨率的屏幕。若用 px 的话，320px 占满 HVGA 的宽度，到 WVGA 上就只能占一半不到的屏幕了，那一定不是你想要的。</li>
+<li>毫米：mm。</li>
+</ul>
+<h4 id="WebView"><a href="#WebView" class="headerlink" title="WebView"></a>WebView</h4><p>WebView 组件是 AbsoluteLayout 的子类，用于显示 Web 页面。借助于 WebView，可以方便地开发自己的网络浏览器。此处仅对 WebView 的基本用法进行介绍，在后面进行 Web App 的学习时会有更进一步的讲解。</p>
+<p>创建工程 WebViewDemo，为其在 AndroidManifest.xml 文件中添加 Internet 访问权限：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.permission.INTERNET&quot;</span> /&gt;</span></code></pre></div>
+<p>在布局文件 main.xml 中添加一个 WebView 组件。Main.xml 内容如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;fill_parent&quot;</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;vertical&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">WebView</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/webView1&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;match_parent&quot;</span>/&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span></code></pre></div>
+<p>实例 WebViewDemo 中的 Activity 文件 WebViewDemoActivity.java 代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml">package introduction.android.webView;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.webkit.WebView;
+
+public class WebViewDemoActivity extends Activity &#123;
+    private WebView webView;
+
+    /**
+     * Called when the acctivity is first crested.
+     */
+    @Override
+    public void onCreate(Bundle saveInstanceState) &#123;
+        super.onCreate(saveInstanceState);
+        setContentView(R.layout.main);
+        webView = (WebView) findViewById(R.id.webView1);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(&quot;http://www.google.com&quot;);
+    &#125;
+&#125;</code></pre></div>
+<p>运行效果如图所示：</p>
+<p><img src="http://c.biancheng.net/uploads/allimg/190402/5-1Z402145U3258.jpg" srcset="/my_world/img/loading.gif" lazyload alt="WebViewDemo运行界面"></p>
+<h2 id="Android组件"><a href="#Android组件" class="headerlink" title="Android组件"></a>Android组件</h2><p>所有组件均可在IDE中拖动，具体功能参考：<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/2996.html">Android Button：按钮控件 (biancheng.net)</a>等讲解</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/Android/">Android</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/Android/">Android</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E6%A1%86%E6%9E%B6/">框架</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/Android%E6%90%AD%E5%BB%BA-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F%EF%BC%88%E4%BA%8C%EF%BC%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Android搭建-从入门到入土（二）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%85%AC%E5%BC%8F%E5%A4%A7%E5%85%A8%EF%BC%88%E4%BA%8C%EF%BC%89/">
+                        <span class="hidden-mobile">线性代数公式大全（二）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

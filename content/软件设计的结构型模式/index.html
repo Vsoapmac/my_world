@@ -1,0 +1,1165 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>软件设计的结构型模式 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="软件设计的结构型模式">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-18 11:35" pubdate>
+        2021年3月18日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      118
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">软件设计的结构型模式</h1>
+            
+            <div class="markdown-body">
+              <p>结构型模式描述如何将类或对象按某种布局组成更大的结构。它分为类结构型模式和对象结构型模式，前者采用继承机制来组织接口和类，后者釆用组合或聚合来组合对象。</p>
+<blockquote>
+<p>图片原链接：<a target="_blank" rel="noopener" href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html">设计模式 | 菜鸟教程 (runoob.com)</a></p>
+<p>文字原链接：<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/1317.html">软件设计模式概述 (biancheng.net)</a></p>
+</blockquote>
+<h1 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h1><p>结构型模式描述如何将类或对象按某种布局组成更大的结构。它分为类结构型模式和对象结构型模式，前者采用继承机制来组织接口和类，后者釆用组合或聚合来组合对象。</p>
+<p>由于组合关系或聚合关系比继承关系耦合度低，满足“合成复用原则”，所以对象结构型模式比类结构型模式具有更大的灵活性。</p>
+<p>结构型模式分为以下 7 种：</p>
+<ol>
+<li><strong>代理（Proxy）模式</strong>：为某对象提供一种代理以控制对该对象的访问。即客户端通过代理间接地访问该对象，从而限制、增强或修改该对象的一些特性。</li>
+<li><strong>适配器（Adapter）模式</strong>：将一个类的接口转换成客户希望的另外一个接口，使得原本由于接口不兼容而不能一起工作的那些类能一起工作。</li>
+<li>桥接（Bridge）模式：将抽象与实现分离，使它们可以独立变化。它是用组合关系代替继承关系来实现的，从而降低了抽象和实现这两个可变维度的耦合度。</li>
+<li><strong>装饰（Decorator）模式</strong>：动态地给对象增加一些职责，即增加其额外的功能。</li>
+<li><strong>外观（Facade）模式</strong>：为多个复杂的子系统提供一个一致的接口，使这些子系统更加容易被访问。</li>
+<li>享元（Flyweight）模式：运用共享技术来有效地支持大量细粒度对象的复用。</li>
+<li>组合（Composite）模式：将对象组合成树状层次结构，使用户对单个对象和组合对象具有一致的访问性。</li>
+</ol>
+<h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><p>代理模式的定义：由于某些原因需要给某对象提供一个代理以控制对该对象的访问。这时，访问对象不适合或者不能直接引用目标对象，代理对象作为访问对象和目标对象之间的中介。</p>
+<p>代理模式的主要优点有：</p>
+<ul>
+<li>代理模式在客户端与目标对象之间起到一个中介作用和保护目标对象的作用；</li>
+<li>代理对象可以扩展目标对象的功能；</li>
+<li>代理模式能将客户端与目标对象分离，在一定程度上降低了系统的耦合度；</li>
+</ul>
+<p>其主要缺点是：</p>
+<ul>
+<li>在客户端和目标对象之间增加一个代理对象，会造成请求处理速度变慢；</li>
+<li>增加了系统的复杂度；</li>
+</ul>
+<h2 id="代理模式的结构与实现"><a href="#代理模式的结构与实现" class="headerlink" title="代理模式的结构与实现"></a>代理模式的结构与实现</h2><p>代理模式的结构比较简单，主要是通过定义一个继承抽象主题的代理来包含真实主题，从而实现对真实主题的访问，下面来分析其基本结构和实现方法。</p>
+<p><strong>模式的结构</strong></p>
+<p>代理模式的主要角色如下。</p>
+<ol>
+<li>抽象主题（Subject）类：通过接口或抽象类声明真实主题和代理对象实现的业务方法。</li>
+<li>真实主题（Real Subject）类：实现了抽象主题中的具体业务，是代理对象所代表的真实对象，是最终要引用的对象。</li>
+<li>代理（Proxy）类：提供了与真实主题相同的接口，其内部含有对真实主题的引用，它可以访问、控制或扩展真实主题的功能。</li>
+</ol>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/08/20211025-proxy.svg" srcset="/my_world/img/loading.gif" lazyload alt="代理模式实现"></p>
+<p><strong>模式的实现</strong></p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> proxy;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProxyTest</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>
+<span class="hljs-function">    </span>&#123;
+        Proxy proxy=<span class="hljs-keyword">new</span> Proxy();
+        proxy.Request();
+    &#125;
+&#125;
+<span class="hljs-comment">//抽象主题</span>
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Subject</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Request</span><span class="hljs-params">()</span></span>;
+&#125;
+<span class="hljs-comment">//真实主题</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RealSubject</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Subject</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Request</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;访问真实主题方法...&quot;</span>);
+    &#125;
+&#125;
+<span class="hljs-comment">//代理</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Proxy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Subject</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-keyword">private</span> RealSubject realSubject;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Request</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">if</span> (realSubject==<span class="hljs-keyword">null</span>)
+        &#123;
+            realSubject=<span class="hljs-keyword">new</span> RealSubject();
+        &#125;
+        preRequest();
+        realSubject.Request();
+        postRequest();
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">preRequest</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;访问真实主题之前的预处理。&quot;</span>);
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">postRequest</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;访问真实主题之后的后续处理。&quot;</span>);
+    &#125;
+&#125;</code></pre></div>
+<h2 id="代理模式的应用实例"><a href="#代理模式的应用实例" class="headerlink" title="代理模式的应用实例"></a>代理模式的应用实例</h2><p>韶关“天街e角”公司是一家婺源特产公司的代理公司，用代理模式实现。</p>
+<p>分析：本实例中的“婺源特产公司”经营许多婺源特产，它是真实主题，提供了显示特产的 display() 方法，可以用窗体程序实现。而韶关“天街e角”公司是婺源特产公司特产的代理，通过调用婺源特产公司的 display() 方法显示代理产品，当然它可以增加一些额外的处理，如包裝或加价等。客户可通过“天街e角”代理公司间接访问“婺源特产公司”的产品</p>
+<h2 id="代理模式的应用场景"><a href="#代理模式的应用场景" class="headerlink" title="代理模式的应用场景"></a>代理模式的应用场景</h2><p>前面分析了代理模式的结构与特点，现在来分析以下的应用场景。</p>
+<ul>
+<li>远程代理，这种方式通常是为了隐藏目标对象存在于不同地址空间的事实，方便客户端访问。例如，用户申请某些网盘空间时，会在用户的文件系统中建立一个虚拟的硬盘，用户访问虚拟硬盘时实际访问的是网盘空间。</li>
+<li>虚拟代理，这种方式通常用于要创建的目标对象开销很大时。例如，下载一幅很大的图像需要很长时间，因某种计算比较复杂而短时间无法完成，这时可以先用小比例的虚拟代理替换真实的对象，消除用户对服务器慢的感觉。</li>
+<li>安全代理，这种方式通常用于控制不同种类客户对真实对象的访问权限。</li>
+<li>智能指引，主要用于调用目标对象时，代理附加一些额外的处理功能。例如，增加计算真实对象的引用次数的功能，这样当该对象没有被引用时，就可以自动释放它。</li>
+<li>延迟加载，指为了提高系统的性能，延迟对目标的加载。例如，Hibernate 中就存在属性的延迟加载和关联表的延时加载。</li>
+</ul>
+<h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><p>适配器模式（Adapter）的定义如下：将一个类的接口转换成客户希望的另外一个接口，使得原本由于接口不兼容而不能一起工作的那些类能一起工作。适配器模式分为类结构型模式和对象结构型模式两种，前者类之间的耦合度比后者高，且要求程序员了解现有组件库中的相关组件的内部结构，所以应用相对较少些。</p>
+<p>该模式的主要优点如下。</p>
+<ul>
+<li>客户端通过适配器可以透明地调用目标接口。</li>
+<li>复用了现存的类，程序员不需要修改原有代码而重用现有的适配者类。</li>
+<li>将目标类和适配者类解耦，解决了目标类和适配者类接口不一致的问题。</li>
+</ul>
+<p>其缺点是：对类适配器来说，更换适配器的实现过程比较复杂。</p>
+<h2 id="模式的结构与实现"><a href="#模式的结构与实现" class="headerlink" title="模式的结构与实现"></a>模式的结构与实现</h2><p>类适配器模式可采用多重继承方式实现，如 C++ 可定义一个适配器类来同时继承当前系统的业务接口和现有组件库中已经存在的组件接口；Java 不支持多继承，但可以定义一个适配器类来实现当前系统的业务接口，同时又继承现有组件库中已经存在的组件。</p>
+<p>对象适配器模式可釆用将现有组件库中已经实现的组件引入适配器类中，该类同时实现当前系统的业务接口。现在来介绍它们的基本结构。</p>
+<p><strong>模式的结构</strong></p>
+<p>适配器模式（Adapter）包含以下主要角色。</p>
+<ol>
+<li>目标（Target）接口：当前系统业务所期待的接口，它可以是抽象类或接口。</li>
+<li>适配者（Adaptee）类：它是被访问和适配的现存组件库中的组件接口。</li>
+<li>适配器（Adapter）类：它是一个转换器，通过继承或引用适配者的对象，把适配者接口转换成目标接口，让客户按目标接口的格式访问适配者。</li>
+</ol>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/08/20210223-adapter.png" srcset="/my_world/img/loading.gif" lazyload alt="适配器模式实现"></p>
+<p><strong>模式的实现</strong></p>
+<p>(1) 类适配器模式的代码如下。</p>
+<div class="code-wrapper"><pre><code>package adapter;
+//目标接口
+interface Target
+&#123;
+    public void request();
+&#125;
+//适配者接口
+class Adaptee
+&#123;
+    public void specificRequest()
+    &#123;       
+        System.out.println(&quot;适配者中的业务代码被调用！&quot;);
+    &#125;
+&#125;
+//类适配器类
+class ClassAdapter extends Adaptee implements Target
+&#123;
+    public void request()
+    &#123;
+        specificRequest();
+    &#125;
+&#125;
+//客户端代码
+public class ClassAdapterTest
+&#123;
+    public static void main(String[] args)
+    &#123;
+        System.out.println(&quot;类适配器模式测试：&quot;);
+        Target target = new ClassAdapter();
+        target.request();
+    &#125;
+&#125;
+</code></pre></div><p>(2)对象适配器模式的代码如下。</p>
+<div class="code-wrapper"><pre><code>package adapter;
+//对象适配器类
+class ObjectAdapter implements Target
+&#123;
+    private Adaptee adaptee;
+    public ObjectAdapter(Adaptee adaptee)
+    &#123;
+        this.adaptee=adaptee;
+    &#125;
+    public void request()
+    &#123;
+        adaptee.specificRequest();
+    &#125;
+&#125;
+//客户端代码
+public class ObjectAdapterTest
+&#123;
+    public static void main(String[] args)
+    &#123;
+        System.out.println(&quot;对象适配器模式测试：&quot;);
+        Adaptee adaptee = new Adaptee();
+        Target target = new ObjectAdapter(adaptee);
+        target.request();
+    &#125;
+&#125;
+</code></pre></div><h2 id="模式的应用实例"><a href="#模式的应用实例" class="headerlink" title="模式的应用实例"></a>模式的应用实例</h2><p>【例1】用适配器模式（Adapter）模拟新能源汽车的发动机。</p>
+<p>分析：新能源汽车的发动机有电能发动机（Electric Motor）和光能发动机（Optical Motor）等，各种发动机的驱动方法不同，例如，电能发动机的驱动方法 electricDrive() 是用电能驱动，而光能发动机的驱动方法 opticalDrive() 是用光能驱动，它们是适配器模式中被访问的适配者。</p>
+<p>客户端希望用统一的发动机驱动方法 drive() 访问这两种发动机，所以必须定义一个统一的目标接口 Motor，然后再定义电能适配器（Electric Adapter）和光能适配器（Optical Adapter）去适配这两种发动机。</p>
+<h2 id="模式的应用场景"><a href="#模式的应用场景" class="headerlink" title="模式的应用场景"></a>模式的应用场景</h2><p>适配器模式（Adapter）通常适用于以下场景。</p>
+<ul>
+<li>以前开发的系统存在满足新系统功能需求的类，但其接口同新系统的接口不一致。</li>
+<li>使用第三方提供的组件，但组件接口定义和自己要求的接口定义不同。</li>
+</ul>
+<h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><p>桥接（Bridge）模式的定义如下：将抽象与实现分离，使它们可以独立变化。它是用组合关系代替继承关系来实现，从而降低了抽象和实现这两个可变维度的耦合度。</p>
+<p>桥接（Bridge）模式的优点是：</p>
+<ul>
+<li>由于抽象与实现分离，所以扩展能力强；</li>
+<li>其实现细节对客户透明。</li>
+</ul>
+<p>缺点是：由于聚合关系建立在抽象层，要求开发者针对抽象化进行设计与编程，这增加了系统的理解与设计难度。</p>
+<h2 id="桥接模式的结构与实现"><a href="#桥接模式的结构与实现" class="headerlink" title="桥接模式的结构与实现"></a>桥接模式的结构与实现</h2><p>可以将抽象化部分与实现化部分分开，取消二者的继承关系，改用组合关系。</p>
+<p><strong>模式的结构</strong></p>
+<p>桥接（Bridge）模式包含以下主要角色。</p>
+<ol>
+<li>抽象化（Abstraction）角色：定义抽象类，并包含一个对实现化对象的引用。</li>
+<li>扩展抽象化（Refined    Abstraction）角色：是抽象化角色的子类，实现父类中的业务方法，并通过组合关系调用实现化角色中的业务方法。</li>
+<li>实现化（Implementor）角色：定义实现化角色的接口，供扩展抽象化角色调用。</li>
+<li>具体实现化（Concrete Implementor）角色：给出实现化角色接口的具体实现。</li>
+</ol>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/08/20201015-bridge.svg" srcset="/my_world/img/loading.gif" lazyload alt="桥接模式实现"></p>
+<p><strong>模式的实现</strong></p>
+<p>桥接模式的代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> bridge;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BridgeTest</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>
+<span class="hljs-function">    </span>&#123;
+        Implementor imple=<span class="hljs-keyword">new</span> ConcreteImplementorA();
+        Abstraction abs=<span class="hljs-keyword">new</span> RefinedAbstraction(imple);
+        abs.Operation();
+    &#125;
+&#125;
+<span class="hljs-comment">//实现化角色</span>
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Implementor</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OperationImpl</span><span class="hljs-params">()</span></span>;
+&#125;
+<span class="hljs-comment">//具体实现化角色</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteImplementorA</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Implementor</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OperationImpl</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;具体实现化(Concrete Implementor)角色被访问&quot;</span> );
+    &#125;
+&#125;
+<span class="hljs-comment">//抽象化角色</span>
+<span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Abstraction</span></span>
+<span class="hljs-class"></span>&#123;
+   <span class="hljs-keyword">protected</span> Implementor imple;
+   <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">Abstraction</span><span class="hljs-params">(Implementor imple)</span></span>
+<span class="hljs-function">   </span>&#123;
+       <span class="hljs-keyword">this</span>.imple=imple;
+   &#125;
+   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Operation</span><span class="hljs-params">()</span></span>;   
+&#125;
+<span class="hljs-comment">//扩展抽象化角色</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RefinedAbstraction</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Abstraction</span></span>
+<span class="hljs-class"></span>&#123;
+   <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">RefinedAbstraction</span><span class="hljs-params">(Implementor imple)</span></span>
+<span class="hljs-function">   </span>&#123;
+       <span class="hljs-keyword">super</span>(imple);
+   &#125;
+   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Operation</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">   </span>&#123;
+       System.out.println(<span class="hljs-string">&quot;扩展抽象化(Refined Abstraction)角色被访问&quot;</span> );
+       imple.OperationImpl();
+   &#125;
+&#125;</code></pre></div>
+<h2 id="桥接模式的应用实例"><a href="#桥接模式的应用实例" class="headerlink" title="桥接模式的应用实例"></a>桥接模式的应用实例</h2><p>【例1】用桥接（Bridge）模式模拟女士皮包的选购。</p>
+<p>分析：女士皮包有很多种，可以按用途分、按皮质分、按品牌分、按颜色分、按大小分等，存在多个维度的变化，所以采用桥接模式来实现女士皮包的选购比较合适。</p>
+<p>本实例按用途分可选钱包（Wallet）和挎包（HandBag），按颜色分可选黄色（Yellow）和红色（Red）。可以按两个维度定义为颜色类和包类。</p>
+<p>颜色类（Color）是一个维度，定义为实现化角色，它有两个具体实现化角色：黄色和红色，通过 getColor() 方法可以选择颜色；包类（Bag）是另一个维度，定义为抽象化角色，它有两个扩展抽象化角色：挎包和钱包，它包含了颜色类对象，通过 getName() 方法可以选择相关颜色的挎包和钱包。</p>
+<h2 id="桥接模式的应用场景"><a href="#桥接模式的应用场景" class="headerlink" title="桥接模式的应用场景"></a>桥接模式的应用场景</h2><p>桥接模式通常适用于以下场景。</p>
+<ol>
+<li>当一个类存在两个独立变化的维度，且这两个维度都需要进行扩展时。</li>
+<li>当一个系统不希望使用继承或因为多层次继承导致系统类的个数急剧增加时。</li>
+<li>当一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性时。</li>
+</ol>
+<h1 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h1><p>装饰（Decorator）模式的定义：指在不改变现有对象结构的情况下，动态地给该对象增加一些职责（即增加其额外功能）的模式，它属于对象结构型模式。</p>
+<p>装饰（Decorator）模式的主要优点有：</p>
+<ul>
+<li>采用装饰模式扩展对象的功能比采用继承方式更加灵活。</li>
+<li>可以设计出多个不同的具体装饰类，创造出多个不同行为的组合。</li>
+</ul>
+<p>其主要缺点是：装饰模式增加了许多子类，如果过度使用会使程序变得很复杂。</p>
+<h2 id="装饰模式的结构与实现"><a href="#装饰模式的结构与实现" class="headerlink" title="装饰模式的结构与实现"></a>装饰模式的结构与实现</h2><p>通常情况下，扩展一个类的功能会使用继承方式来实现。但继承具有静态特征，耦合度高，并且随着扩展功能的增多，子类会很膨胀。如果使用组合关系来创建一个包装对象（即装饰对象）来包裹真实对象，并在保持真实对象的类结构不变的前提下，为其提供额外的功能，这就是装饰模式的目标。下面来分析其基本结构和实现方法。</p>
+<p><strong>模式的结构</strong></p>
+<p>装饰模式主要包含以下角色。</p>
+<ol>
+<li>抽象构件（Component）角色：定义一个抽象接口以规范准备接收附加责任的对象。</li>
+<li>具体构件（Concrete    Component）角色：实现抽象构件，通过装饰角色为其添加一些职责。</li>
+<li>抽象装饰（Decorator）角色：继承抽象构件，并包含具体构件的实例，可以通过其子类扩展具体构件的功能。</li>
+<li>具体装饰（ConcreteDecorator）角色：实现抽象装饰的相关方法，并给具体构件对象添加附加的责任。</li>
+</ol>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/08/20210420-decorator-1-decorator-decorator.svg" srcset="/my_world/img/loading.gif" lazyload alt="装饰器模式实现"></p>
+<p><strong>模式的实现</strong></p>
+<p>装饰模式的实现代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> decorator;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DecoratorPattern</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>
+<span class="hljs-function">    </span>&#123;
+        Component p=<span class="hljs-keyword">new</span> ConcreteComponent();
+        p.operation();
+        System.out.println(<span class="hljs-string">&quot;---------------------------------&quot;</span>);
+        Component d=<span class="hljs-keyword">new</span> ConcreteDecorator(p);
+        d.operation();
+    &#125;
+&#125;
+<span class="hljs-comment">//抽象构件角色</span>
+<span class="hljs-class"><span class="hljs-keyword">interface</span>  <span class="hljs-title">Component</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">operation</span><span class="hljs-params">()</span></span>;
+&#125;
+<span class="hljs-comment">//具体构件角色</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteComponent</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Component</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ConcreteComponent</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;创建具体构件角色&quot;</span>);       
+    &#125;   
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">operation</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;调用具体构件角色的方法operation()&quot;</span>);           
+    &#125;
+&#125;
+<span class="hljs-comment">//抽象装饰角色</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Decorator</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Component</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-keyword">private</span> Component component;   
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Decorator</span><span class="hljs-params">(Component component)</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">this</span>.component=component;
+    &#125;   
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">operation</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        component.operation();
+    &#125;
+&#125;
+<span class="hljs-comment">//具体装饰角色</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteDecorator</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Decorator</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ConcreteDecorator</span><span class="hljs-params">(Component component)</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">super</span>(component);
+    &#125;   
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">operation</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">super</span>.operation();
+        addedFunction();
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addedFunction</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;为具体构件角色增加额外的功能addedFunction()&quot;</span>);           
+    &#125;
+&#125;</code></pre></div>
+<h2 id="装饰模式的应用实例"><a href="#装饰模式的应用实例" class="headerlink" title="装饰模式的应用实例"></a>装饰模式的应用实例</h2><p>用装饰模式实现游戏角色“莫莉卡·安斯兰”的变身。</p>
+<p>分析：在《恶魔战士》中，游戏角色“莫莉卡·安斯兰”的原身是一个可爱少女，但当她变身时，会变成头顶及背部延伸出蝙蝠状飞翼的女妖，当然她还可以变为穿着漂亮外衣的少女。这些都可用装饰模式来实现，在本实例中的“莫莉卡”原身有 setImage(String t) 方法决定其显示方式，而其 变身“蝙蝠状女妖”和“着装少女”可以用 setChanger() 方法来改变其外观，原身与变身后的效果用 display() 方法来显示</p>
+<h2 id="装饰模式的应用场景"><a href="#装饰模式的应用场景" class="headerlink" title="装饰模式的应用场景"></a>装饰模式的应用场景</h2><p>前面讲解了关于装饰模式的结构与特点，下面介绍其适用的应用场景，装饰模式通常在以下几种情况使用。</p>
+<ul>
+<li>当需要给一个现有类添加附加职责，而又不能采用生成子类的方法进行扩充时。例如，该类被隐藏或者该类是终极类或者采用继承方式会产生大量的子类。</li>
+<li>当需要通过对现有的一组基本功能进行排列组合而产生非常多的功能时，采用继承关系很难实现，而采用装饰模式却很好实现。</li>
+<li>当对象的功能要求可以动态地添加，也可以再动态地撤销时。</li>
+</ul>
+<p>装饰模式在 Java 语言中的最著名的应用莫过于 Java I/O 标准库的设计了。例如，InputStream 的子类 FilterInputStream，OutputStream 的子类 FilterOutputStream，Reader 的子类 BufferedReader 以及 FilterReader，还有 Writer 的子类 BufferedWriter、FilterWriter 以及 PrintWriter 等，它们都是抽象装饰类。</p>
+<p>下面代码是为 FileReader 增加缓冲区而采用的装饰类 BufferedReader 的例子：</p>
+<div class="code-wrapper"><pre><code class="hljs java">BufferedReader in=<span class="hljs-keyword">new</span> BufferedReader(<span class="hljs-keyword">new</span> FileReader(<span class="hljs-string">&quot;filename.txtn));</span>
+<span class="hljs-string">String s=in.readLine();</span></code></pre></div>
+<h1 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h1><p>外观（Facade）模式的定义：是一种通过为多个复杂的子系统提供一个一致的接口，而使这些子系统更加容易被访问的模式。该模式对外有一个统一接口，外部应用程序不用关心内部子系统的具体的细节，这样会大大降低应用程序的复杂度，提高了程序的可维护性。</p>
+<p>外观（Facade）模式是“迪米特法则”的典型应用，它有以下主要优点。</p>
+<ol>
+<li>降低了子系统与客户端之间的耦合度，使得子系统的变化不会影响调用它的客户类。</li>
+<li>对客户屏蔽了子系统组件，减少了客户处理的对象数目，并使得子系统使用起来更加容易。</li>
+<li>降低了大型软件系统中的编译依赖性，简化了系统在不同平台之间的移植过程，因为编译一个子系统不会影响其他的子系统，也不会影响外观对象。</li>
+</ol>
+<p>外观（Facade）模式的主要缺点如下。</p>
+<ol>
+<li>不能很好地限制客户使用子系统类。</li>
+<li>增加新的子系统可能需要修改外观类或客户端的源代码，违背了“开闭原则”。</li>
+</ol>
+<h2 id="外观模式的结构与实现"><a href="#外观模式的结构与实现" class="headerlink" title="外观模式的结构与实现"></a>外观模式的结构与实现</h2><p>外观（Facade）模式的结构比较简单，主要是定义了一个高层接口。它包含了对各个子系统的引用，客户端可以通过它访问各个子系统的功能。现在来分析其基本结构和实现方法。</p>
+<p><strong>模式的结构</strong></p>
+<p>外观（Facade）模式包含以下主要角色。</p>
+<ol>
+<li>外观（Facade）角色：为多个子系统对外提供一个共同的接口。</li>
+<li>子系统（Sub System）角色：实现系统的部分功能，客户可以通过外观角色访问它。</li>
+<li>客户（Client）角色：通过一个外观角色访问各个子系统的功能。</li>
+</ol>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/08/20201015-facade.svg" srcset="/my_world/img/loading.gif" lazyload alt="外观模式实现"></p>
+<p><strong>模式的实现</strong></p>
+<p>外观模式的实现代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> facade;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FacadePattern</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>
+<span class="hljs-function">    </span>&#123;
+        Facade f=<span class="hljs-keyword">new</span> Facade();
+        f.method();
+    &#125;
+&#125;
+<span class="hljs-comment">//外观角色</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Facade</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-keyword">private</span> SubSystem01 obj1=<span class="hljs-keyword">new</span> SubSystem01();
+    <span class="hljs-keyword">private</span> SubSystem02 obj2=<span class="hljs-keyword">new</span> SubSystem02();
+    <span class="hljs-keyword">private</span> SubSystem03 obj3=<span class="hljs-keyword">new</span> SubSystem03();
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        obj1.method1();
+        obj2.method2();
+        obj3.method3();
+    &#125;
+&#125;
+<span class="hljs-comment">//子系统角色</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SubSystem01</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">method1</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;子系统01的method1()被调用！&quot;</span>);
+    &#125;   
+&#125;
+<span class="hljs-comment">//子系统角色</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SubSystem02</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">method2</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;子系统02的method2()被调用！&quot;</span>);
+    &#125;   
+&#125;
+<span class="hljs-comment">//子系统角色</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SubSystem03</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">method3</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;子系统03的method3()被调用！&quot;</span>);
+    &#125;   
+&#125;</code></pre></div>
+<h2 id="外观模式的应用实例"><a href="#外观模式的应用实例" class="headerlink" title="外观模式的应用实例"></a>外观模式的应用实例</h2><p>用“外观模式”设计一个婺源特产的选购界面。</p>
+<p>分析：本实例的外观角色 WySpecialty 是 JPanel 的子类，它拥有 8 个子系统角色 Specialty1~Specialty8，它们是图标类（ImageIcon）的子类对象，用来保存该婺源特产的图标（点此下载要显示的婺源特产的图片）。</p>
+<p>外观类（WySpecialty）用 JTree 组件来管理婺源特产的名称，并定义一个事件处理方法 valueClianged(TreeSelectionEvent e)，当用户从树中选择特产时，该特产的图标对象保存在标签（JLabd）对象中。</p>
+<h2 id="外观模式的应用场景"><a href="#外观模式的应用场景" class="headerlink" title="外观模式的应用场景"></a>外观模式的应用场景</h2><p>通常在以下情况下可以考虑使用外观模式。</p>
+<ol>
+<li>对分层结构系统构建时，使用外观模式定义子系统中每层的入口点可以简化子系统之间的依赖关系。</li>
+<li>当一个复杂系统的子系统很多时，外观模式可以为系统设计一个简单的接口供外界访问。</li>
+<li>当客户端与多个子系统之间存在很大的联系时，引入外观模式可将它们分离，从而提高子系统的独立性和可移植性。</li>
+</ol>
+<h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><p>享元（Flyweight）模式的定义：运用共享技术来有効地支持大量细粒度对象的复用。它通过共享已经存在的又橡来大幅度减少需要创建的对象数量、避免大量相似类的开销，从而提高系统资源的利用率。</p>
+<p>享元模式的主要优点是：相同对象只要保存一份，这降低了系统中对象的数量，从而降低了系统中细粒度对象给内存带来的压力。</p>
+<p>其主要缺点是：</p>
+<ol>
+<li>为了使对象可以共享，需要将一些不能共享的状态外部化，这将增加程序的复杂性。</li>
+<li>读取享元模式的外部状态会使得运行时间稍微变长。</li>
+</ol>
+<h2 id="享元模式的结构与实现"><a href="#享元模式的结构与实现" class="headerlink" title="享元模式的结构与实现"></a>享元模式的结构与实现</h2><p>享元模式中存在以下两种状态：</p>
+<ol>
+<li>内部状态，即不会随着环境的改变而改变的可共享部分；</li>
+<li>外部状态，指随环境改变而改变的不可以共享的部分。享元模式的实现要领就是区分应用中的这两种状态，并将外部状态外部化。下面来分析其基本结构和实现方法。</li>
+</ol>
+<p><strong>模式的结构</strong></p>
+<p>享元模式的主要角色有如下。</p>
+<ol>
+<li>抽象享元角色（Flyweight）:是所有的具体享元类的基类，为具体享元规范需要实现的公共接口，非享元的外部状态以参数的形式通过方法传入。</li>
+<li>具体享元（Concrete Flyweight）角色：实现抽象享元角色中所规定的接口。</li>
+<li>非享元（Unsharable Flyweight)角色：是不可以共享的外部状态，它以参数的形式注入具体享元的相关方法中。</li>
+<li>享元工厂（Flyweight Factory）角色：负责创建和管理享元角色。当客户对象请求一个享元对象时，享元工厂检査系统中是否存在符合要求的享元对象，如果存在则提供给客户；如果不存在的话，则创建一个新的享元对象。</li>
+</ol>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/08/20201015-fiyweight.svg" srcset="/my_world/img/loading.gif" lazyload alt="享元模式实现"></p>
+<p><strong>模式的实现</strong></p>
+<p>享元模式的实现代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> flyweight;
+<span class="hljs-keyword">import</span> java.util.HashMap;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FlyweightPattern</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>
+<span class="hljs-function">    </span>&#123;
+        FlyweightFactory factory=<span class="hljs-keyword">new</span> FlyweightFactory();
+        Flyweight f01=factory.getFlyweight(<span class="hljs-string">&quot;a&quot;</span>);
+        Flyweight f02=factory.getFlyweight(<span class="hljs-string">&quot;a&quot;</span>);
+        Flyweight f03=factory.getFlyweight(<span class="hljs-string">&quot;a&quot;</span>);
+        Flyweight f11=factory.getFlyweight(<span class="hljs-string">&quot;b&quot;</span>);
+        Flyweight f12=factory.getFlyweight(<span class="hljs-string">&quot;b&quot;</span>);       
+        f01.operation(<span class="hljs-keyword">new</span> UnsharedConcreteFlyweight(<span class="hljs-string">&quot;第1次调用a。&quot;</span>));       
+        f02.operation(<span class="hljs-keyword">new</span> UnsharedConcreteFlyweight(<span class="hljs-string">&quot;第2次调用a。&quot;</span>));       
+        f03.operation(<span class="hljs-keyword">new</span> UnsharedConcreteFlyweight(<span class="hljs-string">&quot;第3次调用a。&quot;</span>));       
+        f11.operation(<span class="hljs-keyword">new</span> UnsharedConcreteFlyweight(<span class="hljs-string">&quot;第1次调用b。&quot;</span>));       
+        f12.operation(<span class="hljs-keyword">new</span> UnsharedConcreteFlyweight(<span class="hljs-string">&quot;第2次调用b。&quot;</span>));
+    &#125;
+&#125;
+<span class="hljs-comment">//非享元角色</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UnsharedConcreteFlyweight</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-keyword">private</span> String info;
+    UnsharedConcreteFlyweight(String info)
+    &#123;
+        <span class="hljs-keyword">this</span>.info=info;
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getInfo</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">return</span> info;
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setInfo</span><span class="hljs-params">(String info)</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">this</span>.info=info;
+    &#125;
+&#125;
+<span class="hljs-comment">//抽象享元角色</span>
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Flyweight</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">operation</span><span class="hljs-params">(UnsharedConcreteFlyweight state)</span></span>;
+&#125;
+<span class="hljs-comment">//具体享元角色</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteFlyweight</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Flyweight</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-keyword">private</span> String key;
+    ConcreteFlyweight(String key)
+    &#123;
+        <span class="hljs-keyword">this</span>.key=key;
+        System.out.println(<span class="hljs-string">&quot;具体享元&quot;</span>+key+<span class="hljs-string">&quot;被创建！&quot;</span>);
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">operation</span><span class="hljs-params">(UnsharedConcreteFlyweight outState)</span></span>
+<span class="hljs-function">    </span>&#123;
+        System.out.print(<span class="hljs-string">&quot;具体享元&quot;</span>+key+<span class="hljs-string">&quot;被调用，&quot;</span>);
+        System.out.println(<span class="hljs-string">&quot;非享元信息是:&quot;</span>+outState.getInfo());
+    &#125;
+&#125;
+<span class="hljs-comment">//享元工厂角色</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FlyweightFactory</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-keyword">private</span> HashMap&lt;String, Flyweight&gt; flyweights=<span class="hljs-keyword">new</span> HashMap&lt;String, Flyweight&gt;();
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Flyweight <span class="hljs-title">getFlyweight</span><span class="hljs-params">(String key)</span></span>
+<span class="hljs-function">    </span>&#123;
+        Flyweight flyweight=(Flyweight)flyweights.get(key);
+        <span class="hljs-keyword">if</span>(flyweight!=<span class="hljs-keyword">null</span>)
+        &#123;
+            System.out.println(<span class="hljs-string">&quot;具体享元&quot;</span>+key+<span class="hljs-string">&quot;已经存在，被成功获取！&quot;</span>);
+        &#125;
+        <span class="hljs-keyword">else</span>
+        &#123;
+            flyweight=<span class="hljs-keyword">new</span> ConcreteFlyweight(key);
+            flyweights.put(key, flyweight);
+        &#125;
+        <span class="hljs-keyword">return</span> flyweight;
+    &#125;
+&#125;</code></pre></div>
+<h2 id="享元模式的应用实例"><a href="#享元模式的应用实例" class="headerlink" title="享元模式的应用实例"></a>享元模式的应用实例</h2><p>享元模式在五子棋游戏中的应用。</p>
+<p>分析：五子棋同围棋一样，包含多个“黑”或“白”颜色的棋子，所以用享元模式比较好。</p>
+<p>本实例中的棋子（ChessPieces）类是抽象享元角色，它包含了一个落子的 DownPieces(Graphics g,Point pt) 方法；白子（WhitePieces）和黑子（BlackPieces）类是具体享元角色，它实现了落子方法；Point 是非享元角色，它指定了落子的位置；WeiqiFactory 是享元工厂角色，它通过 ArrayList 来管理棋子，并且提供了获取白子或者黑子的 getChessPieces(String type) 方法；客户类（Chessboard）利用 Graphics 组件在框架窗体中绘制一个棋盘，并实现 mouseClicked(MouseEvent e) 事件处理方法，该方法根据用户的选择从享元工厂中获取白子或者黑子并落在棋盘上。</p>
+<h2 id="享元模式的应用场景"><a href="#享元模式的应用场景" class="headerlink" title="享元模式的应用场景"></a>享元模式的应用场景</h2><p>前面分析了享元模式的结构与特点，下面分析它适用的应用场景。享元模式是通过减少内存中对象的数量来节省内存空间的，所以以下几种情形适合采用享元模式。</p>
+<ol>
+<li>系统中存在大量相同或相似的对象，这些对象耗费大量的内存资源。</li>
+<li>大部分的对象可以按照内部状态进行分组，且可将不同部分外部化，这样每一个组只需保存一个内部状态。</li>
+<li>由于享元模式需要额外维护一个保存享元的数据结构，所以应当在有足够多的享元实例时才值得使用享元模式。</li>
+</ol>
+<h1 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h1><p>组合（Composite）模式的定义：有时又叫作部分-整体模式，它是一种将对象组合成树状的层次结构的模式，用来表示“部分-整体”的关系，使用户对单个对象和组合对象具有一致的访问性。</p>
+<p>组合模式的主要优点有：</p>
+<ol>
+<li>组合模式使得客户端代码可以一致地处理单个对象和组合对象，无须关心自己处理的是单个对象，还是组合对象，这简化了客户端代码；</li>
+<li>更容易在组合体内加入新的对象，客户端不会因为加入了新的对象而更改源代码，满足“开闭原则”；</li>
+</ol>
+<p>其主要缺点是：</p>
+<ol>
+<li>设计较复杂，客户端需要花更多时间理清类之间的层次关系；</li>
+<li>不容易限制容器中的构件；</li>
+<li>不容易用继承的方法来增加构件的新功能；</li>
+</ol>
+<h2 id="组合模式的结构与实现"><a href="#组合模式的结构与实现" class="headerlink" title="组合模式的结构与实现"></a>组合模式的结构与实现</h2><p>组合模式的结构不是很复杂，下面对它的结构和实现进行分析。</p>
+<p><strong>模式的结构</strong></p>
+<p>组合模式包含以下主要角色。</p>
+<ol>
+<li>抽象构件（Component）角色：它的主要作用是为树叶构件和树枝构件声明公共接口，并实现它们的默认行为。在透明式的组合模式中抽象构件还声明访问和管理子类的接口；在安全式的组合模式中不声明访问和管理子类的接口，管理工作由树枝构件完成。</li>
+<li>树叶构件（Leaf）角色：是组合中的叶节点对象，它没有子节点，用于实现抽象构件角色中 声明的公共接口。</li>
+<li>树枝构件（Composite）角色：是组合中的分支节点对象，它有子节点。它实现了抽象构件角色中声明的接口，它的主要作用是存储和管理子部件，通常包含 Add()、Remove()、GetChild() 等方法。</li>
+</ol>
+<p>组合模式分为透明式的组合模式和安全式的组合模式。</p>
+<p>(1) 透明方式：在该方式中，由于抽象构件声明了所有子类中的全部方法，所以客户端无须区别树叶对象和树枝对象，对客户端来说是透明的。但其缺点是：树叶构件本来没有 Add()、Remove() 及 GetChild() 方法，却要实现它们（空实现或抛异常），这样会带来一些安全性问题。</p>
+<p>(2) 安全方式：在该方式中，将管理子构件的方法移到树枝构件中，抽象构件和树叶构件没有对子对象的管理方法，这样就避免了上一种方式的安全性问题，但由于叶子和分支有不同的接口，客户端在调用时要知道树叶对象和树枝对象的存在，所以失去了透明性。</p>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/08/20210817-composite-composite.svg" srcset="/my_world/img/loading.gif" lazyload alt="组合模式实现"></p>
+<p><strong>模式的实现</strong></p>
+<p>假如要访问集合 c0={leaf1,{leaf2,leaf3}} 中的元素</p>
+<p>下面给出透明式的组合模式的实现代码，与安全式的组合模式的实现代码类似，只要对其做简单修改就可以了。</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> composite;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CompositePattern</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>
+<span class="hljs-function">    </span>&#123;
+        Component c0=<span class="hljs-keyword">new</span> Composite(); 
+        Component c1=<span class="hljs-keyword">new</span> Composite(); 
+        Component leaf1=<span class="hljs-keyword">new</span> Leaf(<span class="hljs-string">&quot;1&quot;</span>); 
+        Component leaf2=<span class="hljs-keyword">new</span> Leaf(<span class="hljs-string">&quot;2&quot;</span>); 
+        Component leaf3=<span class="hljs-keyword">new</span> Leaf(<span class="hljs-string">&quot;3&quot;</span>);          
+        c0.add(leaf1); 
+        c0.add(c1);
+        c1.add(leaf2); 
+        c1.add(leaf3);          
+        c0.operation(); 
+    &#125;
+&#125;
+<span class="hljs-comment">//抽象构件</span>
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Component</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(Component c)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(Component c)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Component <span class="hljs-title">getChild</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">operation</span><span class="hljs-params">()</span></span>;
+&#125;
+<span class="hljs-comment">//树叶构件</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Leaf</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Component</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Leaf</span><span class="hljs-params">(String name)</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">this</span>.name=name;
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(Component c)</span></span>&#123; &#125;           
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(Component c)</span></span>&#123; &#125;   
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Component <span class="hljs-title">getChild</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;   
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">operation</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;树叶&quot;</span>+name+<span class="hljs-string">&quot;：被访问！&quot;</span>); 
+    &#125;
+&#125;
+<span class="hljs-comment">//树枝构件</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Composite</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Component</span></span>
+<span class="hljs-class"></span>&#123;
+    <span class="hljs-keyword">private</span> ArrayList&lt;Component&gt; children=<span class="hljs-keyword">new</span> ArrayList&lt;Component&gt;();   
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(Component c)</span></span>
+<span class="hljs-function">    </span>&#123;
+        children.add(c);
+    &#125;   
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(Component c)</span></span>
+<span class="hljs-function">    </span>&#123;
+        children.remove(c);
+    &#125;   
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Component <span class="hljs-title">getChild</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">return</span> children.get(i);
+    &#125;   
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">operation</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">for</span>(Object obj:children)
+        &#123;
+            ((Component)obj).operation();
+        &#125;
+    &#125;    
+&#125;</code></pre></div>
+<h2 id="组合模式的应用实例"><a href="#组合模式的应用实例" class="headerlink" title="组合模式的应用实例"></a>组合模式的应用实例</h2><p>用组合模式实现当用户在商店购物后，显示其所选商品信息，并计算所选商品总价的功能。</p>
+<p>说明：假如李先生到韶关“天街e角”生活用品店购物，用 1 个红色小袋子装了 2 包婺源特产（单价 7.9 元）、1 张婺源地图（单价 9.9 元）；用 1 个白色小袋子装了 2 包韶关香藉（单价 68 元）和 3 包韶关红茶（单价 180 元）；用 1 个中袋子装了前面的红色小袋子和 1 个景德镇瓷器（单价 380 元）；用 1 个大袋子装了前面的中袋子、白色小袋子和 1 双李宁牌运动鞋（单价 198 元）。</p>
+<p>最后“大袋子”中的内容有：{1 双李宁牌运动鞋（单价 198 元）、白色小袋子{2 包韶关香菇（单价 68 元）、3 包韶关红茶（单价 180 元）}、中袋子{1 个景德镇瓷器（单价 380 元）、红色小袋子{2 包婺源特产（单价 7.9 元）、1 张婺源地图（单价 9.9 元）}}}，现在要求编程显示李先生放在大袋子中的所有商品信息并计算要支付的总价。</p>
+<h2 id="组合模式的应用场景"><a href="#组合模式的应用场景" class="headerlink" title="组合模式的应用场景"></a>组合模式的应用场景</h2><p>前面分析了组合模式的结构与特点，下面分析它适用的以下应用场景。</p>
+<ol>
+<li>在需要表示一个对象整体与部分的层次结构的场合。</li>
+<li>要求对用户隐藏组合对象与单个对象的不同，用户可以用统一的接口使用组合结构中的所有对象的场合。</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E7%9A%84%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">软件设计的行为型模式（二）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E7%9A%84SOLID%E5%8E%9F%E5%88%99/">
+                        <span class="hidden-mobile">软件设计的SOLID原则</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

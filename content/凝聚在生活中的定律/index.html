@@ -1,0 +1,635 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>凝聚在生活中的定律 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="凝聚在生活中的定律">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-28 13:39" pubdate>
+        2021年8月28日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      75
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">凝聚在生活中的定律</h1>
+            
+            <div class="markdown-body">
+              <p>以下的效应解释均采至百度百科。</p>
+<h2 id="二十世纪西方文化三大发现"><a href="#二十世纪西方文化三大发现" class="headerlink" title="二十世纪西方文化三大发现"></a>二十世纪西方文化三大发现</h2><h3 id="墨菲定律"><a href="#墨菲定律" class="headerlink" title="墨菲定律"></a>墨菲定律</h3><blockquote>
+<p>引用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/墨菲定律/746284">墨菲定律（二十世纪西方文化三大发现之一）_百度百科 (baidu.com)</a></p>
+</blockquote>
+<p>墨菲定律是一种心理学效应，1949年由美国的一名工程师爱德华·墨菲（Edward A. Murphy）提出的，亦称墨菲法则、墨菲定理等。</p>
+<p>原文为：如果有两种或两种以上的方式去做某件事情，而其中一种选择方式将导致灾难，则必定有人会做出这种选择。根本内容是：<strong>如果事情有变坏的可能，不管这种可能性有多小，它总会发生。</strong></p>
+<h3 id="帕金森定律"><a href="#帕金森定律" class="headerlink" title="帕金森定律"></a>帕金森定律</h3><blockquote>
+<p>引用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/帕金森定律">帕金森定律_百度百科 (baidu.com)</a></p>
+</blockquote>
+<p>帕金森定律（Parkinson’s Law）是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/官僚主义">官僚主义</a>或官僚主义现象的一种别称，被称为二十世纪西方文化三大发现之一。也可称之为“官场病”、“组织麻痹病”或者“大企业病”。</p>
+<p>帕金森在书中阐述了机构人员膨胀的原因及后果：一个不称职的官员，可能有<strong>三条出路</strong>，第一是<strong>申请退职</strong>，把位子<strong>让给能干的人</strong>；第二是让一位<strong>能干的人来协助自己工作</strong>；第三是<strong>任用两个水平比自己更低的人当助手</strong>。</p>
+<p>这<strong>第一条路</strong>是<strong>万万走不得</strong>的，因为那样会丧失许多权利；<strong>第二条路</strong>也<strong>不能走</strong>，因为那个<strong>能干的人会成为自己的对手</strong>；看来只有<strong>第三条路最适宜</strong>。于是，<strong>两个平庸的助手分担了他的工作</strong>，他自己则<strong>高高在上</strong>发号施令，<strong>他们不会对自己的权利构成威胁</strong>。两个助手既然无能，他们就<strong>上行下效</strong>，<strong>再为自己找两个更加无能的助手</strong>。如此类推，就形成了一个机构臃肿、人浮于事、相互扯皮、效率低下的领导体系。帕金森得出结论：在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/行政管理/1494215">行政管理</a>中，行政机构会像金字塔一样不断增多，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/行政人员/8560305">行政人员</a>会不断膨胀，每个人都很忙，但<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/组织效率/6200964">组织效率</a>越来越低下。<strong>这条定律又被称为“金字塔上升”现象。</strong> </p>
+<h3 id="彼得原理"><a href="#彼得原理" class="headerlink" title="彼得原理"></a>彼得原理</h3><blockquote>
+<p>引用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/彼得原理/720295">彼得原理（管理心理学术语）_百度百科 (baidu.com)</a></p>
+</blockquote>
+<p>彼得原理是美国学者劳伦斯·彼得在对组织中人员晋升的相关现象研究后得出的一个结论：<strong>在各种组织中，由于习惯于对在某个等级上称职的人员进行晋升提拔，因而雇员总是趋向于被晋升到其不称职的地位。</strong></p>
+<p>彼得原理有时也被称为“向上爬”理论  。这种现象在现实生活中无处不在：</p>
+<ul>
+<li><p>一名称职的教授被提升为大学校长后无法胜任；</p>
+</li>
+<li><p>一个优秀的运动员被提升为主管体育的官员，导致无所作为。</p>
+</li>
+</ul>
+<p>对一个组织而言，一旦相当<strong>部分人员</strong>被推到其<strong>不称职的级别</strong>，就会<strong>造成组织的人浮于事</strong>，效率低下，导致平庸者出人头地，发展停滞 。将一名职工晋升到一个无法很好发挥才能的岗位，不仅不是对本人的奖励，反而使其无法很好发挥才能，也给组织带来损失 。</p>
+<h2 id="社会心理、社会定律、现象"><a href="#社会心理、社会定律、现象" class="headerlink" title="社会心理、社会定律、现象"></a>社会心理、社会定律、现象</h2><h3 id="马太效应"><a href="#马太效应" class="headerlink" title="马太效应"></a>马太效应</h3><blockquote>
+<p>引用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/马太效应/70100">马太效应（两极分化现象）_百度百科 (baidu.com)</a></p>
+</blockquote>
+<p>马太效应，一种<strong>强者愈强、弱者愈弱</strong>的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/现象/2808631">现象</a>，广泛应用于<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/社会心理学/80310">社会心理学</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/教育/143397">教育</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/金融/860">金融</a>以及<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/科学/10406">科学</a>领域。</p>
+<p>马太效应是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/社会学家/1216425">社会学家</a>和<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/经济学家/17464">经济学家</a>们常用的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/术语/3038697">术语</a>，它反映着<strong>富的更富、穷的更穷</strong> ，一种两极分化的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/社会现象/6139891">社会现象</a>。</p>
+<h2 id="棘轮效应"><a href="#棘轮效应" class="headerlink" title="棘轮效应"></a>棘轮效应</h2><blockquote>
+<p>引用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/棘轮效应/7139704">棘轮效应_百度百科 (baidu.com)</a></p>
+</blockquote>
+<p>棘轮效应，是指人的<strong>消费习惯形成之后</strong>有<strong>不可逆性</strong>，即<strong>易于向上调整</strong>，而<strong>难于向下调整</strong>。尤其是在短期内消费是不可逆的，其习惯效应较大。这种习惯效应，使消费取决于相对收入，即相对于自己过去的高峰收入。消费者<strong>易于随收入的提高增加消费</strong>，但<strong>不易于收入降低而减少消费</strong>，以致产生有正截距的短期消费函数。这种特点被称为棘轮效应。</p>
+<h2 id="登门槛效应"><a href="#登门槛效应" class="headerlink" title="登门槛效应"></a>登门槛效应</h2><blockquote>
+<p>引用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/登门坎效应/9728981">登门坎效应_百度百科 (baidu.com)</a></p>
+</blockquote>
+<p>登门槛效应（Foot In The Door Effect）又称得寸进尺效应，是指一个人<strong>一旦接受了</strong>他人的<strong>一个微不足道的要求</strong>，为了<strong>避免认知上的不协调</strong>，或<strong>想给他人以前后一致的印象</strong>，就<strong>有可能接受更大的要求</strong>。</p>
+<p>心理学家认为，在一般情况下，人们都不愿接受较高较难的要求，因为它费时费力又难以成功，相反，人们却乐于接受较小的、较易完成的要求，在实现了较小的要求后，人们才慢慢地接受较大的要求，这就是“登门坎效应”对人的影响。</p>
+<h3 id="不值得定律"><a href="#不值得定律" class="headerlink" title="不值得定律"></a>不值得定律</h3><blockquote>
+<p>引用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/不值得定律">不值得定律_百度百科 (baidu.com)</a></p>
+</blockquote>
+<p>不值得定律是<strong>指不值得做的事情，就不值得做好</strong>，是一种心理学效应。</p>
+<p>不值得定律似乎再简单不过了 ，但它的<strong>重要性</strong>却时时被人们疏忘。”不值得定律”反映出人们的一种心理，<strong>一个人如果从事的是一份自认为不值得做的事情</strong>，往往会保持<strong>冷嘲热讽，敷衍了事</strong>的态度。这样的人不仅<strong>成功率小</strong>，而且<strong>即使成功</strong>，也不会觉得有<strong>多大的成就感</strong>。</p>
+<h3 id="三个和尚没水吃"><a href="#三个和尚没水吃" class="headerlink" title="三个和尚没水吃"></a>三个和尚没水吃</h3><p>人多了互相依赖，互相推诿，事情反而没有人做。</p>
+<h3 id="奥卡姆剃刀原理"><a href="#奥卡姆剃刀原理" class="headerlink" title="奥卡姆剃刀原理"></a>奥卡姆剃刀原理</h3><blockquote>
+<p>引用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/奥卡姆剃刀原理/10900565">奥卡姆剃刀原理_百度百科 (baidu.com)</a></p>
+</blockquote>
+<p>奥卡姆剃刀<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/定律/2076576">定律</a>（Occam’s Razor, Ockham’s Razor）又称“奥康的剃刀”，它是由14世纪<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/英格兰/1064478">英格兰</a>的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/逻辑学家/1240880">逻辑学家</a>、圣方济各会修士<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/奥卡姆的威廉/2094755">奥卡姆的威廉</a>（William of Occam，约1285年至1349年）提出。</p>
+<p>这个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/原理/85014">原理</a>称为“<strong>如无必要，勿增实体</strong>”，即“<strong>简单有效原理</strong>”。正如他在《箴言书注》2卷15题说“切勿浪费较多东西去做，用较少的东西，同样可以做好的事情。”</p>
+<p>这个原理称为“如无必要，勿增实体” （Entities should not be multiplied unnecessarily），有时为了显示其权威性，人们也使用它原始的拉丁文形式：</p>
+<p><em>Numquam ponenda est pluralitas sine necessitate.（</em>避重趋轻）</p>
+<p><em>Pluralitas non est ponenda sine necessitate.（</em>避繁逐简）</p>
+<p><em>Frustra fit per plura quod potest fieri per pauciora.（</em>以简御繁）</p>
+<p><em>Entia non sunt multiplicanda praeter necessitatem.（</em>避虚就实）</p>
+<h3 id="沉默螺旋"><a href="#沉默螺旋" class="headerlink" title="沉默螺旋"></a>沉默螺旋</h3><blockquote>
+<p>引用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/沉默的螺旋/357493?fromtitle=沉默螺旋&amp;fromid=3866548">沉默的螺旋（2013年北京大学出版社出版的图书）_百度百科 (baidu.com)</a></p>
+</blockquote>
+<p>沉默的螺旋（The Spiral Of Silence）是一个心理学、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/大众传播学">大众传播学</a>和社会学。理论基本描述了这样一个现象：</p>
+<ul>
+<li><p>人们在<strong>表达</strong>自己<strong>想法和观点</strong>的时候，如果看到自己<strong>赞同的观点受到广泛欢迎</strong>，就会<strong>积极参与进来</strong>，这类观点就会越发<strong>大胆地发表和扩散</strong>；</p>
+</li>
+<li><p>而发觉某一观点<strong>无人或很少有人理会</strong>（有时<strong>会有群起而攻之的遭遇</strong>），<strong>即使自己赞同它</strong>，也会<strong>保持沉默</strong>。</p>
+</li>
+</ul>
+<p>意见一方的沉默造成另一方意见的增势，如此循环往复，便形成一方的声音越来越强大，另一方越来越沉默下去的螺旋发展过程。理论是基于这样一个假设：<strong>大多数个人会力图避免由于单独持有某些态度和信念而产生的孤立。</strong></p>
+<h3 id="木桶效应"><a href="#木桶效应" class="headerlink" title="木桶效应"></a>木桶效应</h3><blockquote>
+<p>引用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/木桶效应/870962">木桶效应（管理学的概念）_百度百科 (baidu.com)</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/木桶定律/750400">木桶定律</a>是讲一只<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/水桶/6153516">水桶</a>能装多少水取决于它最短的那块木板。一只木桶想盛满水，必须每块木板都一样平齐且无破损，如果这只桶的木板中有一块不齐或者某块木板下面有破洞，这只桶就无法盛满水。</p>
+<p><strong>一只木桶能盛多少水，并不取决于最长的那块木板，而是取决于最短的那块木板。</strong>也可称为<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/短板效应/10951410">短板效应</a>。任何一个组织，可能面临的一个共同问题，即构成组织的各个部分往往是优劣不齐的，而劣势部分往往决定整个组织的水平 。 因此，整个社会与我们每个人都应思考一下自己的“<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/短板/1194006">短板</a>”，并尽早补足它  。</p>
+<h3 id="手表定律"><a href="#手表定律" class="headerlink" title="手表定律"></a>手表定律</h3><p>手表定律是指<strong>拥有两块以上的手表并不能帮人更准确的判断时间，反而会制造混乱，让看表的人失去对时间的判断。</strong></p>
+<p>手表定理所指的另一层含义在于每个人都不能同时挑选两种不同的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/行为准则/3986118">行为准则</a>或者价值观念，否则那个人的行为将陷于混乱。</p>
+<h3 id="酒与污水定律"><a href="#酒与污水定律" class="headerlink" title="酒与污水定律"></a>酒与污水定律</h3><p>管理学上一个有趣的定律叫“酒与污水定律”，意思是<strong>一匙酒倒进一桶污水</strong>，得到的是<strong>一桶污水</strong>；把<strong>一匙污水倒进一桶酒里</strong>，得到的还是<strong>一桶污水</strong>。显而易见，<strong>污水和酒的比例并不能决定这桶东西的性质</strong>，真正起<strong>决定作用</strong>的就是那<strong>一勺污水</strong>，只要有它，再多的酒都成了污水。酒与污水定律说明对于坏的组员或东西，要在其开始破坏之前及时处理掉。</p>
+<h3 id="蘑菇定律"><a href="#蘑菇定律" class="headerlink" title="蘑菇定律"></a>蘑菇定律</h3><p>蘑菇定律是指<strong>初入世者</strong>常常会被<strong>置于阴暗的角落</strong>，<strong>不受重视或打杂跑腿</strong>，就<strong>像蘑菇培育一样还要被浇上大粪</strong>，接受各种无端的批评、指责、代人受过，得不到必要的指导和提携，处于自生自灭过程中。蘑菇生长必须经历这样一个过程，人的成长也肯定会经历这样一个过程。这就是蘑菇定律，或叫萌发定律。</p>
+<h3 id="二八定律（帕累托法则）"><a href="#二八定律（帕累托法则）" class="headerlink" title="二八定律（帕累托法则）"></a>二八定律（帕累托法则）</h3><p>帕累托法则（英语：Pareto principle，也被称为 80/20 法则、关键少数法则、八二法则），是罗马尼亚管理学家<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/约瑟夫·朱兰/446413">约瑟夫·朱兰</a>提出的一条管理学原理。该法则以意大利经济学家<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/维尔弗雷多·帕累托/9119237">维尔弗雷多·帕累托</a>的名字命名。帕累托于1906年提出了著名的关于意大利社会财富分配的研究结论：<strong>20％的人口掌握了80％的社会财富</strong>。这个结论对大多数国家的社会财富分配情况都成立。因此，该法则又被成为80/20法则。</p>
+<p>朱兰博士在管理学中采纳了该思想，认为在任何情况下，<strong>事物的主要结果只取决于一小部分因素</strong>。这个思想经常被应用到不同的领域，经过大量的试验检验后，被证明其在大部分情况下，都是正确的。所以，该法则对于指导开展管理活动非常有帮助。</p>
+<h3 id="第十名现象"><a href="#第十名现象" class="headerlink" title="第十名现象"></a>第十名现象</h3><p>一个班里最有出息的学生，往往不是学习<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/成绩/10020965">成绩</a>最好的前几名，而是班上处于<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/中游/3372885">中游</a>的第十名左右的学生。他们既没有优秀生“想赢怕输”的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/负担/10274609">负担</a>，也没有<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/差生/28569">差生</a>的自卑心理，敢闯敢拼，这就是“第十名现象”。</p>
+<p>这种现象说明了一个观点：<strong>一个人能否成功不取决于学习成绩的高低</strong>。</p>
+<h3 id="第三人效应"><a href="#第三人效应" class="headerlink" title="第三人效应"></a>第三人效应</h3><p>第三人效应，最早是由<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/美国哥伦比亚大学/6181318">美国哥伦比亚大学</a>戴维森教授于 1983 年在《公共舆论季刊》中发表的一篇题为《传播中的第三人效果》论文中提出的。他认为“第三人效果”机制是由于大众在判断<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/大众传播/776716">大众传播</a>影响力之际存在着一种普遍的感知定势，即倾向于认为大众媒介的信息在社会层面（对其他人）上的影响与个人层面（对我）上的影响<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/大相径庭/559955">大相径庭</a>，前者的影响要比后者大。</p>
+<p>人们倾向于高估大众媒介对他人的认知和行为的影响；具体来说，<strong>劝服传播所面对的受众会认为，这种劝服对他人比对自己有更大的影响。</strong>而且不论是否是信息的直接接受者，对媒介影响他人的预期将会导致自己采取行动。</p>
+<h3 id="罗密欧与朱丽叶效应"><a href="#罗密欧与朱丽叶效应" class="headerlink" title="罗密欧与朱丽叶效应"></a>罗密欧与朱丽叶效应</h3><p>在莎士比亚的经典名剧“罗密欧与朱丽叶”中罗密欧与朱丽叶相爱，但由于双方世仇，他们的爱情遭到了极力阻碍。但压迫并没有使他们分手，反而使他们爱得更深，直到殉情。这样的现象我们叫它“罗密欧与朱丽叶效应”。所谓“罗密欧与朱丽叶效应”，就是当出现干扰恋爱双方爱情关系的外在力量时，恋爱双方的情感反而会加强，恋爱关系也因此更加牢固。</p>
+<p><strong>这种情形不仅发生在男女的爱情之间，也会发生在许多地方。对于越难获得的事物，在人们的心目中地位越重要，价值也会越高。</strong>学者们尝试以阻抗理论（reactance theory）来解释这种现象，他们指出当人们的自由受到限制时，会产生不愉快的感觉，而从事被禁止的行为反而可以消除这种不悦。所以才会发生当别人命令我们不得做什么事时，我们却会反其道而行的现象。在现实生活中，也常常见到这种现象：父母的干涉非但不能减弱恋人们之间的爱情，反而使之增强。父母的干涉越多、反对越强烈，恋人们相爱就越深。</p>
+<h3 id="宜家效应"><a href="#宜家效应" class="headerlink" title="宜家效应"></a>宜家效应</h3><p>宜家效应是<strong>消费者对于自己投入劳动、情感而创造的物品的价值产生高估的价值</strong>判断偏差现象。消费者对于一个物品付出的劳动（情感）越多，就越容易高估该物品的价值。该词源于出售需要顾客自己动手组装家具的“宜家（IKEA)”家具商店。当消费者尝试亲手制作的产品中途放弃没有最终完成时，宜家效应会消失。</p>
+<p>我们对某一事物付出的努力不仅给它带来改变，也改变了自己对它的评价。</p>
+<p>付出越多，产生的爱恋越深。</p>
+<h2 id="人类无法抗拒的10种心理效应"><a href="#人类无法抗拒的10种心理效应" class="headerlink" title="人类无法抗拒的10种心理效应"></a>人类无法抗拒的10种心理效应</h2><h3 id="鸟笼效应"><a href="#鸟笼效应" class="headerlink" title="鸟笼效应"></a>鸟笼效应</h3><p>鸟笼逻辑被认为是人类无法抗拒的10种心理之一，是由一个心理学故事引出的效应。挂一个美丽的鸟笼在房间里最显眼之处，过不了几天，主人必定会做出下面两个选择之一：把鸟笼扔掉，或者买一只鸟回来放在鸟笼里，因为这比无休无止的解释和说明要轻易得多。这就是鸟笼逻辑。</p>
+<p>鸟笼逻辑的原因很简单：<strong>人们绝大部分的时候是采取惯性思维。</strong>并不一定每一个漂亮的鸟笼里都应该装上一只鸟，但可惜的是人们总是逃不出这个逻辑的局限。所以可见在生活和工作中培养逻辑思维是多么重要。<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/海阔凭鱼跃，天高任鸟飞">海阔凭鱼跃，天高任鸟飞</a>。不要限制自己的思维，更不要在传统目光的审视下止步不前。敢于挂出一只空鸟笼并能够自然地坚持下去的人，才是有创见、有魄力有主张的人。</p>
+<h3 id="破窗理论"><a href="#破窗理论" class="headerlink" title="破窗理论"></a>破窗理论</h3><p>破窗效应（英语：Broken windows theory）是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/犯罪学/7617600">犯罪学</a>的一个理论，该理论由詹姆士·威尔逊（James Q. Wilson）及乔治·凯林（George L. Kelling）提出，并刊于《The Atlantic Monthly》1982年3月版的一篇题为《Broken Windows》的文章。</p>
+<p>此理论认为<strong>环境中的不良现象如果被放任存在，会诱使人们仿效，甚至变本加厉。</strong>以一幢有<strong>少许破窗的建筑为例，如果那些窗不被修理好，可能将会有破坏者破坏更多的窗户。</strong>最终他们甚至会闯入建筑内，如果发现无人居住，也许就在那里定居或者纵火。一面墙，如果出现一些<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/涂鸦/1547">涂鸦</a>没有被清洗掉，很快的，墙上就布满了<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/乱七八糟/64494">乱七八糟</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/不堪入目/1759841">不堪入目</a>的东西；一条人行道有些许纸屑，不久后就会有更多垃圾，最终人们会视若理所当然地将垃圾顺手丢弃在地上。这个现象，就是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/犯罪心理学/6443">犯罪心理学</a>中的破窗效应。</p>
+<h3 id="旁观者效应（责任分散效应）"><a href="#旁观者效应（责任分散效应）" class="headerlink" title="旁观者效应（责任分散效应）"></a>旁观者效应（责任分散效应）</h3><p>在现场旁观者的数量影响了突发事件中亲社会反应的可能性。当旁观者的数量<strong>增加时</strong>，<strong>任何一个旁观者提供帮助的可能性减少了</strong>，即使他们<strong>采取反应</strong>，反应的时间<strong>也延长了</strong>。</p>
+<p>旁观者效应也称为责任分散效应，是指对某一件事来说，如果是<strong>单个个体</strong>被要求<strong>单独完成任务</strong>，<strong>责任感就会很强</strong>，会作出积极的反应。但如果是<strong>要求一个群体共同完成任务</strong>，<strong>群体中的每个个体的责任感就会很弱</strong>，面对困难或遇到责任往往会退缩。因为前者独立承担责任，后者期望别人多承担点儿责任。“责任分散”的实质就是人多不负责，责任不落实。</p>
+<h3 id="帕金森定律-1"><a href="#帕金森定律-1" class="headerlink" title="帕金森定律"></a>帕金森定律</h3><p>二十世纪西方文化三大发现之一。</p>
+<h3 id="晕轮效应"><a href="#晕轮效应" class="headerlink" title="晕轮效应"></a>晕轮效应</h3><p>晕轮效应又称“成见效应”、“光圈效应”、“日晕效应”，是指在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/人际知觉/10028160">人际知觉</a>中所形成的以点概面或<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/以偏概全/543015">以偏概全</a>的主观印象。</p>
+<p>晕轮效应又称<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/成见效应/4680228">成见效应</a>、光圈效应等，指<strong>人们在交往认知中，对方的某个特别突出的特点、品质就会掩盖人们对对方的其他品质和特点的正确了解。</strong>这种错觉现象，心理学中称之为“晕轮效应”。美国心理学家H.凯利、S.E.阿希等人在印象形成实验中证实了这一效应的存在。</p>
+<p>晕轮效应除了与人们掌握对方的信息太少有关外，主要还是个人主观推断的泛化，扩张和定势的结果。它往往容易形成人的成见或偏见，产生不良的后果。故在人才选拔、任用和考评过程中应谨防这种倾向发生 。</p>
+<h3 id="霍桑效应"><a href="#霍桑效应" class="headerlink" title="霍桑效应"></a>霍桑效应</h3><p>霍桑效应，指的是在行为田野实验【Field Experiment】中，由于研究对象意识到自己正在被研究，而带来的方法上的人为效应。<strong>当人们在意识到自己正在被关注或者被观察时，就会刻意去改变一些行为或者是言语表达。</strong></p>
+<p>“霍桑效应”给我们的启示是：人在一生中会产生数不清的意愿和情绪，但最终能实现或满足的却为数不多，对那些未能实现的意愿和未能满足的情绪，切莫压抑克制，而应适当地让它宣泄出来，这对人的身心和工作都有利 。</p>
+<h3 id="习得性无助实验"><a href="#习得性无助实验" class="headerlink" title="习得性无助实验"></a>习得性无助实验</h3><p>习得性无助缘自前面所说的美国心理学家塞里格曼做的那项经典实验：起初把狗关在笼子里，只要蜂音器一响，就给以难受的电击，狗关在笼子里逃避不了电击；多次实验后，蜂音器一响，在给电击前，先把笼门打开，此时狗不但不逃而是不等电击出现就卧倒在地开始呻吟和颤抖——本来可以主动地逃避却绝望地等待痛苦的来临，这就是“习得性无助”。</p>
+<p><strong>“习得性无助”指人在最初的某个情境中获得无助感，那么在以后的情境中仍不能从这种关系中摆脱出来，从而将无助感扩散到生活中的各个领域。</strong>这种扩散了的无助感会导致个体的抑郁并对生活不抱希望。在这种感受的控制下，个体会由于认为自己无能为力而不做任何努力和尝试。被认为是人类的一种沮丧表现之一。</p>
+<h3 id="证人的记忆效应"><a href="#证人的记忆效应" class="headerlink" title="证人的记忆效应"></a>证人的记忆效应</h3><p>证人，在我们的认识里，通常都是提供一些客观的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/证据/31088">证据</a>的人，就是把自己亲眼看到、亲耳听到的东西如实地讲出来的人。然而，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/心理学">心理学</a>研究证明，<strong>很多证人提供的证词都不太准确，或者说是具有个人倾向性，带着个人的观点和意识。</strong></p>
+<h3 id="罗森塔尔效应"><a href="#罗森塔尔效应" class="headerlink" title="罗森塔尔效应"></a>罗森塔尔效应</h3><p>罗森塔尔效应，亦称“皮格马利翁效应”、“人际期望效应”，是一种<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/社会心理效应/3794110">社会心理效应</a>，指的是教师对学生的殷切希望能戏剧性地收到预期效果的现象。由美国心理学家罗森塔尔和L.雅各布森于1968年通过实验发现。一般而言，这种效应主要是因为教师对高成就者和低成就者分别期望着不同的行为，并以不同的方式对待他们，从而维持了他们原有的行为模式。</p>
+<p>1968年的一天，美国心理学家罗森塔尔和L.雅各布森来到一所小学，说要进行7项实验。 他们从一至六年级各选了3个班，对这18个班的学生进行了“未来发展趋势测验”。之后，罗森塔尔以赞许的口吻将一份<strong>“最有发展前途者”</strong>的名单交给了<strong>校长和相关老师</strong>，并叮嘱他们务必要保密，以免影响实验的正确性。其实，<strong>罗森塔尔撒了一个“权威性谎言”</strong>，因为<strong>名单上的学生是随便挑选出来的</strong>。8个月后，<strong>罗森塔尔和助手们对那18个班级的学生进行复试</strong>，结果奇迹出现了：<strong>凡是上了名单的学生，个个成绩有了较大的进步</strong>，且<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/性格">性格</a>活泼开朗，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/自信心">自信心</a>强，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/求知欲">求知欲</a>旺盛，更乐于和别人打交道。</p>
+<h3 id="虚假同感偏差"><a href="#虚假同感偏差" class="headerlink" title="虚假同感偏差"></a>虚假同感偏差</h3><p>虚假同感偏差（false consensus bias），又叫作虚假<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/一致性">一致性</a>偏差，是指<strong>人们常常高估或夸大自己的信念、判断及行为的普遍性，它是人们坚信自己信念、判断正确性的一种方式。</strong></p>
+<p>人们总是<strong>无意间夸大自己意见的普遍性</strong>，甚至把<strong>自己的特性也赋予他人身上</strong>，<strong>假定自己与他人是相同的，自己有疑心，就认为社会上的人都是疑心重重</strong>；自己好交际也认为别人好交际。这种虚假同感偏差使你通过坚信自己信念和判断的正确性，获得了自尊和自豪感，但同时也给你带来了决策和选择的错误。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E5%85%B6%E4%BB%96/">其他</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E5%BF%83%E9%87%8C%E7%A4%BE%E4%BC%9A%E5%AD%A6/">心里社会学</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/%E6%9B%B4%E6%96%B0%E6%9C%AA%E5%AE%8C%E6%88%90-ElasticSearch%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">更新未完成--ElasticSearch快速入门</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%BC%8F%E5%88%86%E6%9E%90/">
+                        <span class="hidden-mobile">英语句式分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

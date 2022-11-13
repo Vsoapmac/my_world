@@ -1,0 +1,836 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>C++的基础总结--持续更新 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C++的基础总结--持续更新">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-14 09:51" pubdate>
+        2021年9月14日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      39
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++的基础总结--持续更新</h1>
+            
+            <div class="markdown-body">
+              <p>C++是C语言的继承，它既可以进行C语言的过程化程序设计，又可以进行以抽象数据类型为特点的基于对象的程序设计，还可以进行以继承和多态为特点的面向对象的程序设计。C++擅长面向对象程序设计的同时，还可以进行基于过程的程序设计，因而C++就适应的问题规模而论，大小由之。</p>
+<p>C++不仅拥有计算机高效运行的实用性特征，同时还致力于提高大规模程序的编程质量与程序设计语言的问题描述能力。</p>
+<p>笔者的第一计算机语言为java，这里大部分为java的思维来构建Linux，会<strong>重点说出C++与java不同的地方</strong>，在阅读本章节默认读者<strong>认识java或者c/c++的基础</strong>，比如说数据类型、循环、判断等</p>
+<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><p>C/C++可以在Linux或者Windows中运行，这里推荐Linux（因为方便）</p>
+<h2 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h2><p>这里选择VScode作为IDE，默认VScode已经安装中文翻译插件，整体界面大部分为中文</p>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>分为服务器和虚拟机的情况，虚拟机用VMware，安装linux后直接在控制台新建xxx.cpp，然后编辑即可</p>
+<p>服务器：</p>
+<ol>
+<li>用VScode连接服务器<ol>
+<li>安装Remote-SSH，在插件中输入ssh后安装即可，安装完毕后左侧会出现一个远程资源管理器</li>
+<li>选择SSH Targets，进入config配置文件，输入HostName和User，保存以后左侧会出现对应机器名称。</li>
+<li>更改设置，<code>文件-&gt;首选项-&gt;设置-&gt;扩展-&gt;Remote-SSH</code>，找到Show Login Terminal并勾选。</li>
+<li>点击SSH TARGETS下的服务器旁边的按钮纽行连接，弹出让你输入密码。在这里可能会弹出让你选择服务器的平台，需要选择以后才会出现输入密码的步骤</li>
+<li>成功连上服务器。</li>
+<li>以上引用<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/141205262">「效率」使用VScode连接远程服务器进行开发 - 知乎 (zhihu.com)</a></li>
+</ol>
+</li>
+<li>找到一个个人文件夹，在VScode中新建xxx.cpp，在VScode中编辑即可</li>
+</ol>
+<h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>C++：</p>
+<div class="code-wrapper"><pre><code class="hljs stata"><span class="hljs-keyword">g</span>++ <span class="hljs-keyword">test</span>.cpp <span class="hljs-comment">//默认输出a.out</span>
+<span class="hljs-keyword">g</span>++ <span class="hljs-keyword">test</span>.cpp -o <span class="hljs-keyword">test</span> <span class="hljs-comment">//指定输出文件名为test</span></code></pre></div>
+<p>C</p>
+<div class="code-wrapper"><pre><code class="hljs cmake">gcc <span class="hljs-keyword">test</span>.c</code></pre></div>
+<p>查看编译结果</p>
+<div class="code-wrapper"><pre><code class="hljs ada">./a.<span class="hljs-keyword">out</span></code></pre></div>
+<h1 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h1><p>C++ 语言定义了一些头文件，这些头文件包含了程序中必需的或有用的信息。下面这段程序中，包含了头文件 \<iostream\>。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></code></pre></div>
+<h1 id="main方法"><a href="#main方法" class="headerlink" title="main方法"></a>main方法</h1><div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-comment">// int main为main方法</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    std::cout &lt;&lt; <span class="hljs-string">&quot;helloworld \n&quot;</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<span class="hljs-comment">//终止 main( )函数，并向调用进程返回值 0。可加可不加</span>
+&#125;</code></pre></div>
+<h1 id="打印输出"><a href="#打印输出" class="headerlink" title="打印输出"></a>打印输出</h1><p>下面需要在后面加入\n，若不加，打印输出的helloworld不会换行</p>
+<div class="code-wrapper"><pre><code class="hljs c++">std::cout &lt;&lt; <span class="hljs-string">&quot;helloworld \n&quot;</span>;</code></pre></div>
+<p>也可以这样</p>
+<div class="code-wrapper"><pre><code class="hljs C++">std::cout &lt;&lt; <span class="hljs-string">&quot;helloworld&quot;</span> &lt;&lt; std::endl;</code></pre></div>
+<p>上面这一句等价于</p>
+<div class="code-wrapper"><pre><code class="hljs c++">std::cout &lt;&lt; <span class="hljs-string">&quot;helloworld&quot;</span> &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;</code></pre></div>
+<p>为了简便，推荐用以下方法输出</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    cout &lt;&lt; <span class="hljs-string">&quot;helloworld&quot;</span> &lt;&lt; endl;
+&#125;</code></pre></div>
+<p>可以连接，形如System.out.println(“helloworld”+i+”连接”+i+1)</p>
+<div class="code-wrapper"><pre><code class="hljs C++">cout &lt;&lt; <span class="hljs-string">&quot;helloworld  &quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;连接&quot;</span> &lt;&lt; i+<span class="hljs-number">1</span> &lt;&lt; endl;</code></pre></div>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p>似乎只有java中称方法，其他语言形如python，c/c++，javascript都叫函数</p>
+<div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">function</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>&#123;
+    cout &lt;&lt; <span class="hljs-string">&quot;helloworld  &quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;连接&quot;</span> &lt;&lt; i+<span class="hljs-number">1</span> &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> i;
+&#125;</code></pre></div>
+<p>调用如下</p>
+<div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">int</span> i = <span class="hljs-built_in">function</span>(<span class="hljs-number">1</span>);
+    cout &lt;&lt; i &lt;&lt; endl;
+&#125;</code></pre></div>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><p>可以和java一样</p>
+<div class="code-wrapper"><pre><code class="hljs c++">string str = <span class="hljs-string">&quot;helloworld&quot;</span>;</code></pre></div>
+<h2 id="C风格字符串"><a href="#C风格字符串" class="headerlink" title="C风格字符串"></a>C风格字符串</h2><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">char</span> str[] = <span class="hljs-string">&quot;helloworld&quot;</span>;</code></pre></div>
+<h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><p>动态内存分配，指针是对内存的直接操作。指针是一个变量，其值为另一个变量的地址，即，内存位置的直接地址。就像其他变量或常量一样，用户必须在使用指针存储其他变量地址之前，对其进行声明。指针变量声明的一般形式为：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">int</span> *i;</code></pre></div>
+<p>int为任意类型,i为类型名称</p>
+<h2 id="查看指针-变量在内存的位置"><a href="#查看指针-变量在内存的位置" class="headerlink" title="查看指针/变量在内存的位置"></a>查看指针/变量在内存的位置</h2><p>在指针/变量名称前加&amp;（该符号为引用，以下有说到）即可查看内存位置</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">char</span> str[] = <span class="hljs-string">&quot;helloworld&quot;</span>;
+cout &lt;&lt; &amp;str &lt;&lt; endl;
+输出：<span class="hljs-number">0x7fffadceda80</span>
+    
+<span class="hljs-keyword">int</span>* var = <span class="hljs-number">0</span>;
+cout &lt;&lt; &amp;var &lt;&lt; endl;
+输出：<span class="hljs-number">0x7ffe75ed7b30</span></code></pre></div>
+<h2 id="使用指针"><a href="#使用指针" class="headerlink" title="使用指针"></a>使用指针</h2><p>使用指针时会频繁进行以下几个操作：定义一个指针变量、把变量地址赋值给指针、访问指针变量中可用地址的值。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">int</span>  var = <span class="hljs-number">20</span>;   <span class="hljs-comment">// 实际变量的声明</span>
+<span class="hljs-keyword">int</span>  *ip;        <span class="hljs-comment">// 指针变量的声明</span>
+
+ip = &amp;var;       <span class="hljs-comment">// 在指针变量中存储 var 的地址</span>
+
+cout &lt;&lt; <span class="hljs-string">&quot;var的值为: &quot;</span>;
+cout &lt;&lt; var &lt;&lt; endl;
+
+<span class="hljs-comment">// 输出在指针变量中存储的地址</span>
+cout &lt;&lt; <span class="hljs-string">&quot;ip的值为: &quot;</span>;
+cout &lt;&lt; ip &lt;&lt; endl;
+
+<span class="hljs-comment">// 访问指针中地址的值</span>
+cout &lt;&lt; <span class="hljs-string">&quot;*ip的值为: &quot;</span>;
+cout &lt;&lt; *ip &lt;&lt; endl;
+
+输出：
+var的值为: <span class="hljs-number">20</span>
+ip的值为: <span class="hljs-number">0x7ffd08a6b944</span>
+*ip的值为: <span class="hljs-number">20</span></code></pre></div>
+<h2 id="对象中调用指针对象的方法-变量"><a href="#对象中调用指针对象的方法-变量" class="headerlink" title="对象中调用指针对象的方法/变量"></a>对象中调用指针对象的方法/变量</h2><p>在二叉树中，常常需要用到地址连接来连接左子树或者右子树的结点。在java中，我们常常用对象容器来存储下一个节点：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span></span>&#123;
+        string data;
+        <span class="hljs-comment">// 左子树</span>
+        Node leftNode;
+        <span class="hljs-comment">// 右子树</span>
+        Node rightNode;
+&#125;</code></pre></div>
+<p>存储时：</p>
+<div class="code-wrapper"><pre><code class="hljs java">Node root = <span class="hljs-keyword">new</span> Node();
+Node node = <span class="hljs-keyword">new</span> Node();
+root.leftNode = node;</code></pre></div>
+<p>调用时：</p>
+<div class="code-wrapper"><pre><code class="hljs java">Node root = <span class="hljs-keyword">new</span> Node();
+System.out.println(root.leftNode.data);</code></pre></div>
+<p>c++中不一样，它只能指定指针，并且让下一个节点的地址传输到指针中，调用时用指针和-&gt;来调用</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span>&#123;</span>
+    <span class="hljs-keyword">public</span>:
+    	string data;
+        <span class="hljs-comment">// 左子树</span>
+        Node* leftNode;
+        <span class="hljs-comment">// 右子树</span>
+        Node* rightNode;
+&#125;</code></pre></div>
+<p>存储时：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">Node root;
+Node left_node;
+root.leftNode = &amp;left_node;</code></pre></div>
+<p>调用时：</p>
+<div class="code-wrapper"><pre><code class="hljs c++">Node root;
+root.leftNode -&gt; data;<span class="hljs-comment">// 方法同理</span></code></pre></div>
+<h2 id="判断指针为空"><a href="#判断指针为空" class="headerlink" title="判断指针为空"></a>判断指针为空</h2><p>指针为：root-&gt;rightNode</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">if</span>(root-&gt;rightNode)&#123;
+    <span class="hljs-comment">//指针不为空</span>
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">if</span>(!root-&gt;rightNode)&#123;
+    <span class="hljs-comment">//指针为空</span>
+&#125;</code></pre></div>
+<p>c++中大部分时间是使用指针</p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>引用变量是一个别名，也就是说，它是某个已存在变量的另一个名字。一旦把引用初始化为某个变量，就可以使用该引用名称或变量名称来指向变量。</p>
+<p>引用和指针的区别：</p>
+<ul>
+<li>不存在空引用。引用必须连接到一块合法的内存。</li>
+<li>一旦引用被初始化为一个对象，就不能被指向到另一个对象。指针可以在任何时候指向到另一个对象。</li>
+<li>引用必须在创建时被初始化。指针可以在任何时间被初始化。</li>
+</ul>
+<p>声明引用变量</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">int</span> i = <span class="hljs-number">17</span>;
+<span class="hljs-keyword">int</span>&amp;  r = i;
+<span class="hljs-keyword">double</span>&amp; s = d;</code></pre></div>
+<p>在这些声明中，&amp; 读作<strong>引用</strong>。因此，第一个声明可以读作 “r 是一个初始化为 i 的整型引用”，第二个声明可以读作 “s 是一个初始化为 d 的 double 型引用”。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// 声明简单的变量</span>
+<span class="hljs-keyword">int</span> i;
+<span class="hljs-keyword">double</span> d;
+
+<span class="hljs-comment">// 声明引用变量</span>
+<span class="hljs-keyword">int</span>&amp; r = i;
+<span class="hljs-keyword">double</span>&amp; s = d;
+
+i = <span class="hljs-number">5</span>;
+cout &lt;&lt; <span class="hljs-string">&quot;i的值为: &quot;</span> &lt;&lt; i &lt;&lt; endl;
+cout &lt;&lt; <span class="hljs-string">&quot;引用i的值为: &quot;</span> &lt;&lt; r  &lt;&lt; endl;
+
+d = <span class="hljs-number">11.7</span>;
+cout &lt;&lt; <span class="hljs-string">&quot;d的值为: &quot;</span> &lt;&lt; d &lt;&lt; endl;
+cout &lt;&lt; <span class="hljs-string">&quot;引用d的值为: &quot;</span> &lt;&lt; s  &lt;&lt; endl;
+
+输出：
+i的值为: <span class="hljs-number">5</span>
+引用i的值为: <span class="hljs-number">5</span>
+d的值为: <span class="hljs-number">11.7</span>
+引用d的值为: <span class="hljs-number">11.7</span></code></pre></div>
+<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><p>c++和python，java一样都是面向对象语言，那么它也会有面向对象的特性</p>
+<h2 id="编程规范"><a href="#编程规范" class="headerlink" title="编程规范"></a>编程规范</h2><h3 id="针对类"><a href="#针对类" class="headerlink" title="针对类"></a>针对类</h3><p>类前加注释，写明作者，用途，时间</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * @作者: xxxx</span>
+<span class="hljs-comment"> * @时间: xxxx</span>
+<span class="hljs-comment"> * @用途: xxxx</span>
+<span class="hljs-comment"> **/</span></code></pre></div>
+<p>英语版</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * @author: xxxx</span>
+<span class="hljs-comment"> * @time: xxxx</span>
+<span class="hljs-comment"> * @use: xxxx</span>
+<span class="hljs-comment"> **/</span></code></pre></div>
+<p>python英语版</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-string">&#x27;&#x27;&#x27;  </span>
+<span class="hljs-string">@author: xxxx</span>
+<span class="hljs-string">@time: xxxx</span>
+<span class="hljs-string">@use: xxxx</span>
+<span class="hljs-string">&#x27;&#x27;&#x27;</span></code></pre></div>
+<h3 id="针对方法"><a href="#针对方法" class="headerlink" title="针对方法"></a>针对方法</h3><p>方法前加注释，写明用途、输入参数以及返回参数</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * @用途: xxxx</span>
+<span class="hljs-comment"> * @参数: xxxx</span>
+<span class="hljs-comment"> * @返回: xxxx</span>
+<span class="hljs-comment"> **/</span></code></pre></div>
+<p>英语版</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * @use: xxxx</span>
+<span class="hljs-comment"> * @parameter: xxxx</span>
+<span class="hljs-comment"> * @return: xxxx</span>
+<span class="hljs-comment"> **/</span></code></pre></div>
+<p>python英语版</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-string">&#x27;&#x27;&#x27;  </span>
+<span class="hljs-string">@use: xxxx</span>
+<span class="hljs-string">@parameter: xxxx</span>
+<span class="hljs-string">@return: xxxx</span>
+<span class="hljs-string">&#x27;&#x27;&#x27;</span></code></pre></div>
+<h3 id="针对有实际用途的行代码"><a href="#针对有实际用途的行代码" class="headerlink" title="针对有实际用途的行代码"></a>针对有实际用途的行代码</h3><p>代码前添加注释，写明代码用途，//后加一个空格</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// 输出hello world</span>
+cout &lt;&lt; <span class="hljs-string">&quot;hello world&quot;</span> &lt;&lt; endl;</code></pre></div>
+<h3 id="构造函数初始化类变量"><a href="#构造函数初始化类变量" class="headerlink" title="构造函数初始化类变量"></a>构造函数初始化类变量</h3><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span>&#123;</span>
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-keyword">int</span> data;
+    <span class="hljs-comment">// 左子树</span>
+    Node* leftNode;
+    <span class="hljs-comment">// 右子树</span>
+    Node* rightNode;
+    <span class="hljs-built_in">Node</span>(<span class="hljs-keyword">int</span> data)&#123;
+        data = data;
+        leftNode = <span class="hljs-literal">NULL</span>;
+        rightNode = <span class="hljs-literal">NULL</span>;
+    &#125;
+&#125;</code></pre></div>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>class定义，但是公开私有的方法和java不一样，虽然都是用private、public、protected。类的大括号收尾要跟分号。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">box</span>&#123;</span>
+    <span class="hljs-keyword">private</span>:
+        <span class="hljs-keyword">double</span> length;   <span class="hljs-comment">// 盒子的长度</span>
+    <span class="hljs-keyword">protected</span>:
+        <span class="hljs-keyword">double</span> height;   <span class="hljs-comment">// 盒子的高度</span>
+    <span class="hljs-keyword">public</span>:
+        <span class="hljs-keyword">double</span> breadth = <span class="hljs-number">12.5</span>;  <span class="hljs-comment">// 盒子的宽度，注意编译的时候加-std=c++11，以上为c++11的特性</span>
+        <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setLength</span><span class="hljs-params">(<span class="hljs-keyword">double</span> length)</span></span>&#123;
+            <span class="hljs-keyword">this</span>-&gt;length = length; <span class="hljs-comment">// this指针用 -&gt;</span>
+        &#125;
+
+        <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">getLength</span><span class="hljs-params">()</span></span>&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;length;
+        &#125;
+&#125;;</code></pre></div>
+<p>初始化对象</p>
+<div class="code-wrapper"><pre><code class="hljs c++">box box1;</code></pre></div>
+<p>访问类方法</p>
+<div class="code-wrapper"><pre><code class="hljs c++">box1.<span class="hljs-built_in">getLength</span>()</code></pre></div>
+<p>访问类变量</p>
+<div class="code-wrapper"><pre><code class="hljs c++">box1.breadth</code></pre></div>
+<p>若为静态的类变量，在变量前加static</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> stabreadth;<span class="hljs-comment">// 盒子的宽度</span></code></pre></div>
+<p>初始化静态类变量需要在类的外部执行</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">double</span> box::stabreadth = <span class="hljs-number">12.5</span>;</code></pre></div>
+<p>访问和普通的类变量一样</p>
+<div class="code-wrapper"><pre><code class="hljs c++">box1.stabreadth</code></pre></div>
+<p>用类访问的变量是类变量</p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>java只能继承1个类，c++能继承多个</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// 基类 Shape</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Shape</span> </span>
+<span class="hljs-class">&#123;</span>
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setWidth</span><span class="hljs-params">(<span class="hljs-keyword">int</span> w)</span></span>
+<span class="hljs-function">      </span>&#123;
+         width = w;
+      &#125;
+      <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setHeight</span><span class="hljs-params">(<span class="hljs-keyword">int</span> h)</span></span>
+<span class="hljs-function">      </span>&#123;
+         height = h;
+      &#125;
+   <span class="hljs-keyword">protected</span>:
+      <span class="hljs-keyword">int</span> width;
+      <span class="hljs-keyword">int</span> height;
+&#125;;
+ 
+<span class="hljs-comment">// 基类 PaintCost</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PaintCost</span> </span>
+<span class="hljs-class">&#123;</span>
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getCost</span><span class="hljs-params">(<span class="hljs-keyword">int</span> area)</span></span>
+<span class="hljs-function">      </span>&#123;
+         <span class="hljs-keyword">return</span> area * <span class="hljs-number">70</span>;
+      &#125;
+&#125;;
+ 
+<span class="hljs-comment">// 派生类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rectangle</span>:</span> <span class="hljs-keyword">public</span> Shape, <span class="hljs-keyword">public</span> PaintCost
+&#123;
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getArea</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">      </span>&#123; 
+         <span class="hljs-keyword">return</span> (width * height); 
+      &#125;
+&#125;;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>
+<span class="hljs-function"></span>&#123;
+   Rectangle Rect;
+   <span class="hljs-keyword">int</span> area;
+ 
+   Rect.<span class="hljs-built_in">setWidth</span>(<span class="hljs-number">5</span>);
+   Rect.<span class="hljs-built_in">setHeight</span>(<span class="hljs-number">7</span>);
+ 
+   area = Rect.<span class="hljs-built_in">getArea</span>();
+   
+   <span class="hljs-comment">// 输出对象的面积</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;面积为: &quot;</span> &lt;&lt; Rect.<span class="hljs-built_in">getArea</span>() &lt;&lt; endl;
+ 
+   <span class="hljs-comment">// 输出总花费</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;花费: $&quot;</span> &lt;&lt; Rect.<span class="hljs-built_in">getCost</span>(area) &lt;&lt; endl;
+ 
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/C-C/">C/C++</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/C-%E5%9F%BA%E7%A1%80/">C++基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/%E5%9B%BE%E7%9A%84%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">图的概念总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/Logging%E7%9A%84%E6%9E%81%E9%80%9F%E5%85%A5%E9%97%A8/">
+                        <span class="hidden-mobile">Logging的极速入门</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

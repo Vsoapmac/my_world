@@ -1,0 +1,1095 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>线性代数公式大全（二） | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="线性代数公式大全（二）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-26 17:18" pubdate>
+        2022年5月26日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      77
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">线性代数公式大全（二）</h1>
+            
+            <div class="markdown-body">
+              <h1 id="线性方程组"><a href="#线性方程组" class="headerlink" title="线性方程组"></a>线性方程组</h1><h2 id="章节概括"><a href="#章节概括" class="headerlink" title="章节概括"></a>章节概括</h2><ul>
+<li>具体型线性方程组<ul>
+<li>齐次线性方程组<ul>
+<li>有解的条件</li>
+<li>解的性质</li>
+<li>基础解系和解的结构</li>
+<li>求解方法与步骤</li>
+</ul>
+</li>
+<li>非齐次<ul>
+<li>有解的条件</li>
+<li>解的性质</li>
+<li>求解的方法与步骤</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>抽象性线性方程组<ul>
+<li>有解的条件与解的判定</li>
+<li>解的结构</li>
+<li>基础解系的讨论</li>
+<li>系数矩阵列向量与解的关系</li>
+</ul>
+</li>
+<li>两个方程组的公共解</li>
+<li>同解方程组</li>
+</ul>
+<h2 id="方程组的基本形式"><a href="#方程组的基本形式" class="headerlink" title="方程组的基本形式"></a>方程组的基本形式</h2><script type="math/tex; mode=display">
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = 0\\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = 0\\
+\vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = 0\\
+\end{cases}</script><script type="math/tex; mode=display">
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1\\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2\\
+\vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m\\
+\end{cases}</script><p><strong>矩阵形式</strong></p>
+<script type="math/tex; mode=display">
+令A = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots &        & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn} \\
+\end{pmatrix},X = 
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+\vdots \\
+x_{n} \\
+\end{pmatrix},b = 
+\begin{pmatrix}
+b_{1} \\
+b_{2} \\
+\vdots \\
+b_{m} \\
+\end{pmatrix}</script><script type="math/tex; mode=display">
+\begin{align}
+AX = 0\\
+AX = b
+\end{align}</script><p><strong>向量形式</strong></p>
+<script type="math/tex; mode=display">
+令\alpha_1 = \begin{pmatrix}
+a_{11}\\
+a_{21}\\
+\vdots\\
+a_{m1}\\
+\end{pmatrix},\alpha_2 = 
+\begin{pmatrix}
+a_{12}\\
+a_{22}\\
+\vdots\\
+a_{m2}\\
+\end{pmatrix},\cdots,\alpha_n = 
+\begin{pmatrix}
+a_{1n}\\
+a_{2n}\\
+\vdots\\
+a_{mn}\\
+\end{pmatrix},b = 
+\begin{pmatrix}
+b_{1} \\
+b_{2} \\
+\vdots \\
+b_{m} \\
+\end{pmatrix}</script><script type="math/tex; mode=display">
+\begin{align}
+x_1\alpha_1 + x_2\alpha_2 + \cdots + x_n\alpha_n = 0 \\
+x_1\alpha_1 + x_2\alpha_2 + \cdots + x_n\alpha_n = b
+\end{align}</script><h2 id="系数矩阵与增广系数矩阵"><a href="#系数矩阵与增广系数矩阵" class="headerlink" title="系数矩阵与增广系数矩阵"></a>系数矩阵与增广系数矩阵</h2><p><strong>系数矩阵</strong></p>
+<script type="math/tex; mode=display">
+A = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots &        & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn} \\
+\end{pmatrix}</script><p><strong>增广系数矩阵</strong></p>
+<script type="math/tex; mode=display">
+\overline{A}  = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} & | & b_1\\
+a_{21} & a_{22} & \cdots & a_{2n} & | & b_2\\
+\vdots & \vdots &        & \vdots &        & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn} & | & b_m\\
+\end{pmatrix}</script><p><strong>A,B合并矩阵</strong></p>
+<script type="math/tex; mode=display">
+(A,B) = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} & | & b_{11} & b_{12} & \cdots & b_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n} & | & b_{21} & b_{22} & \cdots & b_{2n}\\
+\vdots & \vdots &        & \vdots &        & \vdots &  \vdots &   &\vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn} & | & b_{m1} & b_{m2} & \cdots & b_{mn}\\
+\end{pmatrix}</script><h2 id="行阶梯形矩阵"><a href="#行阶梯形矩阵" class="headerlink" title="行阶梯形矩阵"></a>行阶梯形矩阵</h2><blockquote>
+<p>原链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/myarrow/article/details/53365048">线性代数知识汇总<em>MyArrow的专栏-CSDN博客</em>线性代数</a></p>
+</blockquote>
+<p><img src="../../image/行阶梯形矩阵.png" srcset="/my_world/img/loading.gif" lazyload alt="行阶梯形矩阵"></p>
+<h2 id="解向量"><a href="#解向量" class="headerlink" title="解向量"></a>解向量</h2><p>解向量是线性方程组的一个解。因为一组解在空间几何里可以表示为一个向量，所以叫做解向量。</p>
+<h2 id="基础解系"><a href="#基础解系" class="headerlink" title="基础解系"></a>基础解系</h2><p>基础解系是指方程组的解集的极大线性无关组，即若干个无关的解构成的能够表示任意解的组合</p>
+<p>基础解系需要满足三个条件：</p>
+<ol>
+<li>基础解系中所有量均是方程组的解；</li>
+<li>基础解系线性无关，即基础解系中任何一个量都不能被其余量表示；</li>
+<li>方程组的任意解均可由基础解系线性表出，即方程组的所有解都可以用基础解系的量来表示。</li>
+</ol>
+<script type="math/tex; mode=display">
+n-r(A) = 无关解向量个数 = 自由变量个数 = 线性无关解向量的个数</script><p>一般设自由变量为1，然后求基础解系的其他数，画行阶梯形，不是直角的一方为自由变量。若只有一个自由变量，则设自由变量为1；若有2个自由变量，则设自由变量为1,0和0,1；若有3个自由变量，则设自由变量为1,0,0和0,0,1。</p>
+<blockquote>
+<p>原视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV11C4y187PM?from=search&amp;seid=4031408942362126119&amp;spm_id_from=333.337.0.0">快速学会齐次线性方程组的解法——基础解系，通解一并解决！_哔哩哔哩_bilibili</a></p>
+</blockquote>
+<h3 id="解的结构"><a href="#解的结构" class="headerlink" title="解的结构"></a>解的结构</h3><p>可表示为$Ax = B$的通解形式</p>
+<script type="math/tex; mode=display">
+\alpha + k_1\xi_1 + k_2\xi_2 + \cdots + k_t\xi_t</script><script type="math/tex; mode=display">
+t = n - r(A),\alpha 是非齐次方程组的特解(\beta_1,\beta_2,\cdots,\beta_n),k是任意常数,\xi 是解向量</script><h4 id="求基础解系例子"><a href="#求基础解系例子" class="headerlink" title="求基础解系例子"></a>求基础解系例子</h4><script type="math/tex; mode=display">
+\left\{\begin{matrix}
+x_1 + x_2 = 0 \\
+x_2 - x_4 = 0
+\end{matrix}\right.</script><p>由上可得$x_1 = -x_4,x_2 = x_4$，则得以下通解：</p>
+<script type="math/tex; mode=display">
+X = \begin{pmatrix}
+-x_4\\
+x_4\\
+x_3\\
+x_4\\
+\end{pmatrix} = x_3\begin{pmatrix}
+0\\
+0\\
+1\\
+0\\
+\end{pmatrix}+x_4\begin{pmatrix}
+-1\\
+1\\
+0\\
+1\\
+\end{pmatrix}</script><p>则方程组的基础解系为：</p>
+<script type="math/tex; mode=display">
+\xi_1 = \begin{pmatrix}
+0\\
+0\\
+1\\
+0\\
+\end{pmatrix},\xi_2=\begin{pmatrix}
+-1\\
+1\\
+0\\
+1\\
+\end{pmatrix}</script><h2 id="线性方程组解的结论"><a href="#线性方程组解的结论" class="headerlink" title="线性方程组解的结论"></a>线性方程组解的结论</h2><h3 id="结论1"><a href="#结论1" class="headerlink" title="结论1"></a>结论1</h3><script type="math/tex; mode=display">
+AX = 0只有零解(唯一解) \Leftrightarrow r(A) = n(未知数x的个数) \Leftrightarrow 向量组线性无关</script><script type="math/tex; mode=display">
+AX = 0有非零解(无穷解) \Leftrightarrow r(A) < n(未知数x的个数) \Leftrightarrow 向量组线性相关</script><script type="math/tex; mode=display">
+线性无关：(\alpha_1 , \alpha_2,\alpha_3,\cdots,\alpha_s)X = 0</script><script type="math/tex; mode=display">
+线性表示：(\alpha_1 , \alpha_2,\alpha_3,\cdots,\alpha_n)X = \beta，称\beta用\alpha_1 , \alpha_2,\alpha_3,\cdots,\alpha_n线性表示</script><h3 id="结论2"><a href="#结论2" class="headerlink" title="结论2"></a>结论2</h3><script type="math/tex; mode=display">
+AX = B有解 \Leftrightarrow r(A) = r(\overline{A})</script><script type="math/tex; mode=display">
+AX = B有无穷多组解 \Leftrightarrow r(A) = r(\overline{A}) < n(未知数x的个数)，|A| = 0</script><script type="math/tex; mode=display">
+AX = B有只有零解 \Leftrightarrow r(A) = r(\overline{A}) = n(未知数x的个数)</script><script type="math/tex; mode=display">
+AX = B无解 \Leftrightarrow r(A) \neq r(\overline{A})</script><h2 id="求通解例子"><a href="#求通解例子" class="headerlink" title="求通解例子"></a>求通解例子</h2><script type="math/tex; mode=display">
+判断方程组\begin{cases}
+x_1 - x_2 +2x_3 - 3x_4 = 2\\
+x_1 - 2x_2 + x_3 - 2x_4 = -1\\
+x_2 + x_3 - 3x_4 = 3\\
+\end{cases}是否有解，若有解求出通解</script><script type="math/tex; mode=display">
+\overline{A}  = \begin{pmatrix}
+1 & -1 & 2 & -3 & 2\\
+1 & -2 & 1 & -2 & -1\\
+0 & 1 & 1 & -1 & 3\\
+\end{pmatrix} \rightarrow \begin{pmatrix}
+1 & -1 & 2 & -3 & 2\\
+0 & -1 & -1 & 1 & -3\\
+0 & 1 & 1 & -1 & 3\\
+\end{pmatrix}\rightarrow \begin{pmatrix}
+1 & -1 & 2 & -3 & 2\\
+0 & -1 & -1 & 1 & -3\\
+0 & 0 & 0 & 0 & 0\\
+\end{pmatrix}\rightarrow \begin{pmatrix}
+1 & 0 & 3 & -4 & 5\\
+0 & -1 & -1 & 1 & -3\\
+0 & 0 & 0 & 0 & 0\\
+\end{pmatrix}</script><script type="math/tex; mode=display">
+因为r(A) = r(\overline{A}) = 2 < 4，所以原方程组有无穷多个解</script><script type="math/tex; mode=display">
+等价方程组为\begin{cases}
+x_1 = -3x_3 + 4x_4 + 5\\
+x_2 = -x_3 + x_4 + 3\\
+\end{cases}</script><script type="math/tex; mode=display">
+通解为：X = \begin{pmatrix}
+-3x_3 + 4x_4 + 5\\
+-x_3 + x_4 + 3\\
+x_3\\
+x_4\\
+\end{pmatrix} = x_3\begin{pmatrix}
+-3\\
+-1\\
+1\\
+0\\
+\end{pmatrix}+x_4\begin{pmatrix}
+4\\
+1\\
+0\\
+1\\
+\end{pmatrix}+\begin{pmatrix}
+5\\
+3\\
+0\\
+0\\
+\end{pmatrix}</script><script type="math/tex; mode=display">
+得该方程组的基础解系为:\xi_1 =\begin{pmatrix}
+-3\\
+-1\\
+1\\
+0\\
+\end{pmatrix},\xi_2 =\begin{pmatrix}
+4\\
+1\\
+0\\
+1\\
+\end{pmatrix},\alpha =\begin{pmatrix}
+5\\
+3\\
+0\\
+0\\
+\end{pmatrix}</script><h1 id="特征值与特征向量"><a href="#特征值与特征向量" class="headerlink" title="特征值与特征向量"></a>特征值与特征向量</h1><h2 id="章节概括-1"><a href="#章节概括-1" class="headerlink" title="章节概括"></a>章节概括</h2><ul>
+<li>特征值与特征向量<ul>
+<li>定义</li>
+<li>性质</li>
+<li>求法<ul>
+<li>具体型矩阵</li>
+<li>抽象型矩阵</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>相似<ul>
+<li>矩阵相似<ul>
+<li>定义</li>
+<li>性质</li>
+</ul>
+</li>
+<li>矩阵的相似对角化<ul>
+<li>定义</li>
+<li>可相似对角化的条件<ul>
+<li>两个充分</li>
+<li>两个必要</li>
+</ul>
+</li>
+<li>相似对角化的步骤</li>
+</ul>
+</li>
+<li>应用<ul>
+<li>实对称矩阵的相似对角化</li>
+<li>反问题<ul>
+<li>反求参数</li>
+<li>反求A</li>
+</ul>
+</li>
+<li>求$A^k$与$f(A)$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="特征值、特征向量"><a href="#特征值、特征向量" class="headerlink" title="特征值、特征向量"></a>特征值、特征向量</h2><p>设<strong>A</strong>为n阶矩阵，若存在一个数$\lambda$和非零向量$X$，使得$AX = \lambda X$，称$\lambda$为矩阵<strong>A</strong>的特征值，称$X$为矩阵<strong>A</strong>的属于特征值$\lambda$的特征向量</p>
+<h2 id="特征多项式、特征方程"><a href="#特征多项式、特征方程" class="headerlink" title="特征多项式、特征方程"></a>特征多项式、特征方程</h2><script type="math/tex; mode=display">
+令A = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots &        & \vdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}\\
+\end{pmatrix}</script><script type="math/tex; mode=display">
+称|\lambda E-A|=\begin{vmatrix}
+\lambda - a_{11} & - a_{12} & \cdots & - a_{1n}\\
+- a_{21} & \lambda - a_{22} & \cdots & - a_{2n}\\
+\vdots & \vdots &        & \vdots\\
+- a_{n1} & - a_{n2} & \cdots & \lambda - a_{nn}\\
+\end{vmatrix}为矩阵A的特征多项式</script><script type="math/tex; mode=display">
+|\lambda E-A| = 0 称为矩阵A的特征方程</script><h2 id="求特征值的方法"><a href="#求特征值的方法" class="headerlink" title="求特征值的方法"></a>求特征值的方法</h2><script type="math/tex; mode=display">
+利用|\lambda E-A|=\begin{vmatrix}
+\lambda - a_{11} & - a_{12} & \cdots & - a_{1n}\\
+- a_{21} & \lambda - a_{22} & \cdots & - a_{2n}\\
+\vdots & \vdots &        & \vdots\\
+- a_{n1} & - a_{n2} & \cdots & \lambda - a_{nn}\\
+\end{vmatrix}把矩阵化成行列式</script><script type="math/tex; mode=display">
+将某行中含有\lambda的式子一行/列的元素尽可能化成0，之后按行/列展开。或者提公因子</script><script type="math/tex; mode=display">
+将结果相乘，将最后的式子因式分解，得出(\lambda -\lambda_1)的形式，令它们等于0，得出\lambda</script><h2 id="求特征向量的方法"><a href="#求特征向量的方法" class="headerlink" title="求特征向量的方法"></a>求特征向量的方法</h2><script type="math/tex; mode=display">
+将\lambda带入|\lambda E-A|，令|\lambda E-A|X = 0,X则是矩阵A的特征向量</script><script type="math/tex; mode=display">
+例如，\lambda=1,求出|E - A| = A,通过A的n行乘以特征向量的一列为0求得X</script><script type="math/tex; mode=display">
+\begin{align}
+根据\left\{\begin{matrix}
+ax + by + cz & = 0 \\
+Ax + By + Cz & = 0
+\end{matrix}\right. \\
+得到 \\
+\frac{x}{\begin{vmatrix}
+b & c \\
+B & C \\
+\end{vmatrix}} = \frac{-y}{\begin{vmatrix}
+a & c \\
+A & C \\
+\end{vmatrix}} = \frac{z}{\begin{vmatrix}
+a & b \\
+A & B \\
+\end{vmatrix}} 
+\end{align}</script><h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><script type="math/tex; mode=display">
+tr(A)为矩阵A主对角线上元素之和，称为矩阵A的迹</script><script type="math/tex; mode=display">
+\lambda_1 + \lambda_2 + \cdots + \lambda_n  = a_{11} + a_{22} + \cdots + a_{nn} = tr(A)</script><script type="math/tex; mode=display">
+\lambda_1 * \lambda_2 * \cdots * \lambda_n = |A|</script><script type="math/tex; mode=display">
+不同特征值的特征向量线性无关</script><script type="math/tex; mode=display">
+A有n个不同的特征值,则A有n个线性无关的特征向量</script><script type="math/tex; mode=display">
+实对称矩阵不同特征值对应的特征向量正交</script><script type="math/tex; mode=display">
+线性无关特征向量个数≤特征值重数</script><script type="math/tex; mode=display">
+\begin{align}
+AX = \lambda X \\
+AA^*X = A^*\lambda X\\
+|A|EX = A^*\lambda X\\
+A^* = \frac{|A|}{\lambda}
+\end{align}</script><script type="math/tex; mode=display">
+|\lambda E-A| = 0 => r(\lambda E-A) \le 2 => r(\lambda E-A) = n-k(线性无关的特征向量个数，k = n - r(A))</script><script type="math/tex; mode=display">
+A为实对称矩阵，r(A) = n，则\lambda的个数为n-1(重特征值算为1个)</script><h2 id="矩阵相似"><a href="#矩阵相似" class="headerlink" title="矩阵相似"></a>矩阵相似</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>设<strong>A、B</strong>为两个n阶矩阵，若存在可逆矩阵<strong>P</strong>，使得$P^{-1}AP = B$，则称<strong>A</strong>与<strong>B</strong>相似，记作$A\sim B$</p>
+<h3 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h3><p>矩阵A和矩阵B相似，$A\sim B$</p>
+<ol>
+<li>A、B的特征值相等</li>
+<li>若A、B皆为可逆矩阵，则$A^{-1}\sim B^{-1}$</li>
+<li>A、B的行列式相等，$|A| = |B|$</li>
+<li>A、B的迹（正对角线相加）相等，$tr(A) = tr(B)$</li>
+<li>$A^m \sim B^m$</li>
+</ol>
+<h3 id="相似对角化"><a href="#相似对角化" class="headerlink" title="相似对角化"></a>相似对角化</h3><p>若一个矩阵与对角矩阵相似，则称矩阵可以对角化</p>
+<p>存在可逆矩阵P，使得$P^{-1}AP = \Lambda $，其中$\Lambda$为对角矩阵，$A \sim \Lambda$</p>
+<p>其中$P = (X_1 , X_2 , X_3)$，$X$为矩阵A的特征向量，$X = (a　b　c)^T$。<strong>其中$X_1 , X_2 , X_3$线性无关，$P$可逆</strong></p>
+<h3 id="相似对角化性质"><a href="#相似对角化性质" class="headerlink" title="相似对角化性质"></a>相似对角化性质</h3><p>n阶方阵A可以相似对角化</p>
+<ol>
+<li>充分必要条件：A有n个线性无关的特征向量</li>
+<li>属于不同特征值的特征向量一定线性无关</li>
+<li>A有n个不相等的特征值→A可以相似对角化</li>
+<li>若A有重特征值<ol>
+<li>当重特征值（$\lambda _1=\lambda _2 = \cdots = \lambda _n$，n为重特征值的个数）对应的<strong>线性无关的特征向量的个数</strong>等于<strong>特征值的重数</strong>时，则A可相似对角化</li>
+<li>$r(\lambda E-A) = n-k$，k为线性无关的特征向量个数。</li>
+</ol>
+</li>
+<li>若A为m阶实对称矩阵，则A可对角化</li>
+</ol>
+<p>若A不可以相似对角化，则一定有重根</p>
+<h3 id="对角矩阵的求法"><a href="#对角矩阵的求法" class="headerlink" title="对角矩阵的求法"></a>对角矩阵的求法</h3><ol>
+<li><p>利用$|\lambda E - A| = 0$求出特征值$\lambda _1,\lambda _2,\cdots,\lambda _n$</p>
+</li>
+<li><script type="math/tex; mode=display">
+\Lambda = \begin{pmatrix}
+\lambda_1 &          \\
+          & \lambda_2\\
+          &           & \ddots \\
+          &           &           & \lambda_n
+\end{pmatrix}</script></li>
+</ol>
+<h3 id="矩阵的幂的计算"><a href="#矩阵的幂的计算" class="headerlink" title="矩阵的幂的计算"></a>矩阵的幂的计算</h3><p>设有n阶矩阵A，并且A可以对角化，对角化为$\Lambda $</p>
+<script type="math/tex; mode=display">
+A^{100} = (P^{-1}\Lambda P)^{100} = P\Lambda P^{-1}*P\Lambda P^{-1}*\cdots*P\Lambda P^{-1} = P\Lambda ^{100}P^{-1}</script><h1 id="二次型及其标准形"><a href="#二次型及其标准形" class="headerlink" title="二次型及其标准形"></a>二次型及其标准形</h1><h2 id="章节概括-2"><a href="#章节概括-2" class="headerlink" title="章节概括"></a>章节概括</h2><ul>
+<li>二次型的定义与矩阵表示</li>
+<li>化二次型为标准形与规范形<ul>
+<li>配方法</li>
+<li>正交变换法</li>
+<li>合同</li>
+<li>惯性定理</li>
+</ul>
+</li>
+<li>正定二次型<ul>
+<li>定义</li>
+<li>充要条件</li>
+<li>必要条件</li>
+<li>判定<ul>
+<li>具体型二次型</li>
+<li>抽象型二次型</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二次型"><a href="#二次型" class="headerlink" title="二次型"></a>二次型</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>含n个变量$x_1,x_2,\cdots,x_n$且每项皆为二次的多项式</p>
+<p>二次型的矩阵都是对称矩阵，即$A^T = A$</p>
+<h3 id="形态"><a href="#形态" class="headerlink" title="形态"></a>形态</h3><script type="math/tex; mode=display">
+f(x_1,x_2,\cdots,x_n) = a_{11}x_1^2+\cdots+a_{nn}x_n^2+2a_{12}x_1x_2 + \cdots+2a_{n-1,n}x_{n-1}x_n</script><script type="math/tex; mode=display">
+也可以写成 = \sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij}x_ix_j</script><h2 id="二次型转换成矩阵表达式"><a href="#二次型转换成矩阵表达式" class="headerlink" title="二次型转换成矩阵表达式"></a>二次型转换成矩阵表达式</h2><ol>
+<li>平方项的系数直接做成主对角元素</li>
+<li>交叉项的系数除以2，放两个对称的相应位置上</li>
+</ol>
+<h3 id="转换示例"><a href="#转换示例" class="headerlink" title="转换示例"></a>转换示例</h3><p>$f(x_1,x_2,\cdots,x_n) = 2x_1^2 - 3x_2^2 + x_3^2$的转换</p>
+<script type="math/tex; mode=display">
+令X = \begin{pmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+\end{pmatrix},A = \begin{pmatrix}
+2 &  0 & 0\\
+0 & -3 & 0 \\
+0 &  0 & 1\\
+\end{pmatrix}，则f(x_1,x_2,\cdots,x_n) = X^TAX</script><script type="math/tex; mode=display">
+f(x_1,x_2,\cdots,x_n) = x_1^2 - x_2^2 + 2x_3^2 + 4x_1x_2 -2x_1x_3 + 6x_2x_3的转换</script><script type="math/tex; mode=display">
+令X = \begin{pmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+\end{pmatrix},A = \begin{pmatrix}
+1 &  2 & -1\\
+2 & -1 & 3 \\
+-1 &  3 & 2\\
+\end{pmatrix}，则f(x_1,x_2,\cdots,x_n) = X^TAX</script><script type="math/tex; mode=display">
+\begin{align}
+提取4x_1x_2中的系数4，将该系数除于2放在a_{12}、a_{21}中\\
+提取-2x_1x_3中的系数-2，将该系数除于2放在a_{13}、a_{31}中\\
+提取6x_2x_3中的系数6，将该系数除于2放在a_{23}、a_{32}中\\
+\end{align}</script><h2 id="标准二次形"><a href="#标准二次形" class="headerlink" title="标准二次形"></a>标准二次形</h2><h3 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h3><p>只含有平方项不含交叉项的二次型</p>
+<p><strong>系数为1和-1的标准二次型为规范二次型</strong></p>
+<p><strong>标准形不唯一，规范形唯一，坐标变换不唯一</strong></p>
+<h3 id="形态-1"><a href="#形态-1" class="headerlink" title="形态"></a>形态</h3><script type="math/tex; mode=display">
+f(x_1,x_2,\cdots,x_n) = 2x_1^2 - 3x_2^2 + x_3^2</script><script type="math/tex; mode=display">
+A = \begin{pmatrix}
+2 &  0 & 0\\
+0 & -3 & 0 \\
+0 &  0 & 1\\
+\end{pmatrix}</script><h3 id="惯性定理"><a href="#惯性定理" class="headerlink" title="惯性定理"></a>惯性定理</h3><p>二次型的标准型系数中正系数、负系数的个数保持不变，其中<strong>正系数的个数</strong>称为二次型的<strong>正惯性指数</strong>，<strong>负系数的个数</strong>称为二次型的<strong>负惯性指数</strong></p>
+<p>在二次型中，利用二次型化成对称矩阵，求出该矩阵的特征值，其中<strong>正特征值的个数</strong>就是<strong>正惯性指数</strong>，<strong>负特征值的个数</strong>就是<strong>负惯性指数</strong>。0不算为任何的惯性指数</p>
+<p>标准型相同，正、负惯性指数相同</p>
+<h3 id="可逆的线性变换-替换"><a href="#可逆的线性变换-替换" class="headerlink" title="可逆的线性变换(替换)"></a>可逆的线性变换(替换)</h3><script type="math/tex; mode=display">
+设X = \begin{pmatrix}
+x_1\\
+\vdots\\
+x_n\\
+\end{pmatrix},Y = \begin{pmatrix}
+y_1\\
+\vdots\\
+y_n\\
+\end{pmatrix}</script><p>若P为可逆的矩阵，称$X=PY$为<strong>可逆的线性变换</strong>，若P为<strong>正交矩阵</strong>，称$X=PY$为正交变换，<strong>正交变换是一种特殊的可逆线性变换</strong></p>
+<h3 id="二次型的标准化"><a href="#二次型的标准化" class="headerlink" title="二次型的标准化"></a>二次型的标准化</h3><p>设$f(X) = X^TAX$为一个二次型，若经过可逆的线性变换$X = PY$把二次型$f(X) = X^TAX$化为</p>
+<script type="math/tex; mode=display">
+f(X) = X^TAX \overset{X=PY}{===>} Y^T(P^TAP)Y = l_1y_1^2+l_2y_2^2+\cdots+l_my_m^2</script><h3 id="二次型的标准化方法"><a href="#二次型的标准化方法" class="headerlink" title="二次型的标准化方法"></a>二次型的标准化方法</h3><blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45826022/article/details/106214444">二次型化标准形的五种方法<em>终曲-CSDN博客</em>二次型化为标准型</a></p>
+</blockquote>
+<h4 id="配方法"><a href="#配方法" class="headerlink" title="配方法"></a>配方法</h4><p>将$x_1，x_2，x_3，\cdots，x_n$转换为$y_1，y_2，y_3，\cdots，y_n$的式子，若转化后的式子不是标准型，继续化成$z_1，z_2，z_3，\cdots，z_n$的式子</p>
+<ol>
+<li>先提取和配$x_1$，再提取和配$x_2$，接着提取和配$x_3$，$\cdots$，配完$x_1$后，后面的式子不能出现$x_1$，以下同理。</li>
+</ol>
+<p>例子：</p>
+<ol>
+<li>将二次型$f(x_1,x_2,x_3) = x_1^2 + x_2x_3$转换成标准型</li>
+</ol>
+<script type="math/tex; mode=display">
+令\left\{\begin{matrix}
+x_1 = y_1\\
+x_2 = y_2-y_3\\
+x_3 = y_2+y_3
+\end{matrix}\right.，即X = PY，其中X = \begin{pmatrix}
+x_1\\
+x_2\\
+x_3
+\end{pmatrix}，Y=\begin{pmatrix}
+y_1\\
+y_2\\
+y_3
+\end{pmatrix}，P = \begin{pmatrix}
+1 & 0 & 0\\
+0 & 1 & -1\\
+0 & 1 & 1
+\end{pmatrix}</script><script type="math/tex; mode=display">
+因为|P|\neq 0,P可逆，则f(x_1,x_2,x_3) = X^TAX \overset{X=PY}{=} Y^T(P^TAP)Y = y_1^2 + y_2^2 - y_3^2</script><ol>
+<li>将二次型$f(x_1,x_2,x_3) = x_1^2 + 2x_1x_2 + 2x_1x_3 - 4x_3^2$转换成标准型</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{align}
+x_1^2 + 2x_1x_2 + 2x_1x_3 - 4x_3^2 \\
+= x_1^2 +2x_1(x_2 + x_3) -4x_3^2 \\
+= x_1^2 +2x_1(x_2 + x_3) +(x_2 + x_3)^2 - (x_2 + x_3)^2 -4x_3^2 \\
+= (x_1 + x_2 + x_3)^2 - (x_2 + x_3)^2 -4x_3^2
+\end{align}</script><script type="math/tex; mode=display">
+令\left\{\begin{matrix}
+y_1 = x_1+x_2+x_3\\
+y_2 = x_2+x_3\\
+y_3 = x_3
+\end{matrix}\right.，求得\left\{\begin{matrix}
+x_1 = y_1-y_2\\
+x_2 = y_2-y_3\\
+x_3 = y_3
+\end{matrix}\right.，即X = PY，P = \begin{pmatrix}
+1 & -1 & 0\\
+0 & 1 & -1\\
+0 & 0 & 1
+\end{pmatrix}</script><script type="math/tex; mode=display">
+因为|P|\neq 0,P可逆，则f(x_1,x_2,x_3) = X^TAX \overset{X=PY}{=} Y^T(P^TAP)Y = y_1^2 - y_2^2 - 4y_3^2</script><h4 id="正交变换法"><a href="#正交变换法" class="headerlink" title="正交变换法"></a>正交变换法</h4><ol>
+<li>将二次型转换成系数矩阵A</li>
+<li>求A的特征值$\lambda_1,\lambda_2,\lambda_3,\cdots,\lambda_n$</li>
+<li>求特征向量$\xi_1,\xi_2,\xi_3,\cdots,\xi_n$</li>
+</ol>
+<h2 id="矩阵合同"><a href="#矩阵合同" class="headerlink" title="矩阵合同"></a>矩阵合同</h2><h3 id="概念-3"><a href="#概念-3" class="headerlink" title="概念"></a>概念</h3><p>设<strong>A,B</strong>为n阶矩阵，若存在可逆矩阵P，使得$P^TAP = B$，称矩阵A与B合同，记$A\simeq B$</p>
+<h3 id="二次型合同"><a href="#二次型合同" class="headerlink" title="二次型合同"></a>二次型合同</h3><p>设$X^TAX$与$X^TBX$为两个二次型，若矩阵A合同于B，称二次型$X^TAX$与$X^TBX$合同</p>
+<h3 id="性质-2"><a href="#性质-2" class="headerlink" title="性质"></a>性质</h3><p>设<strong>A,B</strong>为n阶<strong>可逆矩阵</strong>，$A\simeq B$</p>
+<ol>
+<li>$A\simeq B，B\simeq C，则A\simeq C$</li>
+<li>$r(A) = r(B)$</li>
+<li>$A^T = A \Leftrightarrow B^T = B$</li>
+<li>$A^{-1}\simeq B^{-1}$</li>
+<li>$A^{T}\simeq B^{T}$</li>
+</ol>
+<h2 id="正定二次型与正定矩阵"><a href="#正定二次型与正定矩阵" class="headerlink" title="正定二次型与正定矩阵"></a>正定二次型与正定矩阵</h2><h3 id="概念-4"><a href="#概念-4" class="headerlink" title="概念"></a>概念</h3><p>设二次型$f(x_1,x_2,x_3) = X^TAX$，若对于任意的$X \neq 0$，总有$f(x_1,x_2,x_3) = X^TAX &gt; 0$，称$f(x_1,x_2,x_3) = X^TAX$为正定二次型，其中<strong>A</strong>为正定矩阵</p>
+<p>设二次型$f(x_1,x_2,x_3) = X^TAX$，若对于任意的$X$，总有$f(x_1,x_2,x_3) = X^TAX \ge 0$，且$f(x_1,x_2,x_3) = X^TAX = 0$当且仅当$X=0$，称$f(x_1,x_2,x_3) = X^TAX$为正定二次型，其中<strong>A</strong>为正定矩阵</p>
+<h3 id="性质-3"><a href="#性质-3" class="headerlink" title="性质"></a>性质</h3><ol>
+<li><p>二次型$f(X) = X^TAX$正定的充分必要条件是A的<strong>特征值全为正</strong></p>
+</li>
+<li><p>二次型$f(X) = X^TAX$为正定二次型的充分必要条件如下，即矩阵A的所有<strong>顺序主子式都大于0</strong></p>
+<ol>
+<li><script type="math/tex; mode=display">
+a_{11} > 0，\begin{vmatrix}
+ a_{11} & a_{12}\\
+ a_{21} & a_{22}\\
+\end{vmatrix}>0,\cdots,|A|>0</script></li>
+</ol>
+</li>
+<li><p>存在可逆矩阵P，使得$A = P^TP$或$A\simeq E$</p>
+</li>
+<li><p>二次型$f(X) = X^TAX$的<strong>正惯性指数为n</strong>（n阶矩阵）</p>
+</li>
+<li><p>若A是正定矩阵，则A的逆矩阵也是正定矩阵；</p>
+</li>
+<li><p>两个正定矩阵的和是正定矩阵；</p>
+</li>
+<li><p>正实数与正定矩阵的乘积是正定矩阵。</p>
+</li>
+<li><p><strong>A与E合同</strong></p>
+</li>
+</ol>
+<h2 id="正交矩阵"><a href="#正交矩阵" class="headerlink" title="正交矩阵"></a>正交矩阵</h2><h3 id="概念-5"><a href="#概念-5" class="headerlink" title="概念"></a>概念</h3><p>设<strong>A</strong>为n阶矩阵，$A^TA = AA^T = E$，称A为正交矩阵</p>
+<h3 id="性质-4"><a href="#性质-4" class="headerlink" title="性质"></a>性质</h3><p>设<strong>A</strong>为正交矩阵</p>
+<ol>
+<li>$A^{-1} = A^T$</li>
+<li>$|A| = \pm1$</li>
+<li>$A的特征值为\pm1$</li>
+<li>设<strong>Q</strong>为正交矩阵，且$Y = QX$，则$||X|| = ||Y||$，在二维和三维空间中，正交变换本质上相当于坐标系作一个旋转变换</li>
+</ol>
+<h2 id="施密特正交变换"><a href="#施密特正交变换" class="headerlink" title="施密特正交变换"></a>施密特正交变换</h2><p>施密特正交化是对<strong>一组线性无关的向量</strong>进行的<strong>正交化变换</strong>。<strong>任意一组线性无关的向量</strong>都可以通过施密特正交化<strong>变换为一组单位正交向量</strong>。既任意一组基向量可经过施密特正交化化为一组单位正交基。</p>
+<h3 id="正交变换过程"><a href="#正交变换过程" class="headerlink" title="正交变换过程"></a>正交变换过程</h3><script type="math/tex; mode=display">
+令\beta_1 = \alpha_1</script><script type="math/tex; mode=display">
+\beta_2 = \alpha_2 - \frac{(\beta_1,\alpha_2)}{(\beta_1,\beta_1)}\beta_1</script><script type="math/tex; mode=display">
+\beta_3 = \alpha_3 - \frac{(\beta_1,\alpha_3)}{(\beta_1,\beta_1)}\beta_1 - \frac{(\beta_2,\alpha_3)}{(\beta_2,\beta_2)}\beta_2</script><script type="math/tex; mode=display">
+(\beta_1,\alpha_2)为\beta_1与\alpha_2的内积</script><h1 id="矩阵关系总结"><a href="#矩阵关系总结" class="headerlink" title="矩阵关系总结"></a>矩阵关系总结</h1><h2 id="等价"><a href="#等价" class="headerlink" title="等价"></a>等价</h2><p>适用范围：同型矩阵</p>
+<script type="math/tex; mode=display">
+A、B同型矩阵，存在可逆矩阵P、Q，PAQ = B，r(A) = r(B)</script><h2 id="相似"><a href="#相似" class="headerlink" title="相似"></a>相似</h2><p>适用范围：方阵</p>
+<script type="math/tex; mode=display">
+A、B同阶方阵，存在可逆矩阵P，P^{-1}AP = B,\lambda_A = \lambda_B，|A| = |B|，tr(A) = tr(B)</script><h2 id="正交相似"><a href="#正交相似" class="headerlink" title="正交相似"></a>正交相似</h2><script type="math/tex; mode=display">
+A、B同阶方阵，存在正交矩阵P，P^{-1}AP = B，P^{T}AP = B</script><h2 id="合同"><a href="#合同" class="headerlink" title="合同"></a>合同</h2><p>适用范围：实对称矩阵</p>
+<script type="math/tex; mode=display">
+A、B同阶方阵，存在可逆矩阵P，P^{T}AP = B;A、B的正负惯性指数相同，A、B特征值中正、负个数相同</script><h2 id="关系图像"><a href="#关系图像" class="headerlink" title="关系图像"></a>关系图像</h2><p><img src="../../image/image-20210923170303530.png" srcset="/my_world/img/loading.gif" lazyload alt="关系图像"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">数学公式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/Android%E6%90%AD%E5%BB%BA-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F%EF%BC%88%E4%B8%80%EF%BC%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Android搭建--从入门到入土（一）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/java%E7%9A%84Websocket%E5%BC%80%E5%8F%91/">
+                        <span class="hidden-mobile">java的Websocket开发</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

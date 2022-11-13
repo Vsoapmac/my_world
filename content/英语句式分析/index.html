@@ -1,0 +1,790 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>英语句式分析 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="英语句式分析">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-27 09:21" pubdate>
+        2021年8月27日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      30
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">英语句式分析</h1>
+            
+            <div class="markdown-body">
+              <h1 id="句子的组成成分"><a href="#句子的组成成分" class="headerlink" title="句子的组成成分"></a>句子的组成成分</h1><ol>
+<li>简单句</li>
+<li>复合句 = 简单句 + 连词 + 简单句</li>
+<li>主从句 = 简单句（主句） + 简单句（从句）</li>
+<li>并列主从句 = 复合句 + 主从句</li>
+</ol>
+<p>连词有for、and、nor、but、or、yet、so，可以用FANBOYS来记忆</p>
+<p>例句：</p>
+<p>简单句：I had breakfast.</p>
+<p>复合句：I had a good breakfast alone at local cafe this morning（第一句简单句）, and（连词）I‘m planning to go again tomorrow（第二句简单句）.（可以看到两句简单句的权重是一样的，就是他们大体都很重要）</p>
+<p>主从句：I had a good breakfast alone at local cafe this morning（简单句主句），even though the place was crowded（简单句从句）.（可以看到第一句简单句权重比第二句简单句大，从句一般是解释和修饰主句的存在）</p>
+<p>并列主从句：I had a good breakfast alone at local cafe this morning（第一句简单句），but（连词） I didn’t feel lonely （第二句简单句）【以上为合并为一句复合句】because the place was busy（第一句简单句从句） and（连词） I watched all the people come and go with coffee in their hands and smiles on their faces（第二句简单句从句）.【修饰第二句简单句，是一句主从句】</p>
+<h1 id="简单句"><a href="#简单句" class="headerlink" title="简单句"></a>简单句</h1><h2 id="5大基本句型"><a href="#5大基本句型" class="headerlink" title="5大基本句型"></a>5大基本句型</h2><ol>
+<li>几乎所有的句子是：<strong>主语+谓语</strong><ul>
+<li>Eat food.</li>
+</ul>
+</li>
+<li>有一个动作的承受者：<strong>主语+（及物）动词+宾语</strong><ul>
+<li>I like(动词) you(宾语).</li>
+</ul>
+</li>
+<li>有两个动作的承受者：<strong>主语+（双及物）动词+间接宾语+直接宾语</strong><ul>
+<li>I teach you(间接宾语) english(直接宾语).</li>
+</ul>
+</li>
+<li>对动作承受者的补充：<strong>主语+（复杂及物）动词+宾语+宾语补足语</strong><ul>
+<li>I considers you(宾语) smart(宾语补足语).</li>
+</ul>
+</li>
+<li>把这个词后面的信息赋予给前者：<strong>主语+（系）动词+（主语）补语/表语</strong><ul>
+<li>This cake smells(系动词) nice(主语补语/表语).</li>
+</ul>
+</li>
+</ol>
+<h2 id="其他语类作用"><a href="#其他语类作用" class="headerlink" title="其他语类作用"></a>其他语类作用</h2><ul>
+<li><strong>定语</strong>修饰<strong>主语/宾语</strong></li>
+<li><strong>状语</strong>修饰<strong>谓语动词</strong></li>
+<li><strong>同位语</strong>把<strong>主语</strong>和<strong>宾语</strong>再说一遍</li>
+</ul>
+<h2 id="语类总结"><a href="#语类总结" class="headerlink" title="语类总结"></a>语类总结</h2><ul>
+<li>主语</li>
+<li>谓语</li>
+<li>宾语<ul>
+<li>间接</li>
+<li>直接</li>
+</ul>
+</li>
+<li>宾语补足语</li>
+<li>定语</li>
+<li>状语</li>
+<li>同位语</li>
+</ul>
+<h2 id="词类"><a href="#词类" class="headerlink" title="词类"></a>词类</h2><ol>
+<li><strong>名词</strong>（Nouns）：表示人或者物<ul>
+<li>Apple</li>
+</ul>
+</li>
+<li><strong>冠词</strong>（Articles）：说明人和事物<ul>
+<li>a</li>
+</ul>
+</li>
+<li><strong>代词</strong>（Pronouns）：代替人和物<ul>
+<li>I</li>
+</ul>
+</li>
+<li><strong>形容词</strong>（Adjectives）：形容人和物<ul>
+<li>smart</li>
+</ul>
+</li>
+<li><strong>数词</strong>（Numerals）：表数量<ul>
+<li>two</li>
+</ul>
+</li>
+<li><strong>副词</strong>（Adverbs）：修饰动作或形容词<ul>
+<li>quickly</li>
+</ul>
+</li>
+<li><strong>介词</strong>（Prepositions）：表示和其他词关系的词<ul>
+<li>with</li>
+</ul>
+</li>
+<li><strong>叹词</strong>（Interjections）：表感叹<ul>
+<li>Ah!</li>
+</ul>
+</li>
+<li><strong>连词</strong>（Conjunctions）：连接词和句<ul>
+<li>and，because</li>
+</ul>
+</li>
+</ol>
+<h2 id="如何找谓语"><a href="#如何找谓语" class="headerlink" title="如何找谓语"></a>如何找谓语</h2><p>以下为对刘晓燕考研英语的笔记</p>
+<p>一句话一定要具备主谓结构，并且主语一定是谓语动作的发出者。如果有宾语的话，宾语一定是谓语动作的承受者。</p>
+<blockquote>
+<p>分类</p>
+</blockquote>
+<p>1、主谓</p>
+<p>2、主谓宾</p>
+<p>谓语：实意动词</p>
+<p>3、主谓表（主系表）</p>
+<p>谓语：系动词</p>
+<p>4、主谓双宾（写得少）</p>
+<p>5、主谓宾宾补（写得少）</p>
+<p>主谓宾与主谓表的不同在于：俩结构的谓语不同。</p>
+<p>系动词：</p>
+<ol>
+<li>be</li>
+<li>感官动词：look、smell、taste、sound、feel</li>
+<li>变化：become get</li>
+<li>保持：keep stay remain</li>
+</ol>
+<blockquote>
+<p>成分（词性的问题）</p>
+</blockquote>
+<p>一、谓语</p>
+<p>1、谓语的成分</p>
+<p>有时态的实意动词或系动词充当谓语</p>
+<p>2、一句话中动词能不能多？</p>
+<p>谓语只能是<strong>动词</strong>；<strong>动词</strong>只能做谓语；所有不做谓语的动词全部变成不是动词</p>
+<p>动词转换成不是动词（非  谓语动词）：v-ing；v-ed；to do</p>
+<p>He <u>beating my shoulder, saying nothing</u>,departed.</p>
+<p>3、一句话中动词能不能少？</p>
+<p>绝对不能，当一句话需要动词而没有动词的时候，加be动词，并且be动词没有意思</p>
+<p>谓语的总结：一句话中，有且只能有一个有时态的实义动词或系动词的存在，并且充当谓语。</p>
+<p>二、主语</p>
+<p>1、主语的成分</p>
+<p>名词、代词、非谓语动词</p>
+<h1 id="完形填空"><a href="#完形填空" class="headerlink" title="完形填空"></a>完形填空</h1><h2 id="动词的做题方法"><a href="#动词的做题方法" class="headerlink" title="动词的做题方法"></a>动词的做题方法</h2><ol>
+<li>看主语和宾语的逻辑关系来做题</li>
+<li>看主语<ol>
+<li>主语必须是人的动词有：doubt，intend，require，regard，be impressed by，believe，notice等</li>
+<li>主语必须是物的动词有：manifest等</li>
+</ol>
+</li>
+<li>看宾语<ol>
+<li>看宾语是人还是物<ol>
+<li>只跟人做宾语的谓语动词：assure，impress，side with等</li>
+<li>可跟人可跟物的动词：ensure，agree with等</li>
+</ol>
+</li>
+<li>看宾语是抽象名词还是具体名词（若完形填空分数要求不高可忽略）<ol>
+<li>跟抽象名词做宾语：enhance</li>
+<li>跟具体名词做宾语：fasten；label；feed</li>
+<li>即跟抽象又跟具体名词的有：tighten</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>根据跟动词构成习惯搭配的介词及介词后的宾语</li>
+<li>看动词后面有无宾语</li>
+<li>看修饰该动词的成分</li>
+</ol>
+<h2 id="名词的做题方法"><a href="#名词的做题方法" class="headerlink" title="名词的做题方法"></a>名词的做题方法</h2><ol>
+<li>看名词周围的定语或者同位语成分</li>
+<li>如果没有，看名词充当的成分<ol>
+<li>充当主语（看主谓宾的逻辑关系）</li>
+<li>充当宾语（通过谓语动词判断动宾搭配的一致性）</li>
+<li>充当表语（主语是最佳提示线索）</li>
+</ol>
+</li>
+<li>Prep+n（通过已知介词和名词的习惯搭配）</li>
+</ol>
+<h2 id="形容词的做题方法"><a href="#形容词的做题方法" class="headerlink" title="形容词的做题方法"></a>形容词的做题方法</h2><ol>
+<li>形容词作定语时，其修饰的名词是关键提示线索</li>
+<li>形容词+名词+补充线索（定语、同位语）</li>
+<li>形容词作表语时，主语作为被修饰成分是相关提示线索</li>
+<li>副词修饰形容词，副词就是线索</li>
+</ol>
+<h2 id="副词的做题方法"><a href="#副词的做题方法" class="headerlink" title="副词的做题方法"></a>副词的做题方法</h2><ol>
+<li>根据语法来确定副词题的定位线索</li>
+<li>根据副词所在的语境来做题</li>
+</ol>
+<h2 id="逻辑关系题的做题方法"><a href="#逻辑关系题的做题方法" class="headerlink" title="逻辑关系题的做题方法"></a>逻辑关系题的做题方法</h2><ol>
+<li>常见的逻辑关系词<ol>
+<li>并列关系：and，and also，or，neither…nor…， either…..or，not only… but also，likewise，similarly，equally，in the same way，that is (to say)，as well as，the same as</li>
+<li>递进关系：also，then，besides，in addition，additionally，moreover，what’s more，furthermore，above all，indeed</li>
+</ol>
+</li>
+</ol>
+<h1 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h1><h2 id="长难句"><a href="#长难句" class="headerlink" title="长难句"></a>长难句</h2><blockquote>
+<p>引用<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/55688022">考研英语长难句怎么破？ - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<p>结构：分裂、嵌套、平行</p>
+<ol>
+<li>分裂结构：将一个简单的句子分成好几段。<ul>
+<li>I know someone who always cuts sketches out from newspapers of model clothes that she would like to buy if she had the money.</li>
+</ul>
+</li>
+<li>嵌套结构：在一个句子里面套一个从句，再在从句里面套从句。<ul>
+<li>It hoped they would learn how shop floor lighting affected workers productivity。</li>
+</ul>
+</li>
+<li>平行结构：好几个成分并列在一起。<ul>
+<li>Your semester grade is based not only on how well you do on each test,but also on how you participate in class.</li>
+</ul>
+</li>
+</ol>
+<h2 id="翻译方法"><a href="#翻译方法" class="headerlink" title="翻译方法"></a>翻译方法</h2><p>拆、译、调</p>
+<p>基本句 + 修饰 -&gt; 长句子 + 从句 -&gt; 长难句</p>
+<p>拆（3-4段）：</p>
+<p>一、拆分点法：</p>
+<ol>
+<li><strong>标点符号</strong>：冒号；分号：逗号</li>
+<li><strong>关系词</strong>：who,whom, whose,what, which,that（关系代词）和how,why（关系副词）</li>
+<li><strong>连词</strong>：and,or,but,yet,for等并列连词； when,as, since, until. before,after<br>where, because, since, although, so that,等状语从句连接词</li>
+<li>介词：on,in,wth,at,of,to等</li>
+<li>不定式符号to</li>
+<li>分词：过去分词(done)和现在分词( doing)</li>
+</ol>
+<p>二、预感法（少部分）</p>
+<p>译：</p>
+<ul>
+<li><p>when等翻译：在那个xxxx</p>
+</li>
+<li><p>同位语从句加“：”</p>
+</li>
+</ul>
+<p>调：调整语调</p>
+<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><ul>
+<li>音：随机</li>
+<li>形：随机</li>
+<li>意：一样</li>
+<li>序：<ul>
+<li>不变序<ul>
+<li>5大基本句型</li>
+<li>并列句（and）</li>
+<li>符号分割</li>
+<li>句子太长</li>
+<li>目的，结果，伴随状语</li>
+</ul>
+</li>
+<li>变序<ul>
+<li>后置定语</li>
+<li>状语</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="翻译顺序"><a href="#翻译顺序" class="headerlink" title="翻译顺序"></a>翻译顺序</h2><ol>
+<li>找出作者想<strong>表达的意味</strong></li>
+<li>无论句子多么复杂，将句子看作为一整块的简单句，先圈出<strong>谓语</strong>，接下来根据<strong>谓语</strong>圈出<strong>主语块、宾语块</strong></li>
+<li>继续将<strong>主语块</strong>拆分，找出<strong>真正的主语</strong>；继续将<strong>宾语块</strong>拆分，找出<strong>真正的宾语</strong>。</li>
+<li>将<strong>谓语</strong>和<strong>真正的主语</strong>、<strong>真正的主语</strong>拼接，做<strong>主干句子</strong></li>
+<li>将<strong>主干句子</strong>翻译出来</li>
+<li>翻译出<strong>主语修饰的部分</strong>，注意修饰部分的针对对象，修饰部分的倾向是<strong>主语</strong>就把<strong>关注点放在主语上</strong>，为<strong>主语服务</strong></li>
+<li>翻译出<strong>宾语修饰的部分</strong>，注意修饰部分的针对对象，修饰部分的倾向是<strong>宾语</strong>就把<strong>关注点放在宾语上</strong>，为<strong>宾语服务</strong></li>
+<li>将所有翻译的结果融合成一个句子。注意<strong>后置定语和状语</strong>，融合的时候需要变序。</li>
+<li>可以将翻译的句子优化，追求信达雅</li>
+</ol>
+<h1 id="阅读错误总结"><a href="#阅读错误总结" class="headerlink" title="阅读错误总结"></a>阅读错误总结</h1><ol>
+<li>没有找准句子</li>
+<li>没有总结全文的主题（句子、句段）</li>
+<li>没有概述句子的大体意思</li>
+</ol>
+<h2 id="写作错误总结"><a href="#写作错误总结" class="headerlink" title="写作错误总结"></a>写作错误总结</h2><ol>
+<li>忘记名词复数转换</li>
+<li>动词的词性转换，第三人称+s等</li>
+<li>时态转换</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E8%8B%B1%E8%AF%AD/">英语</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95/">英语语法</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/%E5%87%9D%E8%81%9A%E5%9C%A8%E7%94%9F%E6%B4%BB%E4%B8%AD%E7%9A%84%E5%AE%9A%E5%BE%8B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">凝聚在生活中的定律</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/%E8%8B%B1%E8%AF%AD%E5%8F%A5%E5%AD%90-%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF%E4%BB%A5%E5%8F%8A%E8%AF%AD%E6%B3%95%E6%8E%A2%E7%A9%B6/">
+                        <span class="hidden-mobile">英语句子/作文模板以及语法探究</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

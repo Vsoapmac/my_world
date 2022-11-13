@@ -1,0 +1,736 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>初等函数公式大全 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="初等函数公式大全">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-16 16:15" pubdate>
+        2022年5月16日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      39
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">初等函数公式大全</h1>
+            
+            <div class="markdown-body">
+              <h1 id="各大初等函数图像"><a href="#各大初等函数图像" class="headerlink" title="各大初等函数图像"></a>各大初等函数图像</h1><h2 id="常数函数"><a href="#常数函数" class="headerlink" title="常数函数"></a>常数函数</h2><p>$y = C(其中C为常数)$</p>
+<p><img src="../../image/image-20210906170255197.png" srcset="/my_world/img/loading.gif" lazyload alt="常数函数图像和性质"></p>
+<h2 id="幂函数"><a href="#幂函数" class="headerlink" title="幂函数"></a>幂函数</h2><p>$y = x^a,x是自变量,a是常数$</p>
+<p><img src="../../image/image-20210906171008470.png" srcset="/my_world/img/loading.gif" lazyload alt="幂函数图像和性质"></p>
+<h2 id="指数函数"><a href="#指数函数" class="headerlink" title="指数函数"></a>指数函数</h2><p>$y = a^x,x是自变量，a是常数且a &gt; 0,a \neq 1$</p>
+<p><img src="../../image/image-20210906171157330.png" srcset="/my_world/img/loading.gif" lazyload alt="指数函数图像和性质"></p>
+<h2 id="对数函数"><a href="#对数函数" class="headerlink" title="对数函数"></a>对数函数</h2><p>$y = log_ax，a是常数且a &gt; 0, a \neq 1，定义域 x \in (0,+\infty)$</p>
+<p><img src="../../image/image-20210906171430735.png" srcset="/my_world/img/loading.gif" lazyload alt="对数函数图像和性质"></p>
+<h2 id="三角函数"><a href="#三角函数" class="headerlink" title="三角函数"></a>三角函数</h2><p>$正弦函数:y = sinx,定义域x \in (-\infty，+\infty),值域y\in[-1 , 1]$</p>
+<p><img src="../../image/image-20210906171755503.png" srcset="/my_world/img/loading.gif" lazyload alt="正弦函数图像"></p>
+<p>$余弦函数:y = cosx,定义域x \in (-\infty，+\infty),值域y\in[-1 , 1]$</p>
+<p><img src="../../image/image-20210906171817574.png" srcset="/my_world/img/loading.gif" lazyload alt="余弦函数图像"></p>
+<p><img src="../../image/image-20210906171847428.png" srcset="/my_world/img/loading.gif" lazyload alt="正弦函数与余弦函数图像和性质"></p>
+<p><img src="../../image/image-20210906172007749.png" srcset="/my_world/img/loading.gif" lazyload alt="正切函数与余切函数图像"></p>
+<p><img src="../../image/image-20210906172036688.png" srcset="/my_world/img/loading.gif" lazyload alt="正切函数与余切函数性质"></p>
+<p><img src="../../image/image-20210906172102757.png" srcset="/my_world/img/loading.gif" lazyload alt="正割函数与余割函数图像"></p>
+<p><img src="../../image/image-20210906172132191.png" srcset="/my_world/img/loading.gif" lazyload alt="正割函数与余割函数性质"></p>
+<p><img src="../../image/image-20210906172201151.png" srcset="/my_world/img/loading.gif" lazyload alt="正割函数与余割函数续表"></p>
+<p><img src="../../image/image-20210906172239117.png" srcset="/my_world/img/loading.gif" lazyload alt="反正弦函数与反余弦函数图像"></p>
+<p><img src="../../image/image-20210906172259239.png" srcset="/my_world/img/loading.gif" lazyload alt="反正弦函数与反余弦函数性质"></p>
+<p><img src="../../image/image-20210906172328326.png" srcset="/my_world/img/loading.gif" lazyload alt="反正切函数与反余切函数图像"></p>
+<p><img src="../../image/image-20210906172356060.png" srcset="/my_world/img/loading.gif" lazyload alt="反正切函数与反余切函数性质"></p>
+<h2 id="圆"><a href="#圆" class="headerlink" title="圆"></a>圆</h2><script type="math/tex; mode=display">
+(x - a)^2 + (y - b)^2 = r^2,A为圆的圆心，A的坐标为(a,b)，BA = AC = AP = r</script><p><img src="../../image/image-20210915142132138.png" srcset="/my_world/img/loading.gif" lazyload alt="圆的图片"></p>
+<h2 id="伯努利双纽线"><a href="#伯努利双纽线" class="headerlink" title="伯努利双纽线"></a>伯努利双纽线</h2><script type="math/tex; mode=display">
+(x^2 + y^2)^2 = a^2(x^2 - y^2),极坐标方程为r^2 = a^2cos2\theta</script><p><img src="../../image/image-20210915144444311.png" srcset="/my_world/img/loading.gif" lazyload alt="第一种伯努利双纽线"></p>
+<script type="math/tex; mode=display">
+(x^2 + y^2)^2 = 2a^2xy，极坐标为r^2 = a^2sin2\theta</script><p><img src="../../image/image-20210915144606635.png" srcset="/my_world/img/loading.gif" lazyload alt="第二种伯努利双纽线"></p>
+<blockquote>
+<p>以下开始至乘法公式来自于原视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1534y1R7yk/?spm_id_from=333.788.recommend_more_video.-1">每天一遍，高数再见！—必考曲线_哔哩哔哩_bilibili</a></p>
+</blockquote>
+<h2 id="心形线（心脏线）"><a href="#心形线（心脏线）" class="headerlink" title="心形线（心脏线）"></a>心形线（心脏线）</h2><p><img src="../../image/image-20211217145502140.png" srcset="/my_world/img/loading.gif" lazyload alt="猴屁股朝右"></p>
+<script type="math/tex; mode=display">
+r = a(1 - cos\theta)(a>0)，红线段为2a</script><p><img src="../../image/image-20211217145641581.png" srcset="/my_world/img/loading.gif" lazyload alt="猴屁股朝左"></p>
+<script type="math/tex; mode=display">
+r = a(1 + cos\theta)(a>0)，红线段为2a</script><h2 id="阿基米德螺线"><a href="#阿基米德螺线" class="headerlink" title="阿基米德螺线"></a>阿基米德螺线</h2><p><img src="../../image/image-20211217150120819.png" srcset="/my_world/img/loading.gif" lazyload alt="阿基米德螺线"></p>
+<script type="math/tex; mode=display">
+r = a\theta(a > 0,\theta > 0)，当\theta由0增大时，r逐渐增大</script><h2 id="星形线"><a href="#星形线" class="headerlink" title="星形线"></a>星形线</h2><p><img src="../../image/image-20211217150746144.png" srcset="/my_world/img/loading.gif" lazyload alt="星形线"></p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x = acos^3\theta  \\
+y = asin^3\theta 
+\end{cases}</script><script type="math/tex; mode=display">
+x^{\frac{2}{3}}+y^{\frac{2}{3}} = a^{\frac{2}{3}}</script><h2 id="玫瑰线"><a href="#玫瑰线" class="headerlink" title="玫瑰线"></a>玫瑰线</h2><p><img src="../../image/image-20211217151305254.png" srcset="/my_world/img/loading.gif" lazyload alt="玫瑰线"></p>
+<script type="math/tex; mode=display">
+r = asin3\theta (a > 0)</script><script type="math/tex; mode=display">
+表达式右端是以\frac{2}{3}\pi 为周期的周期函数</script><h2 id="摆线（旋轮线）"><a href="#摆线（旋轮线）" class="headerlink" title="摆线（旋轮线）"></a>摆线（旋轮线）</h2><p><img src="../../image/image-20211217151009577.png" srcset="/my_world/img/loading.gif" lazyload alt="摆线"></p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x = a(\theta-sin\theta )\\
+y = a(1-cos\theta )
+\end{cases}</script><script type="math/tex; mode=display">
+图中C的坐标为(\pi a，2a)</script><h1 id="乘法公式与因式分解"><a href="#乘法公式与因式分解" class="headerlink" title="乘法公式与因式分解"></a>乘法公式与因式分解</h1><script type="math/tex; mode=display">
+(a\pm b)^2 = a^2\pm2ab+b</script><script type="math/tex; mode=display">
+(a+b+c)^2 = a^2+b^2+c^2+2ab+2ac+2bc</script><script type="math/tex; mode=display">
+a^2 - b^2 = (a-b)(a+b)</script><script type="math/tex; mode=display">
+(a\pm b)^3 = a^3 \pm 3a^2b+3ab^2 \pm b^3 (杨辉三角 1 3 3 1)</script><script type="math/tex; mode=display">
+a^3 \pm b^3 = (a\pm b)(a^2 \mp ab + b^2)</script><script type="math/tex; mode=display">
+a^n - b^n = (a-b)(a^{n-1}+a^{n-2}b+\cdots+ab^{n-2}+b^{n-1})</script><h3 id="因式分解方法"><a href="#因式分解方法" class="headerlink" title="因式分解方法"></a>因式分解方法</h3><p><strong>十字相乘法</strong>（适合解决$ax^2\pm abx\pm b$类型的式子）</p>
+<script type="math/tex; mode=display">
+在草稿纸上写下\begin{align}
+(x &&)\\
+(x &&)\\
+\end{align}的形式，括号左边相乘得ax^2，括号右边相乘得b</script><script type="math/tex; mode=display">
+需要尝试，使得对角相乘相加后得abx</script><blockquote>
+<p>原视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1E4411S7TC/?spm_id_from=333.788.recommend_more_video.-1">6道题目帮你牢牢掌握十字相乘法_哔哩哔哩_bilibili</a></p>
+</blockquote>
+<h1 id="二次方式"><a href="#二次方式" class="headerlink" title="二次方式"></a>二次方式</h1><script type="math/tex; mode=display">
+ax^2 + bx + c = 0</script><script type="math/tex; mode=display">
+\begin{align}
+\Delta = b ^2 - 4ac (\Delta > 0,方程式有两个不等实根; \\
+\Delta = 0,方程式有两个相等实根; \\
+\Delta > 0,方程式有两个共轭虚根)
+\end{align}</script><script type="math/tex; mode=display">
+x_i = \frac{-b \pm \sqrt{\Delta}}{2a} = \frac{-b\pm \sqrt{b^2-4ac}}{2a}</script><script type="math/tex; mode=display">
+对称轴：x = -\frac{b}{2a}</script><script type="math/tex; mode=display">
+x_1+x_2 = -\frac{b}{a},x_1x_2 = \frac{c}{a}</script><h1 id="累加运算"><a href="#累加运算" class="headerlink" title="累加运算"></a>累加运算</h1><script type="math/tex; mode=display">
+\begin{align}
+& 大写\sum用于数学上的求和符号（总和符号） \\
+& \sum^n_iK 中n为上界，i为下界 \\
+& 即K从i开始取数，一直到n，全部加起来，即：\\
+& \sum^n_ix_i = x_i+x_{i+1}+x_{i+2}+\cdots+x_n \\
+& eg:\sum^{n = 100}_{i = 1}x_i = x_1+x_2+x_3+\cdots+x_{100}
+
+\end{align}</script><h1 id="排列与组合"><a href="#排列与组合" class="headerlink" title="排列与组合"></a>排列与组合</h1><h2 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h2><script type="math/tex; mode=display">
+n! = 1 \cdot 2 \cdot 3 \cdots (n-1)n = n(n-1)!</script><h2 id="排列数计算公式"><a href="#排列数计算公式" class="headerlink" title="排列数计算公式"></a>排列数计算公式</h2><script type="math/tex; mode=display">
+\begin{align}
+A^m_n = n(n-1)(n-2)\cdots[n-(m-1)]\\
+= \frac{n(n-1)(n-2)\cdots(n-m+1)(n-m)(n-m-1) \cdots 2 \cdot 1}{(n-m)(n-m-1)\cdots2\cdot1}\\
+= \frac{n!}{(n-m)!}\\
+A^n_n = n!
+\end{align}</script><p>总结：</p>
+<p>$A^m_n$为从n开始阶乘，一直乘到第m个</p>
+<h2 id="组合数计算公式"><a href="#组合数计算公式" class="headerlink" title="组合数计算公式"></a>组合数计算公式</h2><script type="math/tex; mode=display">
+C^m_n = \frac{A^m_n}{A^m_m} = \frac{A^m_n}{m!}，其中C^0_n = 1</script><h1 id="根号运算"><a href="#根号运算" class="headerlink" title="根号运算"></a>根号运算</h1><script type="math/tex; mode=display">
+\sqrt[n]{a^m} = \sqrt[np]{a^{mp}}(a\geq0,p\neq0)</script><script type="math/tex; mode=display">
+\sqrt[n]{ab} = \sqrt[n]{a} \cdot \sqrt[n]{b}(a\geq0,b\geq0)</script><script type="math/tex; mode=display">
+\sqrt[n]{a^m} = (\sqrt[n]{a})^m(a\geq0)</script><script type="math/tex; mode=display">
+\sqrt[n]{\frac{a}{b}} = \frac{\sqrt[n]{a}}{\sqrt[n]{b}}(a\geq0,b>0)</script><script type="math/tex; mode=display">
+\sqrt[n]{\sqrt[m]{a}} = \sqrt[mn]{a},其中m,n\in N</script><h1 id="指数运算"><a href="#指数运算" class="headerlink" title="指数运算"></a>指数运算</h1><script type="math/tex; mode=display">
+a^m\cdot a^n=a^{m+n}</script><script type="math/tex; mode=display">
+(a^m)^n=a^{mn}</script><script type="math/tex; mode=display">
+(ab)^n=a^nb^n</script><script type="math/tex; mode=display">
+(\frac{a}{b})^m = \frac{a^m}{b^m}</script><script type="math/tex; mode=display">
+a^{-m}=\frac{1}{a^m}</script><h1 id="对数运算"><a href="#对数运算" class="headerlink" title="对数运算"></a>对数运算</h1><script type="math/tex; mode=display">
+N = a^{log_aN}</script><script type="math/tex; mode=display">
+log_a(MN) = log_aM + log_aN</script><script type="math/tex; mode=display">
+log_a(\frac{M}{N}) = log_aM - log_aN</script><script type="math/tex; mode=display">
+log_a(M^n) = nlog_aM</script><script type="math/tex; mode=display">
+log_a \sqrt[n]{M} = \frac{1}{n}log_a M</script><script type="math/tex; mode=display">
+log_aM = \frac{log_bM}{log_ba}</script><script type="math/tex; mode=display">
+log_a1 = 0,log_aa=1</script><h1 id="三角函数-1"><a href="#三角函数-1" class="headerlink" title="三角函数"></a>三角函数</h1><h2 id="特殊角的三角函数值"><a href="#特殊角的三角函数值" class="headerlink" title="特殊角的三角函数值"></a>特殊角的三角函数值</h2><p><img src="../../image/特殊三角函数值.jpg" srcset="/my_world/img/loading.gif" lazyload alt="特殊角三角函数值"></p>
+<h2 id="三角函数恒等式"><a href="#三角函数恒等式" class="headerlink" title="三角函数恒等式"></a>三角函数恒等式</h2><script type="math/tex; mode=display">
+\begin{align}
+sin^2x+cos^2x = 1,sec^2x - tan^2x = 1,csc^2x - cot^2x = 1 \\
+cotx = \frac{1}{tanx},secx = \frac{1}{cosx},cscx = \frac{1}{sinx} \\
+tanx = \frac{sinx}{cosx},cotx = \frac{cosx}{sinx}
+\end{align}</script><h2 id="倍角公式与半角公式"><a href="#倍角公式与半角公式" class="headerlink" title="倍角公式与半角公式"></a>倍角公式与半角公式</h2><script type="math/tex; mode=display">
+sin^2x = \frac{1-cos2x}{2}</script><script type="math/tex; mode=display">
+cos^2x = \frac{1+cos2x}{2}</script><script type="math/tex; mode=display">
+sinx \cdot cosx = \frac{1}{2}sin2x</script><script type="math/tex; mode=display">
+sin2x = 2sinxcosx</script><script type="math/tex; mode=display">
+cos2x = cos^2x - six^2x = 2cos^2-1 = 1 - 2sin^2x</script><script type="math/tex; mode=display">
+tan2a = \frac{2tana}{1-tan^2a}</script><script type="math/tex; mode=display">
+cot2a = \frac{cot^2a - 1}{2cota}</script><script type="math/tex; mode=display">
+cos^2 \frac{x}{2} = \frac{1+cosx}{2}</script><script type="math/tex; mode=display">
+sin^2\frac{x}{2} = \frac{1-cosx}{2}</script><script type="math/tex; mode=display">
+tan^2\frac{x}{2} = \frac{1-cosx}{1+cosx}</script><script type="math/tex; mode=display">
+sin3a = 3sina-4sin^3a</script><script type="math/tex; mode=display">
+tan\frac{x}{2} = \frac{1-cosx}{sinx} = \frac{sinx}{1+cosx}</script><script type="math/tex; mode=display">
+cos3a = 4cos^2a - 3cosa</script><script type="math/tex; mode=display">
+tan3a = \frac{3tana - tan^3a}{1-3tan^2a}</script><h2 id="两角和与差及和差化积、积化和差公式"><a href="#两角和与差及和差化积、积化和差公式" class="headerlink" title="两角和与差及和差化积、积化和差公式"></a>两角和与差及和差化积、积化和差公式</h2><p>和差化积：正加正，正在前。正减正，余在前。余加余，余并肩。余减余，余不见，负号很讨厌。</p>
+<script type="math/tex; mode=display">
+sin(a \pm b) = sina \cdot cosb \pm cosa \cdot sinb</script><script type="math/tex; mode=display">
+cos(a \pm b) = cosa \cdot cosb \mp sina \cdot sinb</script><script type="math/tex; mode=display">
+tan(a \pm b) = \frac{tana \pm tanb}{1 \mp tana \cdot tanb}</script><script type="math/tex; mode=display">
+sina + sinb = 2sin\frac{a+b}{2}\cdot cos\frac{a-b}{2}</script><script type="math/tex; mode=display">
+sina - sinb = 2cos\frac{a+b}{2}\cdot sin\frac{a-b}{2}</script><script type="math/tex; mode=display">
+cosa + cosb = 2cos\frac{a+b}{2}\cdot cos\frac{a-b}{2}</script><script type="math/tex; mode=display">
+cosa - cosb = -2sin\frac{a+b}{2}\cdot sin\frac{a-b}{2}</script><script type="math/tex; mode=display">
+sina \cdot cosb = \frac{1}{2}[sin(a+b)+sin(a-b)]</script><script type="math/tex; mode=display">
+cosa \cdot sinb = \frac{1}{2}[sin(a+b)-sin(a-b)]</script><script type="math/tex; mode=display">
+cosa \cdot cosb = \frac{1}{2}[cos(a+b)+cos(a-b)]</script><script type="math/tex; mode=display">
+sina \cdot sinb = -\frac{1}{2}[cos(a+b)-cos(a-b)]</script><h2 id="转换规律"><a href="#转换规律" class="headerlink" title="转换规律"></a>转换规律</h2><h3 id="半角、倍角公式的转换"><a href="#半角、倍角公式的转换" class="headerlink" title="半角、倍角公式的转换"></a>半角、倍角公式的转换</h3><script type="math/tex; mode=display">
+\begin{align}
+sin(a \pm b) = sina \cdot cosb \pm cosa \cdot sinb \\
+cos(a \pm b) = cosa \cdot cosb \mp sina \cdot sinb \\
+tan(a \pm b) = \frac{tana \pm tanb}{1 \mp tana \cdot tanb} \\
+\end{align}</script><p>令$a = b = x$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+sin2x = 2sinxcosx \\
+cos2x = cos^2x - six^2x = 2cos^2-1 = 1 - 2sin^2x \\
+tan2a = \frac{2tana}{1-tan^2a} \\
+\end{align}</script><p>利用$cos2x = cos^2x - six^2x = 2cos^2-1 = 1 - 2sin^2x$逆推</p>
+<script type="math/tex; mode=display">
+\begin{align}
+sin^2x = \frac{1-cos2x}{2} \\
+cos^2x = \frac{1+cos2x}{2} \\
+\end{align}</script><p>令$x {\div}  2$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+sin^2\frac{x}{2} = \frac{1-cosx}{2} \\
+cos^2 \frac{x}{2} = \frac{1+cosx}{2} \\
+\end{align}</script><p>令$sin^2\frac{x}{2} \div cos^2 \frac{x}{2}$</p>
+<script type="math/tex; mode=display">
+tan^2\frac{x}{2} = \frac{1-cosx}{1+cosx}</script><p>推导：</p>
+<script type="math/tex; mode=display">
+tan\frac{x}{2} = \frac{sin\frac{x}{2}}{cos\frac{x}{2}} = \frac{sin^2\frac{x}{2}}{sin\frac{x}{2}cos\frac{x}{2}} = \frac{\frac{1}{2}(1-cosx)}{\frac{1}{2}sinx} = \frac{1-cosx}{sinx} = \frac{sinx}{1+cosx}</script><h3 id="积化和差、和差化积公式转换"><a href="#积化和差、和差化积公式转换" class="headerlink" title="积化和差、和差化积公式转换"></a>积化和差、和差化积公式转换</h3><script type="math/tex; mode=display">
+\begin{align}
+sin(a \pm b) = sina \cdot cosb \pm cosa \cdot sinb \\
+cos(a \pm b) = cosa \cdot cosb \mp sina \cdot sinb \\
+\end{align}</script><p>令$sin(a + b) + sin(a - b)$</p>
+<script type="math/tex; mode=display">
+2sina \cdot cosb = sin(a+b)+sin(a-b)</script><p>令$sin(a + b) - sin(a - b)$</p>
+<script type="math/tex; mode=display">
+2cosa \cdot sinb = sin(a+b)-sin(a-b)</script><p>令$cos(a+b)+cos(a-b)$</p>
+<script type="math/tex; mode=display">
+2cosa \cdot cosb = cos(a+b)+cos(a-b)</script><p>令$cos(a+b)-cos(a-b)$</p>
+<script type="math/tex; mode=display">
+-2sina \cdot sinb = cos(a+b)-cos(a-b)</script><p>左右角替换，左边的角替换成右边的，右边也一样</p>
+<script type="math/tex; mode=display">
+\begin{align}
+2sin\frac{a+b}{2}\cdot cos\frac{a-b}{2} = sina + sinb \\
+2cos\frac{a+b}{2}\cdot sin\frac{a-b}{2} = sina - sinb \\
+2cos\frac{a+b}{2}\cdot cos\frac{a-b}{2} = cosa + cosb \\
+-2sin\frac{a+b}{2}\cdot sin\frac{a-b}{2} = cosa - cosb
+\end{align}</script><h1 id="基本不等式"><a href="#基本不等式" class="headerlink" title="基本不等式"></a>基本不等式</h1><script type="math/tex; mode=display">
+|a \pm b| \le |a| + |b|</script><script type="math/tex; mode=display">
+||a| - |b|| \le |a - b|</script><script type="math/tex; mode=display">
+|\int_a^b f(x)dx| \le \int_a^b |f(x)|dx</script><script type="math/tex; mode=display">
+\sqrt{ab} \le \frac{a+b}{2} \le \sqrt{\frac{a^2+b^2}{2}}(a,b > 0)</script><script type="math/tex; mode=display">
+\sqrt[3]{abc} \le \frac{a+b+c}{3} \le \sqrt{\frac{a^2+b^2+c^2}{3}}(a,b,c > 0)</script><script type="math/tex; mode=display">
+\frac{a^2+b^2}{2} \ge |ab|</script><script type="math/tex; mode=display">
+设a>b>0
+\begin{cases}
+n > 0时,a^n > b^n \\
+n < 0时,a^n < b^n
+\end{cases}</script><script type="math/tex; mode=display">
+b > x > a > 0，d > y > c > 0，则\frac{c}{b} < \frac{y}{x} < \frac{d}{a}</script><script type="math/tex; mode=display">
+sinx < x < tanx(0 < x < \frac{\pi}{2})</script><script type="math/tex; mode=display">
+sinx < x(x > 0)</script><script type="math/tex; mode=display">
+arctanx \le x \le arcsinx(0 \le x \le 1)</script><script type="math/tex; mode=display">
+e^x \ge x+1</script><script type="math/tex; mode=display">
+x-1 \ge lnx(x > 0)</script><script type="math/tex; mode=display">
+\frac{1}{x} > ln(1 + \frac{1}{x}) > \frac{1}{1+x}(x>0)</script>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">数学公式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E5%A4%A7%E5%85%A8%EF%BC%88%E4%BA%8C%EF%BC%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">高等数学公式大全（二）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/vulmap%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+                        <span class="hidden-mobile">vulmap使用指南</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,867 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>更新未完成--ElasticSearch快速入门 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="更新未完成--ElasticSearch快速入门">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-29 12:23" pubdate>
+        2021年8月29日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      39
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">更新未完成--ElasticSearch快速入门</h1>
+            
+            <div class="markdown-body">
+              <p>ElasticSearch（简称es）是一个基于Lucene的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTful web接口。ElasticSearch是用Java语言开发的，并作为Apache许可条款下的开放源码发布，是一种流行的企业级搜索引擎。ElasticSearch用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。官方客户端在Java、.NET（C#）、PHP、Python、Apache Groovy、Ruby和许多其他语言中都是可用的。根据DB-Engines的排名显示，ElasticSearch是最受欢迎的企业搜索引擎，其次是Apache Solr，也是基于Lucene。</p>
+<blockquote>
+<p>以下大量引用至<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17a4y1x7zq?p=5">【狂神说Java】ElasticSearch7.6.x最新完整教程通俗易懂_哔哩哔哩_bilibili</a></p>
+</blockquote>
+<h1 id="ElasticSearch是干什么的"><a href="#ElasticSearch是干什么的" class="headerlink" title="ElasticSearch是干什么的"></a>ElasticSearch是干什么的</h1><ol>
+<li>快速和近乎实时地存储、搜索和分析海量的数据</li>
+<li>为具有复杂搜索功能和需求的应用程序提供动力</li>
+</ol>
+<h1 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h1><p>这里是笔者的安装环境，可用作参考</p>
+<ul>
+<li>elasticsearch - 7.8.0</li>
+<li>java - 1.8</li>
+<li>node - 14.9.0</li>
+<li>kibana - 7.8.0</li>
+</ul>
+<h1 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h1><p>官方：</p>
+<ul>
+<li>ElasticSearch：<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/elasticsearch">Download Elasticsearch Free | Get Started Now | Elastic | Elastic</a></li>
+<li>kibana：<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/kibana">Download Kibana Free | Get Started Now | Elastic | Elastic</a></li>
+</ul>
+<p>镜像网站：</p>
+<ul>
+<li>ElasticSearch: <a target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/elasticsearch/?C=N&amp;O=D">https://mirrors.huaweicloud.com/elasticsearch/?C=N&amp;O=D</a></li>
+<li>logstash: <a target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/logstash/?C=N&amp;O=D">https://mirrors.huaweicloud.com/logstash/?C=N&amp;O=D</a></li>
+<li>kibana: <a target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/kibana/?C=N&amp;O=D">https://mirrors.huaweicloud.com/kibana/?C=N&amp;O=D</a></li>
+</ul>
+<h1 id="ElasticSearch安装"><a href="#ElasticSearch安装" class="headerlink" title="ElasticSearch安装"></a>ElasticSearch安装</h1><p>前提：</p>
+<ul>
+<li>java-1.8，JDK8</li>
+<li>ElasticSearch的版本对应java的核心jar包。</li>
+<li>安装node.js环境</li>
+</ul>
+<blockquote>
+<p>下载</p>
+</blockquote>
+<p>地址为：<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/elasticsearch">Download Elasticsearch Free | Get Started Now | Elastic | Elastic</a></p>
+<p>根据自己的系统需求下载相应的压缩包即可</p>
+<blockquote>
+<p>目录</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs mipsasm"><span class="hljs-keyword">bin </span>     用于启动软件
+<span class="hljs-built_in">config</span>   配置文件
+	log4j2             日志配置文件
+	<span class="hljs-keyword">jvm.options </span>       <span class="hljs-keyword">java虚拟机相关的配置</span>
+<span class="hljs-keyword"></span>	elasticsearch.yml  elasticsearch的配置文件，默认<span class="hljs-number">9200</span>端口，跨域
+lib      相关<span class="hljs-keyword">jar包</span>
+<span class="hljs-keyword"></span>logs     日志文件
+modules  功能模块
+plugins  插件，例如ik分词器等等</code></pre></div>
+<h1 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h1><p>双击bin/elasticsearch.bat的文件</p>
+<p>若出现以下的提示，按回车键即可，不影响。</p>
+<p><img src="../../image/tmpF09E.png" srcset="/my_world/img/loading.gif" lazyload alt="更新提示"></p>
+<p>当出现started或者publish_address{127.0.0.1:9200}字样即是启动成功</p>
+<blockquote>
+<p> 测试是否成功</p>
+</blockquote>
+<p>浏览器地址栏输入127.0.0.1:9200或者localhost:9200后回车。</p>
+<p>出现以下字样证明es启动成功</p>
+<p><img src="../../image/image-20210829125008328.png" srcset="/my_world/img/loading.gif" lazyload alt="启动成功"></p>
+<h2 id="安装可视化界面（Elasticsearch-head或类似）"><a href="#安装可视化界面（Elasticsearch-head或类似）" class="headerlink" title="安装可视化界面（Elasticsearch-head或类似）"></a>安装可视化界面（Elasticsearch-head或类似）</h2><p>笔者这里使用的是浏览器的扩展（比较方便），笔者主要用edge</p>
+<ol>
+<li>Chorme可以扩展商店去搜索Elasticsearch</li>
+<li>edge扩展商店下载Elasticvue即可</li>
+</ol>
+<p>界面长这样：</p>
+<p><img src="../../image/image-20210829133017443.png" srcset="/my_world/img/loading.gif" lazyload alt="扩展插件Elasticvue界面"></p>
+<blockquote>
+<p>连接</p>
+</blockquote>
+<p>Elasticvue默认输入了地址，<a href="http://localhost:9200，链接即可">http://localhost:9200，链接即可</a></p>
+<p>这里会有跨域问题，在es目录的config文件夹下elasticsearch.yml中输入以下配置即可：</p>
+<div class="code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">http.cors.enabled:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">http.cors.allow-origin:</span> <span class="hljs-string">&quot;*&quot;</span></code></pre></div>
+<p>可以把es当做一个数据库，索引（数据库），文档（数据库中的数据），这个就是es的管理器（类似于sqlyog，数据库管理软件）</p>
+<h1 id="kibana"><a href="#kibana" class="headerlink" title="kibana"></a>kibana</h1><p>Kibana 是一个免费且开放的用户界面，能够让用户对 Elasticsearch 数据进行可视化。</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/kibana/">Kibana：数据的探索、可视化和分析 | Elastic</a></p>
+<p>注意kibana的版本要和es的一致</p>
+<p>这里是官方的下载地址：<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/kibana">Download Kibana Free | Get Started Now | Elastic | Elastic</a></p>
+<blockquote>
+<p>安装</p>
+</blockquote>
+<p>下载解压即可</p>
+<blockquote>
+<p>汉化</p>
+</blockquote>
+<p>在kibana文件夹中的config文件夹下的kibana,yml修改配置如下：</p>
+<div class="code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">i18n.locale:</span> <span class="hljs-string">&quot;zh-CN&quot;</span></code></pre></div>
+<blockquote>
+<p>运行</p>
+</blockquote>
+<p>点击bin/kibana.bat，出现【http server running at <a href="http://localhost:5601】即打开成功">http://localhost:5601】即打开成功</a></p>
+<p>在浏览器输入<a href="http://localhost:5601，出现以下画面成功打开">http://localhost:5601，出现以下画面成功打开</a></p>
+<p><img src="../../image/image-20210829140017906.png" srcset="/my_world/img/loading.gif" lazyload alt="kibana主页"></p>
+<h1 id="ES核心概念"><a href="#ES核心概念" class="headerlink" title="ES核心概念"></a>ES核心概念</h1><p>Elasticsearch是面向文档、关系行数据库。它有如下几大概念：集群，节点，索引，类型，文档，分片，映射。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Relational DB</th>
+<th>Elasticsearch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据库（database）</td>
+<td>索引（index）</td>
+</tr>
+<tr>
+<td>表（tables）</td>
+<td>types（已过时）</td>
+</tr>
+<tr>
+<td>行（rows）</td>
+<td>documents</td>
+</tr>
+<tr>
+<td>字段（columns）</td>
+<td>fields</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>物理设计：</strong></p>
+<p>elasticsearch在后台把每个索引划分成多个分片，每分分片可以在集群中的不同服务器间迁移。</p>
+<p>逻辑设计：</p>
+<p>一个索引类型中，包含多个文档，通过这个组合我们就能索引到某个具体的文档。</p>
+<blockquote>
+<p>文档（documents）</p>
+</blockquote>
+<p>elasticsearch中索引和搜索数据的最小档位是文档。它就是我们的一条条数据。</p>
+<blockquote>
+<p>类型（类似于数据类型）</p>
+</blockquote>
+<p>类型是文档的逻辑容器，类似于与String,int这种</p>
+<blockquote>
+<p>索引（index）</p>
+</blockquote>
+<p>类似于数据库，索引是映射类型的容器，elasticsearch中的索引是一个非常大的文档集合。索引存储了映射类型的字段和其他设置。然后它们被存储到各个分片上。</p>
+<p>物理设计：节点和分片</p>
+<p>一个集群至少有一个节点，而一个节点就是一个elasticsearch进程，节点可以有多个索引默认的，如果创建索引，那么索引将会有5个分片构成，每一个主分片会有一个副本。</p>
+<p><img src="../../image/image-20210829141721349.png" srcset="/my_world/img/loading.gif" lazyload alt="集群和节点的关系"></p>
+<p>elasticsearch使用的是<strong>倒排索引</strong>的结构。</p>
+<blockquote>
+<p>倒排索引</p>
+<p>引用<a target="_blank" rel="noopener" href="https://blog.csdn.net/luzhensmart/article/details/105731656">ES的底层原理-倒排索引的概念_luzhensmart的专栏-CSDN博客</a></p>
+</blockquote>
+<p>在说倒排索引之前先说说什么是正排索引。正排索引也称为”前向索引”，它是创建倒排索引的基础。<br>这种组织方法在建立索引的时候结构比较简单，建立比较<strong>方便且易于维护</strong>;因为索引是基于文档建立的，若是有新的文档加入，直接为该文档建立一个新的索引块，挂接在原来索引文件的后面。若是有文档删除，则直接找到该文档号文档对应的索引信息，将其直接删除。</p>
+<p>类似于线性表</p>
+<p>优点：工作原理非常的简单。<br>缺点：检索效率太低，只能在一起简单的场景下使用。</p>
+<p>倒排索引根据字面意思可以知道他和正序索引是反的。在搜索引擎中每个文件<strong>都对应一个文件ID</strong>，文件内容被表示为<strong>一系列关键词的集合</strong>（文档要除去一些无用的词，比如’的’这些，剩下的词就是关键词，每个关键词都有自己的ID）。例如“文档1”经过分词，提取了3个关键词，每个关键词都会记录它所在在文档中的出现频率及出现位置。</p>
+<h1 id="Rest风格详解"><a href="#Rest风格详解" class="headerlink" title="Rest风格详解"></a>Rest风格详解</h1><p>这是一种软件架构风格，而不是标准，知识提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存等机制。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>url地址</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PUT</td>
+<td>localhost:9200/索引名称/类型名称/文档id</td>
+<td>创建文档(指定文档id)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>localhost:9200/索引名称/类型名称</td>
+<td>创建文档(随机文档id)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>localhost:9200/索引名称/类型名称/文档id_ update</td>
+<td>修改文档</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>localhost:9200/索引名称/类型名称/文档id</td>
+<td>刪除文档</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>localhost:9200/索引名称/类型名称/文档id</td>
+<td>查询文档通过文档id</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>localhost:9200/索引名称/类型名称/_search</td>
+<td>查询所有数据</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="IK分词器"><a href="#IK分词器" class="headerlink" title="IK分词器"></a>IK分词器</h1><p>分词：把一段中文或者别的划分成一个个的关键字，我们在搜索的时候会把自己的信息进行分词，会把数据库中或者索引库中的数据进行分词，然后进行一个匹配操作，默认的中文分词是将每个字看成一个词，这很显然是不符合要求的，所以需要安装中文分词器ik来解决这个问题。</p>
+<p>ik提供了两个分词算法：ik_smart和ik_max_word，其中ik_smart为最少切分，ik_max_word为最细粒度切分</p>
+<blockquote>
+<p>下载</p>
+</blockquote>
+<p>github：<a target="_blank" rel="noopener" href="https://github.com/medcl/elasticsearch-analysis-ik/releases">Releases · medcl/elasticsearch-analysis-ik · GitHub</a></p>
+<blockquote>
+<p>安装</p>
+</blockquote>
+<p>找到es的plugins文件夹，解压即可</p>
+<p>注意重启es</p>
+<p>可以通过<code>elasticsearch-plugin list</code>命令获取当前安装的插件，在bin文件夹中输入cmd，输入命令即可。</p>
+<blockquote>
+<p>使用</p>
+</blockquote>
+<p>打开kibana，进入控制面板（菜单，Management — Dev Tools）</p>
+<p>第一个测试ik_smart</p>
+<div class="code-wrapper"><pre><code class="hljs json">输入：
+GET _analyze
+&#123;
+  <span class="hljs-attr">&quot;analyzer&quot;</span>: <span class="hljs-string">&quot;ik_smart&quot;</span>,
+  <span class="hljs-attr">&quot;text&quot;</span>: <span class="hljs-string">&quot;计算机科学与大数据分析&quot;</span>
+&#125;
+结果：
+&#123;
+  <span class="hljs-attr">&quot;tokens&quot;</span> : [
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;计算机&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">0</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">3</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_WORD&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">0</span>
+    &#125;,
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;科学&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">3</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">5</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_WORD&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">1</span>
+    &#125;,
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;与&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">5</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">6</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_CHAR&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">2</span>
+    &#125;,
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;大数&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">6</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">8</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_WORD&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">3</span>
+    &#125;,
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;据分析&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">8</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">11</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_WORD&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">4</span>
+    &#125;
+  ]
+&#125;</code></pre></div>
+<p>测试ik_max_word</p>
+<div class="code-wrapper"><pre><code class="hljs json">输入：
+GET _analyze
+&#123;
+  <span class="hljs-attr">&quot;analyzer&quot;</span>: <span class="hljs-string">&quot;ik_max_word&quot;</span>,
+  <span class="hljs-attr">&quot;text&quot;</span>: <span class="hljs-string">&quot;计算机科学与大数据分析&quot;</span>
+&#125;
+结果：
+&#123;
+  <span class="hljs-attr">&quot;tokens&quot;</span> : [
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;计算机&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">0</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">3</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_WORD&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">0</span>
+    &#125;,
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;计算&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">0</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">2</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_WORD&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">1</span>
+    &#125;,
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;算机&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">1</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">3</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_WORD&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">2</span>
+    &#125;,
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;科学&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">3</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">5</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_WORD&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">3</span>
+    &#125;,
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;与&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">5</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">6</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_CHAR&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">4</span>
+    &#125;,
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;大数&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">6</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">8</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_WORD&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">5</span>
+    &#125;,
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;数据&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">7</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">9</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_WORD&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">6</span>
+    &#125;,
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;据分析&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">8</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">11</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_WORD&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">7</span>
+    &#125;,
+    &#123;
+      <span class="hljs-attr">&quot;token&quot;</span> : <span class="hljs-string">&quot;分析&quot;</span>,
+      <span class="hljs-attr">&quot;start_offset&quot;</span> : <span class="hljs-number">9</span>,
+      <span class="hljs-attr">&quot;end_offset&quot;</span> : <span class="hljs-number">11</span>,
+      <span class="hljs-attr">&quot;type&quot;</span> : <span class="hljs-string">&quot;CN_WORD&quot;</span>,
+      <span class="hljs-attr">&quot;position&quot;</span> : <span class="hljs-number">8</span>
+    &#125;
+  ]
+&#125;</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/springboot/">springboot</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/java/">java</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/ElasticSearch/">ElasticSearch</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">搜索引擎</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/%E4%B8%AD%E6%96%87%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%BA%93%E5%A4%84%E7%90%86%E5%A4%A7%E6%80%BB%E7%BB%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">中文自然语言库处理大总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/%E5%87%9D%E8%81%9A%E5%9C%A8%E7%94%9F%E6%B4%BB%E4%B8%AD%E7%9A%84%E5%AE%9A%E5%BE%8B/">
+                        <span class="hidden-mobile">凝聚在生活中的定律</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

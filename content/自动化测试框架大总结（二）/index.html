@@ -1,0 +1,1176 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>自动化测试框架大总结（二） | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="自动化测试框架大总结（二）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-07 14:33" pubdate>
+        2022年5月7日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      81
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">自动化测试框架大总结（二）</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Appium"><a href="#Appium" class="headerlink" title="Appium"></a>Appium</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Appium是一个开源的自动化测试工具，其支持iOS和安卓平台上的原生的，基于移动浏览器的，混合的应用。</p>
+<p><strong>Appium 理念</strong></p>
+<p>Appium是基于以下的四个理念设计来满足移动平台测试自动化的要求的：</p>
+<ol>
+<li>您不应该因为需要自动化测试您的应用而不得不以任何形式去重新编译或者修改你的app</li>
+<li>您不应该把自己固定在一门特定的语言和一个特定的框架上去实现和运行你的测试</li>
+<li>当说到测试自动化APIs的时候，一个移动测试框架不应该做“重新发明轮子”的事情，</li>
+<li>一个移动测试自动化框架应该是开源的，无论是在精神上，实际上，还是名义上！</li>
+</ol>
+<p><strong>使用Appium进行自动化测试有两个好处</strong></p>
+<p>Appium在不同平台中使用了标准的自动化APIs，所以在跨平台时，不需要重新编译或者修改自己的应用。</p>
+<p>Appium支持Selenium WebDriver支持的所有语言，如java、Object-C、JavaScript、Php、Python、Ruby、C#、Clojure，或者Perl语言，更可以使用Selenium WebDriver的Api。Appium支持任何一种测试框架.Appium实现了真正的跨平台自动化测试。（本文主要介绍Python的用法）</p>
+<p><strong>Appium架构</strong></p>
+<p>Appium 是一个用Node.js编写的HTTP server，它创建、并管理多个 WebDriver sessions 来和不同平台交互，如 iOS ，Android等等. </p>
+<p>Appium 开始一个测试后，就会在被测设备（手机）上启动一个 server ，监听来自 Appium server的指令. 每种平台像 iOS 和Android都有不同的运行、和交互方式。所以Appium会用某个桩程序“侵入”该平台，并接受指令，来完成测试用例的运行。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>appium下载地址：<a target="_blank" rel="noopener" href="http://appium.io/">Appium: Mobile App Automation Made Awesome.</a></p>
+<p>python安装库</p>
+<div class="code-wrapper"><pre><code class="hljs shell">pip install Appium-Python-Client</code></pre></div>
+<p>前置条件</p>
+<ol>
+<li>搭建java环境，这里不再赘述</li>
+<li>搭建Android环境，sdk下载地址：<a target="_blank" rel="noopener" href="http://developer.android.com/sdk/index.html，国内的sdk">http://developer.android.com/sdk/index.html，国内的sdk</a> tools下载地址：<a target="_blank" rel="noopener" href="http://www.androiddevtools.cn/">http://www.androiddevtools.cn/</a></li>
+<li>安装node.js：<a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a></li>
+</ol>
+<p>下载并安装完毕后，打开appium，点击Edit Configurations按钮，设置安卓根目录和java根目录。</p>
+<p><img src="../../image/image-20220701093503281.png" srcset="/my_world/img/loading.gif" lazyload alt="设置完毕后点击save and restart即可"></p>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>首先在<strong>本机</strong>开启appium服务器，ip不变，端口号为4723</p>
+<p>引入appium</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> appium <span class="hljs-keyword">import</span> webdriver</code></pre></div>
+<p>输入启动参数，这里只是连接对应的安卓手机</p>
+<div class="code-wrapper"><pre><code class="hljs python">desired_caps = &#123;&#125;
+desired_caps[<span class="hljs-string">&#x27;platformName&#x27;</span>] = <span class="hljs-string">&#x27;Android&#x27;</span>
+desired_caps[<span class="hljs-string">&#x27;deviceName&#x27;</span>] = <span class="hljs-string">&#x27;UUID&#x27;</span></code></pre></div>
+<p>具体的参数，地址：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Chaqian/article/details/109447117">【appium】appium自动化入门之基本参数完整版（67个appium基本参数和关键字）_Chaqian的博客-CSDN博客_appium参数</a></p>
+<p>开启appium的session连接</p>
+<div class="code-wrapper"><pre><code class="hljs python">driver = webdriver.Remote(<span class="hljs-string">&quot;http://localhost:4723/wd/hub&quot;</span>,desired_caps)</code></pre></div>
+<p>注意：<code>http://localhost:4723/wd/hub</code>这里的<code>wd/hub</code>不能多<code>/</code>，否则报错</p>
+<p>测试连接，开启淘宝app</p>
+<div class="code-wrapper"><pre><code class="hljs python">driver.activate_app(<span class="hljs-string">&quot;com.taobao.taobao&quot;</span>)</code></pre></div>
+<h2 id="apk操作"><a href="#apk操作" class="headerlink" title="apk操作"></a>apk操作</h2><h3 id="打开app"><a href="#打开app" class="headerlink" title="打开app"></a>打开app</h3><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 打开淘宝</span>
+driver.activate_app(<span class="hljs-string">&quot;com.taobao.taobao&quot;</span>)</code></pre></div>
+<p>查看打开的app的包名有3种办法</p>
+<p><strong>第一种</strong></p>
+<p>cmd中输入命令：<code>adb shell am monitor</code><br>然后启动需要获取包名的应用</p>
+<p><strong>第二种</strong></p>
+<p>cmd中输入命令：<code>adb shell pm list packages -3</code><br>查看自己安装的app包名</p>
+<p><strong>第三种</strong></p>
+<p>下载雷电模拟器的包名类名查看器，找到app后直接点击复制包名（方便快捷）</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://www.ldmnq.com/app/210.html">包名类名查看器电脑版下载<em>包名类名查看器PC版下载</em>雷电安卓模拟器 (ldmnq.com)</a></p>
+<h3 id="停止应用运行"><a href="#停止应用运行" class="headerlink" title="停止应用运行"></a>停止应用运行</h3><p>以网易云音乐为例</p>
+<div class="code-wrapper"><pre><code class="hljs python">stop_app(<span class="hljs-string">&quot;com.netease.cloudmusic&quot;</span>)</code></pre></div>
+<h3 id="安装-卸载应用"><a href="#安装-卸载应用" class="headerlink" title="安装/卸载应用"></a>安装/卸载应用</h3><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 安装应用</span>
+driver.install_app(<span class="hljs-string">&quot;D:\demo\tutorial-blackjack-release-signed.apk&quot;</span>)
+
+<span class="hljs-comment"># 卸载应用</span>
+driver.remove_app(<span class="hljs-string">&quot;com.netease.cloudmusic&quot;</span>)</code></pre></div>
+<h2 id="元素获取"><a href="#元素获取" class="headerlink" title="元素获取"></a>元素获取</h2><p>首先引入<code>AppiumBy</code></p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> selenium.webdriver.common.by <span class="hljs-keyword">import</span> By</code></pre></div>
+<p>这里用<code>find_element</code>接口，通过<code>by</code>和<code>value</code>寻找数值</p>
+<div class="code-wrapper"><pre><code class="hljs python">driver.find_element(by=By.XPATH,value = <span class="hljs-string">&quot;//android.widget.FrameLayout[@content-desc=\&quot;消息\&quot;]/android.widget.ImageView&quot;</span>)</code></pre></div>
+<p><code>by</code>的参数，可以通过<code>AppiumBy</code>去获取，常用的分别有：</p>
+<ul>
+<li><code>By.XPATH</code></li>
+<li><code>By.NAME</code></li>
+<li><code>By.ID</code></li>
+<li><code>By.CLASS_NAME</code></li>
+<li><code>By.LINK_TEXT</code></li>
+</ul>
+<h2 id="模拟操作"><a href="#模拟操作" class="headerlink" title="模拟操作"></a>模拟操作</h2><p>首先引入<code>TouchAction</code></p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> appium.webdriver.common.touch_action <span class="hljs-keyword">import</span> TouchAction</code></pre></div>
+<p> 普通的点击</p>
+<div class="code-wrapper"><pre><code class="hljs python">driver.find_element(by=AppiumBy.XPATH,value = <span class="hljs-string">&quot;//android.widget.FrameLayout[@content-desc=\&quot;消息\&quot;]/android.widget.ImageView&quot;</span>).click()</code></pre></div>
+<p>手指轻敲屏幕操作</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 通过元素定位方式敲击屏幕</span>
+el = driver.find_element(by=AppiumBy.XPATH,value = <span class="hljs-string">&quot;//*[contains(@text,&#x27;WLAN&#x27;)]&quot;</span>)
+TouchAction(driver).tap(el).perform()
+<span class="hljs-comment">#perform()方法发送命令到服务器执行操作</span>
+<span class="hljs-comment"># 通过坐标方式敲击屏幕，元素坐标:x=149,y=324</span>
+TouchAction(driver).tap(x=<span class="hljs-number">149</span>,y=<span class="hljs-number">324</span>).perform()</code></pre></div>
+<p>手指按下和释放操作</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 通过元素定位方式按下屏幕</span>
+el = driver.find_element(by=AppiumBy.XPATH,value = <span class="hljs-string">&quot;//*[contains(@text,&#x27;WLAN&#x27;)]&quot;</span>)
+TouchAction(driver).press(el).release().perform()
+<span class="hljs-comment">#通过坐标的方式，元素坐标x=149,y=324</span>
+TouchAction(driver).press(<span class="hljs-number">147</span>,<span class="hljs-number">324</span>).release().perform()</code></pre></div>
+<p>手指长按操作</p>
+<div class="code-wrapper"><pre><code class="hljs python">el =driver.find_element_by_id(<span class="hljs-string">&quot;android:id/title&quot;</span>)
+<span class="hljs-comment"># 通过元素定位方式长按元素</span>
+TouchAction(driver).long_press(el,duration=<span class="hljs-number">5000</span>).release().perform()
+<span class="hljs-comment"># 通过坐标方式长按元素，WiredSSID坐标:x=770,y=667</span>
+<span class="hljs-comment"># wait(5000)等待五秒</span>
+<span class="hljs-comment"># 添加等待(有长按X效果)／不添加等待(无长按效果)</span>
+TouchAction(driver).long_press(x=<span class="hljs-number">770</span>,y=<span class="hljs-number">667</span>,duration=<span class="hljs-number">5000</span>).release().perform()</code></pre></div>
+<p>滑动</p>
+<div class="code-wrapper"><pre><code class="hljs python">driver.swipe(start_x,start_y,end_x,end_y)</code></pre></div>
+<h2 id="元素等待"><a href="#元素等待" class="headerlink" title="元素等待"></a>元素等待</h2><p>引入<code>WebDriverWait</code>和<code>expected_conditions</code></p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> selenium.webdriver.support.wait <span class="hljs-keyword">import</span> WebDriverWait
+<span class="hljs-keyword">from</span> selenium.webdriver.support <span class="hljs-keyword">import</span> expected_conditions <span class="hljs-keyword">as</span> EC</code></pre></div>
+<p>实例：</p>
+<div class="code-wrapper"><pre><code class="hljs python">WebDriverWait(driver,timeout=<span class="hljs-number">10</span>).until(EC.element_to_be_clickable(el),message=<span class="hljs-string">&quot;找到元素啦&quot;</span>)</code></pre></div>
+<p><code>WebDriverWait</code>与<code>until</code>、<code>expected_conditions</code>联合判别元素是否存在，API如下：</p>
+<ul>
+<li><code>title_is</code>: 判断当前页面的title是否精确等于预期</li>
+<li><code>title_contains</code>: 判断当前页面的title是否包含预期字符串</li>
+<li><code>presence_of_element_located</code>: 判断某个元素是否被加到了dom树里，并不代表该元素一定可见</li>
+<li><code>visibility_of_element_located</code>: 判断某个元素是否可见.<strong>可见代表元素非隐藏，并且元素的宽和高都不等于0</strong></li>
+<li><code>visibility_of</code>: 跟上面的方法做一样的事情，只是上面的方法要传入locator，这个方法直接传定位到的element就好了</li>
+<li><code>presence_of_all_elements_located</code>: 判断是否至少有1个元素存在于dom树中。举个例子，如果页面上有n个元素的class都是’column-md-3’，那么只要有1个元素存在，这个方法就返回True</li>
+<li><code>text_to_be_present_in_element</code>: 判断某个元素中的text是否<strong>包含</strong>了预期的字符串</li>
+<li><code>text_to_be_present_in_element_value</code>: 判断某个元素中的value属性是否<strong>包含</strong>了预期的字符串</li>
+<li><code>frame_to_be_available_and_switch_to_it</code>: 判断该frame是否可以switch进去，如果可以的话，返回True并且switch进去，否则返回False</li>
+<li><code>invisibility_of_element_located</code>: 判断某个元素中是否不存在于dom树或不可见</li>
+<li><code>element_to_be_clickable</code>: 判断某个元素中是否可见并且是enable的，这样的话才叫clickable</li>
+<li><code>staleness_of</code>: 等某个元素从dom树中移除，注意，这个方法也是返回True或False</li>
+<li><code>element_to_be_selected</code>: 判断某个元素是否被选中了,一般用在下拉列表</li>
+<li><code>element_selection_state_to_be</code>: 判断某个元素的选中状态是否符合预期</li>
+<li><code>element_located_selection_state_to_be</code>: 跟上面的方法作用一样，只是上面的方法传入定位到的element，而这个方法传入locator</li>
+<li><code>alert_is_present</code>: 判断页面上是否存在alert</li>
+</ul>
+<h1 id="uiautomator2"><a href="#uiautomator2" class="headerlink" title="uiautomator2"></a>uiautomator2</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><p>uiautomator2是一个可以使用 Python 对 Android 设备进行 UI 自动化的库。其底层基于Google uiautomator，Google 提供的uiautomator库可以获取屏幕上任意一个 APP 的任意一个控件属性，并对其进行任意操作，目前仅支持 android 平台的原生应用测试。</p>
+<p>uiautomator2有如下特点：</p>
+<p>功能丰富 ：设备和开发机可以脱离数据线，可通过 WiFi 互联；</p>
+<p>得心应手 ：集成了 openstf/minicap 加快截图速度 , 集成了 openstf/minitouch 达到精确实时控制设备 , 修复了 xiaocong/uiautomator 经常性退出的问题；</p>
+<p>深度整合 ：代码进行了重构和精简，方便维护；</p>
+<h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><div class="code-wrapper"><pre><code class="hljs ada">pip install <span class="hljs-comment">--pre -U uiautomator2</span></code></pre></div>
+<h2 id="weditor安装"><a href="#weditor安装" class="headerlink" title="weditor安装"></a>weditor安装</h2><p>作者的python版本为3.8，安装最新的weditor会失败，所以需要指定weditor的版本</p>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">pip</span> install weditor==<span class="hljs-number">0</span>.<span class="hljs-number">6</span>.<span class="hljs-number">4</span></code></pre></div>
+<p>运行</p>
+<div class="code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">python -m weditor</span></code></pre></div>
+<p>使用参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/372294429">干货分享|APP自动化测试抓元素利器——weditor - 知乎 (zhihu.com)</a></p>
+<h2 id="连接设备"><a href="#连接设备" class="headerlink" title="连接设备"></a>连接设备</h2><h3 id="设备环境调控"><a href="#设备环境调控" class="headerlink" title="设备环境调控"></a>设备环境调控</h3><p>手机链接pc，输入adb命令<code>adb devices</code>发现设备后表明设备已连接成功</p>
+<p>pc终端输入命令，以安装atx-agent至手机，命令如下：</p>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">python</span> -m uiautomator<span class="hljs-number">2</span> init</code></pre></div>
+<h2 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h2><p>通过<code>adb devices</code>获取设备的UUID，然后输进参数即可</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> uiautomator2 <span class="hljs-keyword">as</span> u2  //依赖包
+d = u2.connect(<span class="hljs-string">&#x27;9568940ECCBB&#x27;</span>)</code></pre></div>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><h3 id="运行应用"><a href="#运行应用" class="headerlink" title="运行应用"></a>运行应用</h3><div class="code-wrapper"><pre><code class="hljs python">d.app_start(<span class="hljs-string">&quot;com.xueqiu.android&quot;</span>)</code></pre></div>
+<h3 id="停止应用"><a href="#停止应用" class="headerlink" title="停止应用"></a>停止应用</h3><div class="code-wrapper"><pre><code class="hljs python">d.app_stop(<span class="hljs-string">&quot;com.xueqiu.android&quot;</span>)</code></pre></div>
+<h3 id="点击"><a href="#点击" class="headerlink" title="点击"></a>点击</h3><p>分长按和点击两种，如下：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 通过text点击</span>
+d(text=<span class="hljs-string">&quot;Settings&quot;</span>).click()
+
+<span class="hljs-comment"># 长按有Settings文本的元素</span>
+d(text=<span class="hljs-string">&quot;Settings&quot;</span>).long_click()
+
+<span class="hljs-comment"># 点击坐标（相对坐标，适应不同分辨率）</span>
+w,h = d1.window_size()
+d.click(<span class="hljs-number">0.5</span>*w, <span class="hljs-number">0.5</span>*h)</code></pre></div>
+<p>ui2支持 android 中 UiSelector 类中的所有定位方式（也就是d后面括号的形参）可以进该网站查询：<a target="_blank" rel="noopener" href="https://developer.android.google.cn/reference/android/support/test/uiautomator/UiSelector">UiSelector  | Android Developers (google.cn)</a>，列举如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>指定text文本的元素</td>
+</tr>
+<tr>
+<td>textContains</td>
+<td>text中包含有指定文本的元素</td>
+</tr>
+<tr>
+<td>textMatches</td>
+<td>text符合指定正则的元素</td>
+</tr>
+<tr>
+<td>textStartsWith</td>
+<td>text以指定文本开头的元素</td>
+</tr>
+<tr>
+<td>className</td>
+<td>指定类名的元素</td>
+</tr>
+<tr>
+<td>classNameMatches</td>
+<td>className类名符合指定正则的元素</td>
+</tr>
+<tr>
+<td>description</td>
+<td>指定description文本的元素</td>
+</tr>
+<tr>
+<td>descriptionContains</td>
+<td>description中包含有指定文本的元素</td>
+</tr>
+<tr>
+<td>descriptionMatches</td>
+<td>description符合指定正则的元素</td>
+</tr>
+<tr>
+<td>descriptionStartsWith</td>
+<td>description以指定文本开头的元素</td>
+</tr>
+<tr>
+<td>checkable</td>
+<td>可检查的元素，参数为True或False</td>
+</tr>
+<tr>
+<td>checked</td>
+<td>已选中的元素，通常用于复选框，参数为True或False</td>
+</tr>
+<tr>
+<td>clickable</td>
+<td>可点击的元素，参数为True或False</td>
+</tr>
+<tr>
+<td>longClickable</td>
+<td>可长按的元素，参数为True或False</td>
+</tr>
+<tr>
+<td>scrollable</td>
+<td>可滚动的元素，参数为True或False</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>已激活的元素，参数为True或False</td>
+</tr>
+<tr>
+<td>focusable</td>
+<td>可聚焦的元素，参数为True或False</td>
+</tr>
+<tr>
+<td>focused</td>
+<td>获得了焦点的元素，参数为True或False</td>
+</tr>
+<tr>
+<td>selected</td>
+<td>当前选中的元素，参数为True或False</td>
+</tr>
+<tr>
+<td>packageName</td>
+<td>指定包名的元素</td>
+</tr>
+<tr>
+<td>packageNameMatches</td>
+<td>packageName为符合正则的元素</td>
+</tr>
+<tr>
+<td>resourceId</td>
+<td>为指定resourceId的元素</td>
+</tr>
+<tr>
+<td>resourceIdMatches</td>
+<td>resourceId为符合指定正则的元素</td>
+</tr>
+<tr>
+<td>index</td>
+<td>元素索引</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h3><div class="code-wrapper"><pre><code class="hljs python">w,h = d.window_size()
+d.swipe(<span class="hljs-number">0.1</span>*w,<span class="hljs-number">0.5</span>*h,<span class="hljs-number">0.8</span>*w,<span class="hljs-number">0.5</span>*h) <span class="hljs-comment"># 从(0.1,0.5)滑动到(0.8,0.5)</span>
+d.swipe_ext(<span class="hljs-string">&quot;up&quot;</span>, <span class="hljs-number">0.5</span>) <span class="hljs-comment"># 向上滑动0.5，可以为up、down、left和right</span></code></pre></div>
+<h3 id="元素等待-1"><a href="#元素等待-1" class="headerlink" title="元素等待"></a>元素等待</h3><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 等待元素的出现</span>
+d(text=<span class="hljs-string">&quot;Settings&quot;</span>).wait(timeout=<span class="hljs-number">10.0</span>)
+
+<span class="hljs-comment"># 等待元素消失，返回True False,timout默认为全局设置的等待时间</span>
+d(text=<span class="hljs-string">&#x27;Settings&#x27;</span>).wait_gone(timeout=<span class="hljs-number">20</span>)</code></pre></div>
+<h3 id="发送文本"><a href="#发送文本" class="headerlink" title="发送文本"></a>发送文本</h3><div class="code-wrapper"><pre><code class="hljs python">d(text=<span class="hljs-string">&quot;Settings&quot;</span>).set_text(<span class="hljs-string">&quot;你好&quot;</span>)</code></pre></div>
+<h3 id="输入法切换"><a href="#输入法切换" class="headerlink" title="输入法切换"></a>输入法切换</h3><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 切换成ui2的输入法，这里会隐藏掉系统原本的输入法,默认是使用系统输入法</span>
+<span class="hljs-comment"># 当传入False时会使用系统默认输入法，默认为Fasle</span>
+d.set_fastinput_ime(<span class="hljs-literal">True</span>)
+<span class="hljs-comment"># 查看当前输入法</span>
+d.current_ime()
+<span class="hljs-comment">#返回值</span>
+(<span class="hljs-string">&#x27;com.github.uiautomator/.FastInputIME&#x27;</span>, <span class="hljs-literal">True</span>)</code></pre></div>
+<h3 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h3><div class="code-wrapper"><pre><code class="hljs python">d.screenshot(<span class="hljs-string">&#x27;test.png&#x27;</span>)</code></pre></div>
+<h3 id="录屏"><a href="#录屏" class="headerlink" title="录屏"></a>录屏</h3><p>进行录屏之前，需要安装如下库：</p>
+<div class="code-wrapper"><pre><code class="hljs awk">pip install -U <span class="hljs-string">&quot;uiautomator2[image]&quot;</span> -i https:<span class="hljs-regexp">//</span>pypi.doubanio.com/simple</code></pre></div>
+<p>开始录屏</p>
+<div class="code-wrapper"><pre><code class="hljs python">d.screenrecord(<span class="hljs-string">&#x27;./test.mp4&#x27;</span>)</code></pre></div>
+<p>结束录屏</p>
+<div class="code-wrapper"><pre><code class="hljs python">d.screenrecord.stop()</code></pre></div>
+<h3 id="执行shell命令"><a href="#执行shell命令" class="headerlink" title="执行shell命令"></a>执行shell命令</h3><div class="code-wrapper"><pre><code class="hljs python">d.shell(<span class="hljs-string">&quot;dumpsys wifi | grep mWifiInfo&quot;</span>) <span class="hljs-comment"># 检查wifi网络状态</span>
+
+d.shell(<span class="hljs-string">&quot;svc wifi disable&quot;</span>) <span class="hljs-comment"># 关闭wifi</span>
+d.shell(<span class="hljs-string">&quot;svc wifi enable&quot;</span>) <span class="hljs-comment"># 开启wifi</span>
+
+d.shell(<span class="hljs-string">&quot;svc data disable&quot;</span>) <span class="hljs-comment"># 关闭数据网络</span>
+d.shell(<span class="hljs-string">&quot;svc data enable&quot;</span>) <span class="hljs-comment"># 开启数据网络</span></code></pre></div>
+<h2 id="与Airtest合作"><a href="#与Airtest合作" class="headerlink" title="与Airtest合作"></a>与Airtest合作</h2><p>因为uiautomator2的图像识别比Airtest差，可以用Airtest弥补这个缺陷，Airtest与uiautomator2并未冲突，这两个框架可以同时启动。</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> airtest.core.api <span class="hljs-keyword">import</span> *
+<span class="hljs-keyword">import</span> uiautomator2 <span class="hljs-keyword">as</span> u2
+
+dev = connect_device(<span class="hljs-string">&quot;Android://127.0.0.1:5037/xxxxx&quot;</span>)
+d = u2.connect(<span class="hljs-string">&#x27;xxxxx&#x27;</span>)
+
+d.app_start(<span class="hljs-string">&quot;com.taobao.taobao&quot;</span>)
+touch(Template(<span class="hljs-string">r&quot;taobao.png&quot;</span>))</code></pre></div>
+<h1 id="uiautomation"><a href="#uiautomation" class="headerlink" title="uiautomation"></a>uiautomation</h1><h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><p>uiautomation是<code>yinkaisheng</code>业余时间开发的供其自己使用的一个模块，uiautomation封装了微软UIAutomation API，支持自动化Win32，MFC，WPF，Modern UI(Metro UI), Qt, IE, Firefox等UI框架，最新版uiautomation2.0目前只支持Python 3版本，依赖comtypes和typing这两个包，但不要使用3.7.6和3.8.1这两个版本，comtypes在这两个版本中不能正常工作。</p>
+<p>uiautomation支持在Windows XP SP3或更高版本的Windows桌面系统上运行。如果是Windows XP系统，请确保系统目录有这个文件：UIAutomationCore.dll。如果没有，需要安装补丁 KB971513 才能支持UIAutomtion.在Windows 7或更高版本Windows系统上使用uiautomation时，要以管理员权限运行Python,否则uiautomation运行时很多函数可能会执行失败或抛出异常。或者先以管理员权限运行cmd.exe，在cmd中再调用Python。</p>
+<h2 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h2><div class="code-wrapper"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> uiautomation</code></pre></div>
+<h2 id="Windows端元素定位工具及控件类型（backend）的判断"><a href="#Windows端元素定位工具及控件类型（backend）的判断" class="headerlink" title="Windows端元素定位工具及控件类型（backend）的判断"></a>Windows端元素定位工具及控件类型（backend）的判断</h2><p>所有的工具下载链接：<a target="_blank" rel="noopener" href="https://github.com/blackrosezy/gui-inspect-tool">GitHub - blackrosezy/gui-inspect-tool: Gui Inspect tool for Windows</a></p>
+<h3 id="控件类型（backend）的判断"><a href="#控件类型（backend）的判断" class="headerlink" title="控件类型（backend）的判断"></a>控件类型（backend）的判断</h3><p>由于一个界面中有很多种控件类型，所以在automation中不同的控件类型对应着不同的控件类</p>
+<p>可使用Inspect工具判断backend适合写哪种。首先根据上面的链接下载工具，然后打开Inspect.exe</p>
+<p>点击inspect左上角的下拉列表中切换到UI Automation</p>
+<p><img src="../../image/image-20220808143847697.png" srcset="/my_world/img/loading.gif" lazyload alt="切换到UI Automation"></p>
+<p>鼠标点一下需要测试的程序窗体，inspect就会显示相关信息。 </p>
+<p><img src="../../image/image-20220808143949290.png" srcset="/my_world/img/loading.gif" lazyload alt="点击测试窗体，inspect显示相关信息"></p>
+<p>找到<code>ControlType</code>，若类型以<code>UIA</code>开头，则说明backend为uia。</p>
+<p><img src="../../image/image-20220808144354889.png" srcset="/my_world/img/loading.gif" lazyload alt="以uia开头"></p>
+<h3 id="Windows端元素定位工具介绍"><a href="#Windows端元素定位工具介绍" class="headerlink" title="Windows端元素定位工具介绍"></a>Windows端元素定位工具介绍</h3><p>使用UISpy或SPY++（文件名为：SPYXX），<code>spy++</code>显示的很全，各种窗口都能够展示出来，看着十分多非常乱，相比来讲 <code>uispy</code>就比较简洁实用了，只展示主要的窗口，节目很整洁很清晰。</p>
+<p><img src="../../image/image-20220808150359319.png" srcset="/my_world/img/loading.gif" lazyload alt="UISpy窗口演示"></p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>打开记事本，输入<code>test uiautomation</code>后全选删除，并关闭程序</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> uiautomation <span class="hljs-keyword">as</span> auto
+<span class="hljs-keyword">import</span> subprocess,os
+
+<span class="hljs-comment"># 打开程序</span>
+subprocess.Popen(<span class="hljs-string">&#x27;NotePad.exe&#x27;</span>)
+<span class="hljs-comment"># 找到文本框</span>
+editor = auto.EditControl(Name=<span class="hljs-string">&quot;文本编辑器&quot;</span>,ClassName=<span class="hljs-string">&quot;Edit&quot;</span>)
+editor.Click() <span class="hljs-comment"># 点击</span>
+editor.SendKeys(<span class="hljs-string">&quot;test uiautomation&quot;</span>) <span class="hljs-comment"># 发送test uiautomation</span>
+editor.SendKeys(<span class="hljs-string">&quot;&#123;Ctrl&#125;a&quot;</span>) <span class="hljs-comment"># 全选</span>
+editor.SendKeys(<span class="hljs-string">&quot;&#123;Delete&#125;&quot;</span>) <span class="hljs-comment"># 删除</span>
+<span class="hljs-comment"># 杀死进程</span>
+os.system(<span class="hljs-string">&quot;taskkill /IM NotePad.exe /F&quot;</span>)</code></pre></div>
+<h2 id="程序的打开与关闭"><a href="#程序的打开与关闭" class="headerlink" title="程序的打开与关闭"></a>程序的打开与关闭</h2><p>在进行自动化测试的时候，需要打开某项Windows程序，这个时候就用到了<code>subprocess</code>，方法如下：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> subprocess
+<span class="hljs-comment"># 打开程序，filepath为程序所在文件路径</span>
+subprocess.Popen(<span class="hljs-string">&#x27;filepath&#x27;</span>)</code></pre></div>
+<p>关闭某项程序，可以直接杀死进程</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-comment">#杀死程序进程</span>
+os.popen(<span class="hljs-string">&#x27;taskkill /IM xxx.exe /F&#x27;</span>)</code></pre></div>
+<h2 id="引入uiautomation"><a href="#引入uiautomation" class="headerlink" title="引入uiautomation"></a>引入uiautomation</h2><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> uiautomation <span class="hljs-keyword">as</span> auto</code></pre></div>
+<h2 id="元素定位"><a href="#元素定位" class="headerlink" title="元素定位"></a>元素定位</h2><p>automation支持如下的控件类：</p>
+<ul>
+<li>Control: 控制类型父类</li>
+<li>WindowControl: 窗口控件类</li>
+<li>PaneControl: 窗格控件类型</li>
+<li>ButtonControl: 按钮控制类型</li>
+<li>CheckBoxControl: 复选框控件类型</li>
+<li>ComboBoxControl: 组合框控件类型</li>
+<li>EditControl: 编辑控件类型</li>
+<li>ListControl: 列表控件类型</li>
+<li>ListItemControl: ListItem 控件类型</li>
+<li>MenuControl: 菜单控制类型</li>
+<li>MenuBarControl: 菜单栏控件类型</li>
+<li>MenuItemControl: 菜单项控件类型</li>
+<li>ScrollBarControl: 滚动条控件类型</li>
+<li>SliderControl: 滑块控制类型</li>
+<li>TabControl: 选项卡控件类型</li>
+<li>TabItemControl: TabItem 控件类型</li>
+<li>TableControl: 表控件类型</li>
+<li>TextControl: 文本控件类型</li>
+<li>TitleBarControl: 标题栏控件类型</li>
+<li>ToolBarControl: 工具栏控件类型</li>
+<li>ToolTipControl: 工具提示控件类型</li>
+<li>TreeControl: 树控件类型</li>
+<li>TreeItemControl: 树项控件类型</li>
+<li>AppBarControlAppBar: 控件类型</li>
+<li>CalendarControl: 日历控件类型</li>
+<li>DataGridControl: 数据网格控件类型</li>
+<li>GroupControl: 群控类型</li>
+<li>HeaderControl: 标题控件类型</li>
+<li>HeaderItemControl: HeaderItem: 控件类型</li>
+<li>HyperlinkControl: 超链接控制类型</li>
+<li>ImageControl: 图像控制类型</li>
+<li>DataItemControl: 数据项控件类型</li>
+<li>DocumentControl: 文件控制类型</li>
+<li>ProgressBarControl: ProgressBar: 控件类型</li>
+<li>RadioButtonControl: 单选按钮控件类型</li>
+<li>SemanticZoomControl: SemanticZoom控制类型</li>
+<li>SeparatorControl: 分离器控制类型</li>
+<li>SpinnerControl: 微调控制类型</li>
+<li>SplitButtonControl: 拆分按钮控件类型</li>
+<li>StatusBarControl: 状态栏控件类型</li>
+<li>ThumbControl: 拇指控制类型</li>
+</ul>
+<p>控件类支持的参数（xxxControl内的形参）：</p>
+<ul>
+<li>searchFromControl: 从哪个控件开始查找，如果为None，从根节点Desktop开始查找</li>
+<li>searchDepth: 搜索深度</li>
+<li>searchInterval: 搜索间隔</li>
+<li>foundIndex: 搜索到的满足搜索条件的控件索引，索引从1开始</li>
+<li>Name: 控件名字</li>
+<li>SubName: 控件部分名字</li>
+<li>RegexName: 使用re.match匹配符合正则表达式的名字，Name,SubName,RegexName只能使用一个，不能同时使用</li>
+<li>ClassName: 类名字</li>
+<li>AutomationId: 控件AutomationId</li>
+<li>ControlType: 控件类型</li>
+<li>Depth: 控件相对于searchFromControl的精确深度</li>
+<li>Compare: 自定义比较函数function(control: Control, depth: int)-&gt;bool</li>
+</ul>
+<p><strong>searchDepth和Depth的区别：</strong></p>
+<blockquote>
+<p><strong>searchDepth</strong>在指定的深度范围内（包括1~searchDepth层中的所有子孙控件）搜索第一个满足搜索条件的控件</p>
+<p><strong>Depth</strong>只在Depth所在的深度（如果Depth&gt;1，排除1~searchDepth-1层中的所有子孙控件）搜索第一个满足搜索条件的控件</p>
+</blockquote>
+<p>在代码中是这样实现的：</p>
+<div class="code-wrapper"><pre><code class="hljs python">editor = auto.EditControl(Name=<span class="hljs-string">&quot;文本编辑器&quot;</span>,ClassName=<span class="hljs-string">&quot;Edit&quot;</span>)
+editor.Click() <span class="hljs-comment"># 点击</span></code></pre></div>
+<p>也不排除会有组合框的出现，组合框的用法为：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 查找下拉框</span>
+comboBox=ComboBoxControl(searchFromControl=<span class="hljs-string">&quot;xxx&quot;</span>,AutomationId=<span class="hljs-string">&quot;xxx&quot;</span>)
+
+<span class="hljs-comment"># 点击组合框</span>
+comboBox.click()
+
+<span class="hljs-comment"># 选择需要的选项；</span>
+comboBox.Select(“xxxx”)
+
+<span class="hljs-comment"># 展开</span>
+comboBox.Expand()
+
+<span class="hljs-comment"># 折叠</span>
+comboBox.Collapse()</code></pre></div>
+<h2 id="窗口方法"><a href="#窗口方法" class="headerlink" title="窗口方法"></a>窗口方法</h2><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 查找窗口中的程序;</span>
+window = WindowContrl(searchDepth=<span class="hljs-string">&quot;xxxx&quot;</span>,ClassName=<span class="hljs-string">&quot;xxxx&quot;</span>,SubName=<span class="hljs-string">&quot;xxxx&quot;</span>) 
+
+<span class="hljs-comment"># 激活窗口;</span>
+window.SetActive()   
+
+<span class="hljs-comment"># 窗口置顶;</span>
+window.SetTopMost() 
+
+<span class="hljs-comment"># 窗口居中</span>
+window.MoveToCenter()
+
+<span class="hljs-comment"># 判断此窗口是否存在;</span>
+window.Exists(maxSearchSeconds)
+
+<span class="hljs-comment"># 关闭窗口；</span>
+window.GetWindowPattern().Close()
+
+<span class="hljs-comment"># 窗口最大化；</span>
+window.ShowWindow(uiautomation.ShowWindow.Maximize)
+
+<span class="hljs-comment"># 窗口最大化；</span>
+window.Maximize()
+
+<span class="hljs-comment"># 截图；</span>
+window.CaptureToImage(‘Notepad.png’)  
+
+<span class="hljs-comment"># 切换窗口</span>
+window.SwitchToThisWindow()
+
+<span class="hljs-comment"># 打开控制台(调用的是automation类)</span>
+auto.GetConsoleWindow() 
+
+<span class="hljs-comment"># 显示桌面(调用的是automation类)</span>
+auto.ShowDesktop()</code></pre></div>
+<h2 id="滚动条滚动"><a href="#滚动条滚动" class="headerlink" title="滚动条滚动"></a>滚动条滚动</h2><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#滚动滚动条，直到文本在窗口可见为止</span>
+ScrollIntoView()</code></pre></div>
+<h2 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h2><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 找到元素</span>
+x = auto.xxxxControl(Name=<span class="hljs-string">&quot;文本编辑器&quot;</span>,ClassName=<span class="hljs-string">&quot;Edit&quot;</span>)
+
+<span class="hljs-comment">#单击</span>
+x.Click()
+
+<span class="hljs-comment">#双击</span>
+x.DoubleClick()
+
+<span class="hljs-comment">#右键点击</span>
+x.RighClik() 
+
+<span class="hljs-comment">#移动</span>
+x.MoveTo()
+
+<span class="hljs-comment"># 按压左鼠标</span>
+x.PressMouse()
+
+<span class="hljs-comment">#释放左鼠标</span>
+x.ReleaseMouse()
+
+<span class="hljs-comment">#按压右鼠标</span>
+x.RightPressMouse()
+
+<span class="hljs-comment">#释放右鼠标</span>
+x.RightReleaseMouse()</code></pre></div>
+<h2 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h2><p><code>SendKeys</code>实际上是模拟用户在操作键盘，就是按下某个键盘上的按钮</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 找到元素</span>
+x = auto.xxxxControl(Name=<span class="hljs-string">&quot;文本编辑器&quot;</span>,ClassName=<span class="hljs-string">&quot;Edit&quot;</span>)
+
+x.SendKeys(<span class="hljs-string">&quot;text&quot;</span>) <span class="hljs-comment"># 输入text</span>
+x.SendKeys(<span class="hljs-string">&quot;&#123;Ctrl&#125;a&quot;</span>) <span class="hljs-comment"># 组合键ctrl+a</span></code></pre></div>
+<p>关于组合键的使用，具体如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>按键说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{Ctrl}a</td>
+<td>Ctrl+a</td>
+</tr>
+<tr>
+<td>{Delete}</td>
+<td>Delete</td>
+</tr>
+<tr>
+<td>{Ctrl}v</td>
+<td>Ctrl+v</td>
+</tr>
+<tr>
+<td>{Ctrl}s</td>
+<td>Ctrl+s</td>
+</tr>
+<tr>
+<td>{Ctrl}{Shift}s</td>
+<td>Ctrl+Shift+s</td>
+</tr>
+<tr>
+<td>{Win}e</td>
+<td>Win+e</td>
+</tr>
+<tr>
+<td>{PageDown}</td>
+<td>PageDown</td>
+</tr>
+<tr>
+<td>0-9、a-z、A-Z、’ ’ = [ ] / \ \ ，. 等</td>
+<td>字符键</td>
+</tr>
+<tr>
+<td>{Back}</td>
+<td>删除</td>
+</tr>
+<tr>
+<td>{Clear}</td>
+<td>清除</td>
+</tr>
+<tr>
+<td>{Enter}</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>{Alt}</td>
+<td>Alt</td>
+</tr>
+<tr>
+<td>{Space}</td>
+<td>空格</td>
+</tr>
+<tr>
+<td>{F1}</td>
+<td>F1</td>
+</tr>
+<tr>
+<td>{BROWSER_BACK}</td>
+<td>浏览器后退</td>
+</tr>
+<tr>
+<td>{BROWSER_FORWARD}</td>
+<td>浏览器前进</td>
+</tr>
+<tr>
+<td>{BROWSER_REFRESH}</td>
+<td>浏览器刷新</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="等待"><a href="#等待" class="headerlink" title="等待"></a>等待</h2><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 显示等待</span>
+window.SendKeys(<span class="hljs-string">&#x27;&#123;Ctrl&#125;c&#x27;</span>, waitTime = <span class="hljs-number">0.1</span>) 
+
+<span class="hljs-comment">#隐式等待</span>
+uiautomation.uiautomation.TIME_OUT_SECOND = <span class="hljs-number">10</span></code></pre></div>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><div class="code-wrapper"><pre><code class="hljs python">uiautomation.Logger.ColorfullyWrite(<span class="hljs-string">&#x27;运行&quot;&lt;Color=Cyan&gt;automation.py -h&lt;/Color&gt;&quot;显示帮助\n\n&#x27;</span>)</code></pre></div>
+<h2 id="获取剪切板的文本"><a href="#获取剪切板的文本" class="headerlink" title="获取剪切板的文本"></a>获取剪切板的文本</h2><div class="code-wrapper"><pre><code class="hljs python">GetClipboardText()</code></pre></div>
+<p>复制或者剪切用<code>SendKeys()</code>解决</p>
+<h2 id="控件判断"><a href="#控件判断" class="headerlink" title="控件判断"></a>控件判断</h2><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#判断控件存在</span>
+auto.Exists()
+
+<span class="hljs-comment">#设置一个时间内查找到控件</span>
+auto.WaitForExist()
+
+<span class="hljs-comment">#重新查找控件</span>
+auto.Refind()
+
+<span class="hljs-comment">#判断控件是否消失</span>
+auto.Disappears()
+
+<span class="hljs-comment">#判断控件是否可用</span>
+element.IsEnabled</code></pre></div>
+<h2 id="控件矩形坐标"><a href="#控件矩形坐标" class="headerlink" title="控件矩形坐标"></a>控件矩形坐标</h2><div class="code-wrapper"><pre><code class="hljs python">rect = control.BoundingRectangle
+BoundingRectangle<span class="hljs-comment">#return rect.left, rect.top, rect.right, rect.bottom</span>
+rect.width() <span class="hljs-comment">#宽度</span>
+rect.height()<span class="hljs-comment">#高度</span></code></pre></div>
+<h2 id="截图-1"><a href="#截图-1" class="headerlink" title="截图"></a>截图</h2><div class="code-wrapper"><pre><code class="hljs python">CaptureToImage()</code></pre></div>
+<h1 id="Pytest"><a href="#Pytest" class="headerlink" title="Pytest"></a>Pytest</h1><p>Pytest是python的一种单元测试框架，主要有如下特点：</p>
+<ul>
+<li>简单灵活，容易上手</li>
+<li>支持参数化</li>
+<li>能够支持简单的单元测试和复杂的功能测试，还可以用来做selenium/appnium等自动化测试、接口自动化测试（pytest+requests）</li>
+<li>pytest具有很多第三方插件，并且可以自定义扩展，比较好用的如pytest-selenium（集成selenium）、pytest-html（完美html测试报告生成）、pytest-rerunfailures（失败case重复执行）、pytest-xdist（多CPU分发）等</li>
+<li>测试用例的skip和xfail处理</li>
+<li>可以很好的和jenkins集成</li>
+<li>report框架——allure 也支持了pytest</li>
+</ul>
+<h2 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h2><div class="code-wrapper"><pre><code class="hljs shell">pip install pytest</code></pre></div>
+<p>验证安装是否成功，并查看pytest版本</p>
+<div class="code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">pytest -V</span></code></pre></div>
+<h2 id="第一个pytest程序"><a href="#第一个pytest程序" class="headerlink" title="第一个pytest程序"></a>第一个pytest程序</h2><p>首先了解pytest的运行规则：</p>
+<ol>
+<li>查找当前目录及其子目录下<strong>以test开头或者结尾的py文件</strong></li>
+<li>找到文件后，在文件中找到<strong>以test_开头方法并执行</strong>。</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestPytest</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">    测试类</span>
+<span class="hljs-string">    &quot;&quot;&quot;</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_print</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        测试方法</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;helloworld&quot;</span>)</code></pre></div>
+<p>使用IDE运行（python tests for xxx）后返回：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">Launching pytest with arguments TestPytest.py --no-header --no-summary -q in xxxxxx
+
+============================= test session starts =============================
+collecting ... collected 1 item
+
+TestPytest.py::TestPytest::test_print PASSED                             [100%]helloworld
+
+
+============================== 1 passed in 0.01s ==============================</code></pre></div>
+<p>注意，若代码中出现异常，则不会执行测试</p>
+<h2 id="运行模式"><a href="#运行模式" class="headerlink" title="运行模式"></a>运行模式</h2><p>pytest的运行是使用命令行运行的</p>
+<p>直接运行py文件中所有test_方法，默认从上到下运行程序，使用mark标记更改运行的程序<code>@pytest.mark.run(order=3)</code></p>
+<div class="code-wrapper"><pre><code class="hljs shell">pytest test.py</code></pre></div>
+<p>当某个py文件中存在多个类时，想要运行其中某个类</p>
+<div class="code-wrapper"><pre><code class="hljs shell">pytest test.py::TestOne</code></pre></div>
+<p>运行py文件中某个类的某个方法</p>
+<div class="code-wrapper"><pre><code class="hljs shell">pytest test.py::TestOne::test_one</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/appnium/">appnium</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/UIautomator2/">UIautomator2</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/PyAutoGUI/">PyAutoGUI</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/vulmap%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vulmap使用指南</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88%E5%A4%A7%E5%85%A8/">
+                        <span class="hidden-mobile">SSM框架整合大全</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

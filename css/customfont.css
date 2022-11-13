@@ -1,0 +1,79 @@
+/* 晴空明朝 Bold */
+@font-face{
+	font-family:'AozoraMincho-bold-2';
+	src:url('../ttf/AozoraMincho-bold-2.ttf');
+}
+/* 晴空明朝 Medium */
+@font-face{
+	font-family:'AozoraMinchoMedium-2';
+	src:url('../ttf/AozoraMinchoMedium-2.ttf');
+}
+/* -----------------
+----- 基本 --------
+-------------------*/
+/* 导航栏 */
+#navbar{
+	font-family:'AozoraMincho-bold-2';
+}
+.nav-item{
+	font-family:'AozoraMincho-bold-2';
+}
+/* 页面标题 */
+#subtitle{
+	font-family:'AozoraMincho-bold-2';
+}
+/* 页面信息 */
+.page-header{
+	font-family:'AozoraMinchoMedium-2';
+}
+/* 页脚 */
+footer{
+	font-family:'AozoraMinchoMedium-2';
+}
+/* -----------------
+----- 首页 --------
+-------------------*/
+/* 首页展示标题 */
+.index-header{
+	font-family:'AozoraMincho-bold-2';
+}
+/* 首页描述 */
+.index-excerpt{
+	font-family:'AozoraMincho-bold-2';
+}
+/* -----------------
+----- 文章 --------
+-------------------*/
+/* 文章标题 */
+.markdown-body h1,h2,h3,h4,h5,h6{
+	font-family:'AozoraMincho-bold-2';
+}
+/* 文章导航 */
+#toc-body{
+	font-family:'AozoraMincho-bold-2';
+}
+/* 文章正文、代码 */
+#board-ctn p,li{
+	font-family:'AozoraMinchoMedium-2';
+}
+#board-ctn code{
+	font-family:'AozoraMinchoMedium-2';
+}
+/* -----------------
+----- 关于 --------
+-------------------*/
+/* 关于--副标题 */
+.about-intro{
+	font-family:'AozoraMincho-bold-2';
+}
+/* 关于正文，代码 */
+.about-content .markdown-body p,li{
+	font-family:'AozoraMinchoMedium-2';
+}
+.about-content .markdown-body code{
+	font-family:'AozoraMinchoMedium-2';
+}
+/* 关于标题 */
+.about-content .markdown-body h1,h2,h3,h4,h5,h6{
+	font-family:'AozoraMincho-bold-2';
+}

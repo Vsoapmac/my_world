@@ -1,0 +1,837 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>自动化办公类包大合集 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="自动化办公类包大合集">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-06 10:30" pubdate>
+        2022年4月6日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      42
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">自动化办公类包大合集</h1>
+            
+            <div class="markdown-body">
+              <p>办公自动化（Office Automation，简称OA）是将现代化办公和计算机技术结合起来的一种新型的办公方式。办公自动化没有统一的定义，凡是在传统的办公室中采用各种新技术、新机器、新设备从事办公业务，都属于办公自动化的领域。 通过实现办公自动化，或者说实现数字化办公，可以优化现有的管理组织结构，调整管理体制，在提高效率的基础上，增加协同办公能力，强化决策的一致性 。</p>
+<p>该文章主要讲解能够实现自动化办公的一些类和包，并且是如何使用它们的</p>
+<h1 id="Xlwings"><a href="#Xlwings" class="headerlink" title="Xlwings"></a>Xlwings</h1><p>xlwings是 Python 的一个第三方库并且开源免费。它能够非常方便的读写Excel文件中的数据，并且能够进行单元格格式的修改。它还可以和matplotlib、numpy以及pandas无缝连接，支持读写numpy、pandas的数据类型，将matplotlib可视化图表导入到excel中。最重要的是xlwings可以调用Excel文件中VBA写好的程序，也可以让VBA调用用Python写的程序。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><div class="code-wrapper"><pre><code class="hljs python">pip install xlwings</code></pre></div>
+<h2 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h2><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> xlwings <span class="hljs-keyword">as</span> xw</code></pre></div>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>首先了解excel大致操作，首先打开excel，打开excel中选择其中的一个sheet，在sheet中操作单元格。</p>
+<h3 id="表相关"><a href="#表相关" class="headerlink" title="表相关"></a>表相关</h3><p>新建xlwings app</p>
+<div class="code-wrapper"><pre><code class="hljs python">app = xw.App(visible=<span class="hljs-literal">False</span>,add_book=<span class="hljs-literal">False</span>) <span class="hljs-comment"># 在打开app时，后台打开</span></code></pre></div>
+<p>打开excel表格</p>
+<div class="code-wrapper"><pre><code class="hljs python">book = app.books.<span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;./test.xlsx&quot;</span>)</code></pre></div>
+<p>保存表格</p>
+<div class="code-wrapper"><pre><code class="hljs python">book.save()</code></pre></div>
+<p>实例化sheet表对象</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet = book.sheets[<span class="hljs-string">&quot;sheet1&quot;</span>]</code></pre></div>
+<p>查看excel绝对路径</p>
+<div class="code-wrapper"><pre><code class="hljs python">book.fullname</code></pre></div>
+<p>查看sheet表的名字</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.name</code></pre></div>
+<h3 id="单元格相关"><a href="#单元格相关" class="headerlink" title="单元格相关"></a>单元格相关</h3><h4 id="数据相关"><a href="#数据相关" class="headerlink" title="数据相关"></a>数据相关</h4><p>在单元格中写入数据</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).value = <span class="hljs-string">&quot;xlwings&quot;</span></code></pre></div>
+<p>读取单元格内容</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).value</code></pre></div>
+<p>清除单元格内容和格式</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).clear()</code></pre></div>
+<p>获取单元格的列标</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).column</code></pre></div>
+<p>获取单元格的行标</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).row</code></pre></div>
+<p>在单元格中写入批量数据，只需要指定其单元格位置即可</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A2&#x27;</span>).value = [[<span class="hljs-string">&#x27;Foo 1&#x27;</span>, <span class="hljs-string">&#x27;Foo 2&#x27;</span>, <span class="hljs-string">&#x27;Foo 3&#x27;</span>], [<span class="hljs-number">10.0</span>, <span class="hljs-number">20.0</span>, <span class="hljs-number">30.0</span>]]</code></pre></div>
+<p>读取表中批量数据</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).expand().value
+sheet[<span class="hljs-string">&#x27;A1&#x27;</span>].expand().value</code></pre></div>
+<p>直接与电脑里的活动表格进行交互</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 写入</span>
+xw.Range(<span class="hljs-string">&quot;E1&quot;</span>).value = <span class="hljs-string">&quot;xlwings&quot;</span>
+<span class="hljs-comment"># 读取</span>
+xw.Range(<span class="hljs-string">&quot;E1&quot;</span>).value</code></pre></div>
+<h4 id="格式相关"><a href="#格式相关" class="headerlink" title="格式相关"></a>格式相关</h4><p>获取单元格的行高</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).row_height
+sheet[<span class="hljs-string">&#x27;A1&#x27;</span>].row_height</code></pre></div>
+<p>获取单元格的列宽</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).column_width
+sheet[<span class="hljs-string">&#x27;A1&#x27;</span>].column_width</code></pre></div>
+<p>整一列的列宽自适应</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).columns.autofit()
+sheet[<span class="hljs-string">&#x27;A1&#x27;</span>].columns.autofit()</code></pre></div>
+<p>整一行的行高自适应</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).rows.autofit()
+sheet[<span class="hljs-string">&#x27;A1&#x27;</span>].rows.autofit()</code></pre></div>
+<p>给单元格上背景色，传入RGB值</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).color = (<span class="hljs-number">34</span>,<span class="hljs-number">139</span>,<span class="hljs-number">34</span>)
+sheet[<span class="hljs-string">&#x27;A1&#x27;</span>].color = (<span class="hljs-number">34</span>,<span class="hljs-number">139</span>,<span class="hljs-number">34</span>)</code></pre></div>
+<p>获取单元格颜色，RGB值</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).color
+sheet[<span class="hljs-string">&#x27;A1&#x27;</span>].color</code></pre></div>
+<p>清除单元格颜色</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).color = <span class="hljs-literal">None</span>
+sheet[<span class="hljs-string">&#x27;A1&#x27;</span>].color = <span class="hljs-literal">None</span></code></pre></div>
+<h4 id="公式相关"><a href="#公式相关" class="headerlink" title="公式相关"></a>公式相关</h4><p>输入公式，相应单元格会出现计算结果</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).formula = <span class="hljs-string">&#x27;=SUM(B6:B7)&#x27;</span>
+sheet[<span class="hljs-string">&#x27;A1&#x27;</span>].formula = <span class="hljs-string">&#x27;=SUM(B6:B7)&#x27;</span></code></pre></div>
+<p>获取单元格公式</p>
+<div class="code-wrapper"><pre><code class="hljs python">sheet.<span class="hljs-built_in">range</span>(<span class="hljs-string">&#x27;A1&#x27;</span>).formula_array
+sheet[<span class="hljs-string">&#x27;A1&#x27;</span>].formula_array</code></pre></div>
+<h2 id="工具类整合"><a href="#工具类整合" class="headerlink" title="工具类整合"></a>工具类整合</h2><p>直接复制粘贴即可，调用方法即可运行</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> xlwings <span class="hljs-keyword">as</span> xw
+<span class="hljs-keyword">import</span> os
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExcelUtils</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;excel操作类&quot;&quot;&quot;</span>
+    COLUMN_DICTIONALRY = [<span class="hljs-string">&#x27;A&#x27;</span>,<span class="hljs-string">&#x27;B&#x27;</span>,<span class="hljs-string">&#x27;C&#x27;</span>,<span class="hljs-string">&#x27;D&#x27;</span>,<span class="hljs-string">&#x27;E&#x27;</span>,<span class="hljs-string">&#x27;F&#x27;</span>,<span class="hljs-string">&#x27;G&#x27;</span>,<span class="hljs-string">&#x27;H&#x27;</span>,<span class="hljs-string">&#x27;I&#x27;</span>,<span class="hljs-string">&#x27;J&#x27;</span>,<span class="hljs-string">&#x27;K&#x27;</span>,<span class="hljs-string">&#x27;L&#x27;</span>,<span class="hljs-string">&#x27;M&#x27;</span>,<span class="hljs-string">&#x27;N&#x27;</span>,<span class="hljs-string">&#x27;O&#x27;</span>,<span class="hljs-string">&#x27;P&#x27;</span>,<span class="hljs-string">&#x27;Q&#x27;</span>,<span class="hljs-string">&#x27;R&#x27;</span>,<span class="hljs-string">&#x27;S&#x27;</span>,<span class="hljs-string">&#x27;T&#x27;</span>,<span class="hljs-string">&#x27;U&#x27;</span>,<span class="hljs-string">&#x27;V&#x27;</span>,<span class="hljs-string">&#x27;W&#x27;</span>,<span class="hljs-string">&#x27;X&#x27;</span>,<span class="hljs-string">&#x27;Y&#x27;</span>,<span class="hljs-string">&#x27;Z&#x27;</span>]
+    book = <span class="hljs-literal">None</span>
+    sheet = <span class="hljs-literal">None</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">openExcel</span>(<span class="hljs-params">self,excel_path,visible=<span class="hljs-literal">False</span></span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        开启excel</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param excel_path: excel表路径</span>
+<span class="hljs-string">        :param visible: 开启excel是否可视化，默认False</span>
+<span class="hljs-string">        :return: 是否开启成功</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        app = xw.App(visible=visible, add_book=<span class="hljs-literal">False</span>)  <span class="hljs-comment"># 在打开app时，后台打开</span>
+        self.book = app.books.<span class="hljs-built_in">open</span>(excel_path)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">startSheet</span>(<span class="hljs-params">self,sheet_name,excel_path=<span class="hljs-literal">None</span>,visible=<span class="hljs-literal">False</span></span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        开启sheet</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param sheet_name: 工作表名称</span>
+<span class="hljs-string">        :param excel_path: excel表路径，默认None，若不调用startExcel()方法，可以传入值自动调用startExcel()方法</span>
+<span class="hljs-string">        :param visible: 开启excel是否可视化，默认False</span>
+<span class="hljs-string">        :return: 是否开启成功</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">if</span>(self.book == <span class="hljs-literal">None</span>):
+            self.openExcel(excel_path,visible)
+        self.sheet = self.book.sheets[sheet_name]
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">close</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        关闭execl</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :return:</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        self.book.save() <span class="hljs-comment"># 先保存excel后关闭，防止数据暴毙</span>
+        self.book.close()
+        self.book = <span class="hljs-literal">None</span>
+        self.sheet = <span class="hljs-literal">None</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">save</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        保存excel</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :return:</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        self.book.save()
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">insertValue</span>(<span class="hljs-params">self,column,row,value</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        插入数据，也可以更新某一单元格的数据</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param column: 列，用A、B、C等表示</span>
+<span class="hljs-string">        :param row: 行，用1、2、3等表示</span>
+<span class="hljs-string">        :param value: 要插入的数据</span>
+<span class="hljs-string">        :return: 是否插入成功</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span><span class="hljs-subst">&#123;row&#125;</span>&quot;</span>].value = value
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">insertValueByColumn</span>(<span class="hljs-params">self,column,value,row=<span class="hljs-number">1</span>,max_search_row=<span class="hljs-number">1000</span></span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        插入数据，插入时会检测该列的某一行是否存在数据，不存在才插入数据</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param column: 列，用A、B、C等表示</span>
+<span class="hljs-string">        :param value: 要插入的数据</span>
+<span class="hljs-string">        :param row: 从第几行开始检测，用1、2、3等表示，默认第一行</span>
+<span class="hljs-string">        :param max_search_row: 最大搜索几行，默认1000</span>
+<span class="hljs-string">        :return: 是否插入成功</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">while</span>(row&lt;max_search_row):
+            col_value = self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span><span class="hljs-subst">&#123;row&#125;</span>&quot;</span>].value
+            <span class="hljs-keyword">if</span>(col_value == <span class="hljs-literal">None</span>):
+                self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span><span class="hljs-subst">&#123;row&#125;</span>&quot;</span>].value = value
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+            <span class="hljs-keyword">else</span>:
+                row+=<span class="hljs-number">1</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">insertValuesByColumn</span>(<span class="hljs-params">self,column,values,row=<span class="hljs-number">1</span>,max_search_row=<span class="hljs-number">1000</span></span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        批量插入数据，插入时会检测该列的某一行是否存在数据，不存在才插入数据</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param column: 列，用A、B、C等表示</span>
+<span class="hljs-string">        :param values: 要插入的数据集，用数组封装，例[1,2,3]</span>
+<span class="hljs-string">        :param row: 从第几行开始检测，用1、2、3等表示，默认第一行</span>
+<span class="hljs-string">        :param max_search_row: 最大搜索几行，默认1000</span>
+<span class="hljs-string">        :return: 是否插入成功</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        save_row = row
+        <span class="hljs-keyword">for</span> value <span class="hljs-keyword">in</span> values:
+            <span class="hljs-keyword">while</span> (save_row &lt; max_search_row):
+                col_value = self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span><span class="hljs-subst">&#123;save_row&#125;</span>&quot;</span>].value
+                <span class="hljs-keyword">if</span> (col_value == <span class="hljs-literal">None</span>):
+                    self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span><span class="hljs-subst">&#123;save_row&#125;</span>&quot;</span>].value = value
+                    save_row += <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">break</span>
+                <span class="hljs-keyword">else</span>:
+                    save_row += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">deleteValue</span>(<span class="hljs-params">self,column,row</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        删除数据</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param column: 列，用A、B、C等表示</span>
+<span class="hljs-string">        :param row: 行，用1、2、3等表示</span>
+<span class="hljs-string">        :return: 是否删除成功</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span><span class="hljs-subst">&#123;row&#125;</span>&quot;</span>].value = <span class="hljs-literal">None</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">clearValue</span>(<span class="hljs-params">self,vector</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        清除某矩阵内单元格的数据</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param vector: 矩阵，列表表示，第一个数为行，第二个数为列，列最大不能大于26，例[20,20]为删除20行、20列的数据</span>
+<span class="hljs-string">        :return: 是否清除成功</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        row_num = vector[<span class="hljs-number">0</span>]
+        col_num = vector[<span class="hljs-number">1</span>]
+        i = <span class="hljs-number">0</span>
+        <span class="hljs-keyword">while</span>(i &lt; col_num):
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,row_num):
+                self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;self.COLUMN_DICTIONALRY[i]&#125;</span><span class="hljs-subst">&#123;j&#125;</span>&quot;</span>].value = <span class="hljs-literal">None</span>
+            i=+<span class="hljs-number">1</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getRowHeight</span>(<span class="hljs-params">self,column,row</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        获取单元格高度</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param column: 列，用A、B、C等表示</span>
+<span class="hljs-string">        :param row: 行，用1、2、3等表示</span>
+<span class="hljs-string">        :return: 单元格高度</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">return</span> self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span><span class="hljs-subst">&#123;row&#125;</span>&quot;</span>].row_height
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getColumnWidth</span>(<span class="hljs-params">self,column,row</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        获取单元格宽度</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param column: 列，用A、B、C等表示</span>
+<span class="hljs-string">        :param row: 行，用1、2、3等表示</span>
+<span class="hljs-string">        :return: 单元格宽度</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">return</span> self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span><span class="hljs-subst">&#123;row&#125;</span>&quot;</span>].column_width
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">autoFit</span>(<span class="hljs-params">self,column,row</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        自适应单元格</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param column: 列，用A、B、C等表示，默认为A</span>
+<span class="hljs-string">        :param row: 行，用1、2、3等表示，默认为1</span>
+<span class="hljs-string">        :return: 是否自适应完毕</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span><span class="hljs-subst">&#123;row&#125;</span>&quot;</span>].autofit()
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">autoFitColumn</span>(<span class="hljs-params">self,column</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        自适应某一列</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param column: 列，用A、B、C等表示</span>
+<span class="hljs-string">        :return: 是否自适应完毕</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span>1&quot;</span>].columns.autofit()
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">autoFitRow</span>(<span class="hljs-params">self,row</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        自适应某一行</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param row: 行，用1、2、3等表示</span>
+<span class="hljs-string">        :return: 是否自适应完毕</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        self.sheet[<span class="hljs-string">f&quot;A<span class="hljs-subst">&#123;row&#125;</span>&quot;</span>].rows.autofit()
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getColor</span>(<span class="hljs-params">self,column,row</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        获取单元格颜色</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param column: 列，用A、B、C等表示</span>
+<span class="hljs-string">        :param row: 行，用1、2、3等表示</span>
+<span class="hljs-string">        :return: 单元格颜色，RGB值</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">return</span> self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span><span class="hljs-subst">&#123;row&#125;</span>&quot;</span>].color
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">setColor</span>(<span class="hljs-params">self,column,row,R,G,B</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        填充单元格背景色</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param column: 列，用A、B、C等表示</span>
+<span class="hljs-string">        :param row: 行，用1、2、3等表示</span>
+<span class="hljs-string">        :param R: R值</span>
+<span class="hljs-string">        :param G: G值</span>
+<span class="hljs-string">        :param B: B值</span>
+<span class="hljs-string">        :return: 是否填充成功</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span><span class="hljs-subst">&#123;row&#125;</span>&quot;</span>].color = (R,G,B)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">setFormula</span>(<span class="hljs-params">self,column,row,Formula</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        设置某单元格的公式</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param column: 列，用A、B、C等表示</span>
+<span class="hljs-string">        :param row: 行，用1、2、3等表示</span>
+<span class="hljs-string">        :param Formula: excel公式</span>
+<span class="hljs-string">        :return: 是否设置成功</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span><span class="hljs-subst">&#123;row&#125;</span>&quot;</span>].formula = Formula
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getFormula</span>(<span class="hljs-params">self,column,row</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        获取某单元格的公式</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param column: 列，用A、B、C等表示</span>
+<span class="hljs-string">        :param row: 行，用1、2、3等表示</span>
+<span class="hljs-string">        :return: 单元格的公式</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">return</span> self.sheet[<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;column&#125;</span><span class="hljs-subst">&#123;row&#125;</span>&quot;</span>].formula
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">killExcelProcess</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        杀死excel表格的进程</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :return: 是否执行完毕</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        os.system(<span class="hljs-string">&quot;taskkill /f /im et.exe&quot;</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span></code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E5%8A%9E%E5%85%AC/">办公</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/Redis%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%BA%94%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Redis的基本应用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/%E5%AF%B9%E8%80%83%E7%A0%94%E7%9A%84%E5%8F%8D%E6%80%9D%E4%BB%A5%E5%8F%8A%E6%88%98%E7%95%A5/">
+                        <span class="hidden-mobile">对考研的反思以及战略</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,793 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>中文自然语言库处理大总结 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="中文自然语言库处理大总结">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-29 19:15" pubdate>
+        2021年8月29日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      51
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">中文自然语言库处理大总结</h1>
+            
+            <div class="markdown-body">
+              <p>自然语言(Natural language)通常是指一种自然地随文化演化的语言。例如，汉语、英语、日语都是自然语言的例子，这一种用法可见于自然语言处理一词中。自然语言是人类交流和思维的主要工具。 自然语言是人类智慧的结晶，自然语言处理是人工智能中最为困难的问题之一，而对自然语言处理的研究也是充满魅力和挑战的，也是各国人表达的方法其中之一。</p>
+<p>以下的库对中文支持非常好，所以是对中文自然语言的处理，下面是笔者所学的所有知识的总结，会持续补充。</p>
+<h1 id="jieba"><a href="#jieba" class="headerlink" title="jieba"></a>jieba</h1><p>jieba库是一款优秀的 Python 第三方中文<strong>分词库</strong>，jieba 支持三种分词模式：精确模式、全模式和搜索引擎模式，下面是三种模式的特点。</p>
+<ul>
+<li>精确模式：试图将语句最精确的切分，不存在冗余数据，适合做文本分析</li>
+<li>全模式：将语句中所有可能是词的词语都切分出来，速度很快，但是存在冗余数据</li>
+<li>搜索引擎模式：在精确模式的基础上，对长词再次进行切分</li>
+</ul>
+<p>大量的库的依赖是jieba，可见jieba的重要性</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><div class="code-wrapper"><pre><code class="hljs apl">pip install jieba</code></pre></div>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><div class="code-wrapper"><pre><code class="hljs elm"><span class="hljs-keyword">import</span> jieba</code></pre></div>
+<h2 id="jieba-api"><a href="#jieba-api" class="headerlink" title="jieba api"></a>jieba api</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">jieba.cut(s)</td>
+<td style="text-align:center">精确模式，返回一个可迭代的数据类型</td>
+</tr>
+<tr>
+<td style="text-align:center">jieba.cut(s, cut_all = True)</td>
+<td style="text-align:center">全模式，输出文本s中所有可能的单词</td>
+</tr>
+<tr>
+<td style="text-align:center">jieba.cut_for_search(s)</td>
+<td style="text-align:center">搜索引擎模式，适合搜索引擎建立索引的分词结果</td>
+</tr>
+<tr>
+<td style="text-align:center">jieba.lcut(s)</td>
+<td style="text-align:center">精确模式，返回列表类型，建议使用</td>
+</tr>
+<tr>
+<td style="text-align:center">jieba.lcut(s, cut_all = True)</td>
+<td style="text-align:center">全模式，返回列表类型，建议使用</td>
+</tr>
+<tr>
+<td style="text-align:center">jiaba.lcut_for_search(s)</td>
+<td style="text-align:center">搜索引擎模式，返回列表类型，建议使用</td>
+</tr>
+<tr>
+<td style="text-align:center">jieba.add_word(s)</td>
+<td style="text-align:center">向分词词典中添加新词w</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><div class="code-wrapper"><pre><code class="hljs python">string = <span class="hljs-string">&quot;列车折返是什么意思&quot;</span>
+afterCut = jieba.lcut_for_search(string)
+<span class="hljs-built_in">print</span>(afterCut)
+输出：
+Building prefix <span class="hljs-built_in">dict</span> <span class="hljs-keyword">from</span> the default dictionary ...
+Loading model <span class="hljs-keyword">from</span> cache C:\Users\xxxxx\AppData\Local\Temp\jieba.cache
+Loading model cost <span class="hljs-number">0.600</span> seconds.
+Prefix <span class="hljs-built_in">dict</span> has been built successfully.
+[<span class="hljs-string">&#x27;列车&#x27;</span>, <span class="hljs-string">&#x27;折返&#x27;</span>, <span class="hljs-string">&#x27;是&#x27;</span>, <span class="hljs-string">&#x27;什么&#x27;</span>, <span class="hljs-string">&#x27;意思&#x27;</span>]</code></pre></div>
+<h2 id="jieba-analyse"><a href="#jieba-analyse" class="headerlink" title="jieba.analyse"></a>jieba.analyse</h2><p>通过词性，将一句话中具有该词性的词语提取出来。是分词的一种，但是是提取带有词性的关键字。</p>
+<blockquote>
+<p>引入</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> jieba.analyse</code></pre></div>
+<blockquote>
+<p>api</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python">jieba.analyse.extract_tags(sentence, topK=<span class="hljs-number">5</span>, withWeight=<span class="hljs-literal">True</span>, allowPOS=())</code></pre></div>
+<p>sentence，需要提取的字符串，必须是字符串类型</p>
+<p>top，提取多少个关键字，重要性从高到低</p>
+<p>withWeight，是否返回每个关键词的权重</p>
+<p>allowPOS，词性过滤，分别有：’ns’, ‘n’, ‘vn’, ‘v’，解释为提取地名、名词、动名词、动词</p>
+<blockquote>
+<p>应用</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python">answerList = jieba.analyse.extract_tags(sentence = string, topK=<span class="hljs-number">5</span>, withWeight=<span class="hljs-literal">False</span>, allowPOS=(<span class="hljs-string">&#x27;n&#x27;</span>))
+<span class="hljs-keyword">return</span> answerList[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>:<span class="hljs-number">2</span>]</code></pre></div>
+<h2 id="jieba-posseg"><a href="#jieba-posseg" class="headerlink" title="jieba.posseg"></a>jieba.posseg</h2><p>切割句子并分析词性，例如动词，名词等</p>
+<blockquote>
+<p>引用</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> jieba.posseg <span class="hljs-keyword">as</span> posseg</code></pre></div>
+<blockquote>
+<p>应用</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">list</span> = posseg.lcut(<span class="hljs-string">&quot;金融危机是如何造成的&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>)
+输出：
+Building prefix <span class="hljs-built_in">dict</span> <span class="hljs-keyword">from</span> the default dictionary ...
+Loading model <span class="hljs-keyword">from</span> cache C:\Users\xxxx\AppData\Local\Temp\jieba.cache
+Loading model cost <span class="hljs-number">0.559</span> seconds.
+Prefix <span class="hljs-built_in">dict</span> has been built successfully.
+[pair(<span class="hljs-string">&#x27;金融危机&#x27;</span>, <span class="hljs-string">&#x27;n&#x27;</span>), pair(<span class="hljs-string">&#x27;是&#x27;</span>, <span class="hljs-string">&#x27;v&#x27;</span>), pair(<span class="hljs-string">&#x27;如何&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>), pair(<span class="hljs-string">&#x27;造成&#x27;</span>, <span class="hljs-string">&#x27;v&#x27;</span>), pair(<span class="hljs-string">&#x27;的&#x27;</span>, <span class="hljs-string">&#x27;uj&#x27;</span>)]</code></pre></div>
+<h1 id="SnowNLP"><a href="#SnowNLP" class="headerlink" title="SnowNLP"></a>SnowNLP</h1><p>SnowNLP是一个python写的类库，可以方便的处理中文文本内容，是受到了TextBlob的启发而写的，由于现在大部分的自然语言处理库基本都是针对英文的，于是写了一个方便处理中文的类库，并且和TextBlob不同的是，这里没有用NLTK，所有的算法都是自己实现的，并且自带了一些训练好的字典。</p>
+<p>它能分词，可以标注，可以断句，可以做为情感分析。标注和分词用jieba即可完成。</p>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><div class="code-wrapper"><pre><code class="hljs python">pip install snownlp</code></pre></div>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> snownlp <span class="hljs-keyword">import</span> SnowNLP</code></pre></div>
+<h3 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h3><div class="code-wrapper"><pre><code class="hljs python">s = SnowNLP(<span class="hljs-string">&quot;这个答题很简单的好不好&quot;</span>)
+<span class="hljs-built_in">print</span>(s.words)
+输出：
+[<span class="hljs-string">&#x27;这个&#x27;</span>, <span class="hljs-string">&#x27;答题&#x27;</span>, <span class="hljs-string">&#x27;很&#x27;</span>, <span class="hljs-string">&#x27;简单&#x27;</span>, <span class="hljs-string">&#x27;的&#x27;</span>, <span class="hljs-string">&#x27;好&#x27;</span>, <span class="hljs-string">&#x27;不&#x27;</span>, <span class="hljs-string">&#x27;好&#x27;</span>]</code></pre></div>
+<h3 id="断句"><a href="#断句" class="headerlink" title="断句"></a>断句</h3><div class="code-wrapper"><pre><code class="hljs python">s = SnowNLP(<span class="hljs-string">&quot;这个答题很简单的好不好，闭着眼睛都能答出来。&quot;</span>)
+<span class="hljs-built_in">print</span>(s.sentences)
+输出：
+[<span class="hljs-string">&#x27;这个答题很简单的好不好&#x27;</span>, <span class="hljs-string">&#x27;闭着眼睛都能答出来&#x27;</span>]</code></pre></div>
+<h3 id="繁体转汉字"><a href="#繁体转汉字" class="headerlink" title="繁体转汉字"></a>繁体转汉字</h3><div class="code-wrapper"><pre><code class="hljs python">s = SnowNLP(<span class="hljs-string">&quot;繁體字&quot;</span>)
+<span class="hljs-built_in">print</span>(s.han)
+输出：
+繁体字</code></pre></div>
+<h3 id="转拼音"><a href="#转拼音" class="headerlink" title="转拼音"></a>转拼音</h3><div class="code-wrapper"><pre><code class="hljs python">s = SnowNLP(<span class="hljs-string">&quot;这个答题很简单的好不好&quot;</span>)
+<span class="hljs-built_in">print</span>(s.pinyin)
+输出：
+[<span class="hljs-string">&#x27;zhe&#x27;</span>, <span class="hljs-string">&#x27;ge&#x27;</span>, <span class="hljs-string">&#x27;da&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;hen&#x27;</span>, <span class="hljs-string">&#x27;jian&#x27;</span>, <span class="hljs-string">&#x27;dan&#x27;</span>, <span class="hljs-string">&#x27;de&#x27;</span>, <span class="hljs-string">&#x27;hao&#x27;</span>, <span class="hljs-string">&#x27;bu&#x27;</span>, <span class="hljs-string">&#x27;hao&#x27;</span>]</code></pre></div>
+<h3 id="情感分析"><a href="#情感分析" class="headerlink" title="情感分析"></a>情感分析</h3><div class="code-wrapper"><pre><code class="hljs python">s = SnowNLP(<span class="hljs-string">&quot;这个答题很简单的好不好&quot;</span>)
+<span class="hljs-built_in">print</span>(s.sentiments)
+输出：
+<span class="hljs-number">0.9216225993232947</span></code></pre></div>
+<p>越接近1表示正面情绪，接近0表示负面情绪，目前该api对评论支持较好，其他类型会有未知情况</p>
+<h3 id="概括总结文章"><a href="#概括总结文章" class="headerlink" title="概括总结文章"></a>概括总结文章</h3><div class="code-wrapper"><pre><code class="hljs python">s = SnowNLP(<span class="hljs-string">&quot;SnowNLP是一个python写的类库，可以方便的处理中文文本内容，是受到了TextBlob的启发而写的，由于现在大部分的自然语言处理库基本都是针对英文的，于是写了一个方便处理中文的类库，并且和TextBlob不同的是，这里没有用NLTK，所有的算法都是自己实现的，并且自带了一些训练好的字典。&quot;</span>)
+<span class="hljs-built_in">print</span>(s.summary(limit=<span class="hljs-number">4</span>))
+输出：
+[<span class="hljs-string">&#x27;于是写了一个方便处理中文的类库&#x27;</span>, <span class="hljs-string">&#x27;SnowNLP是一个python写的类库&#x27;</span>, <span class="hljs-string">&#x27;是受到了TextBlob的启发而写的&#x27;</span>, <span class="hljs-string">&#x27;由于现在大部分的自然语言处理库基本都是针对英文的&#x27;</span>]</code></pre></div>
+<h3 id="信息衡量"><a href="#信息衡量" class="headerlink" title="信息衡量"></a>信息衡量</h3><blockquote>
+<p>引用至<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhuminghui/p/10953717.html">Python分词、情感分析工具——SnowNLP - ‘’竹先森゜ - 博客园 (cnblogs.com)</a></p>
+</blockquote>
+<p>TF-IDF是一种统计方法，用以评估一字词对于一个文件集或一个语料库中的其中一份文件的重要程度。</p>
+<p>TF词频越大越重要，但是文中会的“的”，“你”等无意义词频很大，却信息量几乎为0，这种情况导致单纯看词频评价词语重要性是不准确的。因此加入了idf</p>
+<p>IDF的主要思想是：如果包含词条t的文档越少，也就是n越小，IDF越大，则说明词条t越重要</p>
+<p>TF-IDF综合起来，才能准确的综合的评价一词对文本的重要性。</p>
+<div class="code-wrapper"><pre><code class="hljs python">s = SnowNLP(<span class="hljs-string">&quot;我的天啊&quot;</span>)
+<span class="hljs-built_in">print</span>(s.tf)
+<span class="hljs-built_in">print</span>(s.idf)
+输出：
+[&#123;<span class="hljs-string">&#x27;我&#x27;</span>: <span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-string">&#x27;的&#x27;</span>: <span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-string">&#x27;天&#x27;</span>: <span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-string">&#x27;啊&#x27;</span>: <span class="hljs-number">1</span>&#125;]
+&#123;<span class="hljs-string">&#x27;我&#x27;</span>: <span class="hljs-number">0.8472978603872037</span>, <span class="hljs-string">&#x27;的&#x27;</span>: <span class="hljs-number">0.8472978603872037</span>, <span class="hljs-string">&#x27;天&#x27;</span>: <span class="hljs-number">0.8472978603872037</span>, <span class="hljs-string">&#x27;啊&#x27;</span>: <span class="hljs-number">0.8472978603872037</span>&#125;</code></pre></div>
+<h3 id="文本相似性检测"><a href="#文本相似性检测" class="headerlink" title="文本相似性检测"></a>文本相似性检测</h3><div class="code-wrapper"><pre><code class="hljs python">s = SnowNLP(<span class="hljs-string">&quot;我的天啊&quot;</span>)
+<span class="hljs-built_in">print</span>(s.sim([<span class="hljs-string">&quot;我&quot;</span>]))
+输出：
+[<span class="hljs-number">0.8472978603872037</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]</code></pre></div>
+<p>如果传入的是句子，那么它会将所有的句子拆开然后进行相似性的检测。</p>
+<h1 id="Gensim"><a href="#Gensim" class="headerlink" title="Gensim"></a>Gensim</h1><p>Gensim是一款开源的第三方Python工具包，用于从原始的非结构化的文本中，无监督地学习到文本隐层的主题向量表达。它支持包括TF-IDF，LSA，LDA，和word2vec在内的多种主题模型算法，支持流式训练，并提供了诸如相似度计算，信息检索等一些常用任务的API接口。</p>
+<p>Gensim需要慢慢研究，它实在是太大了</p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><blockquote>
+<p>引用<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37175253">15分钟入门Gensim - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<ul>
+<li>语料（Corpus）：一组原始文本的集合，用于无监督地训练文本主题的隐层结构。语料中不需要人工标注的附加信息。在Gensim中，Corpus通常是一个可迭代的对象（比如列表）。每一次迭代返回一个可用于表达文本对象的稀疏向量。</li>
+<li>向量（Vector）：由一组文本特征构成的列表。是一段文本在Gensim中的内部表达。</li>
+<li>稀疏向量（SparseVector）：通常，我们可以略去向量中多余的0元素。此时，向量中的每一个元素是一个(key, value)的元组</li>
+<li>模型（Model）：是一个抽象的术语。定义了两个向量空间的变换（即从文本的一种向量表达变换为另一种向量表达）。</li>
+</ul>
+<h3 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h3><div class="code-wrapper"><pre><code class="hljs python">pip install gensim</code></pre></div>
+<h3 id="引用-1"><a href="#引用-1" class="headerlink" title="引用"></a>引用</h3><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> gensim <span class="hljs-keyword">import</span> corpora <span class="hljs-comment"># 计算语料库的向量和生成语料库</span>
+<span class="hljs-keyword">from</span> gensim <span class="hljs-keyword">import</span> models <span class="hljs-comment"># 模型算法tf-idf（主要tf：term frequency 词频;idf：inverse document frequency 倒文档频率）</span>
+<span class="hljs-keyword">from</span> gensim <span class="hljs-keyword">import</span> similarities <span class="hljs-comment"># 计算向量相似度</span></code></pre></div>
+<h3 id="相似度计算"><a href="#相似度计算" class="headerlink" title="相似度计算"></a>相似度计算</h3><p>笔者认为，gensim计算相似度是文章与文章的计算，宏观程度比SnowNLP大</p>
+<p>在切割数据时，笔者把符号这些脏数据清除了，提高计算的准确率</p>
+<p>以下为生成context1的语料库索引以及计算context1与context2的相似度</p>
+<blockquote>
+<p>切割句子</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python">context1 = context1.split(<span class="hljs-string">&quot;。&quot;</span>)<span class="hljs-comment">## 切割句子</span>
+texts = [jieba.lcut(re.sub(<span class="hljs-string">&quot;[_.!+\-=——,$%^，。？、~@#￥%……&amp;*《》&lt;&gt;「」&#123;&#125;【】()/]&quot;</span>,<span class="hljs-string">r&quot;&quot;</span>,text)) <span class="hljs-keyword">for</span> text <span class="hljs-keyword">in</span> context1]<span class="hljs-comment"># 将句子切割成词语</span></code></pre></div>
+<blockquote>
+<p>生成词典（语料库）</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python">dictionary = corpora.Dictionary(texts)</code></pre></div>
+<blockquote>
+<p>doc2bow生成稀疏向量值</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python">corpus = [dictionary.doc2bow(text) <span class="hljs-keyword">for</span> text <span class="hljs-keyword">in</span> texts]</code></pre></div>
+<blockquote>
+<p>通过TF-IDF模型算法，计算出tf值</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python">tf = models.TfidfModel(corpus)</code></pre></div>
+<blockquote>
+<p>通过token2id得到特征数（字典里面的键的个数）</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python">num_features = <span class="hljs-built_in">len</span>(dictionary.token2id.keys())</code></pre></div>
+<blockquote>
+<p>计算稀疏矩阵相似度，建立索引</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python">index = similarities.MatrixSimilarity(tf[corpus], num_features=num_features)</code></pre></div>
+<p>语料库索引建立完毕，接下来对另外一篇文章进行相似度的检测</p>
+<blockquote>
+<p>切割测试数据</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python">test_words = [word <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> jieba.cut(re.sub(<span class="hljs-string">&quot;[_.!+\-=——,$%^，。？、~@#￥%……&amp;*《》&lt;&gt;「」&#123;&#125;【】()/]&quot;</span>,<span class="hljs-string">r&quot;&quot;</span>,context2))]</code></pre></div>
+<blockquote>
+<p>构建新的稀疏向量</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python">new_vec = dictionary.doc2bow(test_words)</code></pre></div>
+<blockquote>
+<p>通过语料库索引计算相似度</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs python">sims = index[tf[new_vec]]</code></pre></div>
+<p>这里会得到一个转载着相似度的list，笔者这里把相似度做一个平均值，这样比较好观察</p>
+<div class="code-wrapper"><pre><code class="hljs python">simlist = <span class="hljs-built_in">list</span>(sims) <span class="hljs-comment"># 将sims转换成list</span>
+avg = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> sim <span class="hljs-keyword">in</span> simlist:
+    avg = sim+avg
+    avg = avg/<span class="hljs-built_in">len</span>(simlist)</code></pre></div>
+<h1 id="TextRank4ZH"><a href="#TextRank4ZH" class="headerlink" title="TextRank4ZH"></a>TextRank4ZH</h1><p>TextRank算法可以用来从文本中提取关键词和摘要（重要的句子）。TextRank4ZH是针对中文文本的TextRank算法的python算法实现。</p>
+<h2 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h2><div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">pip</span> install textrank<span class="hljs-number">4</span>zh</code></pre></div>
+<h2 id="引入-1"><a href="#引入-1" class="headerlink" title="引入"></a>引入</h2><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> textrank4zh <span class="hljs-keyword">import</span> TextRank4Keyword, TextRank4Sentence</code></pre></div>
+<h2 id="案例文章"><a href="#案例文章" class="headerlink" title="案例文章"></a>案例文章</h2><p>金融危机的百度百科</p>
+<div class="code-wrapper"><pre><code class="hljs python">sentence = <span class="hljs-string">&quot;具体到行业，保险业近年来总体处于上升状态，除了受到国际金融危机的严重影响，保费增速降低，但仍超过10%。纺织行业等传统劳动密集型企业受到的影响比较严重。据海关总署数据显示，2008年9月份，纺织品服装出口较8月份减少近6亿美元，较上年同月仅小幅增加约3亿美元，9月份出口延续了8月份微幅增长的趋势。随着美国金融危机愈演愈烈，以美元计价的纺织出口接近零增长，以人民币汇率计价的出口额持续负增长，20%的纺织企业出现亏损；汽车行业受美国金融危机的影响，总体表现低迷。据中国汽车工业协会最新数据统计，2009年1～8月，乘用车产销463.24万辆和455.03万辆，同比增长13.67%和13.15%，与上年同期相比，增幅回落8.32个百分点和10.94个百分点。&quot;</span></code></pre></div>
+<h2 id="提取关键词"><a href="#提取关键词" class="headerlink" title="提取关键词"></a>提取关键词</h2><p>调用TextRank4Keyword() -&gt; analyze -&gt; 获取关键词 -&gt; 输出</p>
+<div class="code-wrapper"><pre><code class="hljs python">tr4w = TextRank4Keyword()
+tr4w.analyze(text=sentence)
+
+keywordlist = tr4w.get_keywords(<span class="hljs-number">20</span>,word_min_len=<span class="hljs-number">2</span>)<span class="hljs-comment"># word_min_len=2，关键词的最小长度</span>
+
+<span class="hljs-keyword">for</span> keyword <span class="hljs-keyword">in</span> keywordlist:
+    <span class="hljs-built_in">print</span>(keyword[<span class="hljs-string">&#x27;word&#x27;</span>])</code></pre></div>
+<h2 id="提取关键句"><a href="#提取关键句" class="headerlink" title="提取关键句"></a>提取关键句</h2><p>调用TextRank4Sentence() -&gt; analyze -&gt; 获取关键句数量 -&gt; 输出</p>
+<div class="code-wrapper"><pre><code class="hljs python">tr4s = TextRank4Sentence()
+tr4s.analyze(text=sentence, lower=<span class="hljs-literal">True</span>, source = <span class="hljs-string">&#x27;all_filters&#x27;</span>)<span class="hljs-comment"># 文本小写，使用words_all_filters生成句子之间的相似性</span>
+
+sentenceslist = tr4s.get_key_sentences(num=<span class="hljs-number">5</span>)<span class="hljs-comment"># num=3表示为提取3个关键句</span>
+<span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> sentenceslist:
+    <span class="hljs-built_in">print</span>(item)<span class="hljs-comment"># index是语句在文本中索引位置，weight是权重系数</span></code></pre></div>
+<h1 id="停用词表"><a href="#停用词表" class="headerlink" title="停用词表"></a>停用词表</h1><blockquote>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/dorisi_h_n_q/article/details/82114913">https://blog.csdn.net/dorisi_h_n_q/article/details/82114913</a></p>
+</blockquote>
+<h1 id="Synonyms"><a href="#Synonyms" class="headerlink" title="Synonyms"></a>Synonyms</h1><p>Chinese Synonyms for Natural Language Processing and Understanding.</p>
+<p>最好的中文近义词工具包: <a target="_blank" rel="noopener" href="https://github.com/huyingxi/Synonyms/。">https://github.com/huyingxi/Synonyms/。</a></p>
+<p>synonyms可以用于自然语言理解的很多任务：文本对齐，推荐算法，相似度计算，语义偏移，关键字提取，概念提取，自动摘要，搜索引擎等。</p>
+<blockquote>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/samurais/article/details/79339406">https://blog.csdn.net/samurais/article/details/79339406</a></p>
+</blockquote>
+<h2 id="安装-4"><a href="#安装-4" class="headerlink" title="安装"></a>安装</h2><div class="code-wrapper"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> synonyms</code></pre></div>
+<h2 id="引入-2"><a href="#引入-2" class="headerlink" title="引入"></a>引入</h2><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> synonyms</code></pre></div>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><div class="code-wrapper"><pre><code class="hljs python">synonyms.display(<span class="hljs-string">&quot;飞机&quot;</span>)
+输出：
+<span class="hljs-string">&#x27;飞机&#x27;</span>近义词：
+  <span class="hljs-number">1.</span> 架飞机:<span class="hljs-number">0.837399</span>
+  <span class="hljs-number">2.</span> 客机:<span class="hljs-number">0.764609</span>
+  <span class="hljs-number">3.</span> 直升机:<span class="hljs-number">0.762116</span>
+  <span class="hljs-number">4.</span> 民航机:<span class="hljs-number">0.750519</span>
+  <span class="hljs-number">5.</span> 航机:<span class="hljs-number">0.750116</span>
+  <span class="hljs-number">6.</span> 起飞:<span class="hljs-number">0.735736</span>
+  <span class="hljs-number">7.</span> 战机:<span class="hljs-number">0.734975</span>
+  <span class="hljs-number">8.</span> 飞行中:<span class="hljs-number">0.732649</span>
+  <span class="hljs-number">9.</span> 航空器:<span class="hljs-number">0.723945</span>
+  <span class="hljs-number">10.</span> 运输机:<span class="hljs-number">0.720578</span></code></pre></div>
+<h2 id="同义词搜寻"><a href="#同义词搜寻" class="headerlink" title="同义词搜寻"></a>同义词搜寻</h2><p>生成一个二维数组</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">list</span> = synonyms.nearby(<span class="hljs-string">&quot;金融危机&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>)
+输出：
+([<span class="hljs-string">&#x27;金融危机&#x27;</span>, <span class="hljs-string">&#x27;次贷危机&#x27;</span>, <span class="hljs-string">&#x27;经济危机&#x27;</span>, <span class="hljs-string">&#x27;经济衰退&#x27;</span>, <span class="hljs-string">&#x27;金融风暴&#x27;</span>, <span class="hljs-string">&#x27;石油危机&#x27;</span>, <span class="hljs-string">&#x27;股灾&#x27;</span>, <span class="hljs-string">&#x27;大萧条&#x27;</span>, <span class="hljs-string">&#x27;危机&#x27;</span>, <span class="hljs-string">&#x27;经济萧条&#x27;</span>], [<span class="hljs-number">1.0</span>, <span class="hljs-number">0.85820746</span>, <span class="hljs-number">0.85081583</span>, <span class="hljs-number">0.80318713</span>, <span class="hljs-number">0.7774969</span>, <span class="hljs-number">0.7471542</span>, <span class="hljs-number">0.7450016</span>, <span class="hljs-number">0.7314842</span>, <span class="hljs-number">0.725529</span>, <span class="hljs-number">0.7105995</span>])</code></pre></div>
+<h2 id="关键词截取"><a href="#关键词截取" class="headerlink" title="关键词截取"></a>关键词截取</h2><div class="code-wrapper"><pre><code class="hljs python">keyword = synonyms.keywords(question)</code></pre></div>
+<h2 id="相似性比较"><a href="#相似性比较" class="headerlink" title="相似性比较"></a>相似性比较</h2><div class="code-wrapper"><pre><code class="hljs python">sen1 = <span class="hljs-string">&quot;发生历史性变革&quot;</span>
+sen2 = <span class="hljs-string">&quot;发生历史性变革&quot;</span>
+r = synonyms.compare(sen1, sen2, seg=<span class="hljs-literal">True</span>)
+<span class="hljs-built_in">print</span>(r)
+输出：
+<span class="hljs-number">1.0</span></code></pre></div>
+<p>0.5 &lt; 不相似，反之则对</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/python/">python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/python-%E5%BA%93/">python 库</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E5%88%86%E8%AF%8D%E5%99%A8/">分词器</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/python%E7%88%AC%E8%99%AB%E5%A4%A7%E6%80%BB%E7%BB%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">python爬虫大总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/%E6%9B%B4%E6%96%B0%E6%9C%AA%E5%AE%8C%E6%88%90-ElasticSearch%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+                        <span class="hidden-mobile">更新未完成--ElasticSearch快速入门</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

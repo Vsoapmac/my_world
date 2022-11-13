@@ -1,0 +1,1016 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>查找算法基础 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="查找算法基础">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-28 15:28" pubdate>
+        2021年7月28日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      92
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">查找算法基础</h1>
+            
+            <div class="markdown-body">
+              <p>查找的定义：给定一个值K，在含有N个记录的表中找出关键字等于K的记录。若找到，则查找成功，返回该记录的信息或者该记录在表中的位置；否则查找失败。重要信息：记录和关键字。由于查找算法的基本操作是关键字的比较，并且关键字比较次数与<strong>待查找关键字</strong>有关（对于一个查找表来说，对其中不同的关键字进行查找，关键字比较次数一般不同），因此通常把查找过程中对关键字的<strong>平均比较次数</strong>（也称为<strong>平均查找长度</strong>）作为衡量一个查找算法效率优劣的标准。平均查找长度用<strong>ASL</strong>来表示。</p>
+<h2 id="顺序查找法"><a href="#顺序查找法" class="headerlink" title="顺序查找法"></a>顺序查找法</h2><p>顺序查找法是一种最简单的查找方法。基本思路为：顺序遍历线性表，依次将表中数据与给定值K比较。若当前扫描的关键字与K相等，则查找成功；若扫描结束后，仍未发现关键字等于K的记录，则查找失败。</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">simpleSearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> array[], <span class="hljs-keyword">int</span> target)</span></span>&#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; array.length; i++) &#123;
+        <span class="hljs-keyword">if</span>(array[i] == target)&#123;
+            <span class="hljs-keyword">return</span> i;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+&#125;</code></pre></div>
+<h2 id="折半查找法（half-interval-search）"><a href="#折半查找法（half-interval-search）" class="headerlink" title="折半查找法（half-interval search）"></a>折半查找法（half-interval search）</h2><p>也称二分搜索（英语：binary search）、对数搜索（英语：logarithmic search），是一种在有序数组中查找某一特定元素的搜索算法。</p>
+<p>搜索过程从数组的中间元素开始，如果中间元素正好是要查找的元素，则搜索过程结束；</p>
+<p>如果某一特定元素大于或者小于中间元素，则在数组大于或小于中间元素的那一半中查找，而且跟开始一样从中间元素开始比较。</p>
+<p>如果在某一步骤数组为空，则代表找不到。这种搜索算法每一次比较都使搜索范围缩小一半</p>
+<p>折半查找法的优点是比较次数少，查找速度快，平均性能好；</p>
+<p>其缺点是要求待查表为<strong>有序</strong>表，且插入删除困难。</p>
+<p>因此，折半查找方法适用于不经常变动而查找频繁的有序列表。</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">Search</span><span class="hljs-params">(<span class="hljs-keyword">int</span> array[], <span class="hljs-keyword">int</span> target)</span></span>&#123;
+    <span class="hljs-comment">//把左右下标独立出来</span>
+    <span class="hljs-keyword">int</span> mid, left, right;
+    left = <span class="hljs-number">0</span>;
+    right = array.length - <span class="hljs-number">1</span>;
+    mid = (left + right) / <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">while</span> (array[mid] != target) &#123;
+        <span class="hljs-comment">//查询断口</span>
+        <span class="hljs-keyword">if</span>(right - left &lt; <span class="hljs-number">4</span>)&#123;
+            <span class="hljs-keyword">int</span> length = right - left;<span class="hljs-comment">//返回查询数据量的长度</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) &#123;
+                <span class="hljs-keyword">if</span>(array[left] == target)&#123;
+                    <span class="hljs-keyword">return</span> left;
+                &#125;
+                left++;
+            &#125;
+            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<span class="hljs-comment">//查询失败返回-1</span>
+        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (target &gt; array[mid]) &#123;
+            <span class="hljs-comment">//如果目标搜索的数字大于中间的数字，左下标转移到中间下标的下一位</span>
+            left = mid + <span class="hljs-number">1</span>;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (target &lt; array[mid]) &#123;
+            <span class="hljs-comment">//如果目标搜索的数字小于中间的数字，右下标转移到中间下标的前一位</span>
+            right = mid - <span class="hljs-number">1</span>;
+        &#125;
+        mid = (left + right) / <span class="hljs-number">2</span>;<span class="hljs-comment">//左右下标运算得到新的中间下标</span>
+    &#125;
+    <span class="hljs-keyword">return</span> mid;
+&#125;</code></pre></div>
+<p>折半查找的过程可以用二叉树来表示，得到的二叉树称为<strong>描述折半查找的判定树</strong></p>
+<p><img src="../../image/image-202107281628499919.png" srcset="/my_world/img/loading.gif" lazyload alt="折半查找的判定树"></p>
+<p>图e中折半查找判定树的查找成功（ASL1）和不成功（ASL2）的平均查找长度为：</p>
+<p>ASL1 = (每层的结点个数<em>层数后相加)/总结点数 = (1\</em>1+2*2+4*3+3*4)/10</p>
+<p>ASL2 = (空结点<em>层数-1后相加)/总空结点数 = (5\</em>3+6*4)/11</p>
+<ol>
+<li><p>查找判定树的中序遍历序列与查找表相同</p>
+</li>
+<li><p>如果mid=(low+high)/2判定树中任何子树的右子树结点数-左子树结点数必为0或1</p>
+</li>
+<li><p>判定树是一棵平衡的二叉排序树</p>
+</li>
+<li><p>除了最后一层，判定树其它层的结点一定是满的，查找表为n的判定树高h= [log_2(n+1)]</p>
+</li>
+<li><p>查找表为n的判定树有n-1个失败叶结点</p>
+</li>
+<li><p>查找成功和失败的ASL&lt;=树高</p>
+</li>
+<li><p>算法时间复杂度为o(log_2n)</p>
+</li>
+</ol>
+<h2 id="插值查找（额外）"><a href="#插值查找（额外）" class="headerlink" title="插值查找（额外）"></a>插值查找（额外）</h2><p>插值查找，有序表的一种查找方式。</p>
+<p>插值查找是根据查找关键字与查找表中最大最小记录关键字比较后的查找方法。</p>
+<p>插值查找基于二分查找，将查找点的选择改进为自适应选择，提高查找效率。</p>
+<p>对于数据量较大，关键字分布比较均匀的查找表来说，采用插值查找, 速度较快。<br>关键字分布不均匀的情况下，该方法不一定比折半查找要好</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">insertSeatch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> array[], <span class="hljs-keyword">int</span> target)</span> </span>&#123;
+    <span class="hljs-keyword">if</span> (array.length == <span class="hljs-number">0</span>) &#123;
+        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    &#125;
+    <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> right = array.length - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">int</span> mid = -<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (left &lt;= right) &#123;
+        mid = left + (target - array[left]) / (array[right] - array[left]) * (right - left);
+        <span class="hljs-keyword">if</span> (target &gt; array[mid])
+            left = mid + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (target &lt; array[mid])
+            right = mid - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> mid;
+    &#125;
+    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+&#125;</code></pre></div>
+<h2 id="分块查找（索引顺序查找）"><a href="#分块查找（索引顺序查找）" class="headerlink" title="分块查找（索引顺序查找）"></a>分块查找（索引顺序查找）</h2><p>分块查找把线性表分成若干块，每一块中的元素存储循序是任意的，但是块与块之间必须按照关键字大小有序排序，即前一块中的最大关键字要小于后一块中的最小关键字。对顺序表进行分块查询需要额外建立一个索引表，表中的每一项对应线性表中的一块。</p>
+<p>方法为：首先确定待查找的元素属于哪一块（索引表比较），然后在块内精确查找该元素。</p>
+<p>分块查找实际上进行两次查找，整个算法的平均查找长度是两次查找的平均查找长度之和，即二分查找平均查找长度+顺序查找平均查找长度</p>
+<h2 id="二叉排序树（Binary-Sort-Tree，缩写为BST）"><a href="#二叉排序树（Binary-Sort-Tree，缩写为BST）" class="headerlink" title="二叉排序树（Binary Sort Tree，缩写为BST）"></a>二叉排序树（Binary Sort Tree，缩写为BST）</h2><p>一棵空树，或者是具有下列性质的二叉树：</p>
+<p>（1）若左子树不空，则左子树上所有结点的值均小于它的根结点的值；</p>
+<p>（2）若右子树不空，则右子树上所有结点的值均大于它的根结点的值；</p>
+<p>（3）左、右子树也分别为二叉排序树；</p>
+<p>（4）没有键值相等的结点。</p>
+<p>输出二叉排序树的中序遍历序列，则这个序列是非递减（非递增）有序的，若不做说明，排序二叉树节点关键字按左小右大分布。<strong>折半查找法的判定树是一个二叉排序树</strong>，以下为插入二叉排序树的代码</p>
+<div class="code-wrapper"><pre><code class="hljs java">	<span class="hljs-keyword">private</span> Node root;<span class="hljs-comment">//根节点</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setRoot</span><span class="hljs-params">(Node root)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.root = root;
+    &#125;
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 二叉排序树</span>
+<span class="hljs-comment">     * 排序式添加结点，比根大的放右边，比根小的放左边</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sortAdd</span><span class="hljs-params">(Node node)</span> </span>&#123;
+        isBST = <span class="hljs-keyword">true</span>;
+        Map parent = <span class="hljs-keyword">new</span> HashMap();
+        <span class="hljs-keyword">if</span>(root==<span class="hljs-keyword">null</span>)&#123;
+<span class="hljs-comment">//            System.out.println(node.getValue()+&quot; set root&quot;);</span>
+            setRoot(node);
+            parent = <span class="hljs-keyword">null</span>;
+            node.setParent(parent);
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">if</span>(node.getValue().hashCode() &lt; root.getValue().hashCode())&#123;
+                <span class="hljs-comment">//该节点的值比根小，搜索左子树</span>
+                <span class="hljs-keyword">if</span>(root.getLeft()!=<span class="hljs-keyword">null</span>)&#123;
+                    Node root = <span class="hljs-keyword">this</span>.root;
+                    setRoot(root.getLeft());
+<span class="hljs-comment">//                    System.out.println(this.root.getValue()+&quot; go left&quot;);</span>
+                    sortAdd(node);
+                    setRoot(root);
+                &#125;<span class="hljs-keyword">else</span>&#123;
+<span class="hljs-comment">//                    System.out.println(node.getValue()+&quot; set left&quot;);</span>
+                    root.setLeft(node);
+                    parent.put(<span class="hljs-number">0</span>,root);
+                    node.setParent(parent);
+                &#125;
+            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(node.getValue().hashCode() &gt; root.getValue().hashCode())&#123;
+                <span class="hljs-comment">//该节点的值比根大，搜索右子树</span>
+                <span class="hljs-keyword">if</span>(root.getRight()!=<span class="hljs-keyword">null</span>)&#123;
+                    Node root = <span class="hljs-keyword">this</span>.root;
+                    setRoot(root.getRight());
+<span class="hljs-comment">//                    System.out.println(this.root.getValue()+&quot; go right&quot;);</span>
+                    sortAdd(node);
+                    setRoot(root);
+                &#125;<span class="hljs-keyword">else</span>&#123;
+<span class="hljs-comment">//                    System.out.println(node.getValue()+&quot; set right&quot;);</span>
+                    root.setRight(node);
+                    parent.put(<span class="hljs-number">1</span>,root);
+                    node.setParent(parent);
+                &#125;
+            &#125;
+        &#125;
+    &#125;</code></pre></div>
+<p>关于如何删除二叉排序树的结点：</p>
+<ol>
+<li>如果树只有根结点，并且待删除的结点就是根结点</li>
+<li>如果待删除的结点是叶结点，直接删除，不会破坏二又排序树的性质。</li>
+<li>如果待删除的结点只有左子树或右子树，则让子树代替自己。</li>
+<li>如果待除的结点有左子树和右子树，让左子树最右侧的结点代替自己，然后删除左子树最右侧的结点。（也可以让石子树最左侧的结点代替自己，然后除石子树最左侧的结点。）</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 二叉排序树</span>
+<span class="hljs-comment"> * 删除节点，并且删除节点后保持二叉排序树的性质</span>
+<span class="hljs-comment"> * 若不是二叉排序树，不会删除任何节点</span>
+<span class="hljs-comment"> * 若不存在结点，不删除任何节点</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sortDel</span><span class="hljs-params">(Node node)</span></span>&#123;
+    Node current = search(node);
+    <span class="hljs-keyword">if</span>(isBST == <span class="hljs-keyword">false</span>)&#123;
+        System.out.println(<span class="hljs-string">&quot;This tree is not BST(Binary Sort Tree)&quot;</span>);
+    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(current != <span class="hljs-keyword">null</span> &amp;&amp; isBST == <span class="hljs-keyword">true</span>)&#123;
+        <span class="hljs-comment">/* 如果树只有根结点，并且待删除的结点就是根结点 */</span>
+        <span class="hljs-keyword">if</span>(root.getValue().hashCode() == current.getValue().hashCode() &amp;&amp; root.getRight() == <span class="hljs-keyword">null</span> &amp;&amp; root.getLeft() == <span class="hljs-keyword">null</span>)&#123;
+            System.out.println(<span class="hljs-string">&quot;This tree only has a root node,this node is root,so delete it&quot;</span>);
+            root = <span class="hljs-keyword">null</span>;
+            current = <span class="hljs-keyword">null</span>;
+        &#125;
+        <span class="hljs-comment">/* 如果待删除的结点是叶结点，直接删除，不会破坏二又排序树的性质 */</span>
+        <span class="hljs-keyword">if</span>(root.getValue().hashCode() != current.getValue().hashCode() &amp;&amp; root.getRight() == <span class="hljs-keyword">null</span> &amp;&amp; root.getLeft() == <span class="hljs-keyword">null</span>)&#123;
+            System.out.println(<span class="hljs-string">&quot;This node is leaf node,delete it&quot;</span>);
+            Map&lt;Integer,Node&gt; parentmap = getParentMap(current);
+            <span class="hljs-keyword">if</span>(parentmap.get(<span class="hljs-number">0</span>)!= <span class="hljs-keyword">null</span>)&#123;
+                parentmap.get(<span class="hljs-number">0</span>).setLeft(<span class="hljs-keyword">null</span>);
+            &#125;<span class="hljs-keyword">else</span>&#123;
+                parentmap.get(<span class="hljs-number">1</span>).setRight(<span class="hljs-keyword">null</span>);
+            &#125;
+        &#125;
+        <span class="hljs-comment">/* 如果待删除的结点只有左子树或右子树，则让子树代替自己。 */</span>
+        <span class="hljs-keyword">if</span>(current.getLeft()!= <span class="hljs-keyword">null</span> &amp;&amp; current.getRight() == <span class="hljs-keyword">null</span>)&#123;
+            System.out.println(<span class="hljs-string">&quot;This node only have left tree,delete this node and replace with left tree&quot;</span>);
+            Map&lt;Integer,Node&gt; parentmap = getParentMap(current);
+            <span class="hljs-keyword">if</span>(parentmap.get(<span class="hljs-number">0</span>)!= <span class="hljs-keyword">null</span>)&#123;
+                parentmap.get(<span class="hljs-number">0</span>).setLeft(current.getLeft());
+            &#125;<span class="hljs-keyword">else</span>&#123;
+                parentmap.get(<span class="hljs-number">1</span>).setRight(current.getLeft());
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span>(current.getLeft()== <span class="hljs-keyword">null</span> &amp;&amp; current.getRight() != <span class="hljs-keyword">null</span>)&#123;
+            System.out.println(<span class="hljs-string">&quot;This node only have right tree,delete this node and replace with right tree&quot;</span>);
+            Map&lt;Integer,Node&gt; parentmap = getParentMap(current);
+            <span class="hljs-keyword">if</span>(parentmap.get(<span class="hljs-number">0</span>)!= <span class="hljs-keyword">null</span>)&#123;
+                parentmap.get(<span class="hljs-number">0</span>).setLeft(current.getRight());
+            &#125;<span class="hljs-keyword">else</span>&#123;
+                parentmap.get(<span class="hljs-number">1</span>).setRight(current.getRight());
+            &#125;
+        &#125;
+        <span class="hljs-comment">/* 如果待除的结点有左子树和右子树，让左子树最右侧的结点代替自己，然后删除左子树最右侧的结点。</span>
+<span class="hljs-comment">        （也可以让石子树最左侧的结点代替自己，然后除石子树最左侧的结点。）*/</span>
+        <span class="hljs-keyword">if</span>(current.getLeft()!= <span class="hljs-keyword">null</span> &amp;&amp; current.getRight() != <span class="hljs-keyword">null</span>)&#123;
+            System.out.println(<span class="hljs-string">&quot;This node both have left and right tree,delete this node and replace with right tree&quot;</span>);
+            Map&lt;Integer,Node&gt; parentmap = getParentMap(current);
+            <span class="hljs-keyword">if</span>(parentmap.get(<span class="hljs-number">0</span>)!= <span class="hljs-keyword">null</span>)&#123;
+                parentmap.get(<span class="hljs-number">0</span>).setLeft(current.getRight());
+                current.getRight().setLeft(current.getLeft());
+            &#125;<span class="hljs-keyword">else</span>&#123;
+                parentmap.get(<span class="hljs-number">1</span>).setRight(current.getRight());
+                current.getRight().setLeft(current.getLeft());
+            &#125;
+
+        &#125;
+    &#125;<span class="hljs-keyword">else</span>&#123;
+        System.out.println(<span class="hljs-string">&quot;Can not find this node in the tree,cant delete this node&quot;</span>);
+    &#125;
+&#125;</code></pre></div>
+<p>如果二又排序树高为h,最下层结点的查找长度为h,查找操作的时间复杂度为O(h)</p>
+<p>具有n个(n&gt;0)结点的二叉树的最小高度为log_2(n+1)或log_2n+1。最大高度为n</p>
+<p>最好的情况：平均查找长度=O(log_2n)</p>
+<p>最坏的情况：平均查找长度=O(n)</p>
+<h2 id="平衡二叉树-Balanced-Binary-Tree"><a href="#平衡二叉树-Balanced-Binary-Tree" class="headerlink" title="平衡二叉树(Balanced Binary Tree)"></a>平衡二叉树(Balanced Binary Tree)</h2><p>简称平衡树(AVLG. MAdelson-velsky、E.M. Landis),是一种特殊的二叉排序树。它实现了较高的查找效率，发现树越矮查找效率越高，进而发明了平衡二叉树。树上任意结点的左子树和右子树的深度之差不超过1</p>
+<p><strong>结点的平衡因子=左子树的高度-右子树的高度</strong></p>
+<p>在二叉排序树中插入和删除结点后，只需要调整<strong>最小不平衡子树</strong>，整棵树将恢复平衡。</p>
+<p>最小平衡子树有四种情况（LL，RR，LR，RL）：</p>
+<ol>
+<li>LL：左左更高，整棵树向右旋转（右单旋转调整）</li>
+<li>RR：右右更高，整棵树向左旋转（左单旋转调整）</li>
+<li>LR：左右更高，左子树先向左旋转，后将整棵树向右旋转（先左后右双旋转调整）</li>
+<li>RL：右左更高，右子树先向右旋转，后将整棵树向左旋转（先右后左双旋转调整）</li>
+</ol>
+<p><img src="../../image/image-20210729.png" srcset="/my_world/img/loading.gif" lazyload alt="最小不平衡数四种情况举例，1234分别代表LL、RR、LR、RL"></p>
+<h2 id="散列（Hash，也叫哈希）表"><a href="#散列（Hash，也叫哈希）表" class="headerlink" title="散列（Hash，也叫哈希）表"></a>散列（Hash，也叫哈希）表</h2><p>散列表，又叫哈希表（Hash Table），是能够通过给定的关键字的值直接访问到具体对应的值的一个数据结构。也就是说，<strong>把关键字映射到一个表中的位置（地址）来直接访问记录</strong>，以加快访问速度。</p>
+<p>在哈希查找过程中，要解决两方面的问题，分别是<strong>构造哈希函数</strong>和<strong>处理冲突</strong>。评判一个散列函数优劣的两个主要条件是<strong>值均匀分布与表空间以减少冲突</strong>和<strong>函数尽可能简单以方便计算</strong></p>
+<p>评价哈希表的标准是：<strong>哈希表内数值分部是否均匀</strong></p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">private</span> Node[] hash_table;
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> remain;
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HashTable</span><span class="hljs-params">(<span class="hljs-keyword">int</span> tableLength)</span></span>&#123;
+    initTable(tableLength);
+    remain = tableLength;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initTable</span><span class="hljs-params">(<span class="hljs-keyword">int</span> tableLength)</span></span>&#123;
+    hash_table = <span class="hljs-keyword">new</span> Node[tableLength];
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">hash_table_toString</span><span class="hljs-params">()</span></span>&#123;
+    StringBuffer sb = <span class="hljs-keyword">new</span> StringBuffer();
+    sb.append(<span class="hljs-string">&quot;HashTable:[&quot;</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; hash_table.length; i++) &#123;
+        <span class="hljs-keyword">if</span>(hash_table[i] == <span class="hljs-keyword">null</span>)&#123;
+            sb.append(<span class="hljs-string">&quot;index: &quot;</span>+i+<span class="hljs-string">&quot; value: &quot;</span>+<span class="hljs-string">&quot;null&quot;</span>);
+        &#125;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(hash_table[i]!=<span class="hljs-keyword">null</span> &amp;&amp; hash_table[i].getNext() == <span class="hljs-keyword">null</span>)&#123;
+            sb.append(<span class="hljs-string">&quot;index: &quot;</span>+i+<span class="hljs-string">&quot; value: &quot;</span>+hash_table[i].getValue());
+        &#125;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(hash_table[i]!=<span class="hljs-keyword">null</span> &amp;&amp; hash_table[i].getNext() != <span class="hljs-keyword">null</span>)&#123;
+            LinkedList&lt;Node&gt; queue = <span class="hljs-keyword">new</span> LinkedList&lt;Node&gt;();
+            queue.offer(hash_table[i]);
+            <span class="hljs-keyword">while</span> (!queue.isEmpty())&#123;
+                Node pollNode = queue.poll();
+                sb.append(<span class="hljs-string">&quot;index: &quot;</span>+i+<span class="hljs-string">&quot; value: &quot;</span>+pollNode.getValue());
+                sb.append(<span class="hljs-string">&quot;--&gt;&quot;</span>);
+                <span class="hljs-keyword">if</span>(pollNode.getNext()!=<span class="hljs-keyword">null</span>)&#123; <span class="hljs-comment">//出队队头元素并访问，若不为空指针，则将下一个结点拿出来，放到队列里面</span>
+                    queue.offer(pollNode.getNext());
+                &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(pollNode.getNext()==<span class="hljs-keyword">null</span>)&#123;
+                    <span class="hljs-keyword">break</span>;
+                &#125;
+            &#125;
+        &#125;
+        sb.append(<span class="hljs-string">&quot;,&quot;</span>+<span class="hljs-string">&quot;\n&quot;</span>);
+    &#125;
+    sb.delete(sb.length()-<span class="hljs-number">1</span>,sb.length());
+    sb.append(<span class="hljs-string">&quot;]&quot;</span>);
+    <span class="hljs-keyword">return</span> sb.toString();
+&#125;</code></pre></div>
+<p>下面简单介绍几种哈希函数。</p>
+<ul>
+<li>直接寻址法：取关键字或关键字的某个线性函数值为散列地址。</li>
+<li>数字分析法：通过对数据的分析，发现数据中冲突较少的部分，并构造散列地址。例如同学们的学号，通常同一届学生的学号，其中前面的部分差别不太大，所以用后面的部分来构造散列地址。</li>
+<li>平方取中法：当无法确定关键字里哪几位的分布相对比较均匀时，可以先求出关键字的平方值，然后按需要取平方值的中间几位作为散列地址。这是因为：计算平方之后的中间几位和关键字中的每一位都相关，所以不同的关键字会以较高的概率产生不同的散列地址。</li>
+<li>取随机数法：使用一个随机函数，取关键字的随机值作为散列地址，这种方式通常用于关键字长度不同的场合。</li>
+<li><strong>除留取余法</strong>：取关键字被某个不大于散列表的表长 n 的数 m 除后所得的余数 p 为散列地址。这种方式也可以在用过其他方法后再使用。该函数对 m 的选择很重要，一般取素数或者直接用 n。</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment">    * 除留余数法构造Hash(hash为哈希表的下标/地址)</span>
+<span class="hljs-comment">    * <span class="hljs-doctag">@param</span> key</span>
+<span class="hljs-comment">    */</span>
+   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">bulidHash</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key)</span></span>&#123;
+       <span class="hljs-keyword">return</span> key%remain;
+   &#125;</code></pre></div>
+<h3 id="散列表的特点"><a href="#散列表的特点" class="headerlink" title="散列表的特点"></a>散列表的特点</h3><p>散列表有两种用法：一种是 Key 的值与 Value 的值一样，一般我们称这种情况的结构为 Set（集合）；而如果 Key 和 Value 所对应的内容不一样时，那么我们称这种情况为 Map，也就是人们俗称的键值对集合。</p>
+<p>根据散列表的存储结构，我们可以得出散列表的以下特点。</p>
+<p>1) 访问速度很快</p>
+<p>由于散列表有散列函数，可以将指定的 Key 都映射到一个地址上，所以在访问一个 Key（键）对应的 Value（值）时，根本不需要一个一个地进行查找，可以直接跳到那个地址。所以我们在对散列表进行添加、删除、修改、查找等任何操作时，速度都很快。</p>
+<p>2) 需要额外的空间</p>
+<p>首先，散列表实际上是存不满的，如果一个散列表刚好能够存满，那么肯定是个巧合。而且当散列表中元素的使用率越来越高时，性能会下降，所以一般会选择扩容来解决这个问题。另外，如果有冲突的话，则也是需要额外的空间去存储的，比如链地址法，不但需要额外的空间，甚至需要使用其他数据结构。</p>
+<p>这个特点有个很常用的词可以表达，叫作“空间换时间”，在大多数时候，对于算法的实现，为了能够有更好的性能，往往会考虑牺牲些空间，让算法能够更快些。</p>
+<p>3) 无序</p>
+<p>散列表还有一个非常明显的特点，那就是无序。为了能够更快地访问元素，散列表是根据散列函数直接找到存储地址的，这样我们的访问速度就能够更快，但是对于有序访问却没有办法应对。</p>
+<p>4) 可能会产生碰撞</p>
+<p>没有完美的散列函数，无论如何总会产生冲突，这时就需要采用冲突解决方案，这也使散列表更加复杂。通常在不同的高级语言的实现中，对于冲突的解决方案不一定一样。</p>
+<h3 id="常用Hash解决冲突的办法"><a href="#常用Hash解决冲突的办法" class="headerlink" title="常用Hash解决冲突的办法"></a>常用Hash解决冲突的办法</h3><ol>
+<li>拉链法/链地址法：链地址法其实就是对Key通过哈希之后落在同一个地址上的值，做一个链表。其实在很多高级语言的实现当中，也是使用这种方式处理冲突的。</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment">  * 拉链法存储Hash</span>
+<span class="hljs-comment">  * 将Hash映射到表中</span>
+<span class="hljs-comment">  */</span>
+ <span class="hljs-keyword">public</span> Node[] zipperSave(T key)&#123;
+     Node node = <span class="hljs-keyword">new</span> Node();
+     node.setValue(key);
+
+     <span class="hljs-keyword">int</span> hash = bulidHash(Integer.parseInt(String.valueOf(node.getValue())));<span class="hljs-comment">//构建hash</span>
+     <span class="hljs-keyword">if</span>(hash_table[hash]!=<span class="hljs-keyword">null</span>)&#123;
+         LinkedList&lt;Node&gt; queue = <span class="hljs-keyword">new</span> LinkedList&lt;Node&gt;();
+         queue.offer(hash_table[hash]);<span class="hljs-comment">//将</span>
+         <span class="hljs-keyword">while</span> (!queue.isEmpty())&#123;
+             Node pollNode = queue.poll();
+             <span class="hljs-keyword">if</span>(pollNode.getNext()!=<span class="hljs-keyword">null</span>)&#123; <span class="hljs-comment">//出队队头元素并访问，若不为空指针，则将下一个结点拿出来，放到队列里面</span>
+                 queue.offer(pollNode.getNext());
+             &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(pollNode.getNext()==<span class="hljs-keyword">null</span>)&#123;
+                 pollNode.setNext(node);
+             &#125;
+         &#125;
+     &#125;<span class="hljs-keyword">else</span>&#123;
+         hash_table[hash] = node;
+     &#125;
+     <span class="hljs-keyword">return</span> hash_table;
+ &#125;
+
+ <span class="hljs-comment">/**</span>
+<span class="hljs-comment">  * 使用拉链法后，快速搜索哈希表</span>
+<span class="hljs-comment">  */</span>
+ <span class="hljs-function"><span class="hljs-keyword">public</span> Node&lt;T&gt; <span class="hljs-title">zipperGetValue</span><span class="hljs-params">(T key)</span></span>&#123;
+     <span class="hljs-keyword">int</span> hash = bulidHash(Integer.parseInt(String.valueOf(key)));<span class="hljs-comment">//构建hash</span>
+     <span class="hljs-keyword">if</span>(hash_table[hash]!=<span class="hljs-keyword">null</span>)&#123;
+         LinkedList&lt;Node&gt; queue = <span class="hljs-keyword">new</span> LinkedList&lt;Node&gt;();
+         queue.offer(hash_table[hash]);
+         <span class="hljs-keyword">while</span> (!queue.isEmpty())&#123;
+             Node pollNode = queue.poll();
+             <span class="hljs-keyword">if</span>(pollNode.getValue().hashCode() == key.hashCode())&#123;
+                 <span class="hljs-keyword">return</span> pollNode;
+             &#125;
+             <span class="hljs-keyword">if</span>(pollNode.getNext()!=<span class="hljs-keyword">null</span>)&#123; <span class="hljs-comment">//出队队头元素并访问，若不为空指针，则将下一个结点拿出来，放到队列里面</span>
+                 queue.offer(pollNode.getNext());
+             &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(pollNode.getNext()==<span class="hljs-keyword">null</span>)&#123;
+                 queue.poll();
+             &#125;
+         &#125;
+     &#125;
+     <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+ &#125;</code></pre></div>
+<ol>
+<li>线性探索法：在开放定址算法里，线性探测法是散列解决冲突的一种方法，当hash一个关键字时，发现没有冲突，就保存关键字， 如果出现冲突，则就探测冲突地址下一个地址，依次按照线性查找，直到发现有空地址为止，从而解决冲突，</li>
+</ol>
+<blockquote>
+<p>引用文章<a target="_blank" rel="noopener" href="https://www.cnblogs.com/longerQiu/p/11703441.html">线性探测法 - loserQiu - 博客园 (cnblogs.com)</a></p>
+</blockquote>
+<p>例如 关键字集合{7、8、30、11、18、9、14}，散列函数为：H(key) = (keyx3) MOD 7， 设装填因子（元素个数/散列表长度）为0.7，那么 散列表的长度为 10。</p>
+<p>关键字（key）集合存放位置分别为：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>7</th>
+<th>8</th>
+<th>30</th>
+<th>11</th>
+<th>18</th>
+<th>9</th>
+<th>14</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>5</td>
+<td>6</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>由表格知道，这里的7和14、30和9、11和18出现了位置存放冲突。存放key=7时，散列表长度为10的表中其实没有冲突， 因为7是第一个存在到表中的key，所以一定不会有冲突的，所以7对应散列表的地址0。8、30、11存放的地址分别是3、 6 、5，但是到了key=18时候，发现存放的地址为5，而地址5已经存放了key=11,这时发生了地址冲突。根据线性探测法，算法会探测地址5的下一个地址，即地址6，而此时地址6已经存放了key=30，程序继续探测下一个地址，发现地址7位空，此时把key=18存放到地址7处。以此类推，最后得出的散列表为：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>14</td>
+<td></td>
+<td>8</td>
+<td></td>
+<td>11</td>
+<td>30</td>
+<td>18</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>成功查找率：（1+1+1++1+3+3+2）/ 7</p>
+<p>不成功查找率</p>
+<p>计算查找不成功的次数就直接找关键字到第一个地址上关键字为空的距离即可， 但根据哈希函数地址为MOD7，因此初始只可能在0~6的位置。等概率情况下，查找0~6位置查找失败的查找次数为：</p>
+<p>　　 地址0，到第一个关键字为空的地址2的距离为3，因此查找不成功的次数为3.　　</p>
+<p>　　 地址1， 到第一个关键为空的地址2的距离为2，因此查找不成功的次数为2.</p>
+<p>​    地址2， 到第一个关键为空的地址2的距离为1，因此查找不成功的次数为1.</p>
+<p>​    地址3，到第一个关键为空的地址4的距离为2，因此查找不成功的次数为2.</p>
+<p>​    地址4，到第一个关键为空的地址4的距离为1，因此查找不成功的次数为1.</p>
+<p>​    地址5，到第一个关键为空的地址2(注意不是地址9，因为初始只可能在0~6之间，因此循环回去)的距离为5，因此查找不成功的次数为5.</p>
+<p>​    地址6，到第一个关键为空的地址2(注意不是地址9，因为初始只可能在0~6之间，因此循环回去)的距离为4，因此查找不成功的次数为4.</p>
+<p>不成功查找率：（3+2+1+2+1+5+4）/7</p>
+<ol>
+<li>平方探测法</li>
+</ol>
+<h2 id="时间复杂度总结"><a href="#时间复杂度总结" class="headerlink" title="时间复杂度总结"></a>时间复杂度总结</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">查找找</th>
+<th style="text-align:center">平均时间复杂度</th>
+<th>查找条件</th>
+<th>算法描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">顺序查找</td>
+<td style="text-align:center">O(n)</td>
+<td>无序或有序队列</td>
+<td>按顺序比较每个元素，直到找到关键字为止</td>
+</tr>
+<tr>
+<td style="text-align:center">二分查找（折半查找）</td>
+<td style="text-align:center">O(logn)</td>
+<td>有序数组</td>
+<td>查找过程从数组的中间元素开始，如果中间元素正好是要查找的元素，则搜素过程结束；如果某一特定元素大于或者小于中间元素，则在数组大于或小于中间元素的那一半中查找，而且跟开始一样从中间元素开始比较。　如果在某一步骤数组为空，则代表找不到。</td>
+</tr>
+<tr>
+<td style="text-align:center">二叉排序树查找</td>
+<td style="text-align:center">O(logn)</td>
+<td>二叉排序树</td>
+<td>在二叉查找树b中查找x的过程为：1. 若b是空树，则搜索失败2. 若x等于b的根节点的数据域之值，则查找成功；3. 若x小于b的根节点的数据域之值，则搜索左子树4. 查找右子树。</td>
+</tr>
+<tr>
+<td style="text-align:center">哈希表法（散列表）</td>
+<td style="text-align:center">O(1)</td>
+<td>先创建哈希表（散列表）</td>
+<td>根据键值方式(Key value)进行查找，通过散列函数，定位数据元素。</td>
+</tr>
+<tr>
+<td style="text-align:center">分块查找</td>
+<td style="text-align:center">O(logn)</td>
+<td>无序或有序队列</td>
+<td>将n个数据元素”按块有序”划分为m块（m ≤ n）。每一块中的结点不必有序，但块与块之间必须”按块有序”；即第1块中任一元素的关键字都必须小于第2块中任一元素的关键字；而第2块中任一元素又都必须小于第3块中的任一元素，……。然后使用二分查找及顺序查找。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="ASL分析"><a href="#ASL分析" class="headerlink" title="ASL分析"></a>ASL分析</h2><p>第一个表达式为成功的ASL，第二个为失败的ASL</p>
+<p>顺序查找法：(n+1)/2；n</p>
+<p>折半查找法：转换为折半查找判定二叉树，将线性表的中间分别拆开，比根小的放左边，比根大的放右边；（第一层结点个数<em>1+第二层结点个数\</em>2+…+第n层结点个数*n）/结点总数；（第2层空结点总数*1+第3层空结点总数*2+第4层空结点总数*3+..+第n层空结点总数*n-1）/结点总数</p>
+<p>分块查找法：ASL(折半查找法)+ASL(顺序查找法)</p>
+<p>二叉排序树：ASL(折半查找法)</p>
+<p>哈希表（散列表）查找法：线性探查法：每个元素被访问（查找）的次数<strong>相加</strong>/关键字个数，每个地址由开始到空位置位置所要发生比较操作的地址<strong>相加</strong>/地址总数（eg：0 -&gt; null 1；1 -&gt; null 1、2、3  3）</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E7%A0%94%E7%A9%B6%E7%94%9F%E8%80%83%E8%AF%95/">研究生考试</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E6%9B%B4%E6%96%B0%E6%9C%AA%E5%AE%8C%E6%88%90/">更新未完成</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95/">查找算法</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">排序算法基础</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%E4%B8%8E%E8%BF%90%E7%94%A8/">
+                        <span class="hidden-mobile">二叉树基础理论与运用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

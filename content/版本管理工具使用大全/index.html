@@ -1,0 +1,612 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>版本管理工具使用大全 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="版本管理工具使用大全">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-24 11:31" pubdate>
+        2022年5月24日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">版本管理工具使用大全</h1>
+            
+            <div class="markdown-body">
+              <p>版本管理是为满足不同需求，对同一产品或系统进行局部的改进 和改型所产生的产品或系统系列的变更情况进行记录、跟 踪、维护和控制的过程。</p>
+<p>它的主要功能有：</p>
+<p>集中管理档案，安全授权机制：档案集中地存放在服务器上，经系统管理员授权给各个用户。用户通过check in和check out的方式访问服务器上的文件，未经授权的用户则无法访问服务器上的文件。</p>
+<p>软件版本升级管理：每次登入时，在服务器上都会生成新的版本，任何版本都可以随时检出编辑。</p>
+<p>加锁功能：在文件更新时保护文件，避免不同的用户更改同一文件时发生冲突。</p>
+<p>提供不同版本源程序的比较。</p>
+<h1 id="SVN"><a href="#SVN" class="headerlink" title="SVN"></a>SVN</h1><p>Subversion(SVN) 是一个开源的版本控制系統, 也就是说 Subversion 管理着随时间改变的数据。 这些数据放置在一个中央资料档案库(repository) 中。 这个档案库很像一个普通的文件服务器, 不过它会记住每一次文件的变动。 这样你就可以把档案恢复到旧的版本, 或是浏览文件的变动历史。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><strong>windows</strong></p>
+<blockquote>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://www.tortoisesvn.net/downloads.zh.html">下载 · TortoiseSVN</a></p>
+</blockquote>
+<p>选好路径next即可</p>
+<h2 id="代码仓库提取到本地"><a href="#代码仓库提取到本地" class="headerlink" title="代码仓库提取到本地"></a>代码仓库提取到本地</h2><ol>
+<li>右键使用<code>svn checkout</code></li>
+<li>在URL of repository中修改代码仓库地址，如：<code>http://192.168.3.1/project/xxxx</code>；在checkout directory中修改提取到本地的位置</li>
+<li>点击OK，并等待拉取成功</li>
+</ol>
+<h2 id="更新目录"><a href="#更新目录" class="headerlink" title="更新目录"></a>更新目录</h2><p>本地更新到远程库中的最新文件</p>
+<div class="code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">svn update</span></code></pre></div>
+<h2 id="提交操作"><a href="#提交操作" class="headerlink" title="提交操作"></a>提交操作</h2><p>为服务器提交修改，并保存在服务器上</p>
+<div class="code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">svn commit</span></code></pre></div>
+<h1 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h1><p><strong>Jenkins</strong>是一个独立的开源软件项目，是基于Java开发的一种持续集成工具，用于监控持续重复的工作，旨在提供一个开放易用的软件平台，使软件的持续集成变成可能。</p>
+<p>前身是Hudson是一个可扩展的持续集成引擎。可用于自动化各种任务，如构建，测试和部署软件。Jenkins可以通过本机系统包Docker安装，甚至可以通过安装Java Runtime Environment的任何机器独立运行。</p>
+<p>主要用于：</p>
+<ol>
+<li>持续、自动地构建/测试软件项目，如CruiseControl与DamageControl。</li>
+<li>监控一些定时执行的任务</li>
+</ol>
+<h2 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h2><blockquote>
+<p>Jenkins下载地址：<a target="_blank" rel="noopener" href="https://www.jenkins.io/download/">Jenkins download and deployment</a></p>
+</blockquote>
+<h3 id="Windows—tomcat"><a href="#Windows—tomcat" class="headerlink" title="Windows—tomcat"></a>Windows—tomcat</h3><ol>
+<li>在下载地址中找到Windows版本，下载到本地</li>
+<li>搭建java环境，将java加入环境变量</li>
+<li>安装选择下一步，在端口设置中改为8181后，下一步安装完毕即可</li>
+<li>安装tomcat，将Jenkins.war复制一份到tomcat中的webapps中</li>
+<li>修改tomcat中的server.xml，把tomcat端口修改为8181</li>
+<li>运行bin中的startup.bat，在浏览器中输入localhost:8181即可打开jenkins</li>
+<li>按照jenkins中的提示一步一步走即可</li>
+</ol>
+<h3 id="Windows—Jenkins"><a href="#Windows—Jenkins" class="headerlink" title="Windows—Jenkins"></a>Windows—Jenkins</h3><ol>
+<li>使用命令<code>net start jenkins</code>开启服务</li>
+<li>在浏览器中输入<code>localhost:8233</code>开启jenkins（可在<code>jenkins.xml</code>修改端口）</li>
+</ol>
+<h3 id="Windows—java（推荐）"><a href="#Windows—java（推荐）" class="headerlink" title="Windows—java（推荐）"></a>Windows—java（推荐）</h3><ol>
+<li>使用<code>java -jar jenkins.war</code>即可运行（jenkins本身是由springboot开发，所以可以直接用java命令开启）</li>
+<li>在浏览器中输入localhost:8080即可打开jenkins</li>
+</ol>
+<h2 id="创建构建任务"><a href="#创建构建任务" class="headerlink" title="创建构建任务"></a>创建构建任务</h2><p>点击新建Item</p>
+<p><img src="../../image/image-20220525150650488.png" srcset="/my_world/img/loading.gif" lazyload alt="新建item"></p>
+<p>输入任务名并点击Freestyle project，完毕后点击确定</p>
+<p><img src="../../image/image-20220525150739437.png" srcset="/my_world/img/loading.gif" lazyload alt="输入任务名称"></p>
+<p>配置<strong>Source Code Management</strong>，这个地方用于获取git、svn中的代码，git就选择git，svn就选择Subversion</p>
+<p>配置<strong>Build Triggers</strong>，用于定时执行任务</p>
+<p>配置<strong>Build</strong>，Linux环境下在Build中选择<code>执行Shell</code>，Windows环境下选择<code>执行Windows批处理命令</code>（其他的也可，但是Shell命令是很普遍的，所以强烈推荐），然后输入Command，这样就可以让kenkins执行的时候执行该命令运行代码，参考如下：</p>
+<div class="code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">!/bin/bash -e</span>
+<span class="hljs-meta"></span>
+<span class="hljs-meta">#</span><span class="bash"> 寻找miniconda3的sh，并激活conda环境</span>
+. $HOME/miniconda3/etc/profile.d/conda.sh
+conda activate xxxxxx
+
+cd ./src/main/
+python -m main</code></pre></div>
+<h2 id="定时构建"><a href="#定时构建" class="headerlink" title="定时构建"></a>定时构建</h2><p>语法：* <em> </em> <em> </em></p>
+<p>（五颗星，多个时间点，中间用逗号隔开）</p>
+<p>第一个表示分钟，取值0~59</p>
+<p>第二个表示小时，取值0~23</p>
+<p>第三个表示一个月的第几天，取值1~31</p>
+<p>第四个表示第几月，取值1~12</p>
+<p>第五个表示一周中的第几天，取值0~7，其中0和7代表的都是周日</p>
+<blockquote>
+<p>源自<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhongyehai/p/10577168.html">jenkins持续集成：定时构建语法 - 向前走。 - 博客园 (cnblogs.com)</a></p>
+</blockquote>
+<p><img src="../../image/image-20220629164141972.png" srcset="/my_world/img/loading.gif" lazyload alt="含义"></p>
+<h2 id="超时抛弃构建"><a href="#超时抛弃构建" class="headerlink" title="超时抛弃构建"></a>超时抛弃构建</h2><p>在使用jenkins进行自动编译、构建时有些任务可能由于网络或其他原因一直阻塞，导致该项目不能再次执行编译构建。我们希望在某些任务执行时间超过一定值时将其终止。</p>
+<p>jenkins的<code>build timeout plugin</code>插件可以帮我们完成该任务。jenkins的2.7.1版本默认就已经安装了该插件，如果默认没有安装可在插件管理中搜索进行安装。</p>
+<p><img src="../../image/image-20220815092403407.png" srcset="/my_world/img/loading.gif" lazyload alt="超时终止构建任务设置"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E5%85%B6%E4%BB%96/">其他</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/git/">git</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/svn/">svn</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/jenkens/">jenkens</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/java%E7%9A%84Websocket%E5%BC%80%E5%8F%91/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">java的Websocket开发</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E5%A4%A7%E5%85%A8%EF%BC%88%E4%B8%89%EF%BC%89/">
+                        <span class="hidden-mobile">高等数学公式大全（三）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

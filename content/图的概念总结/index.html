@@ -1,0 +1,908 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>图的概念总结 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="图的概念总结">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-17 10:44" pubdate>
+        2021年9月17日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      71
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">图的概念总结</h1>
+            
+            <div class="markdown-body">
+              <p>在数学中，图是描述于一组对象的结构，其中某些对象对在某种意义上是“相关的”。这些对象对应于称为顶点的数学抽象（也称为节点或点），并且每个相关的顶点对都称为边（也称为链接或线）。通常，图形以图解形式描绘为顶点的一组点或环，并通过边的线或曲线连接。 图形是离散数学的研究对象之一。</p>
+<h1 id="图的基本概念"><a href="#图的基本概念" class="headerlink" title="图的基本概念"></a>图的基本概念</h1><blockquote>
+<p>访问链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Real_Fool_/article/details/114141377">数据结构：图(Graph)【详解】_UniqueUnit的博客-CSDN博客</a></p>
+</blockquote>
+<h1 id="图的存储结构"><a href="#图的存储结构" class="headerlink" title="图的存储结构"></a>图的存储结构</h1><h2 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h2><p>邻接矩阵是图的顺序存储结构。<strong>一个一维数组存储图中顶点信息，一个二维数组(称为邻接矩阵)存储图中的边或弧的信息。</strong></p>
+<h3 id="结点"><a href="#结点" class="headerlink" title="结点"></a>结点</h3><p>首先构建结点</p>
+<p>c++</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * @author: Vsoapmac</span>
+<span class="hljs-comment"> * @time: 2021年9月17日</span>
+<span class="hljs-comment"> * @use: 结点</span>
+<span class="hljs-comment"> **/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Node</span>&#123;</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Node</span>(<span class="hljs-keyword">int</span> id,<span class="hljs-keyword">int</span> data)&#123;
+        <span class="hljs-keyword">this</span>-&gt;data = data;
+        <span class="hljs-keyword">this</span>-&gt;id = id;
+    &#125;
+
+    <span class="hljs-keyword">int</span> data;
+    <span class="hljs-keyword">int</span> id;
+&#125;;</code></pre></div>
+<h3 id="初始化数组"><a href="#初始化数组" class="headerlink" title="初始化数组"></a>初始化数组</h3><p>初始化领接矩阵数组</p>
+<p>c++</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">int</span> nodeSize = <span class="hljs-number">5</span>;
+<span class="hljs-comment">// 领接矩阵</span>
+<span class="hljs-keyword">int</span> graphMatrix[<span class="hljs-number">5</span>][<span class="hljs-number">5</span>];
+<span class="hljs-comment">// 领接矩阵有向图的权</span>
+<span class="hljs-keyword">double</span> graphMatrixSize[<span class="hljs-number">5</span>][<span class="hljs-number">5</span>];
+<span class="hljs-comment">// 已阅读的结点</span>
+<span class="hljs-keyword">int</span> visit[<span class="hljs-number">5</span>];
+<span class="hljs-comment">// 队列或栈</span>
+queue&lt;Node*&gt; _queue;
+stack&lt;Node*&gt; _stack;
+
+<span class="hljs-built_in">Graph</span>()&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nodeSize;i++)&#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; nodeSize;j++)&#123;
+            <span class="hljs-comment">// 初始化方向</span>
+            graphMatrix[i][j] = <span class="hljs-number">0</span>;
+            <span class="hljs-comment">// 节点的自身的权为0</span>
+            <span class="hljs-keyword">if</span>(i == j)&#123;
+                graphMatrixSize[i][j] = <span class="hljs-number">0</span>;
+            &#125;<span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-comment">// 初始化路径</span>
+                graphMatrixSize[i][j] = <span class="hljs-number">-1</span>;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<h3 id="构造领接矩阵"><a href="#构造领接矩阵" class="headerlink" title="构造领接矩阵"></a>构造领接矩阵</h3><p>构造领接矩阵</p>
+<p>c++（有向、无向）</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * @use: 构造有向领接矩阵</span>
+<span class="hljs-comment"> * @parameter: 新的结点，结点连接的下一个节点，节点的权</span>
+<span class="hljs-comment"> **/</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">MatrixBuild</span><span class="hljs-params">(Node* new_node,Node* next_node,<span class="hljs-keyword">double</span> length)</span></span>&#123;
+    <span class="hljs-comment">// 连接下一个结点</span>
+    <span class="hljs-keyword">if</span>(next_node)&#123;
+        graphMatrix[new_node-&gt;id][next_node-&gt;id] = <span class="hljs-number">1</span>;
+        graphMatrixSize[new_node-&gt;id][next_node-&gt;id] = length;
+    &#125;
+&#125;</code></pre></div>
+<h3 id="输入参数"><a href="#输入参数" class="headerlink" title="输入参数"></a>输入参数</h3><p>c++</p>
+<div class="code-wrapper"><pre><code class="hljs c++">Graph gh;
+Node* root = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);
+Node* first = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);
+Node* second = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>);
+Node* third = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>);
+Node* forth = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(<span class="hljs-number">4</span>,<span class="hljs-number">4</span>);
+Node* fifth = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Node</span>(<span class="hljs-number">5</span>,<span class="hljs-number">5</span>);
+<span class="hljs-comment">// 连接0 -&gt; 1,0 -&gt; 4</span>
+gh.<span class="hljs-built_in">MatrixBuild</span>(root,first,<span class="hljs-number">1.1</span>);
+gh.<span class="hljs-built_in">MatrixBuild</span>(root,forth,<span class="hljs-number">8.0</span>);
+<span class="hljs-comment">// 连接2 -&gt; 3,2 -&gt; 5</span>
+gh.<span class="hljs-built_in">MatrixBuild</span>(second,third,<span class="hljs-number">5.7</span>);
+gh.<span class="hljs-built_in">MatrixBuild</span>(second,fifth,<span class="hljs-number">5.0</span>);
+<span class="hljs-comment">// 连接3 -&gt; 1,3 -&gt; 0,3 -&gt; 4</span>
+gh.<span class="hljs-built_in">MatrixBuild</span>(third,first,<span class="hljs-number">3.2</span>);
+gh.<span class="hljs-built_in">MatrixBuild</span>(third,root,<span class="hljs-number">2.2</span>);
+gh.<span class="hljs-built_in">MatrixBuild</span>(third,forth,<span class="hljs-number">3.3</span>);
+<span class="hljs-comment">// 连接4 -&gt; 5</span>
+gh.<span class="hljs-built_in">MatrixBuild</span>(forth,fifth,<span class="hljs-number">6.0</span>);</code></pre></div>
+<h2 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h2><h1 id="图的遍历算法"><a href="#图的遍历算法" class="headerlink" title="图的遍历算法"></a>图的遍历算法</h1><h2 id="深度优先搜索（DFS）"><a href="#深度优先搜索（DFS）" class="headerlink" title="深度优先搜索（DFS）"></a>深度优先搜索（DFS）</h2><p>DFS（Depth-First Search）：深度优先搜索属于图算法的一种，其过程简要来说是对每一个可能的分支路径深入到不能再深入为止，而且每个节点只能访问一次。</p>
+<p>深度优先遍历图的方法是，从图中某顶点v出发：</p>
+<ol>
+<li>访问顶点v；</li>
+<li>依次从v的未被访问的邻接点出发，对图进行DFS；直至图中和v有路径相通的顶点都被访问；</li>
+<li>若此时图中尚有顶点未被访问，则从一个未被访问的顶点出发，重新进行DFS，直到图中所有顶点均被访问过为止。</li>
+</ol>
+<p>深度优先遍历使用的数据结构是<strong>栈（Stack）</strong>，将访问过的节点标记后，并压入栈中，再遍历此时跟栈顶元素相关联的节点，将其中未标记的节点标记，并压入栈中……以此类推，当该栈顶的元素相关联的节点都被访问过了，则该元素弹出栈……直到栈空，遍历完成。</p>
+<blockquote>
+<p>原链接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/126311017">深度优先搜索算法 - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<p>深度优先搜索类似于<strong>二叉树的先序遍历</strong></p>
+<p>c++（注意，不用栈实现的深度优先搜索算法）</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * @use: 深度优先搜索遍历</span>
+<span class="hljs-comment"> * @parameter: 根节点</span>
+<span class="hljs-comment"> **/</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(Node* root)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(visit[root-&gt;id]!=<span class="hljs-number">1</span>)&#123;
+        <span class="hljs-comment">// 操作数据（存储、输出）</span>
+        cout &lt;&lt; (<span class="hljs-keyword">char</span>)root-&gt;data &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+        <span class="hljs-comment">// 记录已阅读的结点</span>
+        visit[root-&gt;id] = <span class="hljs-number">1</span>;
+        <span class="hljs-comment">// 若结点有连通结点，则遍历结点</span>
+        <span class="hljs-keyword">if</span>(!root-&gt;next_node_list.<span class="hljs-built_in">empty</span>())&#123;
+            <span class="hljs-comment">// 初始化迭代器</span>
+            list&lt;Node*&gt;::iterator iter;
+            <span class="hljs-comment">// 遍历领接结点</span>
+            list&lt;Node*&gt; next_node_list = root-&gt;next_node_list;
+            <span class="hljs-comment">// 顶点出栈</span>
+            _stack.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-keyword">for</span>(iter = next_node_list.<span class="hljs-built_in">begin</span>();iter!= next_node_list.<span class="hljs-built_in">end</span>();iter++)&#123;
+                <span class="hljs-comment">// 递归遍历到的点</span>
+                <span class="hljs-built_in">DFS</span>(*iter);
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<p>java（半伪代码）：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">int</span> visted[]; <span class="hljs-comment">// 初始化记录已阅读顶点数组</span>
+List&lt;Node&gt; _final; <span class="hljs-comment">// 初始化深度优先搜索算法最终的运算结果</span>
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">  * <span class="hljs-doctag">@use</span>: 主方法，从某个顶点开始</span>
+<span class="hljs-comment">  * <span class="hljs-doctag">@parameter</span>: 整个图和从某个顶点</span>
+<span class="hljs-comment">  * <span class="hljs-doctag">@return</span>: 搜索后的结点数组</span>
+<span class="hljs-comment">  **/</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(Graph g, Node node)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(visted[node.getId()]!=<span class="hljs-number">1</span>)&#123;
+        _final.add(node); <span class="hljs-comment">// 保存在结果数组中</span>
+        visted[node.getId()]=<span class="hljs-number">1</span>;<span class="hljs-comment">// 记录状态</span>
+        <span class="hljs-comment">// 若顶点有连通顶点，遍历</span>
+        <span class="hljs-keyword">if</span>(!g.visitNext(node).isEmpty())&#123;
+            Queue&lt;Node&gt; nodeQueue = g.visitNext(node);<span class="hljs-comment">// 所搜顶点的领接顶点</span>
+            <span class="hljs-comment">// 循环领接顶点队列，每个队头出队直到队列为空为止</span>
+            <span class="hljs-keyword">while</span>(!nodeQueue.isEmpty())&#123;
+                DFS(g,nodeQueue.poll());
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<h2 id="广度优先搜索（BFS）"><a href="#广度优先搜索（BFS）" class="headerlink" title="广度优先搜索（BFS）"></a>广度优先搜索（BFS）</h2><p>广度优先搜索（以下采用广度来描述）是连通图的一种遍历算法。这一算法也是很多重要的图的算法的原型。Dijkstra单源最短路径算法和Prim最小生成树算法都采用了和宽度优先搜索类似的思想。</p>
+<p>广度优先搜索别名又叫BFS，属于一种盲目搜寻法，目的是系统地展开并检查图中的所有节点，以找寻结果。</p>
+<p>换句话说，它并不考虑结果的可能位置，彻底地搜索整张图，直到找到结果为止。基本过程，BFS是从根节点开始，沿着树(图)的宽度遍历树(图)的节点。如果所有节点均被访问，则算法中止。一般用队列数据结构来辅助实现BFS算法。</p>
+<blockquote>
+<p>原链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bff70b786bb6">基本算法——深度优先搜索（DFS）和广度优先搜索（BFS） - 简书 (jianshu.com)</a></p>
+</blockquote>
+<p>广度优先搜索类似于<strong>树的层次遍历</strong></p>
+<p>BFS遍历图的时候，需要用到一个队列，算法执行过程简单概括如下：</p>
+<ol>
+<li>任取图中一个顶点访问，入队，并将这个顶点标记为已访问</li>
+<li>当队列不为空时循环执行，出队，依次检查出队顶点的所有领接顶点，访问没有被访问过的领接顶点并将其入队</li>
+<li>当队列为空时跳出循环，BFS完成</li>
+</ol>
+<p>c++</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * @use: 广度优先搜索遍历</span>
+<span class="hljs-comment">     * @parameter: 根节点</span>
+<span class="hljs-comment">     **/</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">BFS</span><span class="hljs-params">(Node* root)</span></span>&#123;
+        <span class="hljs-comment">// 顶点入队</span>
+        _queue.<span class="hljs-built_in">push</span>(root);
+        <span class="hljs-comment">// 记录结点被阅读的状态</span>
+        visit[root-&gt;id] = <span class="hljs-number">1</span>;
+        <span class="hljs-comment">// 以队列为焦点对图进行操作</span>
+        <span class="hljs-keyword">while</span>(!_queue.<span class="hljs-built_in">empty</span>())&#123;
+            <span class="hljs-comment">// 队列的队头如果有领接顶点则进行入队操作</span>
+            <span class="hljs-keyword">if</span>(!_queue.<span class="hljs-built_in">front</span>()-&gt;next_node_list.<span class="hljs-built_in">empty</span>())&#123;
+                <span class="hljs-comment">// 操作数据</span>
+                cout &lt;&lt; (<span class="hljs-keyword">char</span>)_queue.<span class="hljs-built_in">front</span>()-&gt;data &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+                <span class="hljs-comment">// 初始化迭代器</span>
+                list&lt;Node*&gt;::iterator iter;
+                <span class="hljs-comment">// 遍历领接结点</span>
+                list&lt;Node*&gt; next_node_list = _queue.<span class="hljs-built_in">front</span>()-&gt;next_node_list;
+                Node* node_save = <span class="hljs-literal">NULL</span>;
+                <span class="hljs-keyword">for</span>(iter = next_node_list.<span class="hljs-built_in">begin</span>();iter!= next_node_list.<span class="hljs-built_in">end</span>();iter++)&#123;
+                    <span class="hljs-comment">// 临时存储结点</span>
+                    node_save = *iter;
+                    <span class="hljs-comment">// 若结点并未阅读，存储结点，并标记阅读状态</span>
+                    <span class="hljs-keyword">if</span>(visit[node_save-&gt;id]!=<span class="hljs-number">1</span>)&#123;
+                        <span class="hljs-comment">// 递归遍历到的点</span>
+                        _queue.<span class="hljs-built_in">push</span>(*iter);
+                        <span class="hljs-comment">// 记录结点被阅读的状态</span>
+                        visit[node_save-&gt;id] = <span class="hljs-number">1</span>;
+                    &#125;
+                &#125;
+                <span class="hljs-comment">// 队头出队</span>
+                _queue.<span class="hljs-built_in">pop</span>();
+            &#125;
+        &#125;
+    &#125;</code></pre></div>
+<p>java（半伪代码）：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">int</span> visted[]; <span class="hljs-comment">// 初始化记录已阅读顶点数组</span>
+List&lt;Node&gt; _final; <span class="hljs-comment">// 初始化深度优先搜索算法最终的运算结果</span>
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">  * <span class="hljs-doctag">@use</span>: 主方法，从某个顶点开始</span>
+<span class="hljs-comment">  * <span class="hljs-doctag">@parameter</span>: 整个图和从某个顶点</span>
+<span class="hljs-comment">  * <span class="hljs-doctag">@return</span>: 搜索后的结点数组</span>
+<span class="hljs-comment">  **/</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">BFS</span><span class="hljs-params">(Graph g, Node node)</span></span>&#123;
+    Queue&lt;Node&gt; queue = <span class="hljs-keyword">new</span> LinkedList();<span class="hljs-comment">// 初始化队列</span>
+    queue.offer(node);<span class="hljs-comment">// 起点入队</span>
+    visted[node.getId()] = <span class="hljs-number">1</span>;<span class="hljs-comment">// 记录阅读的状态</span>
+    _final.add(node); <span class="hljs-comment">// 保存结点</span>
+    <span class="hljs-comment">// 在队内操作直到队列为空</span>
+    <span class="hljs-keyword">while</span>(!queue.isEmpty())&#123;
+        Node current = queue.poll();
+        Queue&lt;Node&gt; currentNext = g.visitNext(current);
+        <span class="hljs-comment">// 如果结点有领接顶点将领接顶点入队并标记阅读的状态</span>
+        <span class="hljs-keyword">while</span>(!currentNext.isEmpty())&#123;
+            Node current1 = currentNext.poll();
+            <span class="hljs-comment">// 如果该节点并未阅读则入队和记录</span>
+            <span class="hljs-keyword">if</span>(visted[current1.getId()] != <span class="hljs-number">1</span>)&#123;
+                queue.offer(current1); <span class="hljs-comment">// 入队</span>
+                visted[current1.getId()] = <span class="hljs-number">1</span>;<span class="hljs-comment">// 记录阅读的状态</span>
+                _final.add(current1); <span class="hljs-comment">// 保存结点</span>
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<h1 id="图的最小（代价）生成树算法"><a href="#图的最小（代价）生成树算法" class="headerlink" title="图的最小（代价）生成树算法"></a>图的最小（代价）生成树算法</h1><p>以下算法皆用顶点构建生成树，适合稠密图</p>
+<h2 id="普里姆（Prim）算法"><a href="#普里姆（Prim）算法" class="headerlink" title="普里姆（Prim）算法"></a>普里姆（Prim）算法</h2><p>普里姆算法查找最小生成树的过程，采用了贪心算法的思想。对于包含 N 个顶点的连通网，普里姆算法每次从连通网中找出一个权值最小的边，这样的操作重复 N-1 次，由 N-1 条权值最小的边组成的生成树就是最小生成树。</p>
+<p><strong>Prim算法适合稠密图</strong></p>
+<p>那么，如何找出 N-1 条权值最小的边呢？普里姆算法的实现思路是：</p>
+<ol>
+<li>将连通网中的所有顶点分为两类（假设为 A 类和 B 类）。初始状态下，所有顶点位于 B 类；</li>
+<li>选择任意一个顶点，将其从 B 类移动到 A 类；</li>
+<li>从 B 类的所有顶点出发，找出一条连接着 A 类中的某个顶点且权值最小的边，将此边连接着的 A 类中的顶点移动到 B 类；</li>
+<li>重复执行第 3 步，直至 B 类中的所有顶点全部移动到 A 类，恰好可以找到 N-1 条边。</li>
+</ol>
+<blockquote>
+<p>原链接：<a target="_blank" rel="noopener" href="http://c.biancheng.net/algorithm/prim.html">prim算法（普里姆算法）详解 (biancheng.net)</a></p>
+</blockquote>
+<p>以下为笔者用口语通俗化普里姆算法的过程：</p>
+<ol>
+<li>将图中所有的结点全部提取出来</li>
+<li>找出两个结点之间的最短路径（权值最小）的边并记录</li>
+<li>循环2步骤，直到所有结点连通为止</li>
+</ol>
+<p>图示可以查看上面的链接</p>
+<h2 id="克鲁斯卡尔（Kruskal）算法"><a href="#克鲁斯卡尔（Kruskal）算法" class="headerlink" title="克鲁斯卡尔（Kruskal）算法"></a>克鲁斯卡尔（Kruskal）算法</h2><p>克鲁斯卡尔算法查找最小生成树的方法是：将连通网中所有的边按照权值大小做升序排序，从权值最小的边开始选择，只要此边不和已选择的边一起构成环路，就可以选择它组成最小生成树。对于 N 个顶点的连通网，挑选出 N-1 条符合条件的边，这些边组成的生成树就是最小生成树。</p>
+<p><strong>Kruksal算法常用于稀疏图</strong></p>
+<blockquote>
+<p>原链接：<a target="_blank" rel="noopener" href="http://c.biancheng.net/algorithm/kruskal.html">kruskal算法（克鲁斯卡尔算法）详解 (biancheng.net)</a></p>
+</blockquote>
+<p>以下为笔者用口语通俗化克鲁斯卡尔算法的过程：</p>
+<ol>
+<li>将图中所有的结点全部提取出来</li>
+<li>将所有的边的权值全部排序</li>
+<li>连接所有权值最小的边</li>
+<li>若存在回路，比较通往同一结点的两条路径的权值，哪条最小取哪条</li>
+<li>所有的结点连通后结束</li>
+</ol>
+<p>图示可以查看上面的链接</p>
+<h1 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h1><h2 id="迪杰斯特拉-Dijkstra-算法"><a href="#迪杰斯特拉-Dijkstra-算法" class="headerlink" title="迪杰斯特拉(Dijkstra)算法"></a>迪杰斯特拉(Dijkstra)算法</h2><p>迪杰斯特拉算法是典型最短路径算法，用于计算一个节点到其他节点的最短路径。它的主要特点是以起始点为中心向外层层扩展(广度优先遍历思想)，直到扩展到终点为止。</p>
+<p><strong>基本思想</strong></p>
+<ol>
+<li>通过Dijkstra计算图G中的最短路径时，需要指定一个起点D(即从顶点D开始计算)。</li>
+<li>此外，引进两个数组S和U。S的作用是记录已求出最短路径的顶点(以及相应的最短路径长度)，而U则是记录还未求出最短路径的顶点(以及该顶点到起点D的距离)。</li>
+<li>初始时，数组S中只有起点D；数组U中是除起点D之外的顶点，并且数组U中记录各顶点到起点D的距离。如果顶点与起点D不相邻，距离为无穷大。</li>
+<li>然后，从数组U中找出路径最短的顶点K，并将其加入到数组S中；同时，从数组U中移除顶点K。接着，更新数组U中的各顶点到起点D的距离。</li>
+<li>重复第4步操作，直到遍历完所有顶点。</li>
+</ol>
+<blockquote>
+<p>原链接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/346558578">最短路径算法-迪杰斯特拉(Dijkstra)算法 - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<h2 id="弗洛伊德-Floyd-算法"><a href="#弗洛伊德-Floyd-算法" class="headerlink" title="弗洛伊德(Floyd)算法"></a>弗洛伊德(Floyd)算法</h2><p>弗洛伊德算法计算图中各个顶点之间的最短路径，如果求图中任意一对顶点间的最短路径，则通常使用弗洛伊德算法。弗洛伊德算法算法不能解决带有“负权回路”（或者叫“负权环”）的图，因为带有“负权回路”的图没有最短路。</p>
+<p>Floyd算法采用动态规划的思想，分多个阶段解决问题</p>
+<p>若图中有n个顶点($V_0$~$V_1$),求图中每一对页点之间的最短路径分n个阶段</p>
+<ol>
+<li>初始化，在没有其它顶点中转的情况下，求得各顶点间的最短路径</li>
+<li>如果在各顶点间增加$V_0$作为中转点，求得各顶点间新的最短路径</li>
+<li>增加$V_1$作为中转点，求得各顶点间新的最短路径</li>
+<li>增加$V_2$作为中转点，求得各顶点间新的最短路径。</li>
+<li>$\cdots$</li>
+<li>最后增加$V_{n-1}$作为中转点，求得各顶点间最终的最短路径。</li>
+</ol>
+<h3 id="初始化矩阵"><a href="#初始化矩阵" class="headerlink" title="初始化矩阵"></a>初始化矩阵</h3><p>c++</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// 复制权矩阵</span>
+<span class="hljs-keyword">double</span> MatrixSize[nodeSize][nodeSize];
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nodeSize;i++)&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; nodeSize;j++)&#123;
+        MatrixSize[i][j] = graphMatrixSize[i][j];
+    &#125;
+&#125;
+<span class="hljs-comment">// 初始化中转结点矩阵</span>
+<span class="hljs-keyword">int</span> MatrixMiddle[nodeSize][nodeSize];
+<span class="hljs-comment">// 为中转结点矩阵赋初始值</span>
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nodeSize;i++)&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; nodeSize;j++)&#123;
+        <span class="hljs-comment">// 中转结点矩阵的值初始值为-1</span>
+        MatrixMiddle[i][j] = <span class="hljs-number">-1</span>;
+    &#125;
+&#125;</code></pre></div>
+<h3 id="核心算法"><a href="#核心算法" class="headerlink" title="核心算法"></a>核心算法</h3><p>c++</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// 第一层循环，中转次数</span>
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; nodeSize;k++)&#123;
+    <span class="hljs-comment">// 第二层循环，矩阵的行</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nodeSize;i++)&#123;
+        <span class="hljs-comment">// 第三层循环，矩阵的列</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; nodeSize;j++)&#123;
+            <span class="hljs-comment">// A[i][j] &gt; A[i][k] + A[k][j]?A[i][j] = A[i][k] + A[k][j]:A[i][j]</span>
+            <span class="hljs-keyword">if</span>(MatrixSize[i][j] &gt; MatrixSize[i][k] + MatrixSize[k][j])&#123;
+                <span class="hljs-comment">// 赋值</span>
+                MatrixSize[i][j] = MatrixSize[i][k] + MatrixSize[k][j];
+                cout &lt;&lt; MatrixSize[i][j] &lt;&lt; endl;
+                <span class="hljs-comment">// 改变中转次数</span>
+                MatrixMiddle[i][j] = k;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<h3 id="算出最短路径和路径"><a href="#算出最短路径和路径" class="headerlink" title="算出最短路径和路径"></a>算出最短路径和路径</h3><h1 id="AOV和AOE网"><a href="#AOV和AOE网" class="headerlink" title="AOV和AOE网"></a>AOV和AOE网</h1><h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><h3 id="AOV"><a href="#AOV" class="headerlink" title="AOV"></a>AOV</h3><p>概念：在现代化管理中，人们常用有向图来描述和分析一项工程的计划和实施过程，一个工程常被分为多个小的子工程，这些子工程被称为活动（Activity)，在<strong>有向图</strong>中若以顶点表示<strong>活动</strong>，<strong>有向边</strong>表示<strong>活动之间的先后关系</strong>，这样的图简称为AOV网。它是一种可以形象地反映出整个工程中各个活动之间的先后关系的有向图。</p>
+<p>AOV图没有回路</p>
+<p>总结：AOV网是一种用<strong>结点表示活动、用有向边表示活动先后关系</strong>的有向无环图</p>
+<p>拓扑排序：找到活动的先后顺序</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ol>
+<li>从图中找出一个没有前驱的结点（入度为0）的结点并输出</li>
+<li>从图中<strong>删除</strong>该<strong>结点</strong>和全部<strong>以它为起点的有向边</strong></li>
+<li>重复步骤1和2，直到图为空</li>
+</ol>
+<p>拓扑排序的结果不唯一</p>
+<p>逆拓扑排序：</p>
+<ol>
+<li>从图中找出一个没有后继的结点（出度为0）的结点并输出</li>
+<li>从图中<strong>删除</strong>该<strong>结点</strong>和全部<strong>以它为终点的有向边</strong></li>
+<li>重复步骤1和2，直到图为空</li>
+</ol>
+<h2 id="AOE"><a href="#AOE" class="headerlink" title="AOE"></a>AOE</h2><p>概念：在现代化管理中，人们常用有向图来描述和分析一项工程的计划和实施过程，一个工程常被分为多个小的子工程，这些子工程被称为活动（Activity)，在<strong>带权有向图</strong>中若以顶点表示<strong>事件</strong>，<strong>有向边</strong>表示<strong>活动</strong>，<strong>边上的权值表示该活动持续的时间</strong>，这样的图简称为AOE网。</p>
+<p>AOE网中，<strong>最大路径长度的路径</strong>称为<strong>关键路径</strong>。<strong>完成整个工期的最短时间</strong>就是<strong>关键路径长度所代表的时间</strong>。<strong>关键路径</strong>上的<strong>活动</strong>称为<strong>关键活动</strong>。关键路径是个特殊的概念，它<strong>既代表了一个最短又代表一个最长</strong>，它是图中的<strong>最长路径</strong>，又是整个工期所完成的<strong>最短时间</strong>。</p>
+<p>总结：AOE网是一种<strong>用结点表示事件</strong>、<strong>用边表示活动</strong>、<strong>用边的权值表示完成活动的开销</strong>（如完成活动需要的时间）的有向无环图</p>
+<p>AOE网有以下特点：</p>
+<ol>
+<li>只有一个入度为0的结点，称为开始结点（源点），表示整个工程的开始</li>
+<li>只有一个出度为0的结点，称为结束结点（汇点），表示整个工程的结束</li>
+<li><strong>只有在某结点所代表的事件发生后，从该节点出发的各有向边所代表的活动才能开始</strong></li>
+<li><strong>只有在指向某结点的各有向边所代表的活动全部都结束后，该节点所代表的事件才能发生</strong></li>
+<li>AOE网中，有些活动可以并行地进行</li>
+</ol>
+<p>AOE网用于表示工程，为了保证工程的进度，我们需要关心：</p>
+<ol>
+<li>每个子项目最早和最晚完成的时间</li>
+<li>每个子项目最早和最晚的开始时间</li>
+</ol>
+<p>事件最早发生时间按<strong>拓扑排序的顺序</strong>计算，最迟发生时间按<strong>逆拓扑排序的顺序</strong>计算。</p>
+<ol>
+<li>缩短关键活动的时间，可以缩短工程的工期</li>
+<li>当关键活动缩短到一定的程度时，关键活动可能会变成非关键活动</li>
+<li>如果关键活动耗时增加，整个工期将延长</li>
+</ol>
+<p>设事件最早发生时间符号(ve)，事件最迟发生时间(vl)，活动最早发生时间(e)，活动最迟发生时间(l)，时间余量(d)，箭头的另一端为开端，则：</p>
+<ol>
+<li>ve = 开端事件 + 活动消耗时间（拓扑排序的顺序）</li>
+<li>vl = 箭头端事件 - 活动消耗时间（逆拓扑排序的顺序）</li>
+<li>e = 活动开端的ve</li>
+<li>l = 活动箭头端的vl - 活动消耗时间</li>
+<li>d = l - e（d = 0为关键路径点）</li>
+</ol>
+<p><img src="../../image/AOE关键路径求法.png" srcset="/my_world/img/loading.gif" lazyload alt="AOE关键路径求法"></p>
+<h3 id="AOV和AOE之间的关系"><a href="#AOV和AOE之间的关系" class="headerlink" title="AOV和AOE之间的关系"></a>AOV和AOE之间的关系</h3><p>相同点：都是有向无环图</p>
+<p>不同点：AOE网的边表示活动，边有权值，边代表活动持续时间；顶点表示事件，事件是图中新活动开始或者旧活动结束的标志。AOV网的顶点表示活动，边无权值，边代表活动之间的先后关系。</p>
+<h1 id="二部图（二分图）"><a href="#二部图（二分图）" class="headerlink" title="二部图（二分图）"></a>二部图（二分图）</h1><blockquote>
+<p>原链接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/89972891">干货｜二分图详解 - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<p>二分图又称作二部图，是图论中的一种特殊模型。顶点集V可分割为两个互不相交的子集，并且图中每条边依附的两个顶点都分属于这两个互不相交的子集，两个子集内的顶点不相邻。</p>
+<p>如果某个图为二分图，那么它至少有两个顶点，且其所有回路的长度<strong>均为偶数</strong>，任何无回路的的图均是二分图。</p>
+<blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/li13168690086/article/details/81506044"> 二分图的定义和判定<em>知行合一-CSDN博客</em>二分图的判定</a></p>
+</blockquote>
+<p><img src="../../image/image-20211222205129529.png" srcset="/my_world/img/loading.gif" lazyload alt="二分图演示"></p>
+<h2 id="二分图判断"><a href="#二分图判断" class="headerlink" title="二分图判断"></a>二分图判断</h2><p>对于二分图的判断方法最常见的是染色法</p>
+<p>给一个无向图。要给图上每个顶点染色，并且使任意相邻的顶点染色不同。并且最多用两种颜色。如果可以进行二分图染色，证明是一个二分图。</p>
+<p>对于判断是否是一个二分图的方法可以用深度优先搜索算法（DFS）和广度优先搜索算法（BFS）两种方式去实现。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E7%A0%94%E7%A9%B6%E7%94%9F%E8%80%83%E8%AF%95/">研究生考试</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E5%9B%BE/">图</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/python%E7%BF%BB%E8%AF%91/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">python翻译</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/C++%E7%9A%84%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93--%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
+                        <span class="hidden-mobile">C++的基础总结--持续更新</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

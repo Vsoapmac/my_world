@@ -1,0 +1,1235 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>Android搭建-从入门到入土（二） | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Android搭建-从入门到入土（二）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-06-08 09:48" pubdate>
+        2022年6月8日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      105
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Android搭建-从入门到入土（二）</h1>
+            
+            <div class="markdown-body">
+              <h1 id="计算器制作"><a href="#计算器制作" class="headerlink" title="计算器制作"></a>计算器制作</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>本节涉及到的知识面为：</p>
+<ul>
+<li>默认Activity配置</li>
+<li>Activity获取layout中组件</li>
+<li>Activity中组件的监听器</li>
+</ul>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>新建项目，删除包下的<code>java</code>文件和<code>res/layout</code>下的xml文件，删除后文件结构大概长这样</p>
+<p><img src="../../image/image-20220608101304335.png" srcset="/my_world/img/loading.gif" lazyload alt="文件结构"></p>
+<h2 id="新建Activity"><a href="#新建Activity" class="headerlink" title="新建Activity"></a>新建Activity</h2><p>在前一章节中，新建项目是选择Basic Activity。这样IDE会默认生成一些类和layout文件，但是我们设计自己的Activity就需要选择empty Activity，这样创建的页面会非常清洁。</p>
+<p>在layout中右键按照如下图新建一个empty Activity</p>
+<p><img src="../../image/image-20220608101545571.png" srcset="/my_world/img/loading.gif" lazyload alt="新建empty Activity"></p>
+<h2 id="编辑UI"><a href="#编辑UI" class="headerlink" title="编辑UI"></a>编辑UI</h2><p>首先认识IDE的编辑界面的功能</p>
+<p><img src="../../image/image-20220608105050022.png" srcset="/my_world/img/loading.gif" lazyload alt="xml编辑功能展示"></p>
+<p>打开<code>activity_main.xml</code>，在Design界面中首先加入LinearLayout，然后分别拖动Button、TextView、EditText、Space，放到合适的位置后，在Code页面中更改它们的text属性，更改后代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">androidx.constraintlayout.widget.ConstraintLayout</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">xmlns:tools</span>=<span class="hljs-string">&quot;http://schemas.android.com/tools&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">xmlns:app</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res-auto&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">tools:context</span>=<span class="hljs-string">&quot;.MainActivity&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;vertical&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;409dp&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;729dp&quot;</span> <span class="hljs-attr">tools:layout_editor_absoluteY</span>=<span class="hljs-string">&quot;1dp&quot;</span> <span class="hljs-attr">tools:layout_editor_absoluteX</span>=<span class="hljs-string">&quot;1dp&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Space</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;75dp&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">EditText</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;56dp&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:inputType</span>=<span class="hljs-string">&quot;textPersonName&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;输入式子&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:ems</span>=<span class="hljs-string">&quot;10&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/editTextTextPersonName2&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Space</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;75dp&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;计算结果显示&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span> <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/textView3&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Space</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;67dp&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;点我计算&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span> <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/button3&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span>
+    
+<span class="hljs-tag">&lt;/<span class="hljs-name">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</span></code></pre></div>
+<p>注意，之前删除MainActivity后，系统会找不到默认的Activity，这个时候就需要在<code>AndroidManifest.xml</code>中增加默认Activity，就是在activity中添加过滤器，其中<code>&lt;category android:name=&quot;android.intent.category.LAUNCHER&quot;/&gt;</code>为启动时的首个页面，代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">manifest</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span>
+<span class="hljs-tag">          <span class="hljs-attr">package</span>=<span class="hljs-string">&quot;com.test.helloworld&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">application</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:allowBackup</span>=<span class="hljs-string">&quot;true&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:icon</span>=<span class="hljs-string">&quot;@mipmap/ic_launcher&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:label</span>=<span class="hljs-string">&quot;@string/app_name&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:roundIcon</span>=<span class="hljs-string">&quot;@mipmap/ic_launcher_round&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:supportsRtl</span>=<span class="hljs-string">&quot;true&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:theme</span>=<span class="hljs-string">&quot;@style/Theme.Helloworld&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">activity</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.MainActivity&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:exported</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.action.MAIN&quot;</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">category</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.category.LAUNCHER&quot;</span>/&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">application</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">manifest</span>&gt;</span></code></pre></div>
+<p>点击运行后，在虚拟机中可看到结果</p>
+<p><img src="../../image/image-20220608112726711.png" srcset="/my_world/img/loading.gif" lazyload alt="运行结果"></p>
+<h2 id="运行逻辑编辑"><a href="#运行逻辑编辑" class="headerlink" title="运行逻辑编辑"></a>运行逻辑编辑</h2><p>可看到在layout中的组件都有它们相应的id，比如说我们创建的button，可看到它的id为<code>button3</code>，这个可以在<code>android:id=&quot;@+id/button3&quot;</code>中找到</p>
+<p>回到MainActivity.java中，寻找该id并返回Button类，并且为该类添加监听器。我们可以利用这个方法来进行组件之间的联动，比如说可以将标签变为按钮被点击了</p>
+<div class="code-wrapper"><pre><code class="hljs java"> Button caculate = <span class="hljs-keyword">this</span>.findViewById(R.id.button3); <span class="hljs-comment">// 获取layout中的按钮</span>
+TextView textView3 = <span class="hljs-keyword">this</span>.findViewById(R.id.textView3); <span class="hljs-comment">// 获取layout中的标签</span>
+<span class="hljs-comment">/* 设置按钮监听器，点击按钮后让标签变成按钮被点击了 */</span>
+caculate.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() &#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;
+        textView3.setText(<span class="hljs-string">&quot;按钮被点击了&quot;</span>);
+    &#125;
+&#125;);</code></pre></div>
+<p>运行后，当点击按钮后，会发现标签文字更改了</p>
+<p><img src="../../image/image-20220608151606684.png" srcset="/my_world/img/loading.gif" lazyload alt="按钮文字更改了"></p>
+<p>以此类推，我们可以获取输入框中用户输入的字，然后对字进行处理并输出结果。总代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>&#123;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 计算式子并返回结果，该方法只支持减法，并且只支持减一次(类似于10-5这种)</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> caculated 算式</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 结果</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> String <span class="hljs-title">caculate</span><span class="hljs-params">(String caculated)</span></span>&#123;
+        String[] minus = caculated.split(<span class="hljs-string">&quot;-&quot;</span>);
+        <span class="hljs-keyword">int</span> caculate = Integer.valueOf(minus[<span class="hljs-number">0</span>]) - Integer.valueOf(minus[<span class="hljs-number">1</span>]);
+        <span class="hljs-keyword">return</span> String.valueOf(caculate);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main); <span class="hljs-comment">// 获取layout</span>
+
+        Button caculate_confirm = <span class="hljs-keyword">this</span>.findViewById(R.id.button3); <span class="hljs-comment">// 获取layout中的按钮</span>
+        EditText editText = <span class="hljs-keyword">this</span>.findViewById(R.id.editText3); <span class="hljs-comment">// 获取layout中的编辑框</span>
+        TextView textView = <span class="hljs-keyword">this</span>.findViewById(R.id.textView3); <span class="hljs-comment">// 获取layout中的标签</span>
+        <span class="hljs-comment">/* 设置按钮监听器，点击按钮后让标签变成结果 */</span>
+        caculate_confirm.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() &#123;
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;
+                String equation = editText.getText().toString();
+                textView.setText(caculate(equation));
+            &#125;
+        &#125;);
+    &#125;
+&#125;</code></pre></div>
+<p>运行，在输入框中输入<code>2000-1000</code>，可看到结果显示在标签上</p>
+<p><img src="../../image/image-20220608153859829.png" srcset="/my_world/img/loading.gif" lazyload alt="结果运算"></p>
+<h1 id="电话制作"><a href="#电话制作" class="headerlink" title="电话制作"></a>电话制作</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><p>本节涉及到的知识面为：</p>
+<ul>
+<li>Intent类</li>
+<li>安卓权限</li>
+</ul>
+<h2 id="准备-1"><a href="#准备-1" class="headerlink" title="准备"></a>准备</h2><p>新建项目，这一次选择的是empty Activity</p>
+<p><img src="../../image/image-20220609095717114.png" srcset="/my_world/img/loading.gif" lazyload alt="选择空Activity"></p>
+<p>这样的操作新建项目后，项目是十分清洁的，就不用删除多余的Activity和配置默认Activity了（有特殊需求的除外）</p>
+<h2 id="编辑UI-1"><a href="#编辑UI-1" class="headerlink" title="编辑UI"></a>编辑UI</h2><p>打开<code>activity_main.xml</code>，在Design界面中首先加入LinearLayout，然后分别拖动Phone、Space、Button，放到合适的位置后，在Code页面中更改它们的text属性，更改后代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">androidx.constraintlayout.widget.ConstraintLayout</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">xmlns:tools</span>=<span class="hljs-string">&quot;http://schemas.android.com/tools&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">xmlns:app</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res-auto&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">tools:context</span>=<span class="hljs-string">&quot;.MainActivity&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;vertical&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;409dp&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;729dp&quot;</span> <span class="hljs-attr">tools:layout_editor_absoluteY</span>=<span class="hljs-string">&quot;1dp&quot;</span> <span class="hljs-attr">tools:layout_editor_absoluteX</span>=<span class="hljs-string">&quot;1dp&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Space</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;60dp&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">EditText</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:inputType</span>=<span class="hljs-string">&quot;phone&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:ems</span>=<span class="hljs-string">&quot;10&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/editTextPhone&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Space</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;346dp&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;点我打电话&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span> <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/button&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</span></code></pre></div>
+<p>运行后效果如下：</p>
+<p><img src="../../image/image-20220609100649854.png" srcset="/my_world/img/loading.gif" lazyload alt=""></p>
+<h2 id="运行逻辑编辑-1"><a href="#运行逻辑编辑-1" class="headerlink" title="运行逻辑编辑"></a>运行逻辑编辑</h2><p>通过id查找组件后，对按钮填加监听器，获取电话框的内容。</p>
+<p>对于打电话的内容，借助于 Intent 可以轻松实现拨打电话的应用程序。只需声明一个拨号的 Intent 对象，并使用 startActivity() 方法启动即可。</p>
+<p>创建 Intent 对象的代码为 Intent intent = new Intent(action,uri)，其中 URI 是要拨叫的号码数据，通过 Uri.parse() 方法把“tel:1234”格式的字符串转换为 URI。</p>
+<p>而 Action 有两种使用方式：</p>
+<ul>
+<li>Intent.ACTION_CALL。是直接进行呼叫的方式，这种方式需要应用程序具有 android.permission.CALL_PHONE 权限。</li>
+<li>Intent.ACTION_DIAL。不是不直接进行呼叫，而是启动 <a target="_blank" rel="noopener" href="http://c.biancheng.net/android/">Android</a> 系统的拨号应用程序，然后由用户进行拨号。这种方式不需要任何权限的设置。</li>
+</ul>
+<p>代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java">EditText phone = <span class="hljs-keyword">this</span>.findViewById(R.id.editTextPhone); <span class="hljs-comment">// 电话</span>
+Button call = <span class="hljs-keyword">this</span>.findViewById(R.id.button); <span class="hljs-comment">// 点我打电话按钮</span>
+call.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() &#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;
+        String phoneText = phone.getText().toString(); <span class="hljs-comment">// 获取电话</span>
+        Intent intent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_CALL, Uri.parse(<span class="hljs-string">&quot;tel:&quot;</span>+phoneText)); <span class="hljs-comment">// 设置打电话意图</span>
+        startActivity(intent); <span class="hljs-comment">// 开启意图</span>
+    &#125;
+&#125;);</code></pre></div>
+<p>运行后，点击按钮后，发现运行出错，而报错的内容如下：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">java.lang.SecurityException: Permission Denial: starting Intent &#123; act=android.intent.action.CALL dat=tel:xxxxxxxxxxx cmp=com.android.server.telecom/.components.UserCallActivity &#125; from ProcessRecord&#123;97b69f4 19614:com.test.phonecall/u0a432&#125; (pid=19614, uid=10432) requires android.permission.CALL_PHONE</code></pre></div>
+<p>大致翻译可知道，该操作需要权限，权限为：<code>android.permission.CALL_PHONE</code></p>
+<p>打开<code>AndroidManifest.xml</code>，在<code>application</code>标签前添加：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">uses-permission</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.permission.CALL_PHONE&quot;</span> /&gt;</span></code></pre></div>
+<p>在Android 6.0 以下的手机，无论是什么权限都可以直接通过，直接使用权限。但是在Android 6.0 以上会<strong>被系统手机拒绝</strong>，所以<strong>需要代码中动态申请权限</strong>，并且让用户接受了才能使用，增加了安全性。申请权限的代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 检查权限，若不存在则申请权限</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">request_check_permissions</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-keyword">if</span> (ContextCompat.checkSelfPermission(<span class="hljs-keyword">this</span>, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED) &#123;
+        String[] permissions = &#123;Manifest.permission.CALL_PHONE&#125;; <span class="hljs-comment">// 权限列表</span>
+        <span class="hljs-comment">// 最后的请求码是对应回调方法的请求码</span>
+        ActivityCompat.requestPermissions(<span class="hljs-keyword">this</span>,permissions,<span class="hljs-number">1001</span>);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">&quot;你已经有权限了，可以直接拨打电话&quot;</span>, Toast.LENGTH_LONG).show(); <span class="hljs-comment">// 跳出弹窗提示</span>
+    &#125;
+&#125;</code></pre></div>
+<p>MainActivity.java的代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>&#123;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 检查权限，若不存在则申请权限</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">request_check_permissions</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">if</span> (ContextCompat.checkSelfPermission(<span class="hljs-keyword">this</span>, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED) &#123;
+            String[] permissions = &#123;Manifest.permission.CALL_PHONE&#125;; <span class="hljs-comment">// 权限列表</span>
+            <span class="hljs-comment">// 最后的请求码是对应回调方法的请求码</span>
+            ActivityCompat.requestPermissions(<span class="hljs-keyword">this</span>,permissions,<span class="hljs-number">1001</span>);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">&quot;你已经有权限了，可以直接拨打电话&quot;</span>, Toast.LENGTH_LONG).show(); <span class="hljs-comment">// 跳出弹窗提示</span>
+        &#125;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        EditText phone = <span class="hljs-keyword">this</span>.findViewById(R.id.editTextPhone); <span class="hljs-comment">// 电话</span>
+        Button call = <span class="hljs-keyword">this</span>.findViewById(R.id.button); <span class="hljs-comment">// 点我打电话按钮</span>
+        call.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() &#123;
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;
+                String phoneText = phone.getText().toString(); <span class="hljs-comment">// 获取电话</span>
+                request_check_permissions();
+                Intent intent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_CALL, Uri.parse(<span class="hljs-string">&quot;tel:&quot;</span>+phoneText)); <span class="hljs-comment">// 设置打电话意图</span>
+                startActivity(intent); <span class="hljs-comment">// 开启意图</span>
+            &#125;
+        &#125;);
+    &#125;
+&#125;</code></pre></div>
+<p>运行，输入号码后，系统会申请权限，点击允许</p>
+<p><img src="../../image/image-20220609110538429.png" srcset="/my_world/img/loading.gif" lazyload alt="权限申请"></p>
+<p>再次打开app，输入号码，点击按钮，发现弹框出现，并且能成功打电话了</p>
+<p><img src="../../image/image-20220609110648625.png" srcset="/my_world/img/loading.gif" lazyload alt="弹框，并直接打电话"></p>
+<p>注意，<code>Intent.ACTION_CALL</code>改为<code>Intent.ACTION_DIAL</code>后，无需申请权限，到这里，电话程序编写完毕。</p>
+<h1 id="聊天软件制作"><a href="#聊天软件制作" class="headerlink" title="聊天软件制作"></a>聊天软件制作</h1><h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><p>本节涉及到的知识面为：</p>
+<ul>
+<li>多界面的切换与逻辑</li>
+<li>jar包的导入</li>
+<li>安卓中的websocket通信</li>
+</ul>
+<h2 id="准备-2"><a href="#准备-2" class="headerlink" title="准备"></a>准备</h2><p>新建项目，选择empty Activity</p>
+<h2 id="编辑UI-2"><a href="#编辑UI-2" class="headerlink" title="编辑UI"></a>编辑UI</h2><p>打开<code>activity_main.xml</code>，在Design界面中首先加入LinearLayout，然后分别拖动EditText、Multiline Text、Space、Button，放到合适的位置后，在Code页面中更改它们的text属性，更改后代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">androidx.constraintlayout.widget.ConstraintLayout</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">xmlns:tools</span>=<span class="hljs-string">&quot;http://schemas.android.com/tools&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">xmlns:app</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res-auto&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">tools:context</span>=<span class="hljs-string">&quot;.MainActivity&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;vertical&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;409dp&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;729dp&quot;</span> <span class="hljs-attr">tools:layout_editor_absoluteY</span>=<span class="hljs-string">&quot;1dp&quot;</span> <span class="hljs-attr">tools:layout_editor_absoluteX</span>=<span class="hljs-string">&quot;1dp&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Space</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;145dp&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">EditText</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:inputType</span>=<span class="hljs-string">&quot;textPersonName&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:ems</span>=<span class="hljs-string">&quot;10&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/edit&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Space</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;40dp&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">EditText</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;192dp&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:inputType</span>=<span class="hljs-string">&quot;textMultiLine&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:gravity</span>=<span class="hljs-string">&quot;start|top&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:ems</span>=<span class="hljs-string">&quot;10&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/multiply_line&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Space</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;27dp&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;发送&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span> <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/send&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Space</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;24dp&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;服务器设置&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span> <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/button2&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</span></code></pre></div>
+<p>运行后效果如下：</p>
+<p><img src="../../image/image-20220609144927605.png" srcset="/my_world/img/loading.gif" lazyload alt="主页面"></p>
+<p>EditText作为消息发送的文字书写处，Multiline Text作为接收文字的显示处（本篇暂时不写该逻辑）。</p>
+<h3 id="二级页面制作与跳转"><a href="#二级页面制作与跳转" class="headerlink" title="二级页面制作与跳转"></a>二级页面制作与跳转</h3><p>在layout中右键新建一个empty Acitivity，命名为ServerSettings，打开<code>activity_server_settings.xml</code>在Design界面中首先加入LinearLayout，然后分别拖动EditText、TextView、Space、Button，放到合适的位置后，在Code页面中更改它们的text属性，更改后代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">androidx.constraintlayout.widget.ConstraintLayout</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">xmlns:tools</span>=<span class="hljs-string">&quot;http://schemas.android.com/tools&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">xmlns:app</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res-auto&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">        <span class="hljs-attr">tools:context</span>=<span class="hljs-string">&quot;.ServerSettings&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;vertical&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;409dp&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;729dp&quot;</span> <span class="hljs-attr">tools:layout_editor_absoluteY</span>=<span class="hljs-string">&quot;1dp&quot;</span> <span class="hljs-attr">tools:layout_editor_absoluteX</span>=<span class="hljs-string">&quot;1dp&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Space</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;191dp&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;服务器id:端口&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span> <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/textView&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Space</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;19dp&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">EditText</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;64dp&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:inputType</span>=<span class="hljs-string">&quot;textPersonName&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:ems</span>=<span class="hljs-string">&quot;10&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/editTextTextPersonName&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Space</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;85dp&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;连接&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span> <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/button&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Space</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;23dp&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:text</span>=<span class="hljs-string">&quot;返回聊天页面&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span> <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/button3&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</span></code></pre></div>
+<p>进入到mainActivity.java中，使用intent类为”服务器设置”按钮设置页面跳转：</p>
+<div class="code-wrapper"><pre><code class="hljs java">Button serverSettingView = <span class="hljs-keyword">this</span>.findViewById(R.id.button2);
+serverSettingView.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() &#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;
+        Intent intent = <span class="hljs-keyword">new</span> Intent(); <span class="hljs-comment">// 设置意图</span>
+        intent.setClass(MainActivity.<span class="hljs-keyword">this</span>,ServerSettings.class); <span class="hljs-comment">// 设置跳转的页面</span>
+        startActivity(intent); <span class="hljs-comment">// 开始运行</span>
+    &#125;
+&#125;);</code></pre></div>
+<p>进入到ServerSettings.java中，使用intent类为”返回聊天页面”按钮设置页面跳转：</p>
+<div class="code-wrapper"><pre><code class="hljs java">Button MainActivityView = <span class="hljs-keyword">this</span>.findViewById(R.id.button2);
+MainActivityView.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() &#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;
+        Intent intent = <span class="hljs-keyword">new</span> Intent(); <span class="hljs-comment">// 设置意图</span>
+        intent.setClass(ServerSettings.<span class="hljs-keyword">this</span>,MainActivity.class); <span class="hljs-comment">// 设置跳转的页面</span>
+        startActivity(intent); <span class="hljs-comment">// 开始运行</span>
+    &#125;
+&#125;);</code></pre></div>
+<p>这样跳转就准备完成了</p>
+<p>这里有个坑需要注意，在进行intent跳转后，第二个Acitivity会先调用onCreate方法，<strong>也就是重新创建了一个Acitvity</strong>，而不是onstart()。</p>
+<h3 id="AndroidManifest-xml多个页面的配置"><a href="#AndroidManifest-xml多个页面的配置" class="headerlink" title="AndroidManifest.xml多个页面的配置"></a>AndroidManifest.xml多个页面的配置</h3><p>前面知道，<code>&lt;category android:name=&quot;android.intent.category.LAUNCHER&quot;/&gt;</code>为启动app后的首个页面，对于其他页面，使用<code>&lt;category android:name=&quot;android.intent.category.DEFAULT&quot;/&gt;</code>即可</p>
+<p>AndroidManifest.xml的代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">manifest</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span>
+<span class="hljs-tag">          <span class="hljs-attr">package</span>=<span class="hljs-string">&quot;com.test.talk&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">application</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:allowBackup</span>=<span class="hljs-string">&quot;true&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:icon</span>=<span class="hljs-string">&quot;@mipmap/ic_launcher&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:label</span>=<span class="hljs-string">&quot;@string/app_name&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:roundIcon</span>=<span class="hljs-string">&quot;@mipmap/ic_launcher_round&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:supportsRtl</span>=<span class="hljs-string">&quot;true&quot;</span></span>
+<span class="hljs-tag">            <span class="hljs-attr">android:theme</span>=<span class="hljs-string">&quot;@style/Theme.Talk&quot;</span>&gt;</span>
+
+        <span class="hljs-comment">&lt;!-- 主页面 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">activity</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.MainActivity&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:exported</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.action.MAIN&quot;</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">category</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.category.LAUNCHER&quot;</span>/&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span>
+
+        <span class="hljs-comment">&lt;!-- 服务器设置页面 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">activity</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;.ServerSettings&quot;</span></span>
+<span class="hljs-tag">                <span class="hljs-attr">android:exported</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">intent-filter</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.action.MAIN&quot;</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">category</span> <span class="hljs-attr">android:name</span>=<span class="hljs-string">&quot;android.intent.category.DEFAULT&quot;</span>/&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">intent-filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">activity</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">application</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">manifest</span>&gt;</span></code></pre></div>
+<p>在所有的配置完成之后，运行，点击按钮跳转成功。这是二级页面的页面效果：</p>
+<p><img src="../../image/image-20220609152911831.png" srcset="/my_world/img/loading.gif" lazyload alt="二级页面"></p>
+<h2 id="运行逻辑编写"><a href="#运行逻辑编写" class="headerlink" title="运行逻辑编写"></a>运行逻辑编写</h2><h3 id="新建websocket服务器"><a href="#新建websocket服务器" class="headerlink" title="新建websocket服务器"></a>新建websocket服务器</h3><p>新建一个Maven项目，在依赖中添加：</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.java-websocket<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>Java-WebSocket<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.5.3<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+<p>新建server.java，并继承<code>WebSocketServer</code>，代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * websocket服务端</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">server</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebSocketServer</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">server</span><span class="hljs-params">(<span class="hljs-keyword">int</span> port)</span> </span>&#123;
+        <span class="hljs-keyword">super</span>(<span class="hljs-keyword">new</span> InetSocketAddress(port));
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onOpen</span><span class="hljs-params">(WebSocket webSocket, ClientHandshake clientHandshake)</span> </span>&#123;
+        System.out.println(webSocket.getLocalSocketAddress() + <span class="hljs-string">&quot;进来了&quot;</span>);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClose</span><span class="hljs-params">(WebSocket webSocket, <span class="hljs-keyword">int</span> i, String s, <span class="hljs-keyword">boolean</span> b)</span> </span>&#123;
+
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onMessage</span><span class="hljs-params">(WebSocket webSocket, String s)</span> </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;收到消息:&quot;</span>+s);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onError</span><span class="hljs-params">(WebSocket webSocket, Exception e)</span> </span>&#123;
+
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onStart</span><span class="hljs-params">()</span> </span>&#123;
+
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException, InterruptedException </span>&#123;
+        server server = <span class="hljs-keyword">new</span> server(<span class="hljs-number">8111</span>); <span class="hljs-comment">// 设置端口号</span>
+        server.start(); <span class="hljs-comment">// 开启服务器</span>
+        System.out.println(<span class="hljs-string">&quot;服务器端启动，端口号为: &quot;</span>+server.getPort());
+        <span class="hljs-comment">// 等待输入</span>
+        BufferedReader bufferedReader = <span class="hljs-keyword">new</span> BufferedReader(<span class="hljs-keyword">new</span> InputStreamReader(System.in));
+        <span class="hljs-keyword">while</span>(<span class="hljs-keyword">true</span>)&#123;
+            String in = bufferedReader.readLine(); <span class="hljs-comment">// 不断读取输入的行数据</span>
+            server.broadcast(in); <span class="hljs-comment">// 服务端接受输入的行数据</span>
+            <span class="hljs-comment">/* 如果输入exit命令，则关闭服务器 */</span>
+            <span class="hljs-keyword">if</span>(in.equals(<span class="hljs-string">&quot;exit&quot;</span>))&#123;
+                server.stop(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 停止server</span>
+                <span class="hljs-keyword">break</span>;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<h3 id="导入java-websocket包"><a href="#导入java-websocket包" class="headerlink" title="导入java_websocket包"></a>导入java_websocket包</h3><p>在本地Maven仓库中，按照路径<code>\repository\org\java-websocket\Java-WebSocket\</code>找到自己服务端的java-webSocket版本，这里用的是1.5.3，打开<code>1.5.3</code>文件夹，将<code>Java-WebSocket-1.5.3.jar</code>复制进安卓项目的<code>libs</code>文件夹中，如图：</p>
+<p><img src="../../image/image-20220609154100262.png" srcset="/my_world/img/loading.gif" lazyload alt="libs中的jar"></p>
+<p>整个项目用的是本地的Maven仓库，若是用在线的仓库，请把该仓库的jar下载下来。若是不知道本地仓库的地址，选择IDEA菜单中的<code>File -&gt; Settings</code>，搜索框中输入Maven，点击Maven即可查看IDEA设置的本地仓库地址</p>
+<p><img src="../../image/image-20220609154627484.png" srcset="/my_world/img/loading.gif" lazyload alt="本地仓库地址"></p>
+<p>打开app下的build.gradle，在dependencies中添加<code>implementation files(&quot;libs/Java-WebSocket-1.5.3.jar&quot;)</code>，具体代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs json">dependencies &#123;
+    implementation &#x27;androidx.appcompat:appcompat:<span class="hljs-number">1.2</span><span class="hljs-number">.0</span>&#x27;
+    implementation &#x27;com.google.android.material:material:<span class="hljs-number">1.3</span><span class="hljs-number">.0</span>&#x27;
+    implementation &#x27;androidx.constraintlayout:constraintlayout:<span class="hljs-number">2.0</span><span class="hljs-number">.4</span>&#x27;
+    testImplementation &#x27;junit:junit:<span class="hljs-number">4.</span>+&#x27;
+    androidTestImplementation &#x27;androidx.test.ext:junit:<span class="hljs-number">1.1</span><span class="hljs-number">.2</span>&#x27;
+    androidTestImplementation &#x27;androidx.test.espresso:espresso-core:<span class="hljs-number">3.3</span><span class="hljs-number">.0</span>&#x27;
+    implementation files(<span class="hljs-string">&quot;libs/Java-WebSocket-1.5.3.jar&quot;</span>)
+&#125;</code></pre></div>
+<p>这就和Maven的引入依赖是一样的。项目中有两个build.gradle，注意一定要在app文件夹下的build.gradle引入依赖才有效</p>
+<p>这里有个坑，打开server端项目中的pom.xml，按ctrl+鼠标左键点击java-websocket，其中有一段是这样的</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencyManagement</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>slf4j-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;slf4j.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>slf4j-simple<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;slf4j.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;junit.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.json<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>json<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;org.json.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependencyManagement</span>&gt;</span></code></pre></div>
+<p>也就是说，maven导入依赖的时候，<strong>顺便也把其他的主要依赖也导进去了</strong>，但是在gradle不行，所以我们也要添加其他依赖，看代码，可知道需要引入的依赖为<code>org.slf4j</code>，照葫芦画瓢，在本地仓库中找到<code>org.slf4j</code>的jar包即可。</p>
+<p>所以最终的依赖为：</p>
+<div class="code-wrapper"><pre><code class="hljs json">implementation files(<span class="hljs-string">&quot;libs/Java-WebSocket-1.5.3.jar&quot;</span>)
+implementation files(<span class="hljs-string">&quot;libs/slf4j-api-1.7.5.jar&quot;</span>)</code></pre></div>
+<p>依赖配置完毕后，使用gradle -&gt; build刷新项目即可</p>
+<h3 id="安卓项目新建WebSocket客户端"><a href="#安卓项目新建WebSocket客户端" class="headerlink" title="安卓项目新建WebSocket客户端"></a>安卓项目新建WebSocket客户端</h3><p>websocket中通常涉及多线程，所以需要设置同步，并加上线程锁</p>
+<p>通常WebSocket客户端只需要创建一个对象即可，使用单例模式创建对象</p>
+<p>在安卓项目中新建AppWebSocketClient.java，并且继承WebSocketClient，具体代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 客户端</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppWebSocketClient</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebSocketClient</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> AppWebSocketClient client;
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">AppWebSocketClient</span><span class="hljs-params">(String url)</span> <span class="hljs-keyword">throws</span> URISyntaxException </span>&#123;
+        <span class="hljs-keyword">super</span>(<span class="hljs-keyword">new</span> URI(url));
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 单例模式创建对象，加上线程锁</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> url websocket地址</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> AppWebSocketClient对象</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> URISyntaxException url无法连接错误</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> AppWebSocketClient <span class="hljs-title">getInstance</span><span class="hljs-params">(String url)</span> <span class="hljs-keyword">throws</span> URISyntaxException </span>&#123;
+        <span class="hljs-keyword">if</span>(client == <span class="hljs-keyword">null</span>)&#123;
+            <span class="hljs-keyword">synchronized</span> (AppWebSocketClient.class) &#123;
+                client = <span class="hljs-keyword">new</span> AppWebSocketClient(url);
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> client;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onOpen</span><span class="hljs-params">(ServerHandshake serverHandshake)</span> </span>&#123;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onMessage</span><span class="hljs-params">(String s)</span> </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;服务端发送了一个请求:&quot;</span> + s);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClose</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i, String s, <span class="hljs-keyword">boolean</span> b)</span> </span>&#123;
+        System.out.println(<span class="hljs-string">&quot;关闭客户端&quot;</span>);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onError</span><span class="hljs-params">(Exception e)</span> </span>&#123;
+
+    &#125;
+&#125;</code></pre></div>
+<h3 id="WebSocket客户端与Activity整合"><a href="#WebSocket客户端与Activity整合" class="headerlink" title="WebSocket客户端与Activity整合"></a>WebSocket客户端与Activity整合</h3><p>可以知道，WebSocket单独创建项目的时候，连接是没有什么问题的。但是与安卓整合的时候，需要额外做一些东西</p>
+<p>首先建立组件交互，打开<code>ServerSettings.java</code>，引入上面创建的<code>AppWebSocketClient.java</code>，按钮创建监听器并书写逻辑。ServerSettings.java的具体代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 服务器设置页面</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServerSettings</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>&#123;
+
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">static</span> AppWebSocketClient client;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 页面跳转</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pageTransfer</span><span class="hljs-params">()</span></span>&#123;
+        Button MainActivityView = <span class="hljs-keyword">this</span>.findViewById(R.id.button3);
+        MainActivityView.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() &#123;
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;
+                Intent intent = <span class="hljs-keyword">new</span> Intent(); <span class="hljs-comment">// 添加意图</span>
+                intent.setClass(ServerSettings.<span class="hljs-keyword">this</span>,MainActivity.class); <span class="hljs-comment">// 设置跳转页面的类</span>
+                startActivity(intent); <span class="hljs-comment">// 开始跳转</span>
+            &#125;
+        &#125;);
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 连接socket服务器</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">connectSocket</span><span class="hljs-params">()</span></span>&#123;
+        Button Connect = <span class="hljs-keyword">this</span>.findViewById(R.id.button);
+        EditText IPandPort = <span class="hljs-keyword">this</span>.findViewById(R.id.editTextTextPersonName);
+        Connect.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() &#123;
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;
+                String IPandPortString = IPandPort.getText().toString();
+                <span class="hljs-keyword">if</span>(client == <span class="hljs-keyword">null</span>) &#123;
+                    <span class="hljs-keyword">try</span> &#123;
+                        client = AppWebSocketClient.getInstance(<span class="hljs-string">&quot;ws://&quot;</span> + IPandPortString + <span class="hljs-string">&quot;//&quot;</span>);
+                        client.connectBlocking(); <span class="hljs-comment">// 连接服务器直到连接成功</span>
+                        Toast.makeText(getApplicationContext(), <span class="hljs-string">&quot;连接服务器成功&quot;</span>, Toast.LENGTH_LONG).show(); <span class="hljs-comment">// 跳出弹窗提示</span>
+                    &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+                        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);
+                    &#125;
+                &#125;<span class="hljs-keyword">else</span>&#123;
+                    Toast.makeText(getApplicationContext(), <span class="hljs-string">&quot;已经连接，无需再次连接&quot;</span>, Toast.LENGTH_LONG).show(); <span class="hljs-comment">// 跳出弹窗提示</span>
+                &#125;
+            &#125;
+        &#125;);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_server_settings);
+
+        pageTransfer();
+        connectSocket();
+    &#125;
+&#125;</code></pre></div>
+<p>注意，<strong>安卓开WebSocket要开权限</strong>，具体权限为<code>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</code>，该权限为请求网络权限，在<code>AndroidManifest.xml</code>中添加即可，该权限不需要动态请求权限。</p>
+<h3 id="多页面共用AppWebSocketClient类"><a href="#多页面共用AppWebSocketClient类" class="headerlink" title="多页面共用AppWebSocketClient类"></a>多页面共用AppWebSocketClient类</h3><p>我们虽然在<code>ServerSettings.java</code>中开启了SocketClient，但是该页面为连接部分，实际上需要在<code>MainActivity.java</code>中发送消息</p>
+<p>这里的思路如下：</p>
+<ul>
+<li>ServerSettings.java中的AppWebSocketClient定义为类变量，在连接时新建对象并赋值即可</li>
+<li>MainActivity.java中获取ServerSettings.java中的AppWebSocketClient类变量，直接使用即可</li>
+</ul>
+<p>这里有几点说明：</p>
+<ol>
+<li>由于AppWebSocketClient中为单例模式，并且创建了线程锁。所以在Activity中创建AppWebSocketClient对象时只能创建一次，所以在连接时只能连接一次，再次连接会报错。（这一点在代码上已经增加了容错，思路就是通过检测类变量是否为空对象，为空就连接，不为空就提示）</li>
+<li>MainActivity中调用ServerSettings的AppWebSocketClient类变量时，要在<code>onStart</code>中调用。这是由Activity的生命周期决定的。</li>
+</ol>
+<p>MainActivity的具体代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 主页面</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>&#123;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 页面跳转</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pageTransfer</span><span class="hljs-params">()</span></span>&#123;
+        Button serverSettingView = <span class="hljs-keyword">this</span>.findViewById(R.id.button2);
+        serverSettingView.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() &#123;
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;
+                Intent intent = <span class="hljs-keyword">new</span> Intent();
+                intent.setClass(MainActivity.<span class="hljs-keyword">this</span>,ServerSettings.class);
+                startActivity(intent);
+            &#125;
+        &#125;);
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 发送消息</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sockectSendMessage</span><span class="hljs-params">()</span> </span>&#123;
+        AppWebSocketClient client = ServerSettings.client; <span class="hljs-comment">// 获取ServerSettings页面中连接的client</span>
+        EditText messageView = <span class="hljs-keyword">this</span>.findViewById(R.id.edit);
+        Button send = <span class="hljs-keyword">this</span>.findViewById(R.id.send);
+        send.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() &#123;
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;
+                String message = messageView.getText().toString();
+                <span class="hljs-keyword">if</span>(client == <span class="hljs-keyword">null</span>)&#123;
+                    Toast.makeText(getApplicationContext(),<span class="hljs-string">&quot;还未连接服务器，请重新连接服务器&quot;</span>,Toast.LENGTH_LONG).show(); <span class="hljs-comment">// 提示未连接</span>
+                &#125;<span class="hljs-keyword">else</span>&#123;
+                    client.send(message);
+                &#125;
+            &#125;
+        &#125;);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>&#123;
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        pageTransfer();
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onStart</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">super</span>.onStart();
+        sockectSendMessage();
+    &#125;
+
+&#125;</code></pre></div>
+<p>这里还有一种办法，就是用<code>intent.putExtra()</code>这个方法将第一个页面的参数传进去，在第二个页面中使用<code>getIntent()</code>获取意图，并使用<code>intent.getxxxExtra()</code>将参数拿过来即可，xxx代表着数据类型，比如说在<code>putExtra</code>中传入的数据类型为String，则就是调用getStringExtra，其他数据类型以此类推。</p>
+<p>使用该方法传对象的时候，该对象需要序列化，即在对象中<code>implements Serializable</code>，并在其他页面中调用<code>getSerializableExtra</code>获取对象。</p>
+<h3 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h3><p>用真机，注意一定要是真机，与电脑连接同一个WIFI，并开启USB调试后连接电脑，待连接完毕后，启动安卓项目，让app安装到真机上。</p>
+<p>启动server.java，放在后台，不要关闭服务端</p>
+<p><img src="../../image/image-20220610113356308.png" srcset="/my_world/img/loading.gif" lazyload alt="服务端启动"></p>
+<p>在电脑中的cmd输入ipconfig，查看电脑ip，这里为<code>192.168.3.117</code>，在安卓中的服务器设置页面中输入ip与服务端的端口，为：<code>192.168.3.117:8111</code>，输入完毕后点击连接，连接成功后弹出提示。</p>
+<p><img src="../../image\365241a2b714bd523f37f7ffd6047c5.jpg" srcset="/my_world/img/loading.gif" lazyload alt="连接成功"></p>
+<p>可以看到服务端也有提示</p>
+<p><img src="../../image/image-20220610113821201.png" srcset="/my_world/img/loading.gif" lazyload alt="服务端提示"></p>
+<p>在主页面输入123456，点击发送</p>
+<p><img src="../../image/a8229dfa0fe4deebbae3219483734ef.jpg" srcset="/my_world/img/loading.gif" lazyload alt="输入消息"></p>
+<p>可看到服务端有消息收到</p>
+<p><img src="../../image/image-20220610114055060.png" srcset="/my_world/img/loading.gif" lazyload alt="收到客户端的消息"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/Android/">Android</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/Android/">Android</a>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E6%A1%86%E6%9E%B6/">框架</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/JAVA%E7%9A%84GUI%E7%BC%96%E7%A8%8B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JAVA的GUI编程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/Android%E6%90%AD%E5%BB%BA-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F%EF%BC%88%E4%B8%80%EF%BC%89/">
+                        <span class="hidden-mobile">Android搭建--从入门到入土（一）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

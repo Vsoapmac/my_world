@@ -1,0 +1,804 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>oracle数据库的基本应用 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="oracle数据库的基本应用">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-18 11:22" pubdate>
+        2021年3月18日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      46
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">oracle数据库的基本应用</h1>
+            
+            <div class="markdown-body">
+              <p>Oracle Database，又名Oracle RDBMS，或简称Oracle。是甲骨文公司的一款关系数据库管理系统。它是在数据库领域一直处于领先地位的产品。可以说Oracle数据库系统是目前世界上流行的关系数据库管理系统，系统可移植性好、使用方便、功能强，适用于各类大、中、小微机环境。它是一种高效率的、可靠性好的、适应高吞吐量的数据库方案。</p>
+<h2 id="表空间概念"><a href="#表空间概念" class="headerlink" title="表空间概念"></a>表空间概念</h2><p>永久表空间</p>
+<p>存储数据库中需要永久化存储的对象，比如二维表、视图、存储过程、索引。</p>
+<p>临时表空间</p>
+<p>存储数据库的中间执行过程，如：保存order by数据库排序，分组时产生的临时数据。操作完成后存储的内容会被自动释放。临时表空间是通用的，所的用户都使用TEMP作为临时表空间。一般只有tmp一个临时表空间，如果还需要别的临时表空间时，可以自己创建。</p>
+<p>undo表空间</p>
+<p>保存数据修改前的副本。存储事务所修改的旧址，即被修改之前的数据。当我们对一张表中的数据进行修改的同时会对修改之前的信息进行保存，为了对数据执行回滚、恢复、撤销的操作。</p>
+<h3 id="Oracle在创建数据库与mysql创建数据库的区别"><a href="#Oracle在创建数据库与mysql创建数据库的区别" class="headerlink" title="Oracle在创建数据库与mysql创建数据库的区别"></a>Oracle在创建数据库与mysql创建数据库的区别</h3><p>Mysql存在数据库的概念，一个项目对应一个单独的database，为数据库创建独立的用户。</p>
+<p>Oracle一个数据库就是一个服务，存在table space概念（表空间），一个项目对应一个单独的表空间，创建一个用户，具有表空间使用的权限。</p>
+<h2 id="登录oracle"><a href="#登录oracle" class="headerlink" title="登录oracle"></a>登录oracle</h2><h3 id="1、运行SQLPLUS工具"><a href="#1、运行SQLPLUS工具" class="headerlink" title="1、运行SQLPLUS工具"></a>1、运行SQLPLUS工具</h3><div class="code-wrapper"><pre><code>C:\Users\wd-pc&gt;sqlplus
+</code></pre></div><h3 id="2、直接进入SQLPLUS命令提示符"><a href="#2、直接进入SQLPLUS命令提示符" class="headerlink" title="2、直接进入SQLPLUS命令提示符"></a>2、直接进入SQLPLUS命令提示符</h3><div class="code-wrapper"><pre><code>C:\Users\wd-pc&gt;sqlplus /nolog
+</code></pre></div><h3 id="3、以admin身份连接"><a href="#3、以admin身份连接" class="headerlink" title="3、以admin身份连接"></a>3、以admin身份连接</h3><div class="code-wrapper"><pre><code>C:\Users\wd-pc&gt;sqlplus / as sysdba 或
+
+SQL&gt;connect / as sysdba
+</code></pre></div><h3 id="4、普通用户登录"><a href="#4、普通用户登录" class="headerlink" title="4、普通用户登录"></a>4、普通用户登录</h3><div class="code-wrapper"><pre><code>C:\Users\wd-pc&gt;sqlplus scott/123456　或
+
+SQL&gt;connect scott/123456 或
+
+SQL&gt;connect scott/123456@servername
+</code></pre></div><h3 id="5、以管理员登录"><a href="#5、以管理员登录" class="headerlink" title="5、以管理员登录"></a>5、以管理员登录</h3><div class="code-wrapper"><pre><code>C:\Users\wd-pc&gt;sqlplus sys/123456 as sysdba
+
+SQL&gt;connect sys/123456 as sysdba
+</code></pre></div><h3 id="6、切换用户"><a href="#6、切换用户" class="headerlink" title="6、切换用户"></a>6、切换用户</h3><div class="code-wrapper"><pre><code>SQL&gt;conn hr/123456
+
+注：conn同connect
+</code></pre></div><h3 id="7、退出"><a href="#7、退出" class="headerlink" title="7、退出"></a>7、退出</h3><div class="code-wrapper"><pre><code>exit
+</code></pre></div><h2 id="操作示例"><a href="#操作示例" class="headerlink" title="操作示例"></a>操作示例</h2><h3 id="1-创建表空间"><a href="#1-创建表空间" class="headerlink" title="1. 创建表空间"></a>1. 创建表空间</h3><p>语法：</p>
+<div class="code-wrapper"><pre><code>CREATE TABLESPACE 表空间名
+DATAFILE &#39;数据文件路径&#39; SIZE 大小
+[AUTOEXTEND ON] [NEXT 大小]
+[MAXSIZE 大小];
+</code></pre></div><p>说明：</p>
+<div class="code-wrapper"><pre><code>[ ]里面内容可选项，数据文件路径中若包含目录需先创建
+
+SIZE 为初始表空间大小，单位为K或者M
+
+AUTOEXTEND 是否自动扩展，值为ON或OFF
+
+NEXT 为文件满了后扩展大小
+
+MAXSIZE 为文件最大大小，值为数值或UNLIMITED(表示不限大小)
+</code></pre></div><p>示例：</p>
+<div class="code-wrapper"><pre><code>CREATE TABLESPACE ts_test
+DATAFILE &#39;D:\oracle_tablespace\ts_test.dbf&#39; SIZE 20M
+AUTOEXTEND ON;
+</code></pre></div><h3 id="2-查询表空间"><a href="#2-查询表空间" class="headerlink" title="2. 查询表空间"></a>2. 查询表空间</h3><p>示例：</p>
+<div class="code-wrapper"><pre><code>--管理员角色查看表空间
+SELECT file_name, tablespace_name, bytes, autoextensible
+FROM dba_data_files
+WHERE tablespace_name = &#39;ts_test&#39;;
+</code></pre></div><h3 id="3-修改表空间"><a href="#3-修改表空间" class="headerlink" title="3. 修改表空间"></a>3. 修改表空间</h3><p>语法：</p>
+<div class="code-wrapper"><pre><code>ALTER TABLESPACE 表空间名
+ADD DATAFILE &#39;文件路径&#39; SIZE 大小
+[AUTOEXTEND ON] [NEXT大小]
+[MAXSIZE 大小];
+</code></pre></div><p>示例：</p>
+<div class="code-wrapper"><pre><code>ALTER TABLESPACE ts_test
+ADD DATAFILE &#39;D:\oracle_tablespace\ts_test2.dbf &#39;SIZE 5M
+AUTOEXTEND ON;
+</code></pre></div><h3 id="4-删除表空间"><a href="#4-删除表空间" class="headerlink" title="4. 删除表空间"></a>4. 删除表空间</h3><p>语法：</p>
+<div class="code-wrapper"><pre><code>--仅删除表空间
+DROP TABLESPACE 表空间名;
+--删除表空间及数据文件
+DROP TABLESPACE 表空间名 INCLUDING CONTENTS AND DATAFILES;
+</code></pre></div><p>示例：</p>
+<div class="code-wrapper"><pre><code>--仅删除表空间
+DROP TABLESPACE ts_test;
+--删除表空间及数据文件
+DROP TABLESPACE ts_test INCLUDING CONTENTS AND DATAFILES;
+</code></pre></div><h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><p>用户是一个用于连接表空间的账号，oracle数据库里面的各个表需要指定的账号密码进入才能保证其身份的正确，每个用户都有它自己所属的权限，它们要被oracle管理员授予它们充当的角色才能继续使用，这些角色是oracle提供的三种标准角色（role），分为:connect/resource和dba.</p>
+<ol>
+<li>connect role(连接角色)</li>
+</ol>
+<p>临时用户，特指不需要建表的用户，通常只赋予他们connect role.</p>
+<p>connect是使用oracle简单权限，这种权限只对其他用户的表有访问权限，包括select/insert/update和delete等。<br>拥有connect role 的用户还能够创建表、视图、序列（sequence）、簇（cluster）、同义词(synonym)、回话（session）和其他 数据的链（link)。</p>
+<ol>
+<li>resource role(资源角色)</li>
+</ol>
+<p>更可靠和正式的数据库用户可以授予resource role。</p>
+<p>resource提供给用户另外的权限以创建他们自己的表、序列、过程(procedure)、触发器(trigger)、索引(index)和簇(cluster)。</p>
+<ol>
+<li>dba role(数据库管理员角色)</li>
+</ol>
+<p>dba role拥有所有的系统权限,包括无限制的空间限额和给其他用户授予各种权限的能力。</p>
+<p>下面操作都在sys空间里面实现</p>
+<h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><div class="code-wrapper"><pre><code>create user homework identified by jiaqi123456 default tablespace homework;
+</code></pre></div><h3 id="修改用户"><a href="#修改用户" class="headerlink" title="修改用户"></a>修改用户</h3><div class="code-wrapper"><pre><code>alter user user1 identified by 234556;
+</code></pre></div><h3 id="撤销用户"><a href="#撤销用户" class="headerlink" title="撤销用户"></a>撤销用户</h3><div class="code-wrapper"><pre><code>alter user user1;
+</code></pre></div><h3 id="为用户授权"><a href="#为用户授权" class="headerlink" title="为用户授权"></a>为用户授权</h3><div class="code-wrapper"><pre><code>grant connect, resource to homework;
+</code></pre></div><h3 id="撤销对用户赋予的权限："><a href="#撤销对用户赋予的权限：" class="headerlink" title="撤销对用户赋予的权限："></a>撤销对用户赋予的权限：</h3><div class="code-wrapper"><pre><code>revoke connect, resource from user;
+</code></pre></div><h2 id="表空间总结"><a href="#表空间总结" class="headerlink" title="表空间总结"></a>表空间总结</h2><p>oracle与mysql的思维模式完全不同，mysql的数据库是一个对象，而oracle的数据库是一个集合，一个容器。mysql的数据库只需要在mysql的空间里面创建一个数据库即可，而oracle需要首先创建数据库实例(集装箱),在这个实例里面由管理员创建表空间(纸箱子),添加用户(锁)和密码(钥匙)并赋予权限，完毕后便可以使用表空间进行表的操作和使用了。整个结构很复杂工整，所以oracle是大型数据库。</p>
+<p>整个创建表空间的实例：</p>
+<div class="code-wrapper"><pre><code>create tablespace homework datafile &#39;D:\oracle\oradata\oracle\homework.dbf&#39; size 10m;
+
+create user homework identified by jiaqi123456 default tablespace homework;
+
+grant connect, resource to homework;
+</code></pre></div><h2 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h2><h3 id="新增表"><a href="#新增表" class="headerlink" title="新增表"></a>新增表</h3><p>注意:Oracle没有这个”auto_increment”属性，所以它没法像MySQL般在表内定义自增主键。</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">user</span> (
+　　id number(<span class="hljs-number">6</span>) <span class="hljs-keyword">primary</span> key,  <span class="hljs-comment">---主键</span>
+　　name <span class="hljs-type">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,  <span class="hljs-comment">---姓名 不为null</span>
+　　sex varchar2(<span class="hljs-number">6</span>) <span class="hljs-keyword">default</span> <span class="hljs-string">&#x27;男&#x27;</span> <span class="hljs-keyword">check</span> ( sex <span class="hljs-keyword">in</span> (<span class="hljs-string">&#x27;男&#x27;</span>,<span class="hljs-string">&#x27;女&#x27;</span>))  <span class="hljs-comment">---性别 默认&#x27;男&#x27;</span>
+);</code></pre></div>
+<h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><ol>
+<li>修改字段名   </li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">rename</span> <span class="hljs-keyword">column</span> course <span class="hljs-keyword">to</span> newcourse;</code></pre></div>
+<ol>
+<li>修改字段</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs crmsh">alter table <span class="hljs-keyword">user</span> <span class="hljs-title">modify</span>((age <span class="hljs-keyword">number</span>(<span class="hljs-number">8</span>));</code></pre></div>
+<ol>
+<li>删除字段</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">drop</span> <span class="hljs-keyword">column</span> course;</code></pre></div>
+<ol>
+<li>添加新字段</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">add</span>(age number(<span class="hljs-number">6</span>));
+
+<span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">add</span> (course varchar2(<span class="hljs-number">30</span>) <span class="hljs-keyword">default</span> <span class="hljs-string">&#x27;空&#x27;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>);</code></pre></div>
+<ol>
+<li>修改表名</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs crmsh">rename <span class="hljs-keyword">user</span> <span class="hljs-title">to</span> newuser;</code></pre></div>
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><div class="code-wrapper"><pre><code class="hljs pf"><span class="hljs-keyword">drop</span> <span class="hljs-built_in">table</span> 表名；
+
+<span class="hljs-keyword">drop</span>删除所有数据，会删除表结构。</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">truncate</span> <span class="hljs-keyword">table</span> 表名；
+
+<span class="hljs-keyword">truncate</span>是一次性删掉所有数据，不删除表结构。注意：如果表中有<span class="hljs-keyword">identity</span>产生的自增id列，<span class="hljs-keyword">truncate</span>后，会恢复初始值。</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> 表名；
+
+<span class="hljs-keyword">delete</span>删除数据是一条一条的删除数据，后面可以添加<span class="hljs-keyword">where</span>条件，不删除表结构。注意：如果表中有<span class="hljs-keyword">identity</span>产生的自增id列，<span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span>后仍然从上次的数开始增加。</code></pre></div>
+<h3 id="查看表"><a href="#查看表" class="headerlink" title="查看表"></a>查看表</h3><div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> <span class="hljs-built_in">table_name</span> <span class="hljs-keyword">from</span> user_tables;       //查看当前用户拥有的表
+<span class="hljs-keyword">select</span> <span class="hljs-built_in">table_name</span> <span class="hljs-keyword">from</span> all_tables;          //查看所有用户的表
+<span class="hljs-keyword">select</span> <span class="hljs-built_in">table_name</span> <span class="hljs-keyword">from</span> dba_tables;       //查看所有用户的表包括系统表，此命令应该在sys系统表上运行
+直接输入,不需要做任何修改
+
+说明：
+user_tables：
+ 
+<span class="hljs-built_in">table_name</span>,tablespace_name,last_analyzed等
+ 
+dba_tables：
+ 
+ower,<span class="hljs-built_in">table_name</span>,tablespace_name,last_analyzed等
+ 
+all_tables：
+ 
+ower,<span class="hljs-built_in">table_name</span>,tablespace_name,last_analyzed等
+ 
+all_objects：
+ 
+ower,object_name,subobject_name,object_id,created,last_ddl_time,<span class="hljs-type">timestamp</span>,status等</code></pre></div>
+<h3 id="获取表字段"><a href="#获取表字段" class="headerlink" title="获取表字段"></a>获取表字段</h3><div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> user_tab_columns <span class="hljs-keyword">where</span> <span class="hljs-built_in">Table_Name</span>=<span class="hljs-string">&#x27;TEST&#x27;</span>; 
+<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> all_tab_columns <span class="hljs-keyword">where</span> <span class="hljs-built_in">Table_Name</span>=<span class="hljs-string">&#x27;TEST&#x27;</span>; 
+<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> dba_tab_columns <span class="hljs-keyword">where</span> <span class="hljs-built_in">Table_Name</span>=<span class="hljs-string">&#x27;TEST&#x27;</span>; 
+
+此处的数据表名称应该大写</code></pre></div>
+<h2 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> 表名 <span class="hljs-keyword">values</span>(所有列的值);
+
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> TEST <span class="hljs-keyword">values</span>(<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;zhangsan&#x27;</span>,<span class="hljs-number">20</span>);
+
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> 表名(列) <span class="hljs-keyword">values</span>(对应的值);
+
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> TEST(id,name) <span class="hljs-keyword">values</span>(<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;lisi&#x27;</span>);</code></pre></div>
+<h3 id="删除一行数据"><a href="#删除一行数据" class="headerlink" title="删除一行数据"></a>删除一行数据</h3><div class="code-wrapper"><pre><code class="hljs n1ql"><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> TEST <span class="hljs-keyword">where</span> ID = <span class="hljs-string">&#x27;1&#x27;</span>;
+
+列名大写</code></pre></div>
+<h3 id="更改一行数据"><a href="#更改一行数据" class="headerlink" title="更改一行数据"></a>更改一行数据</h3><div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">update</span> TEST <span class="hljs-keyword">set</span> <span class="hljs-type">NAME</span> = <span class="hljs-string">&#x27;李四&#x27;</span> <span class="hljs-keyword">where</span> ID = <span class="hljs-string">&#x27;1&#x27;</span>;</code></pre></div>
+<h3 id="查看数据"><a href="#查看数据" class="headerlink" title="查看数据"></a>查看数据</h3><div class="code-wrapper"><pre><code class="hljs axapta"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> TEST;
+
+<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> TEST <span class="hljs-keyword">where</span> ID = <span class="hljs-string">&#x27;1&#x27;</span>;</code></pre></div>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>视图(view)，也称虚表, 不占用物理空间，这个也是相对概念，因为视图本身的定义语句还是要存储在数据字典里的。视图只有逻辑定义。每次使用的时候,只是重新执行SQL。</p>
+<p>视图是从一个或多个实际表中获得的，这些表的数据存放在数据库中。那些用于产生视图的表叫做该视图的基表。一个视图也可以从另一个视图中产生。</p>
+<h3 id="授予用户创建视图的权限"><a href="#授予用户创建视图的权限" class="headerlink" title="授予用户创建视图的权限"></a>授予用户创建视图的权限</h3><div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-comment">-- 创建视图权限，只授权第一个是无法创建 视图的，需要三个权限都授予</span>
+<span class="hljs-keyword">grant</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">view</span> <span class="hljs-keyword">to</span> breakfast;
+
+<span class="hljs-comment">-- 授予查询权限</span>
+<span class="hljs-keyword">grant</span> <span class="hljs-keyword">select</span> <span class="hljs-keyword">any</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">to</span> breakfast;
+
+<span class="hljs-comment">-- 授予查询任何字典</span>
+<span class="hljs-keyword">grant</span> <span class="hljs-keyword">select</span> <span class="hljs-keyword">any</span> <span class="hljs-keyword">dictionary</span> <span class="hljs-keyword">to</span> breakfast;
+
+此代码需要在sys中运行</code></pre></div>
+<h3 id="创建简单视图"><a href="#创建简单视图" class="headerlink" title="创建简单视图"></a>创建简单视图</h3><div class="code-wrapper"><pre><code class="hljs n1ql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">view</span> vw_menu <span class="hljs-keyword">as</span> <span class="hljs-keyword">select</span> product_id,product_name,product_price,product_num <span class="hljs-keyword">from</span> menu;</code></pre></div>
+<h3 id="查看视图"><a href="#查看视图" class="headerlink" title="查看视图"></a>查看视图</h3><div class="code-wrapper"><pre><code class="hljs axapta"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> vw_menu <span class="hljs-keyword">where</span> product_id = <span class="hljs-string">&#x27;1&#x27;</span>;</code></pre></div>
+<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>存储过程（Stored Procedure）是在大型数据库系统中，一组为了完成特定功能的SQL 语句集，存储在数据库中，经过第一次编译后再次调用不需要再次编译，用户通过指定存储过程的名字并给出参数（如果该存储过程带有参数）来调用存储过程。</p>
+<p>简单的说就是专门干一件事一段sql语句。</p>
+<p>可以由数据库自己去调用，也可以由java程序去调用。</p>
+<p>在oracle数据库中存储过程是procedure。</p>
+<h3 id="为什么要写存储过程"><a href="#为什么要写存储过程" class="headerlink" title="为什么要写存储过程"></a>为什么要写存储过程</h3><ol>
+<li>效率高</li>
+</ol>
+<p>存储过程编译一次后，就会存到数据库，每次调用时都直接执行。而普通的sql语句我们要保存到其他地方（例如：记事本上），都要先分析编译才会执行。所以想对而言存储过程效率更高。</p>
+<ol>
+<li>降低网络流量</li>
+</ol>
+<p>存储过程编译好会放在数据库，我们在远程调用时，不会传输大量的字符串类型的sql语句。</p>
+<ol>
+<li>复用性高</li>
+</ol>
+<p>存储过程往往是针对一个特定的功能编写的，当再需要完成这个特定的功能时，可以再次调用该存储过程。</p>
+<ol>
+<li>可维护性高</li>
+</ol>
+<p>当功能要求发生小的变化时，修改之前的存储过程比较容易，花费精力少。</p>
+<ol>
+<li>安全性高</li>
+</ol>
+<p>完成某个特定功能的存储过程一般只有特定的用户可以使用，具有使用身份限制，更安全。</p>
+<h3 id="删除存储过程"><a href="#删除存储过程" class="headerlink" title="删除存储过程"></a>删除存储过程</h3><div class="code-wrapper"><pre><code class="hljs cal">drop <span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">Proc_menu</span>;</span></code></pre></div>
+<h3 id="创建存储过程"><a href="#创建存储过程" class="headerlink" title="创建存储过程"></a>创建存储过程</h3><p>存储过程类似一个方法,procedure 后面的是方法名，括号里面是形参，begin-end里面执行方法</p>
+<div class="code-wrapper"><pre><code class="hljs oxygene"><span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> replace <span class="hljs-function"><span class="hljs-keyword">procedure</span> <span class="hljs-title">Proc_menu</span></span>
+<span class="hljs-function"><span class="hljs-params">(</span></span>
+<span class="hljs-params"><span class="hljs-function">--定义输入、输出参数--</span></span>
+<span class="hljs-params"><span class="hljs-function">prod_name <span class="hljs-keyword">in</span> varchar,</span></span>
+<span class="hljs-params"><span class="hljs-function">prod_num <span class="hljs-keyword">in</span> integer</span></span>
+<span class="hljs-params"><span class="hljs-function">)</span></span>
+<span class="hljs-function"><span class="hljs-title">begin</span>   </span>
+<span class="hljs-function">    <span class="hljs-title">update</span> <span class="hljs-title">menu</span> <span class="hljs-title">set</span> <span class="hljs-title">product_name</span> = <span class="hljs-title">prod_name</span> <span class="hljs-title">where</span> <span class="hljs-title">product_id</span> = <span class="hljs-title">prod_num</span>;</span>
+<span class="hljs-keyword">end</span>;</code></pre></div>
+<h3 id="执行存储过程"><a href="#执行存储过程" class="headerlink" title="执行存储过程"></a>执行存储过程</h3><p>无形参<br><div class="code-wrapper"><pre><code class="hljs abnf">exec Proc_menu<span class="hljs-comment">;</span>
+
+begin
+  Proc_menu<span class="hljs-comment">;</span>
+end<span class="hljs-comment">;</span></code></pre></div></p>
+<p>有形参<br><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">exec</span> Proc_menu(<span class="hljs-string">&#x27;番茄炒蛋&#x27;</span>);
+
+<span class="hljs-keyword">begin</span>
+  Proc_menu(<span class="hljs-string">&#x27;番茄炒蛋&#x27;</span>);
+<span class="hljs-keyword">end</span>;</code></pre></div></p>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>触发器的定义就是说某个条件成立的时候，触发器里面所定义的语句就会被自动的执行。因此触发器不需要人为的去调用，也不能调用。</p>
+<p>在触发器中有一个触发事件，触发器是通过这个“触发事件”来执行的（而存储过程的调用或执行是由用户或应用程序进行的）。能够引起触发器运行的操作被称为“触发事件”，如执行DML语句（使用INSERT、UPDATE、DELETE语句对表或视图执行数据处理操作）；执行DDL语句（CREATE、ALTER、DROP语句在数据库中创建、修改、删除模式对象）；引发数据库系统事件（如系统启动或退出、产生异常错误等）；引发用户事件（如登录或退出数据库操作）。</p>
+<h3 id="创建触发器"><a href="#创建触发器" class="headerlink" title="创建触发器"></a>创建触发器</h3><p>此代码仅供参考<br><div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">or replace</span> <span class="hljs-keyword">trigger</span> auth_goods_money <span class="hljs-keyword">after</span> <span class="hljs-keyword">insert</span>
+<span class="hljs-keyword">on</span> goods
+<span class="hljs-keyword">for</span> <span class="hljs-keyword">each</span> <span class="hljs-keyword">row</span> <span class="hljs-comment">--行级触发器</span>
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">update</span> goods <span class="hljs-keyword">set</span> goods.sum_money = 
+    (<span class="hljs-keyword">select</span> menu.product_price <span class="hljs-keyword">from</span> menu <span class="hljs-keyword">where</span> menu.product_id = goods.product_id) <span class="hljs-keyword">where</span> goods.product_id = :<span class="hljs-built_in">new</span>.product_id;
+<span class="hljs-keyword">END</span>;</code></pre></div></p>
+<p>行级触发器：执行(after)之后的触发器，带有for each row,加for each row是为了使用 :old 对象或者 :new 对象（一行记录），其含义如下表。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>触发语句</th>
+<th>:old</th>
+<th>:new</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>insert</td>
+<td>所有字段都是空（null）</td>
+<td>将要插入的数据</td>
+</tr>
+<tr>
+<td>update</td>
+<td>更新以前该行的值</td>
+<td>更新后的值</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>删除以前该行的值</td>
+<td>所有字段都为空（null）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>语句级触发器：不包含有for each row的触发器</p>
+<h3 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h3><div class="code-wrapper"><pre><code class="hljs n1ql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TRIGGER</span> auth_goods_money;</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/oracle/">oracle</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E7%9A%84SOLID%E5%8E%9F%E5%88%99/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">软件设计的SOLID原则</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/mongoDB%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/">
+                        <span class="hidden-mobile">mongoDB的简单应用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,938 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>高等数学公式大全（一） | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="高等数学公式大全（一）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-19 15:43" pubdate>
+        2021年7月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      94
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">高等数学公式大全（一）</h1>
+            
+            <div class="markdown-body">
+              <h1 id="数列极限"><a href="#数列极限" class="headerlink" title="数列极限"></a>数列极限</h1><h2 id="章节概括"><a href="#章节概括" class="headerlink" title="章节概括"></a>章节概括</h2><ul>
+<li>定义</li>
+<li>性质<ul>
+<li>唯一性</li>
+<li>有界性</li>
+<li>保号性</li>
+</ul>
+</li>
+<li>运算规则</li>
+<li>夹逼准则</li>
+<li>单调有界准则</li>
+</ul>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>设${x_n}$为一个数列，若存在常数a，对于任意的$\xi &gt; 0$（不论它多小），总存在正整数N，使得当$n &gt; N$时，$|x_n - a| &lt; \xi$恒成立，则称数a是${x_n}$的极限，或者称数列${x_n}$收敛于$a$，记为</p>
+<script type="math/tex; mode=display">
+\lim_{n \rightarrow \infty} x_n = a</script><p>若不存在这样的常数a，就说数列${x_n}$是发散的</p>
+<p>常用的语言：$\lim<em>{n \rightarrow \infty} x_n = a \Leftrightarrow \forall \xi &gt; 0$,$\exist N \in N</em>+$,当$n &gt;N$时，恒有$|x_n - a| &lt; \xi$</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><ol>
+<li><strong>唯一性</strong>：给出数列${x<em>n}$，若$ \lim</em>{n \rightarrow \infty} x_n = a$（存在），则a是唯一的</li>
+<li><strong>有界性</strong>：若数列${x_n}$极限存在，则数列${x_n}$有界</li>
+<li><strong>保号性</strong>：设数列${a_n}$存在极限a，且$a &gt; 0$（或$a &lt; 0$），则存在正整数N，当$n &gt; N$时，有$a_n &gt; 0$（或$a_n &lt; 0$）</li>
+<li>推论：如果数列${a<em>n}$从某项起有$a_n\ge 0$，且$ \lim</em>{n \rightarrow \infty}a_n = a$则$a \ge 0$</li>
+</ol>
+<h2 id="运算规则"><a href="#运算规则" class="headerlink" title="运算规则"></a>运算规则</h2><p>设$\lim<em>{n \rightarrow \infty} x_n = a$，$\lim</em>{n \rightarrow \infty} y_n = b$，则</p>
+<ol>
+<li>$\lim_{n \rightarrow \infty}(x_n \pm y_n) = a \pm b$</li>
+<li>$\lim_{n \rightarrow \infty}x_ny_n = ab$</li>
+<li>若$b \neq 0 , y<em>n \neq 0$，则$\lim</em>{n \rightarrow \infty} \frac{x_n}{y_n} = \frac{a}{b}$</li>
+</ol>
+<h2 id="夹逼准则"><a href="#夹逼准则" class="headerlink" title="夹逼准则"></a>夹逼准则</h2><p>如果数列${x_n}$，${y_n}$及${z_n}$满足下列条件</p>
+<ol>
+<li>$y_n \le x_n \le z_n(n = 1,2,3,\cdots)$</li>
+<li>$\lim<em>{n \rightarrow \infty} y_n = a$，$\lim</em>{n \rightarrow \infty} z_n = a$</li>
+</ol>
+<p>则数列${x<em>n}$的极限存在，且$\lim</em>{n \rightarrow \infty} x_n = a$</p>
+<h2 id="海涅定理"><a href="#海涅定理" class="headerlink" title="海涅定理"></a>海涅定理</h2><p>设函数$f(x)$在$x_0$的某去心领域内有定义</p>
+<p>则$\lim_{x \rightarrow x_0}f(x) = A$存在的充要条件是</p>
+<p>对任一极限为$x<em>0$的数列${x_n}(x_n \ne x_0)$，极限$\lim</em>{n \rightarrow \infty}f(x_n) = A$存在</p>
+<h2 id="单调有界准则"><a href="#单调有界准则" class="headerlink" title="单调有界准则"></a>单调有界准则</h2><script type="math/tex; mode=display">
+如果数列\{x_n\}单调，并且有界，那么\{x_n\}必收敛，即\lim_{n\rightarrow \infty}x_n存在</script><script type="math/tex; mode=display">
+如果数列\{x_n\}单调增有上界，那么\{x_n\}收敛，即\lim_{n\rightarrow \infty}x_n存在</script><script type="math/tex; mode=display">
+如果数列\{x_n\}单调减有下界，那么\{x_n\}收敛，即\lim_{n\rightarrow \infty}x_n存在</script><h2 id="证明单调常用方法"><a href="#证明单调常用方法" class="headerlink" title="证明单调常用方法"></a>证明单调常用方法</h2><script type="math/tex; mode=display">
+作差与0比较，即计算x_{n+1} - x_n，与0比较</script><script type="math/tex; mode=display">
+如果x_n > 0，也可以做商与1比较，即计算\frac{x_{n+1}}{x_n}与1比较</script><script type="math/tex; mode=display">
+{x_n}的通项已知，为f(n)，则可设为f(x)，x>0。如果f'(x)\ge 0,则数列单调递增；如果f'(x) \le 0，则数列单调递减</script><h2 id="数学归纳法"><a href="#数学归纳法" class="headerlink" title="数学归纳法"></a>数学归纳法</h2><blockquote>
+<p>原视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1t741187id?from=search&amp;seid=7839709392386725484&amp;spm_id_from=333.337.0.0">2021考研数学，秒懂数学归纳法_哔哩哔哩_bilibili</a></p>
+</blockquote>
+<ol>
+<li>验证结论成立，取n的首项带入f(n)</li>
+<li>假设$n=k$结论成立</li>
+<li>证明$n = k+1$结论成立</li>
+</ol>
+<h1 id="函数极限"><a href="#函数极限" class="headerlink" title="函数极限"></a>函数极限</h1><h2 id="章节概括-1"><a href="#章节概括-1" class="headerlink" title="章节概括"></a>章节概括</h2><ul>
+<li>领域</li>
+<li>定义</li>
+<li>性质<ul>
+<li>唯一性</li>
+<li>局部有界性</li>
+<li>局部保号性</li>
+</ul>
+</li>
+<li>运算规则</li>
+<li>夹逼准则</li>
+<li>洛必达法则</li>
+<li>泰勒公式<ul>
+<li>公式</li>
+<li>展开原则</li>
+</ul>
+</li>
+<li>归结原则</li>
+<li>无穷小比阶</li>
+<li>连续与间断<ul>
+<li>连续点的定义</li>
+<li>间断点的定义与分类</li>
+</ul>
+</li>
+</ul>
+<h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>设函数$f(x)$在点$x_0$的某一去心领域内有定义。</p>
+<p>若存在常数A，对于任意给定的$\epsilon &gt; 0$（不论它多小），总存在正数$\delta$，使得当$0 &lt; |x - x_0| &lt; \delta$时，对应的函数值$f(x)$都满足不等式$|f(x) - A| &lt; \epsilon$</p>
+<p>则A就叫作函数$f(x)$当$x \rightarrow x_0$时的极限，记为</p>
+<script type="math/tex; mode=display">
+\lim_{x \rightarrow x_0}f(x) = A 或 f(x) \rightarrow A(x \rightarrow x_0)</script><p>写成”$\epsilon - \delta$”语言</p>
+<script type="math/tex; mode=display">
+\forall \epsilon > 0,\exists \delta > 0,当0< |x-x_0| < \delta时,有|f(x) - A| < \epsilon</script><h2 id="函数连续性"><a href="#函数连续性" class="headerlink" title="函数连续性"></a>函数连续性</h2><p>设函数$y = f(x)$在点$x_0$的某一领域内有定义，如果</p>
+<script type="math/tex; mode=display">
+\lim_{x\rightarrow x_0}f(x) = f(x_0)</script><p>那么称函数$f(x)$在点$x_0$连续。</p>
+<p>若$\lim_{x \rightarrow x_0^+} f(x) = f(x_0)$，则称$f(x)$在$x_0$右连续</p>
+<p>若$\lim_{x \rightarrow x_0^-} f(x) = f(x_0)$,则称$f(x)$在$x_0$左连续</p>
+<h2 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h2><ol>
+<li><strong>唯一性</strong>：若极限存在，那么极限唯一</li>
+<li><strong>局部有界性</strong>：如果$\lim_{x \rightarrow x_0}f(x) = A$，则存在正常数M和$\delta$，使得当$0&lt; |x-x_0| &lt; \delta$时，有$|f(x)| \le M$</li>
+<li><strong>局部保号性</strong>：如果$f(x) \rightarrow A(x \rightarrow x_0)$，且$A &gt; 0$(或$A &lt; 0$)，那么存在常数$\delta &gt;0$，使得当$0&lt; |x-x_0| &lt; \delta$时，有$f(x) &gt;0$（或$f(x) &lt; 0$）</li>
+</ol>
+<h2 id="极限运算法则"><a href="#极限运算法则" class="headerlink" title="极限运算法则"></a>极限运算法则</h2><p>若$\lim f(x) = A$,$\lim g(x) = B$</p>
+<script type="math/tex; mode=display">
+\lim[f(x)\pm g(x)] = \lim f(x) \pm \lim g(x)</script><script type="math/tex; mode=display">
+lim[f(x) \cdot g(x)] = \lim f(x) \cdot \lim g(x)</script><script type="math/tex; mode=display">
+\lim Cf(x) = C\lim f(x),C为常数</script><script type="math/tex; mode=display">
+lim[f(x)]^n = [\lim f(x)]^n</script><script type="math/tex; mode=display">
+lim\frac{f(x)}{g(x)} = \frac{\lim f(x)}{\lim g(x)},\lim g(x)\neq 0</script><h2 id="洛必达法则"><a href="#洛必达法则" class="headerlink" title="洛必达法则"></a>洛必达法则</h2><p>法则一：</p>
+<ol>
+<li>当$ x \rightarrow a $（或$ x \rightarrow \infty $）时，函数$f(x)$及$F(x)$都趋于零</li>
+<li>$ f^\prime(x) $及$ F^\prime(x) $在点a的某去心领域内（或当|x| &gt; X，此时X为充分大的正数）存在，且$ F^\prime(x) \neq 0 $</li>
+<li>$ \lim<em>{x \rightarrow a} \frac{f^\prime(x)}{F^\prime(x)} $或$ \lim</em>{x \rightarrow \infty} \frac{f^\prime(x)}{F^\prime(x)} $存在或无穷大</li>
+</ol>
+<p>则：</p>
+<script type="math/tex; mode=display">
+\lim_{x \rightarrow a} \frac{f(x)}{F(x)} = \lim_{x \rightarrow a} \frac{f^\prime(x)}{F^\prime(x)} 或 \lim_{x \rightarrow \infty} \frac{f(x)}{F(x)} = \lim_{x \rightarrow \infty} \frac{f^\prime(x)}{F^\prime(x)}</script><p>法则二：</p>
+<ol>
+<li>当$ x \rightarrow a $（或$ x \rightarrow \infty $）时，函数$f(x)$及$F(x)$都趋于无穷大</li>
+<li>$ f^\prime(x) $及$ F^\prime(x) $在点a的某去心领域内（或当|x| &gt; X，此时X为充分大的正数）存在，且$ F^\prime(x) \neq 0 $</li>
+<li>$ \lim<em>{x \rightarrow a} \frac{f^\prime(x)}{F^\prime(x)} $或$ \lim</em>{x \rightarrow \infty} \frac{f^\prime(x)}{F^\prime(x)} $存在或无穷大</li>
+</ol>
+<p>则：</p>
+<script type="math/tex; mode=display">
+\lim_{x \rightarrow a} \frac{f(x)}{F(x)} = \lim_{x \rightarrow a} \frac{f^\prime(x)}{F^\prime(x)} 或 \lim_{x \rightarrow \infty} \frac{f(x)}{F(x)} = \lim_{x \rightarrow \infty} \frac{f^\prime(x)}{F^\prime(x)}</script><h2 id="夹逼准则-1"><a href="#夹逼准则-1" class="headerlink" title="夹逼准则"></a>夹逼准则</h2><p>如果函数$f(x)$，$g(x)$及$h(x)$满足下列条件</p>
+<ol>
+<li>$g(x) \le f(x) \le h(x)$</li>
+<li>$\lim<em>{n \rightarrow \infty} g(x) = a$，$\lim</em>{n \rightarrow \infty} h(x) = a$</li>
+</ol>
+<p>则函数$f(x)$的极限存在，且$\lim_{n \rightarrow \infty} f(x) = a$</p>
+<h2 id="函数间断点"><a href="#函数间断点" class="headerlink" title="函数间断点"></a>函数间断点</h2><ul>
+<li><p>第一类间断点（左右极限都存在，设$x_0$是$f$的间断点）</p>
+<ul>
+<li><p>可去间断点（左极限 = 右极限）</p>
+</li>
+<li><script type="math/tex; mode=display">
+\lim_{x→x_0^−}f(x)=lim_{x→x_0^+}f(x)≠f(x0)\lim_{x\rightarrow x^-_0} f(x) = \lim_{x\rightarrow x^+_0} f(x) \neq f(x_0)</script></li>
+<li><p>跳跃间断点（左极限 != 右极限）</p>
+</li>
+<li><script type="math/tex; mode=display">
+\lim_{x\rightarrow x^-_0} f(x) \neq \lim_{x\rightarrow x^+_0} f(x)</script></li>
+</ul>
+</li>
+<li>第二类间断点：左极限或者右极限不存在，除第一类间断点之外的间断点</li>
+</ul>
+<p>由于初等函数在其定义区间上连续，故间断点只可能出现在：</p>
+<ol>
+<li>分段函数的分段点处</li>
+<li>初等函数无定义的点（分母=0处）</li>
+</ol>
+<p>所以有以下判断间断点步骤：</p>
+<ol>
+<li>找出所有可能的间断点</li>
+<li>逐个点计算其左极限、右极限，再判断其类型。</li>
+</ol>
+<h2 id="无穷小比阶"><a href="#无穷小比阶" class="headerlink" title="无穷小比阶"></a>无穷小比阶</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>如果当$x \rightarrow x_o$（或$x \rightarrow \infty$）时，函数$f(x)$的极限为零</p>
+<p>那么称函数$f(x)$为当$x \rightarrow x_0$（或$x \rightarrow \infty$）时的<strong>无穷小</strong>，记为</p>
+<script type="math/tex; mode=display">
+\lim_{x\rightarrow x_0} f(x) = 0或\lim_{x\rightarrow \infty} f(x) = 0</script><p>特别地，以零为极限的数列${x_n}$称为$n \rightarrow \infty$时的<strong>无穷小</strong></p>
+<p>当$\lim<em>{x\rightarrow x_0} f(x) = \infty$或$\lim</em>{x\rightarrow \infty} f(x) = \infty$时，称函数$f(x)$为当$x \rightarrow x_0$（或$x \rightarrow \infty$）时的<strong>无穷大</strong></p>
+<h3 id="高阶无穷小"><a href="#高阶无穷小" class="headerlink" title="高阶无穷小"></a>高阶无穷小</h3><script type="math/tex; mode=display">
+\lim_{x\rightarrow x_0} \frac{f(x)}{g(x)} = 0</script><p>称当$x \rightarrow x_0$时,$f(x)$是$g(x)$的<strong>高阶无穷小量</strong>，记作：$f(x) = o(g(x))(x \rightarrow x_0)$</p>
+<h3 id="低阶无穷小"><a href="#低阶无穷小" class="headerlink" title="低阶无穷小"></a>低阶无穷小</h3><script type="math/tex; mode=display">
+\lim_{x\rightarrow x_0} \frac{f(x)}{g(x)} = \infty</script><p>称$f(x)$是$g(x)$的<strong>低阶无穷小量</strong></p>
+<h3 id="同阶无穷小量"><a href="#同阶无穷小量" class="headerlink" title="同阶无穷小量"></a>同阶无穷小量</h3><script type="math/tex; mode=display">
+\lim_{x\rightarrow x_0} \frac{f(x)}{g(x)} = c (c \neq 0)</script><p>称$f(x)$与$g(x)$为$x \rightarrow x_0$时的<strong>同阶无穷小</strong></p>
+<p>当$x \rightarrow 0$时的同阶无穷小量：</p>
+<ul>
+<li>$1 - cosx$ 与 $\frac{1}{2}x^2$</li>
+<li>$tanx - x$ 与 $\frac{x^3}{3}$</li>
+</ul>
+<h3 id="等价无穷小"><a href="#等价无穷小" class="headerlink" title="等价无穷小"></a>等价无穷小</h3><script type="math/tex; mode=display">
+\lim_{x\rightarrow x_0} \frac{f(x)}{g(x)} = 1</script><p>称$f(x)$与$g(x)$为$x \rightarrow x_0$时的<strong>等阶无穷小</strong></p>
+<p>当$x \rightarrow 0$时，常用的等价无穷小：</p>
+<ul>
+<li>$sin\sim x$</li>
+<li>$tanx\sim x$</li>
+<li>$arcsinx \sim x$</li>
+<li>$arctanx \sim x$</li>
+<li>$arctanx \sim x$</li>
+<li>$\ln(x+1) \sim x$</li>
+<li>$e^x-1\sim x$</li>
+<li>$1-cosx\sim \frac{x^2}{2}$</li>
+<li>$sinx^2\sim x^2$</li>
+<li>$x\rightarrow1,sin(x-1) \sim x-1$</li>
+<li>$x\rightarrow \pm3:sin(x^2-9) \sim x^2-9$</li>
+<li>$sin(sinx) \sim sinx$</li>
+</ul>
+<p>整体乘除可换，加减有的凑巧可以，有的不行</p>
+<p>等价无穷小后最低次项不能完全抵消，eg：$x - sinx \neq x - x$</p>
+<h2 id="两个重要极限"><a href="#两个重要极限" class="headerlink" title="两个重要极限"></a>两个重要极限</h2><script type="math/tex; mode=display">
+\lim_{x\rightarrow0}\frac{sinx}{x} = 1</script><script type="math/tex; mode=display">
+\lim_{x\rightarrow\infty}(1+\frac{1}{x})^x=e，\lim_{x\rightarrow0}(1+x)^\frac{1}{x}=e</script><h2 id="拉格朗日求极限"><a href="#拉格朗日求极限" class="headerlink" title="拉格朗日求极限"></a>拉格朗日求极限</h2><script type="math/tex; mode=display">
+利用f(b) - f(a) = f'(\xi)(b-a)</script><script type="math/tex; mode=display">
+sin(x+1) - sinx = cos\xi \cdot (x+1-x)</script><h1 id="一元函数微分学"><a href="#一元函数微分学" class="headerlink" title="一元函数微分学"></a>一元函数微分学</h1><h2 id="章节概括-2"><a href="#章节概括-2" class="headerlink" title="章节概括"></a>章节概括</h2><ul>
+<li>概念<ul>
+<li>导数的概念</li>
+<li>微分的概念</li>
+</ul>
+</li>
+<li>导数与微分的计算<ul>
+<li>四则运算</li>
+<li>分段函数的导数</li>
+<li>复合函数的导数与微分形式不变性</li>
+<li>反函数的导数</li>
+<li>参数方程所确定的函数的导数</li>
+<li>隐函数求导法</li>
+<li>对数求导法</li>
+<li>幂指函数求导法</li>
+<li>高阶导数<ul>
+<li>归纳法</li>
+<li>莱布尼茨公式</li>
+<li>泰勒公式</li>
+</ul>
+</li>
+<li>变限积分求导公式</li>
+<li>基本求导公式</li>
+</ul>
+</li>
+</ul>
+<h2 id="导数的概念"><a href="#导数的概念" class="headerlink" title="导数的概念"></a>导数的概念</h2><script type="math/tex; mode=display">
+\begin{align}
+& f^\prime(x_0) = \lim_{\Delta x\rightarrow 0}\frac{\Delta y}{\Delta x} = \lim_{\Delta x\rightarrow 0}\frac{f(x_0 + \Delta x)-f(x_0)}{\Delta x}
+\end{align}</script><script type="math/tex; mode=display">
+可记作 y^\prime |_{x = x_0}或\frac{dy}{dx} |_{x = x_0}或\frac{d[f(x)]}{dx} |_{x = x_0}</script><script type="math/tex; mode=display">
+\lim_{x \rightarrow x_0} \frac{f(x) - f(x_0)}{x - x_0} = f^\prime(x)</script><h2 id="单侧导数"><a href="#单侧导数" class="headerlink" title="单侧导数"></a>单侧导数</h2><p>左导数</p>
+<script type="math/tex; mode=display">
+\lim_{\Delta x\rightarrow 0^-}\frac{f(x_0 + \Delta x)-f(x_0)}{\Delta x}，记为f^\prime_{-}(x_0)</script><p>右导数</p>
+<script type="math/tex; mode=display">
+\lim_{\Delta x\rightarrow 0^+}\frac{f(x_0 + \Delta x)-f(x_0)}{\Delta x}，记为f^\prime_{+}(x_0)</script><p>函数在点$x_0$可导的<strong>充分必要条件</strong>是左导数与右导数<strong>均存在并相等</strong></p>
+<h2 id="微分的概念"><a href="#微分的概念" class="headerlink" title="微分的概念"></a>微分的概念</h2><p>设函数$y = f(x)$在点$x<em>{0}$的某领域内有定义，且$x</em>{0} + \Delta x$在该领域内，对于函数增量</p>
+<script type="math/tex; mode=display">
+\Delta y = f(x_0 + \Delta x) - f(x_0)</script><p>若存在与$\Delta x$无关的常数$A$，使得$\Delta y = A\Delta x + o(\Delta x)$</p>
+<p>其中$o(\Delta x)$是在$\Delta x \rightarrow 0$时比$\Delta x$更高阶的无穷小，则称$f(x)$在点$x<em>{0}$处<strong>可微</strong>，并称$A\Delta x$为$f(x)$在点$x</em>{0}$处的<strong>微分</strong>，记作$dy|<em>{x = x_0} = A \Delta x$或者$d[f(x)]|</em>{x = x_0} = A \Delta x$</p>
+<p>又由于$\Delta x = 1 \cdot \Delta x + 0$，于是一元函数微分学中规定$\Delta x = dx$，故</p>
+<script type="math/tex; mode=display">
+dy|_{x = x_0} = Adx</script><p>可微的判别：</p>
+<ol>
+<li>写增量$\Delta y = f(x_0 + \Delta x) - f(x_0)$</li>
+<li>写线性增量$A \Delta x = f^\prime(x)\Delta x$</li>
+<li>作极限$\lim_{\Delta x \rightarrow 0} \frac{\Delta y - A\Delta x}{\Delta x}$</li>
+</ol>
+<h2 id="导数公式"><a href="#导数公式" class="headerlink" title="导数公式"></a>导数公式</h2><script type="math/tex; mode=display">
+C^{\prime} = 0</script><script type="math/tex; mode=display">
+(x)^{\prime} = 1</script><script type="math/tex; mode=display">
+(x^n)^{\prime} = nx^{n-1}</script><script type="math/tex; mode=display">
+(sinx)^{\prime} = cosx</script><script type="math/tex; mode=display">
+(cosx)^{\prime} = - sinx</script><script type="math/tex; mode=display">
+(tanx)^{\prime} = sec^2x</script><script type="math/tex; mode=display">
+(cotx)^{\prime} = -csc^2x</script><script type="math/tex; mode=display">
+(secx)^{\prime} = secxtanx</script><script type="math/tex; mode=display">
+(cscx)^{\prime} = -cscxcotx</script><script type="math/tex; mode=display">
+(\sqrt{x})^{\prime} = \frac{1}{2\sqrt{x}}</script><script type="math/tex; mode=display">
+(a^x) = a^xIna</script><script type="math/tex; mode=display">
+(e^x)^{\prime} = e^x</script><script type="math/tex; mode=display">
+(log_ax)^{\prime} = \frac{1}{xIna}</script><script type="math/tex; mode=display">
+(Inx)^{\prime} = \frac{1}{x}</script><script type="math/tex; mode=display">
+(acrsinx)^{\prime} = \frac{1}{\sqrt{1-x^2}}</script><script type="math/tex; mode=display">
+(arccosx)^{\prime} = -\frac{1}{\sqrt{1-x^2}}</script><script type="math/tex; mode=display">
+(arctanx)^{\prime} = \frac{1}{1+x^2}</script><script type="math/tex; mode=display">
+(arccotx)^{\prime} = -\frac{1}{1+x^2}</script><h2 id="导数运算"><a href="#导数运算" class="headerlink" title="导数运算"></a>导数运算</h2><h3 id="四则运算"><a href="#四则运算" class="headerlink" title="四则运算"></a>四则运算</h3><p>$u = u(x)，v = v(x)$</p>
+<script type="math/tex; mode=display">
+(Cu)^{\prime} = Cu\prime(C是常数)</script><p>和、差的导数（微分）</p>
+<script type="math/tex; mode=display">
+(u\pm v)^{\prime} = u^\prime \pm v^\prime,d(u \pm v) = du \pm dv</script><p>积的导数（微分）</p>
+<script type="math/tex; mode=display">
+(uv)^{\prime} = u^\prime v + uv^\prime,d(uv) = vdu + udv</script><p>商的导数（微分）</p>
+<script type="math/tex; mode=display">
+(\frac{u}{v})^{\prime} = \frac{u^{\prime} v - uv^{\prime}}{v^2}(v\neq0, d(\frac{u}{v})= \frac{vdu - udv}{v^2}(v\neq0)</script><h3 id="分段函数"><a href="#分段函数" class="headerlink" title="分段函数"></a>分段函数</h3><script type="math/tex; mode=display">
+设f(x) = \begin{cases}
+f_1(x) & x \ge x_0\\
+f_2(x) & x < x_0
+\end{cases}，其中f_1(x)与f_2(x)可导</script><ol>
+<li>在分段点处用导数定义求导，判断<strong>左导数是否等于右导数</strong>可判定<strong>是否可导</strong>，若可导得出导数结果</li>
+<li>在非分段点用导数公式求导，即$x &gt; x_0$时，$f^\prime(x) = f_1^\prime(x)$；$x &lt; x_0$时，$f^\prime(x) = f_2^\prime(x)$</li>
+</ol>
+<h3 id="反函数的导数"><a href="#反函数的导数" class="headerlink" title="反函数的导数"></a>反函数的导数</h3><p>设$y = f(x)$可导，且$f^\prime(x) \neq 0$，则存在反函数$x = \varphi(y)$，且$\frac{dx}{dy} = \frac{1}{\frac{dy}{dx}}$，即$\varphi(y) = \frac{1}{f^\prime(x)}$</p>
+<h1 id="一元函数微分学的几何应用"><a href="#一元函数微分学的几何应用" class="headerlink" title="一元函数微分学的几何应用"></a>一元函数微分学的几何应用</h1><h2 id="章节概括-3"><a href="#章节概括-3" class="headerlink" title="章节概括"></a>章节概括</h2><ul>
+<li>极值与最值的概念<ul>
+<li>极值的概念</li>
+<li>最值的概念</li>
+</ul>
+</li>
+<li>单调性与极值的判别<ul>
+<li>单调性判别</li>
+<li>判极值的必要条件</li>
+<li>判极值的第一充分条件</li>
+<li>判极值的第二充分条件</li>
+<li>判极值的第三充分条件</li>
+</ul>
+</li>
+<li>凹凸性与拐点的概念<ul>
+<li>凹凸性</li>
+<li>拐点</li>
+</ul>
+</li>
+<li>凹凸性与拐点的判别<ul>
+<li>凹凸性判别</li>
+<li>判拐点的必要条件</li>
+<li>判拐点的第一充分条件</li>
+<li>判拐点的第二充分条件</li>
+<li>判拐点的第三充分条件</li>
+</ul>
+</li>
+<li>渐近线<ul>
+<li>铅垂渐近线</li>
+<li>水平渐近线</li>
+<li>斜渐近线</li>
+</ul>
+</li>
+<li>最值或取值范围<ul>
+<li>在闭区间[a,b]上求</li>
+<li>在开区间(a,b)上求</li>
+</ul>
+</li>
+<li>做函数图形</li>
+</ul>
+<h2 id="极值和最值"><a href="#极值和最值" class="headerlink" title="极值和最值"></a>极值和最值</h2><p>若存在$x_0$的某个<strong>领域</strong>，使得在该领域内任意一点$x$，均有</p>
+<script type="math/tex; mode=display">
+f(x) \le f(x_0)(或f(x) \ge f(x_0))</script><p>成立，则称$x_0$为$f(x)$的<strong>广义的极大值点</strong>（或<strong>极小值点</strong>），$f(x_0)$为$f(x)$的<strong>广义的极大值</strong>（或<strong>极小值</strong>）</p>
+<p>若存在$x_0$的某个<strong>去心领域</strong>，使得在该领域内任一异于$x_0$的点$x$，均有</p>
+<script type="math/tex; mode=display">
+f(x) < f(x_0)(或f(x) > f(x_0))</script><p>成立，则称$x_0$为$f(x)$的<strong>真正的极大值点</strong>（或<strong>极小值点</strong>），$f(x_0)$为$f(x)$的<strong>真正的极大值</strong>（或<strong>极小值</strong>）</p>
+<p>设$x_0$为$f(x)$定义域内一点，若对于$f(x)$的定义域内任意一点$x$，均有</p>
+<script type="math/tex; mode=display">
+f(x) \le f(x_0)(或f(x) \ge f(x_0))</script><p>成立，则称$f(x_0)$为$f(x)$的<strong>广义的最大值</strong>（或<strong>最小值</strong>）</p>
+<p>设$x_0$为$f(x)$定义域内一点，若对于$f(x)$的定义域内任一异于$x_0$的点$x$，均有</p>
+<script type="math/tex; mode=display">
+f(x) < f(x_0)(或f(x) > f(x_0))</script><p>成立，则称$f(x_0)$为$f(x)$的<strong>真正的最大值</strong>（或<strong>最小值</strong>）</p>
+<h2 id="单调性与极值的判别"><a href="#单调性与极值的判别" class="headerlink" title="单调性与极值的判别"></a>单调性与极值的判别</h2><h3 id="单调性的判别"><a href="#单调性的判别" class="headerlink" title="单调性的判别"></a>单调性的判别</h3><p>若$y = f(x)$在区间$I$上有$f^\prime(x) &gt; 0$，则$y = f(x)$在$I$上严格<strong>单调增加</strong></p>
+<p>若$y = f(x)$在区间$I$上有$f^\prime(x) &lt; 0$，则$y = f(x)$在$I$上严格<strong>单调减少</strong></p>
+<h3 id="一阶可导点是极值点的必要条件"><a href="#一阶可导点是极值点的必要条件" class="headerlink" title="一阶可导点是极值点的必要条件"></a>一阶可导点是极值点的必要条件</h3><p>设$f(x)$在$x = x_0$处可导，且在点$x_0$处取得极值，则必有$f^\prime(x_0) = 0$</p>
+<h3 id="判别极值的第一充分条件"><a href="#判别极值的第一充分条件" class="headerlink" title="判别极值的第一充分条件"></a>判别极值的第一充分条件</h3><p>设$f(x)$在$x = x_0$处连续，且在点$x_0$的某去心领域$U(x_0+\delta)(\delta &gt; 0)$内可导</p>
+<p>若$x \in (x_0-\delta , x_0)$时，$f^\prime(x) &lt; 0$，而$x \in (x_0 , x_0+\delta)$时，$f^\prime(x) &gt; 0$，则$f(x)$在$x = x_0$处取得<strong>极小值</strong></p>
+<p>若$x \in (x_0-\delta , x_0)$时，$f^\prime(x) &gt; 0$，而$x \in (x_0 , x_0+\delta)$时，$f^\prime(x) &lt; 0$，则$f(x)$在$x = x_0$处取得<strong>极大值</strong></p>
+<p>若$f^\prime(x)$在$(x_0-\delta , x_0)$和$(x_0 , x_0+\delta)$内不变号，则点$x_0$不是极值点</p>
+<h3 id="判别极值的第二充分条件"><a href="#判别极值的第二充分条件" class="headerlink" title="判别极值的第二充分条件"></a>判别极值的第二充分条件</h3><h3 id="判别极值的第三充分条件"><a href="#判别极值的第三充分条件" class="headerlink" title="判别极值的第三充分条件"></a>判别极值的第三充分条件</h3><h2 id="凹凸性与拐点"><a href="#凹凸性与拐点" class="headerlink" title="凹凸性与拐点"></a>凹凸性与拐点</h2><p>设函数$f(x)$在区间$I$上连续，如果对$I$上任意不同两点$x_1,x_2$，恒有</p>
+<script type="math/tex; mode=display">
+f(\frac{x_1+x_2}{2}) < \frac{f(x_1) + f(x_2)}{2}</script><p>则称$y = f(x)$在$I$上的<strong>图形是凹的</strong>（或<strong>凹弧</strong>）</p>
+<p>设函数$f(x)$在区间$I$上连续，如果对$I$上任意不同两点$x_1,x_2$，恒有</p>
+<script type="math/tex; mode=display">
+f(\frac{x_1+x_2}{2}) > \frac{f(x_1) + f(x_2)}{2}</script><p>则称$y = f(x)$在$I$上的<strong>图形是凸的</strong>（或<strong>凸弧</strong>）</p>
+<p><img src="../../image/image-20220513173036581.png" srcset="/my_world/img/loading.gif" lazyload alt="凹凸弧"></p>
+<p>连续曲线的凹弧与凸弧的分界点成为该曲线的<strong>拐点</strong></p>
+<h2 id="曲线曲率"><a href="#曲线曲率" class="headerlink" title="曲线曲率"></a>曲线曲率</h2><script type="math/tex; mode=display">
+设曲线y = f(x)</script><script type="math/tex; mode=display">
+K = \frac{|y''|}{(1+y'^2)^{\frac{3}{2}}}</script><script type="math/tex; mode=display">
+设曲线是由参数方程\begin{cases}
+x = \alpha(t)\\
+y = \beta(t)
+\end{cases}</script><script type="math/tex; mode=display">
+K = \frac{|\alpha'(t)\beta''(t) - \alpha''(t)\beta'(t)|}{[\alpha'^2(t)\beta'^2(t)]^{\frac{3}{2}}}</script><h2 id="莱布尼茨公式"><a href="#莱布尼茨公式" class="headerlink" title="莱布尼茨公式"></a>莱布尼茨公式</h2><script type="math/tex; mode=display">
+若函数是两个函数的乘积，即f = uv,则</script><script type="math/tex; mode=display">
+f^{(n)} = (uv)^{(n)} = \sum_{k = 0}^n \C_n^k u^{(n-k)}v^{(k)}</script><h1 id="中值定理"><a href="#中值定理" class="headerlink" title="中值定理"></a>中值定理</h1><h2 id="有界与最值定理"><a href="#有界与最值定理" class="headerlink" title="有界与最值定理"></a>有界与最值定理</h2><p>设$f(x)$在$[a,b]$上连续</p>
+<script type="math/tex; mode=display">
+m \le f(x) \le M</script><p><strong>m</strong>、<strong>M</strong>分别为$f(x)$在$[a,b]$上的<strong>最小值</strong>与<strong>最大值</strong></p>
+<h2 id="介值定理"><a href="#介值定理" class="headerlink" title="介值定理"></a>介值定理</h2><p>设$f(x)$在$[a,b]$上连续，当$m \le \mu \le M$，存在$\xi \in [a,b]$，使得$f(\xi) = \mu$</p>
+<h2 id="平均值定理"><a href="#平均值定理" class="headerlink" title="平均值定理"></a>平均值定理</h2><p>设$f(x)$在$[a,b]$上连续，当$a &lt; x_1 &lt; x_2 &lt; \cdots &lt; x_n &lt; b$时，在$[x_1,x_n]$内至少存在一点$\xi$，使得</p>
+<script type="math/tex; mode=display">
+f(\xi) = \frac{f(x_1) + f(x_2) + \cdots + f(x_n)}{n}</script><h2 id="积分中值定理"><a href="#积分中值定理" class="headerlink" title="积分中值定理"></a>积分中值定理</h2><p>设$f(x)$在$[a,b]$上连续，存在$\xi \in [a,b]$，使得</p>
+<script type="math/tex; mode=display">
+\int^b_af(x)dx = f(\xi)(b-a)</script><p>函数$f(x)$在区间$[a,b]$上的平均值为</p>
+<script type="math/tex; mode=display">
+A = \frac{\int_a^b f(x)dx}{b-a}</script><h2 id="达步定理（导函数介值定理）"><a href="#达步定理（导函数介值定理）" class="headerlink" title="达步定理（导函数介值定理）"></a>达步定理（导函数介值定理）</h2><script type="math/tex; mode=display">
+设f(x)在[a,b]内可导，若f^{\prime}_+(a) \neq f^{\prime}_-(b)，则对\forall k介于f^{\prime}_+(a)与f^{\prime}_-(b)之间，总\exists \xi \in (a,b)，使得f^{\prime}(\xi ) = k</script><h2 id="费马定理"><a href="#费马定理" class="headerlink" title="费马定理"></a>费马定理</h2><p>设$f(x)$满足在点$x_0$处<strong>可导</strong>并<strong>取极值</strong>，则$f^\prime(x_0) = 0$</p>
+<h2 id="罗尔定理"><a href="#罗尔定理" class="headerlink" title="罗尔定理"></a>罗尔定理</h2><p>设$f(x)$满足在$[a,b]$处<strong>连续</strong>、在$(a,b)$<strong>可导</strong>，并且$f(a) = f(b)$，则存在$\xi \in (a,b)$，使得$f^\prime(\xi) = 0$</p>
+<h2 id="罗尔定理常用辅助函数构造方法"><a href="#罗尔定理常用辅助函数构造方法" class="headerlink" title="罗尔定理常用辅助函数构造方法"></a>罗尔定理常用辅助函数构造方法</h2><script type="math/tex; mode=display">
+x f'(x) + nf(x) = 0 \rightarrow F(x) = x^nf(x)</script><script type="math/tex; mode=display">
+\alpha f'(x) + \beta f(x) = 0 \rightarrow F(x) = e^{\frac{\beta}{\alpha}x}f(x)</script><script type="math/tex; mode=display">
+f'(x) + g'(x)f(x) = 0 \rightarrow F(x) = e^{g(x)}f(x)</script><script type="math/tex; mode=display">
+f'(x) + g(x)f(x) = 0 \rightarrow F(x) = e^{\int^x_{\alpha}g(t)dt}f(x)</script><script type="math/tex; mode=display">
+f''(x) + f'(x) = c \rightarrow F(x) = e^x[f'(x) - c]</script><h2 id="拉格朗日中值定理"><a href="#拉格朗日中值定理" class="headerlink" title="拉格朗日中值定理"></a>拉格朗日中值定理</h2><p>设$f(x)$满足在$[a,b]$处<strong>连续</strong>、在$(a,b)$<strong>可导</strong>，则存在$\xi \in (a,b)$，使得</p>
+<script type="math/tex; mode=display">
+f(b) - f(a) = f^\prime(\xi)(b-a)</script><p>或者</p>
+<script type="math/tex; mode=display">
+f^\prime(\xi) = \frac{f(b) - f(a)}{b-a}</script><h2 id="柯西中值定理"><a href="#柯西中值定理" class="headerlink" title="柯西中值定理"></a>柯西中值定理</h2><p>设$f(x)$满足在$[a,b]$处<strong>连续</strong>、在$(a,b)$<strong>可导</strong>，则存在$\xi \in (a,b)$，使得</p>
+<script type="math/tex; mode=display">
+\frac{f^\prime(\xi)}{g^\prime(\xi)} = \frac{f(b) - f(a)}{g(b) - g(a)}</script><p>其中$g^\prime(\xi) \neq 0$</p>
+<h2 id="泰勒公式"><a href="#泰勒公式" class="headerlink" title="泰勒公式"></a>泰勒公式</h2><script type="math/tex; mode=display">
+f(x) = f(x_0)+\frac{f'(x)}{1!}(x-x_0)+\frac{f''(x)}{2!}(x-x_0)^2 + \cdots + \frac{f^{(n)}(x)}{n!}(x - x_0)^n+R_n(x)</script><script type="math/tex; mode=display">
+拉格朗日型余项:R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}(x - x_0)^{n+1}</script><script type="math/tex; mode=display">
+佩亚诺型余项:R_n(x) = o[(x-x_o)^n]</script><h2 id="常见的麦克劳林公式"><a href="#常见的麦克劳林公式" class="headerlink" title="常见的麦克劳林公式"></a>常见的麦克劳林公式</h2><script type="math/tex; mode=display">
+\frac{1}{1-x} = 1 + x + \cdots +x^{n} + o(x^{n})</script><script type="math/tex; mode=display">
+- In(1+x) = x + \frac{x^2}{2} + \cdots +\frac{x^{n}}{n} + o(x^{n})</script><script type="math/tex; mode=display">
+In(1-x) = - \sum_{n = 1}^\infty \frac{x^n}{n}</script><script type="math/tex; mode=display">
+In(1+x) = x - \frac{x^2}{2} + \cdots +\frac{(-1)^{n-1}}{n}x^{n} + o(x^{n})</script><script type="math/tex; mode=display">
+\frac{1}{1+x} = 1 - x + x^2 - \cdots +(-1)^nx^{n} + o(x^{n})</script><script type="math/tex; mode=display">
+e^x = 1 + x + \cdots +\frac{x^n}{n!} + o(x^n)</script><script type="math/tex; mode=display">
+cosx = 1 - \frac{x^2}{2!} + \cdots +\frac{(-1)^n}{(2n)!}x^{2n} + o(x^{2n})</script><script type="math/tex; mode=display">
+sinx = x - \frac{x^3}{3!} + \cdots +\frac{(-1)^n}{(2n + 1)!}x^{2n+1} + o(x^{2n+1})</script><script type="math/tex; mode=display">
+arctanx = x - \frac{x^3}{3} + \frac{x^5}{5} - \cdots + \frac{(-1)^n}{2n+1}x^{2n+1} + o(x^{2n+1})</script><script type="math/tex; mode=display">
+(1+x)^a = 1 + ax + \frac{a(a-1)}{2!}x^2 + \cdots +\frac{a(a-1)\cdots (a-n+1)}{n!}x^n + o(x^{n})</script><h1 id="零点问题与微分不等式"><a href="#零点问题与微分不等式" class="headerlink" title="零点问题与微分不等式"></a>零点问题与微分不等式</h1><h2 id="零点定理"><a href="#零点定理" class="headerlink" title="零点定理"></a>零点定理</h2><p>$f(x)$在$[a,b]$连续，且$f(a)f(b)&lt;0$，则至少有一点$\xi \in (a,b)$，使$f(\xi) = 0$</p>
+<p>零点定义：如果$x_0$使得$f(x_0) = 0$，就称$x_0$为函数$f(x)$的零点（或称$x_0$为方程$f(x) = 0$的根）</p>
+<h2 id="零点问题"><a href="#零点问题" class="headerlink" title="零点问题"></a>零点问题</h2><p>主要证明根的存在性</p>
+<p>若$f(x)$在$[a,b]$连续，且$f(a)f(b)&lt;0$，则$f(x) = 0$在$(a,b)$内至少有一个根</p>
+<h2 id="单调性"><a href="#单调性" class="headerlink" title="单调性"></a>单调性</h2><p>主要证明根的唯一性</p>
+<p>若$f(x)$在$(a,b)$内单调，则$f(x) = 0$在$(a,b)$内至多有一个根，这里a，b可以是有限数，也可以是无穷大</p>
+<h2 id="罗尔定理的推论"><a href="#罗尔定理的推论" class="headerlink" title="罗尔定理的推论"></a>罗尔定理的推论</h2><p>若$f^{(n)}(x) = 0$至多有k个根，则$f(x) = 0$至多有$k + n$个根</p>
+<p>实系数奇次方程$x^{2n+1} + a<em>1x^{2n}+ \cdots + a</em>{2n}x + a_{2n+1} = 0$至少有一个实根</p>
+<h2 id="微分不等式"><a href="#微分不等式" class="headerlink" title="微分不等式"></a>微分不等式</h2><h3 id="用函数性态（包括单调性、凹凸性和最值等）证明不等式"><a href="#用函数性态（包括单调性、凹凸性和最值等）证明不等式" class="headerlink" title="用函数性态（包括单调性、凹凸性和最值等）证明不等式"></a>用函数性态（包括单调性、凹凸性和最值等）证明不等式</h3><p>一般地，使用如下依据</p>
+<ol>
+<li>若有$f^\prime(x) \ge 0,a&lt;x&lt;b$，则有$f(a) \le f(x) \le f(b)$</li>
+<li>若有$f^”(x) \ge 0,a &lt; x &lt; b$，则有$f^\prime(a) \le f^\prime(x) \le f^\prime(b)$<ol>
+<li>当$f^\prime(a) &gt; 0$时，$f^\prime(x) &gt; 0 \rightarrow f(x)$单调增加</li>
+<li>当$f^\prime(a) &lt; 0$时，$f^\prime(x) &lt; 0 \rightarrow f(x)$单调减少</li>
+</ol>
+</li>
+<li>设$f(x)$在$I$内连续，且有唯一的极值点$x_0$，则<ol>
+<li>当$x_0$为极大值点时，$f(x_0) \ge f(x)$</li>
+<li>当$x_0$为极小值点时，$f(x_0) \le f(x)$</li>
+<li>$\forall x \in I$</li>
+</ol>
+</li>
+<li>若有$f^”(x) &gt; 0,a&lt;x&lt;b,f(a) = f(b) = 0$，则有$f(x) &lt; 0$</li>
+</ol>
+<h3 id="常数变量化证明不等式"><a href="#常数变量化证明不等式" class="headerlink" title="常数变量化证明不等式"></a>常数变量化证明不等式</h3><p>不等式中都是常数，则可以将其中一个或者几个常数变量化，再使用上述导数工具证明</p>
+<h3 id="中值定理证明不等式"><a href="#中值定理证明不等式" class="headerlink" title="中值定理证明不等式"></a>中值定理证明不等式</h3><p>主要使用拉格朗日中值定理或者泰勒公式</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">数学公式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%E4%B8%8E%E8%BF%90%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">二叉树基础理论与运用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/%E8%BF%9E%E6%8E%A5mysql%E7%9A%84%E5%A4%9A%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%88java-python%EF%BC%89/">
+                        <span class="hidden-mobile">连接mysql的多种玩法（java-python）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

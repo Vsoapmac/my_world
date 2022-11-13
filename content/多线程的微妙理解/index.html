@@ -1,0 +1,816 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>多线程的微妙理解 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="多线程的微妙理解">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-18 11:17" pubdate>
+        2021年3月18日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      74
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">多线程的微妙理解</h1>
+            
+            <div class="markdown-body">
+              <p>多线程（multithreading），是指从软件或者硬件上实现多个线程并发执行的技术。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程，进而提升整体处理性能。具有这种能力的系统包括对称多处理机、多核心处理器以及芯片级多处理或同时多线程处理器。在一个程序中，这些独立运行的程序片段叫作“线程”（Thread），利用它编程的概念就叫作“多线程处理”。</p>
+<h2 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h2><p>线程（英语：thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。在Unix System V及SunOS中也被称为轻量进程（lightweight processes），但轻量进程更多指内核线程（kernel thread），而把用户线程（user thread）称为线程。</p>
+<h2 id="什么是多线程"><a href="#什么是多线程" class="headerlink" title="什么是多线程"></a>什么是多线程</h2><p>多线程（multithreading），是指从软件或者硬件上实现多个线程并发执行的技术。具有多线程能力的计算机因有硬件支持而能够在同一时间执行多于一个线程，进而提升整体处理性能。具有这种能力的系统包括对称多处理机、多核心处理器以及芯片级多处理或同时多线程处理器。在一个程序中，这些独立运行的程序片段叫作“线程”（Thread），利用它编程的概念就叫作“多线程处理”。</p>
+<p>在出现了进程之后，操作系统的性能得到了大大的提升。虽然进程的出现解决了操作系统的并发问题，但是人们仍然不满足，人们逐渐对实时性有了要求。</p>
+<p>使用多线程的理由之一是和进程相比，它是一种非常花销小，切换快，更”节俭”的多任务操作方式。</p>
+<h2 id="线程与同步异步的关系"><a href="#线程与同步异步的关系" class="headerlink" title="线程与同步异步的关系"></a>线程与同步异步的关系</h2><ol>
+<li>同步（sync）：</li>
+</ol>
+<p>发出一个功能调用时，在没有得到结果之前，该调用就不返回。</p>
+<ol>
+<li>异步（async）：</li>
+</ol>
+<p>与同步相对，调用在发出之后，这个调用就直接返回了，所以没有返回结果。当这个调用完成后，一般通过状态、通知和回调来通知调用者。对于异步调用，调用的返回并不受调用者控制。</p>
+<p>对于通知调用者的三种方式，具体如下：</p>
+<p>状态：即监听被调用者的状态（轮询），调用者需要每隔一定时间检查一次，效率会很低。</p>
+<p>通知：当被调用者执行完成后，发出通知告知调用者，无需消耗太多性能。</p>
+<p>回调：与通知类似，当被调用者执行完成后，会调用调用者提供的回调函数。</p>
+<div class="code-wrapper"><pre><code class="hljs markdown">打比方:
+
+<span class="hljs-bullet">1.</span> 单线程同步：甲先搬了一块砖，回头又搬了另一块砖
+
+<span class="hljs-bullet">2.</span> 多线程同步：甲先搬了一块砖，乙又搬了一块砖（要用到线程间的同步机制）
+
+<span class="hljs-bullet">3.</span> 多线程异步：甲乙同时各搬了一块砖</code></pre></div>
+<h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><p><strong>进程</strong></p>
+<p>一个在内存中运行的应用程序。每个进程都有自己独立的一块内存空间，一个进程可以有多个线程，比如在Windows系统中，一个运行的xx.exe就是一个进程。</p>
+<p><strong>线程</strong></p>
+<p>进程中的一个执行任务（控制单元），负责当前进程中程序的执行。一个进程至少有一个线程，一个进程可以运行多个线程，多个线程可共享数据。</p>
+<p><strong>根本区别：</strong> 进程是操作系统资源分配的基本单位，而线程是处理器任务调度和执行的基本单位</p>
+<p><strong>资源开销：</strong> 每个进程都有独立的代码和数据空间（程序上下文），程序之间的切换会有较大的开销；线程可以看做轻量级的进程，同一类线程共享代码和数据空间，每个线程都有自己独立的运行栈和程序计数器（PC），线程之间切换的开销小。</p>
+<p><strong>包含关系：</strong> 如果一个进程内有多个线程，则执行过程不是一条线的，而是多条线（线程）共同完成的；线程是进程的一部分，所以线程也被称为轻权进程或者轻量级进程。</p>
+<p><strong>内存分配：</strong> 同一进程的线程共享本进程的地址空间和资源，而进程之间的地址空间和资源是相互独立的</p>
+<p><strong>影响关系：</strong> 一个进程崩溃后，在保护模式下不会对其他进程产生影响，但是一个线程崩溃整个进程都死掉。所以多进程要比多线程健壮。</p>
+<p><strong>执行过程：</strong> 每个独立的进程有程序运行的入口、顺序执行序列和程序出口。但是线程不能独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制，两者均可并发执行</p>
+<h2 id="线程的状态转换"><a href="#线程的状态转换" class="headerlink" title="线程的状态转换"></a><span id="线程的生命周期">线程的状态转换</span></h2><blockquote>
+<p>生命周期图</p>
+</blockquote>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/01/java-thread.jpg" srcset="/my_world/img/loading.gif" lazyload alt="image"></p>
+<ol>
+<li>新建状态（New）：新创建了一个线程对象。</li>
+<li>就绪状态（Runnable）：线程对象创建后，其他线程调用了该对象的start()方法。该状态的线程位于可运行线程池中，变得可运行，等待获取CPU的使用权。</li>
+<li>运行状态（Running）：就绪状态的线程获取了CPU，执行程序代码。</li>
+<li>阻塞状态（Blocked）：阻塞状态是线程因为某种原因放弃CPU使用权，暂时停止运行。直到线程进入就绪状态，才有机会转到运行状态。阻塞的情况分三种：</li>
+</ol>
+<ul>
+<li>等待阻塞：运行的线程执行wait()方法，JVM会把该线程放入等待池中。(wait会释放持有的锁)</li>
+<li>同步阻塞：运行的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池中。</li>
+<li>其他阻塞：运行的线程执行sleep()或join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。（注意,sleep是不会释放持有的锁）</li>
+</ul>
+<ol>
+<li>死亡状态（Dead）：线程执行完了或者因异常退出了run()方法，该线程结束生命周期。</li>
+</ol>
+<blockquote>
+<p>状态装换图</p>
+</blockquote>
+<p><img src="https://img-blog.csdn.net/20150309140927553" srcset="/my_world/img/loading.gif" lazyload alt="image"></p>
+<h2 id="守护线程和用户线程之间的区别"><a href="#守护线程和用户线程之间的区别" class="headerlink" title="守护线程和用户线程之间的区别"></a>守护线程和用户线程之间的区别</h2><p>java提供了俩类的线程：用户线程和守护线程(user thread and Daemon thread)。用户线程是高优先级的线程。JVM虚拟机在结束一个用户线程之前，会先等待该用户线程完成它的task。</p>
+<p>在另一方面，守护线程是低优先级的线程，它的作用仅仅是为用户线程提供服务。正是由于守护线程是为用户线程提供服务的，仅仅在用户线程处于运行状态时才需要守护线程。另外，一旦所有的用户线程都运行完毕，那么守护线程是无法阻止JVM退出的。</p>
+<p>这也是存在于守护线程中的无限循环不会产生问题的原因，因为包括finally 块的任何代码都不会被执行，一旦所有的用户线程结束运行之后。出于这个原因，我们不推荐使用守护线程处理I/O任务。</p>
+<p>然而，这个规则也有例外。守护线程中那些设计糟糕的代码也能阻止JVM虚拟机退出。例如，在一个运行中的守护线程上调用Thread.join()方法会阻塞应用程序的关闭。</p>
+<h2 id="java实现线程的方式"><a href="#java实现线程的方式" class="headerlink" title="java实现线程的方式"></a><span id="java实现线程的方式">java实现线程的方式</span></h2><ol>
+<li><p>继承 Thread 类本身</p>
+<div class="code-wrapper"><pre><code class="hljs pgsql"><span class="hljs-keyword">class</span> ThreadDemo extends Thread &#123;
+   private Thread t;
+   private String threadName;
+   
+   ThreadDemo( String <span class="hljs-type">name</span>) &#123;
+      threadName = <span class="hljs-type">name</span>;
+      <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;Creating &quot; +  threadName );
+   &#125;
+   
+   <span class="hljs-built_in">public</span> <span class="hljs-type">void</span> run() &#123;
+      <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;Running &quot; +  threadName );
+      try &#123;
+         <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">4</span>; i &gt; <span class="hljs-number">0</span>; i<span class="hljs-comment">--) &#123;</span>
+            <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;Thread: &quot; + threadName + &quot;, &quot; + i);
+            // 让线程睡眠一会
+            Thread.sleep(<span class="hljs-number">50</span>);
+         &#125;
+      &#125;catch (InterruptedException e) &#123;
+         <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;Thread &quot; +  threadName + &quot; interrupted.&quot;);
+      &#125;
+      <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;Thread &quot; +  threadName + &quot; exiting.&quot;);
+   &#125;
+   
+   <span class="hljs-built_in">public</span> <span class="hljs-type">void</span> <span class="hljs-keyword">start</span> () &#123;
+      <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;Starting &quot; +  threadName );
+      <span class="hljs-keyword">if</span> (t == <span class="hljs-keyword">null</span>) &#123;
+         t = <span class="hljs-built_in">new</span> Thread (this, threadName);
+         t.<span class="hljs-keyword">start</span> ();
+      &#125;
+   &#125;
+&#125;</code></pre></div>
+</li>
+<li><p>实现runnable接口</p>
+<div class="code-wrapper"><pre><code class="hljs arduino"><span class="hljs-comment">/**</span>
+<span class="hljs-comment">* 实现Runnable接口的类</span>
+<span class="hljs-comment">*</span>
+<span class="hljs-comment">* @author leizhimin 2008-9-13 18:12:10</span>
+<span class="hljs-comment">*/</span>
+publicclass DoSomethingimplements Runnable &#123;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> name;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DoSomething</span><span class="hljs-params">(<span class="hljs-keyword">String</span> name)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.name = name;
+    &#125;
+
+    <span class="hljs-function">publicvoid <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">long</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">100000000</span>; k++) ;
+            System.out.<span class="hljs-built_in">println</span>(name + <span class="hljs-string">&quot;: &quot;</span> + i);
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+</li>
+<li><p>Callable 和 Future 创建线程</p>
+</li>
+</ol>
+<h2 id="什么是线程同步"><a href="#什么是线程同步" class="headerlink" title="什么是线程同步"></a>什么是线程同步</h2><p>线程同步：即当有一个线程在对内存进行操作时，其他线程都不可以对这个内存地址进行操作，直到该线程完成操作， 其他线程才能对该内存地址进行操作，而其他线程又处于等待状态。java允许多线程并发控制，当多个线程同时操作一个可共享的资源变量时（如数据的增删改查），将会导致数据不准确，相互之间产生冲突，因此加入同步锁以避免在该线程没有完成操作之前，被其他线程的调用，从而保证了该变量的唯一性和准确性。</p>
+<h2 id="java实现线程同步的方式"><a href="#java实现线程同步的方式" class="headerlink" title="java实现线程同步的方式"></a>java实现线程同步的方式</h2><ol>
+<li>同步方法</li>
+</ol>
+<p>即有synchronized关键字修饰的方法。由于java的每个对象都有一个内置锁，当用此关键字修饰方法时，内置锁会保护整个方法。在调用该方法前，需要获得内置锁，否则就处于阻塞状态。<br><div class="code-wrapper"><pre><code class="hljs aspectj"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">save</span><span class="hljs-params">()</span></span>&#123;&#125;
+
+注： <span class="hljs-keyword">synchronized</span>关键字也可以修饰静态方法，此时如果调用该静态方法，将会锁住整个类</code></pre></div></p>
+<ol>
+<li>同步代码块</li>
+</ol>
+<p>即有synchronized关键字修饰的语句块。被该关键字修饰的语句块会自动被加上内置锁，从而实现同步<br><div class="code-wrapper"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">synchronized</span><span class="hljs-params">(object)</span></span>&#123;&#125;
+
+注：同步是一种高开销的操作，因此应该尽量减少同步的内容。通常没有必要同步整个方法，使用synchronized代码块同步关键代码即可。</code></pre></div></p>
+<ol>
+<li>使用特殊域变量(volatile)实现线程同步<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bank</span> </span>&#123;
+    <span class="hljs-comment">//需要同步的变量加上volatile</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">int</span> account = <span class="hljs-number">100</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAccount</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> account;
+    &#125;
+    <span class="hljs-comment">//这里不再需要synchronized </span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">save</span><span class="hljs-params">(<span class="hljs-keyword">int</span> money)</span> </span>&#123;
+        account += money;
+    &#125;
+&#125;
+
+a.<span class="hljs-keyword">volatile</span>关键字为域变量的访问提供了一种免锁机制，
+b.使用<span class="hljs-keyword">volatile</span>修饰域相当于告诉虚拟机该域可能会被其他线程更新，
+c.因此每次使用该域就要重新计算，而不是使用寄存器中的值
+d.<span class="hljs-keyword">volatile</span>不会提供任何原子操作，它也不能用来修饰<span class="hljs-keyword">final</span>类型的变量
+
+多线程中的非同步问题主要出现在对域的读写上，如果让域自身避免这个问题，则就不需要修改操作该域的方法。用<span class="hljs-keyword">final</span>域，有锁保护的域和<span class="hljs-keyword">volatile</span>域可以避免非同步的问题。</code></pre></div></li>
+<li>使用重入锁实现线程同步<div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-keyword">class</span> <span class="hljs-title">Bank</span> &#123;
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> account = <span class="hljs-number">100</span>;
+    <span class="hljs-comment">//需要声明这个锁</span>
+    <span class="hljs-keyword">private</span> Lock <span class="hljs-keyword">lock</span> = <span class="hljs-keyword">new</span> ReentrantLock();
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">getAccount</span>(<span class="hljs-params"></span>)</span> &#123;
+        <span class="hljs-keyword">return</span> account;
+    &#125;
+    <span class="hljs-comment">//这里不再需要synchronized </span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">save</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> money</span>)</span> &#123;
+        <span class="hljs-keyword">lock</span>.<span class="hljs-keyword">lock</span>();
+        <span class="hljs-keyword">try</span>&#123;
+            account += money;
+        &#125;<span class="hljs-keyword">finally</span>&#123;
+            <span class="hljs-keyword">lock</span>.unlock();
+        &#125;
+    &#125;
+｝
+
+注：关于Lock对象和synchronized关键字的选择：
+a.最好两个都不用，使用一种java.util.concurrent包提供的机制，能够帮助用户处理所有与锁相关的代码。
+b.如果synchronized关键字能满足用户的需求，就用synchronized，因为它能简化代码
+c.如果需要更高级的功能，就用ReentrantLock类，此时要注意及时释放锁，否则会出现死锁，通常在<span class="hljs-keyword">finally</span>代码释放锁</code></pre></div>
+</li>
+</ol>
+<h2 id="什么是线程锁"><a href="#什么是线程锁" class="headerlink" title="什么是线程锁"></a>什么是线程锁</h2><p>多个线程同时对同一个对象进行读写操作,很容易会出现一些难以预料的问题。所以很多时候我们需要给代码块加锁,同一时刻只允许一个线程对某个对象进行操作。</p>
+<h2 id="多线程锁机制的实现方式"><a href="#多线程锁机制的实现方式" class="headerlink" title="多线程锁机制的实现方式"></a>多线程锁机制的实现方式</h2><p>Java提供了多种多线程锁机制的实现方式，常见的有：</p>
+<ul>
+<li>synchronized</li>
+<li>ReentrantLock</li>
+<li>Semaphore</li>
+<li>AtomicInteger</li>
+</ul>
+<p><strong>1. synchronized</strong></p>
+<p>在Java中synchronized关键字被常用于维护数据一致性。</p>
+<p>synchronized机制是给共享资源上锁，只有拿到锁的线程才可以访问共享资源，这样就可以强制使得对共享资源的访问都是顺序的。</p>
+<p>Java开发人员都认识synchronized，使用它来实现多线程的同步操作是非常简单的，只要在需要同步的对方的方法、类或代码块中加入该关键字，它能够保证在同一个时刻最多只有一个线程执行同一个对象的同步代码，可保证修饰的代码在执行过程中不会被其他线程干扰。使用synchronized修饰的代码具有原子性和可见性，在需要进程同步的程序中使用的频率非常高，可以满足一般的进程同步要求。<br><div class="code-wrapper"><pre><code class="hljs ada"><span class="hljs-keyword">synchronized</span> (obj) &#123;&#125;</code></pre></div></p>
+<p><strong>2. ReentrantLock</strong></p>
+<p>可重入锁，顾名思义，这个锁可以被线程多次重复进入进行获取操作。</p>
+<p>ReentantLock继承接口Lock并实现了接口中定义的方法，除了能完成synchronized所能完成的所有工作外，还提供了诸如可响应中断锁、可轮询锁请求、定时锁等避免多线程死锁的方法。</p>
+<p>Lock实现的机理依赖于特殊的CPU指定，可以认为不受JVM的约束，并可以通过其他语言平台来完成底层的实现。在并发量较小的多线程应用程序中，ReentrantLock与synchronized性能相差无几，但在高并发量的条件下，synchronized性能会迅速下降几十倍，而ReentrantLock的性能却能依然维持一个水准。</p>
+<p>因此建议在高并发量情况下使用ReentrantLock。</p>
+<p>ReentrantLock引入两个概念：公平锁与非公平锁。</p>
+<p>公平锁指的是锁的分配机制是公平的，通常先对锁提出获取请求的线程会先被分配到锁。反之，JVM按随机、就近原则分配锁的机制则称为不公平锁。</p>
+<p>ReentrantLock在构造函数中提供了是否公平锁的初始化方式，默认为非公平锁。这是因为，非公平锁实际执行的效率要远远超出公平锁，除非程序有特殊需要，否则最常用非公平锁的分配机制。</p>
+<p>ReentrantLock通过方法lock()与unlock()来进行加锁与解锁操作，与synchronized会被JVM自动解锁机制不同，ReentrantLock加锁后需要手动进行解锁。为了避免程序出现异常而无法正常解锁的情况，使用ReentrantLock必须在finally控制块中进行解锁操作。<br><div class="code-wrapper"><pre><code class="hljs cos"><span class="hljs-keyword">Lock</span> <span class="hljs-keyword">lock</span> = <span class="hljs-keyword">new</span> ReentrantLock()<span class="hljs-comment">;</span>
+<span class="hljs-keyword">try</span> &#123;
+    <span class="hljs-keyword">lock</span>.<span class="hljs-keyword">lock</span>()<span class="hljs-comment">;</span>
+    <span class="hljs-comment">//…进行任务操作5 </span>
+&#125;
+finally &#123;
+    <span class="hljs-keyword">lock</span>.unlock()<span class="hljs-comment">;</span>
+&#125;</code></pre></div><br><strong>3. Semaphore</strong></p>
+<p>上述两种锁机制类型都是“互斥锁”，互斥是进程同步关系的一种特殊情况，相当于只存在一个临界资源，因此同时最多只能给一个线程提供服务。但是，在实际复杂的多线程应用程序中，可能存在多个临界资源，这时候我们可以借助Semaphore信号量来完成多个临界资源的访问。</p>
+<p>Semaphore基本能完成ReentrantLock的所有工作，使用方法也与之类似，通过acquire()与release()方法来获得和释放临界资源。</p>
+<p>经实测，Semaphone.acquire()方法默认为可响应中断锁，与ReentrantLock.lockInterruptibly()作用效果一致，也就是说在等待临界资源的过程中可以被Thread.interrupt()方法中断。</p>
+<p>此外，Semaphore也实现了可轮询的锁请求与定时锁的功能，除了方法名tryAcquire与tryLock不同，其使用方法与ReentrantLock几乎一致。Semaphore也提供了公平与非公平锁的机制，也可在构造函数中进行设定。</p>
+<p>Semaphore的锁释放操作也由手动进行，因此与ReentrantLock一样，为避免线程因抛出异常而无法正常释放锁的情况发生，释放锁的操作也必须在finally代码块中完成。</p>
+<p><strong>4.AtomicInteger</strong></p>
+<p>首先说明，此处AtomicInteger是一系列相同类的代表之一，常见的还有AtomicLong、AtomicLong等，他们的实现原理相同，区别在与运算对象类型的不同。</p>
+<p>我们知道，在多线程程序中，诸如++i或i++等运算不具有原子性，是不安全的线程操作之一。通常我们会使用synchronized将该操作变成一个原子操作，但JVM为此类操作特意提供了一些同步类，使得使用更方便，且使程序运行效率变得更高。通过相关资料显示，通常AtomicInteger的性能是ReentantLock的好几倍。</p>
+<blockquote>
+<p>总结</p>
+</blockquote>
+<p><strong>1.synchronized：</strong></p>
+<p>在资源竞争不是很激烈的情况下，偶尔会有同步的情形下，synchronized是很合适的。原因在于，编译程序通常会尽可能的进行优化synchronize，另外可读性非常好。</p>
+<p><strong>2.ReentrantLock:</strong></p>
+<p>在资源竞争不激烈的情形下，性能稍微比synchronized差点点。但是当同步非常激烈的时候，synchronized的性能一下子能下降好几十倍，而ReentrantLock确还能维持常态。</p>
+<p><strong>高并发量情况下使用ReentrantLock。</strong></p>
+<p><strong>3.Atomic:</strong></p>
+<p>和上面的类似，不激烈情况下，性能比synchronized略逊，而激烈的时候，也能维持常态。激烈的时候，Atomic的性能会优于ReentrantLock一倍左右。但是其有一个缺点，就是只能同步一个值，一段代码中只能出现一个Atomic的变量，多于一个同步无效。因为他不能在多个Atomic之间同步。</p>
+<p>所以，我们写同步的时候，优先考虑synchronized，如果有特殊需要，再进一步优化。ReentrantLock和Atomic如果用的不好，不仅不能提高性能，还可能带来灾难。</p>
+<h2 id="什么是死锁-产生条件"><a href="#什么是死锁-产生条件" class="headerlink" title="什么是死锁/产生条件"></a>什么是死锁/产生条件</h2><p>线程死锁是指两个或两个以上的线程互相持有对方所需要的资源，由于synchronized的特性，一个线程持有一个资源，或者说获得一个锁，在该线程释放这个锁之前，其它线程是获取不到这个锁的，而且会一直死等下去，因此这便造成了死锁。</p>
+<h3 id="产生条件"><a href="#产生条件" class="headerlink" title="产生条件"></a>产生条件</h3><ul>
+<li>互斥条件：一个资源，或者说一个锁只能被一个线程所占用，当一个线程首先获取到这个锁之后，在该线程释放这个锁之前，其它线程均是无法获取到这个锁的。</li>
+<li>占有且等待：一个线程已经获取到一个锁，再获取另一个锁的过程中，即使获取不到也不会释放已经获得的锁。</li>
+<li>不可剥夺条件：任何一个线程都无法强制获取别的线程已经占有的锁</li>
+<li>循环等待条件：线程A拿着线程B的锁，线程B拿着线程A的锁。</li>
+</ul>
+<h2 id="死锁演示-避免方法"><a href="#死锁演示-避免方法" class="headerlink" title="死锁演示/避免方法"></a><span id="死锁演示/避免方法">死锁演示/避免方法</span></h2><div class="code-wrapper"><pre><code class="hljs reasonml">package com.github.excellent01;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * @auther plg</span>
+<span class="hljs-comment"> * @date 2019/5/18 12:12</span>
+<span class="hljs-comment"> */</span>
+public <span class="hljs-keyword">class</span> DeadLock &#123;
+    <span class="hljs-keyword">private</span>  Object lock1 = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Object()</span>;
+    <span class="hljs-keyword">private</span>  Object lock2 = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Object()</span>;
+
+    public  void method1<span class="hljs-literal">()</span> throws InterruptedException &#123;
+        synchronized(lock1)&#123;
+            <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Thread</span>.</span></span>current<span class="hljs-constructor">Thread()</span>.get<span class="hljs-constructor">Name()</span> + <span class="hljs-string">&quot;获取到lock1,请求获取lock2....&quot;</span>);
+            <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Thread</span>.</span></span>sleep(<span class="hljs-number">1000</span>);
+            synchronized (lock2)&#123;
+                <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;获取到lock2....&quot;</span>);
+            &#125;
+        &#125;
+    &#125;
+    public  void method2<span class="hljs-literal">()</span> throws InterruptedException &#123;
+        synchronized(lock2)&#123;
+            <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Thread</span>.</span></span>current<span class="hljs-constructor">Thread()</span>.get<span class="hljs-constructor">Name()</span> + <span class="hljs-string">&quot;获取到lock2,请求获取lock1....&quot;</span>);
+            <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Thread</span>.</span></span>sleep(<span class="hljs-number">1000</span>);
+            synchronized (lock1)&#123;
+                <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;获取到lock1....&quot;</span>);
+            &#125;
+        &#125;
+    &#125;
+
+    public static void main(String<span class="hljs-literal">[]</span> args) &#123;
+        DeadLock deadLock = <span class="hljs-keyword">new</span> <span class="hljs-constructor">DeadLock()</span>;
+
+        <span class="hljs-keyword">new</span> <span class="hljs-constructor">Thread(()</span>-&gt; &#123;
+            <span class="hljs-keyword">try</span> &#123;
+                deadLock.method1<span class="hljs-literal">()</span>;
+            &#125; catch (InterruptedException e) &#123;
+                e.print<span class="hljs-constructor">StackTrace()</span>;
+            &#125;
+        &#125;).start<span class="hljs-literal">()</span>;
+        <span class="hljs-keyword">new</span> <span class="hljs-constructor">Thread(()</span>-&gt; &#123;
+            <span class="hljs-keyword">try</span> &#123;
+                deadLock.method2<span class="hljs-literal">()</span>;
+            &#125; catch (InterruptedException e) &#123;
+                e.print<span class="hljs-constructor">StackTrace()</span>;
+            &#125;
+        &#125;).start<span class="hljs-literal">()</span>;
+
+    &#125;
+&#125;</code></pre></div>
+<p><img src="https://img-blog.csdnimg.cn/20200610100524322.png" srcset="/my_world/img/loading.gif" lazyload alt="image"></p>
+<p>这样便造成了死锁，Thread1拿着lock1，想要lock2，Thread2拿着lock2，想要lock1.</p>
+<h3 id="避免方法"><a href="#避免方法" class="headerlink" title="避免方法"></a>避免方法</h3><ul>
+<li>加锁顺序：线程按照相同的顺序加锁。</li>
+<li>加锁时限，线程获取锁的过程中限制一定的时间，如果给定时间内获取不到，就算了，别勉强自己。这需要用到Lock的一些API。</li>
+</ul>
+<h2 id="什么是线程池"><a href="#什么是线程池" class="headerlink" title="什么是线程池"></a>什么是线程池</h2><p>线程池是一种多线程处理形式，处理过程中将任务添加到队列，然后在创建线程后自动启动这些任务。线程池线程都是后台线程。每个线程都使用默认的堆栈大小，以默认的优先级运行，并处于多线程单元中。如果某个线程在托管代码中空闲（如正在等待某个事件）,则线程池将插入另一个辅助线程来使所有处理器保持繁忙。如果所有线程池线程都始终保持繁忙，但队列中包含挂起的工作，则线程池将在一段时间后创建另一个辅助线程但线程的数目永远不会超过最大值。超过最大值的线程可以排队，但他们要等到其他线程完成后才启动。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/java%E5%9F%BA%E7%A1%80/">java基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/mysql%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%BA%94%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">mysql的基本应用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/IO%E6%B5%81%E7%9A%84%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D/">
+                        <span class="hidden-mobile">IO流的简要介绍</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>

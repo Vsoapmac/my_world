@@ -1,0 +1,930 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my_world/img/favicon.png">
+  <link rel="icon" href="/my_world/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#336699">
+  <meta name="description" content="">
+  <meta name="author" content="Vsoapmac">
+  <meta name="keywords" content="">
+  
+  <title>mysql的基本应用 | My note</title>
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/my_world/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/my_world/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/my_world/css/scrollbar.css">
+<link rel="stylesheet" href="/my_world/css/customfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"my_world.github.io","root":"/my_world/","version":"1.8.11","typing":{"enable":true,"typeSpeed":60,"cursorChar":"|","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"./xml/local-search.xml"};
+  </script>
+  <script  src="/my_world/js/utils.js" ></script>
+  <script  src="/my_world/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" style="box-shadow:none;" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/my_world/">&nbsp;<strong>Infinite</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my_world/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/my_world/img/post.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="mysql的基本应用">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-18 11:18" pubdate>
+        2021年3月18日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      45
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">mysql的基本应用</h1>
+            
+            <div class="markdown-body">
+              <p>MySQL是一个关系型数据库管理系统，由瑞典MySQL AB 公司开发，属于 Oracle 旗下产品。MySQL 是最流行的关系型数据库管理系统之一，在 WEB 应用方面，MySQL是最好的 RDBMS (Relational Database Management System，关系数据库管理系统) 应用软件之一。</p>
+<h1 id="数据库概念"><a href="#数据库概念" class="headerlink" title="数据库概念"></a>数据库概念</h1><p>数据库（Database）是按照数据结构来组织、存储和管理数据的仓库。</p>
+<p>每个数据库都有一个或多个不同的 API 用于创建，访问，管理，搜索和复制所保存的数据。</p>
+<p>我们也可以将数据存储在文件中，但是在文件中读写数据速度相对较慢。</p>
+<p>所以，现在我们使用关系型数据库管理系统（RDBMS）来存储和管理大数据量。所谓的关系型数据库，是建立在关系模型基础上的数据库，借助于集合代数等数学概念和方法来处理数据库中的数据。</p>
+<p>RDBMS 即关系数据库管理系统(Relational Database Management System)的特点：</p>
+<ol>
+<li>数据以表格的形式出现</li>
+<li>每行为各种记录名称</li>
+<li>每列为记录名称所对应的数据域</li>
+<li>许多的行和列组成一张表单</li>
+<li>若干的表单组成database</li>
+</ol>
+<p>数据库语言分为四大类</p>
+<ul>
+<li>数据定义语言(DDL)，例如：CREATE、DROP、ALTER等语句。</li>
+<li>数据操作语言(DML)，例如：INSERT（插入）、UPDATE（修改）、DELETE（删除）语句。</li>
+<li>数据查询语言(DQL)，例如：SELECT语句。（一般不会单独归于一类，因为只有一个语句）。</li>
+<li>数据控制语言(DCL)，例如：GRANT、REVOKE等语句。</li>
+</ul>
+<p>PS：事务控制语言（TCL），例如：COMMIT、ROLLBACK等语句。</p>
+<h1 id="Mysql简介"><a href="#Mysql简介" class="headerlink" title="Mysql简介"></a>Mysql简介</h1><p>MySQL是一个关系型数据库管理系统，由瑞典MySQL AB 公司开发，属于 Oracle 旗下产品。MySQL 是最流行的关系型数据库管理系统之一，在 WEB 应用方面，MySQL是最好的 RDBMS (Relational Database Management System，关系数据库管理系统) 应用软件之一。</p>
+<p>MySQL是一种关系型数据库管理系统，关系数据库将数据保存在不同的表中，而不是将所有数据放在一个大仓库内，这样就增加了速度并提高了灵活性。</p>
+<p>MySQL所使用的 SQL 语言是用于访问数据库的最常用标准化语言。MySQL 软件采用了双授权政策，分为社区版和商业版，由于其体积小、速度快、总体拥有成本低，尤其是开放源码这一特点，一般中小型网站的开发都选择 MySQL 作为网站数据库。</p>
+<h2 id="MySQL-事务"><a href="#MySQL-事务" class="headerlink" title="MySQL 事务"></a>MySQL 事务</h2><p>MySQL 事务主要用于处理操作量大，复杂度高的数据。比如说，在人员管理系统中，你删除一个人员，你既需要删除人员的基本资料，也要删除和该人员相关的信息，如信箱，文章等等，这样，这些数据库操作语句就构成一个事务！</p>
+<p>在 MySQL 中只有使用了 Innodb 数据库引擎的数据库或表才支持事务。</p>
+<p>事务处理可以用来维护数据库的完整性，保证成批的 SQL 语句要么全部执行，要么全部不执行。</p>
+<p>事务用来管理 insert,update,delete 语句</p>
+<p>一般来说，事务是必须满足4个条件（ACID）：：原子性（Atomicity，或称不可分割性）、一致性（Consistency）、隔离性（Isolation，又称独立性）、持久性（Durability）。</p>
+<ul>
+<li>原子性：一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。</li>
+<li>一致性：在事务开始之前和事务结束以后，数据库的完整性没有被破坏。这表示写入的资料必须完全符合所有的预设规则，这包含资料的精确度、串联性以及后续数据库可以自发性地完成预定的工作。</li>
+<li>隔离性：数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。事务隔离分为不同级别，包括读未提交（Read uncommitted）、读提交（read committed）、可重复读（repeatable read）和串行化（Serializable）。</li>
+<li>持久性：事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</li>
+</ul>
+<h1 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h1><p><a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">MySQL :: Download MySQL Community Server (Archived Versions)</a></p>
+<p>在输入栏中搜索<code>5.5.49</code>的版本下载即可（当然不限制其他版本）</p>
+<h1 id="Mysql命令"><a href="#Mysql命令" class="headerlink" title="Mysql命令"></a>Mysql命令</h1><h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> DATABASE world</code></pre></div>
+<h2 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> DATABASE db_librarysys</code></pre></div>
+<h2 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h2><div class="code-wrapper"><pre><code class="hljs sql">use world</code></pre></div>
+<h2 id="查找所有数据库"><a href="#查找所有数据库" class="headerlink" title="查找所有数据库"></a>查找所有数据库</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SHOW</span> DATABASES;</code></pre></div>
+<h1 id="数据表操作"><a href="#数据表操作" class="headerlink" title="数据表操作"></a>数据表操作</h1><h2 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">USER</span>(
+    id <span class="hljs-type">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> AUTO_INCREMENT,
+    username <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>),
+    PASSWORD <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>),
+    <span class="hljs-keyword">PRIMARY</span> KEY (`id`)
+)</code></pre></div>
+<h2 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">user</span></code></pre></div>
+<h2 id="查找所有数据表"><a href="#查找所有数据表" class="headerlink" title="查找所有数据表"></a>查找所有数据表</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SHOW</span> TABLES;</code></pre></div>
+<h2 id="查看当前表结构"><a href="#查看当前表结构" class="headerlink" title="查看当前表结构"></a>查看当前表结构</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SHOW</span> COLUMNS <span class="hljs-keyword">FROM</span> tb;</code></pre></div>
+<p>tb为表格名字</p>
+<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><h2 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">user</span> (username, password) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;1234&#x27;</span>, <span class="hljs-string">&#x27;1234&#x27;</span>); <span class="hljs-operator">/</span><span class="hljs-operator">/</span>单条数据
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">user</span> (username, password) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;1234&#x27;</span>, <span class="hljs-string">&#x27;1234&#x27;</span>),(<span class="hljs-string">&#x27;123&#x27;</span>, <span class="hljs-string">&#x27;134&#x27;</span>); <span class="hljs-operator">/</span><span class="hljs-operator">/</span>批量数据</code></pre></div>
+<h2 id="更改数据"><a href="#更改数据" class="headerlink" title="更改数据"></a>更改数据</h2><div class="code-wrapper"><pre><code class="hljs sql">update <span class="hljs-keyword">user</span> <span class="hljs-keyword">set</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;1234&#x27;</span> <span class="hljs-keyword">where</span> id<span class="hljs-operator">=</span><span class="hljs-string">&#x27;1234&#x27;</span>;</code></pre></div>
+<h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">WHERE</span> username <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;1234&#x27;</span></code></pre></div>
+<h2 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h2><p>where：数据库中常用的是where关键字，用于在初始表中筛选查询。它是一个约束声明，用于约束数据，在返回结果集之前起作用。</p>
+<p>group by:对select查询出来的结果集按照某个字段或者表达式进行分组，获得一组组的集合，然后从每组中取出一个指定字段或者表达式的值。</p>
+<p>having：用于对where和group by查询出来的分组经行过滤，查出满足条件的分组结果。它是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作。</p>
+<p>执行顺序</p>
+<p>select –&gt;where –&gt; group by–&gt; having–&gt;order by</p>
+<h3 id="全部查询"><a href="#全部查询" class="headerlink" title="全部查询"></a>全部查询</h3><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span></code></pre></div>
+<h3 id="精准查询"><a href="#精准查询" class="headerlink" title="精准查询"></a>精准查询</h3><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">WHERE</span> username<span class="hljs-operator">=</span><span class="hljs-string">&#x27;1234&#x27;</span>;</code></pre></div>
+<h3 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h3><p>在 where like 的条件查询中，SQL 提供了四种匹配方式。</p>
+<ol>
+<li>%：表示任意 0 个或多个字符。可匹配任意类型和长度的字符，有些情况下若是中文，请使用两个百分号（%%）表示。</li>
+<li>_：表示任意单个字符。匹配单个任意字符，它常用来限制表达式的字符长度语句。</li>
+<li>[]：表示括号内所列字符中的一个（类似正则表达式）。指定一个字符、字符串或范围，要求所匹配对象为它们中的任一个。</li>
+<li><sup><a href="#fn_" id="reffn_"></a></sup> ：表示不在括号所列之内的单个字符。其取值和 [] 相同，但它要求所匹配对象为指定字符以外的任一个字符。<br>查询内容包含通配符时,由于通配符的缘故，导致我们查询特殊字符 “%”、“_”、“[” 的语句无法正常实现，而把特殊字符用 “[ ]” 括起便可正常查询。</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">WHERE</span> username <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&#x27;%4&#x27;</span> <span class="hljs-operator">/</span><span class="hljs-operator">/</span>以<span class="hljs-number">4</span>结尾的匹配</code></pre></div>
+<p>like 匹配/模糊匹配，会与 % 和 _ 结合使用。</p>
+<ul>
+<li>‘%a’：以a结尾的数据</li>
+<li>‘a%’：以a开头的数据</li>
+<li>‘%a%’：含有a的数据</li>
+<li>‘_a_‘：三位且中间字母是a的</li>
+<li>‘_a’：两位且结尾字母是a的</li>
+<li>‘a_’：两位且开头字母是a的</li>
+</ul>
+<h3 id="联合查询"><a href="#联合查询" class="headerlink" title="联合查询"></a>联合查询</h3><p>作用为：</p>
+<ol>
+<li>集合两个表中相同的元素</li>
+<li>单个表执行多个查询</li>
+<li>拼接多条select语句</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> id <span class="hljs-keyword">FROM</span> city <span class="hljs-keyword">UNION</span> <span class="hljs-keyword">SELECT</span> id <span class="hljs-keyword">FROM</span> usertable</code></pre></div>
+<h3 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h3><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> city <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> id <span class="hljs-keyword">ASC</span></code></pre></div>
+<ul>
+<li>ASC 升序(默认)</li>
+<li>DESC 降序</li>
+</ul>
+<h3 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h3><div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> name, <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">FROM</span> city <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> name;</code></pre></div>
+<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><p>可以在 SELECT, UPDATE 和 DELETE 语句中使用 Mysql 的 JOIN 来联合多表查询。</p>
+<p>JOIN 按照功能大致分为如下三类：</p>
+<ul>
+<li>INNER JOIN（内连接,或等值连接）：获取两个表中字段匹配关系的记录。</li>
+<li>LEFT JOIN（左连接）：获取左表所有记录，即使右表没有对应匹配的记录。</li>
+<li>RIGHT JOIN（右连接）： 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。</li>
+</ul>
+<p>内连接：</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> a.name, a.age, b.username <span class="hljs-keyword">FROM</span> a <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> b <span class="hljs-keyword">ON</span> a.id <span class="hljs-operator">=</span> b.id</code></pre></div>
+<p>等价于</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> a.name, a.age, b.username <span class="hljs-keyword">FROM</span> a, b <span class="hljs-keyword">WHERE</span> a.id <span class="hljs-operator">=</span> b.id</code></pre></div>
+<p>外连接（左连接）：</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> a.name, a.age, b.username <span class="hljs-keyword">FROM</span> a <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> b <span class="hljs-keyword">ON</span> a.id <span class="hljs-operator">=</span> b.id</code></pre></div>
+<p>外连接（右连接）：</p>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> a.name, a.age, b.username <span class="hljs-keyword">FROM</span> a <span class="hljs-keyword">RIGHT</span> <span class="hljs-keyword">JOIN</span> b <span class="hljs-keyword">ON</span> a.id <span class="hljs-operator">=</span> b.id</code></pre></div>
+<h1 id="Mysql内置函数"><a href="#Mysql内置函数" class="headerlink" title="Mysql内置函数"></a>Mysql内置函数</h1><blockquote>
+<p>源自：<a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/function/">MySQL函数大全，MySQL常用函数汇总 (biancheng.net)</a></p>
+</blockquote>
+<h2 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/max.html">MAX</a></td>
+<td>查询指定列的最大值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/min.html">MIN</a></td>
+<td>查询指定列的最小值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/count.html">COUNT</a></td>
+<td>统计查询结果的行数</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/sum.html">SUM</a></td>
+<td>求和，返回指定列的总和</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/avg.html">AVG</a></td>
+<td>求平均值，返回指定列数据的平均值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="日期和时间函数"><a href="#日期和时间函数" class="headerlink" title="日期和时间函数"></a>日期和时间函数</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作 用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/curdate_current_date.html">CURDATE 和 CURRENT_DATE</a></td>
+<td>两个函数作用相同，返回当前系统的日期值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/curtime_current_time.html">CURTIME 和 CURRENT_TIME</a></td>
+<td>两个函数作用相同，返回当前系统的时间值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/now_sysdate.html">NOW 和 SYSDATE</a></td>
+<td>两个函数作用相同，返回当前系统的日期和时间值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/unix_timestamp.html">UNIX_TIMESTAMP</a></td>
+<td>获取UNIX时间戳函数，返回一个以 UNIX 时间戳为基础的无符号整数</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/from_unixtime.html">FROM_UNIXTIME</a></td>
+<td>将 UNIX 时间戳转换为时间格式，与UNIX_TIMESTAMP互为反函数</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/month.html">MONTH</a></td>
+<td>获取指定日期中的月份</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/monthname.html">MONTHNAME</a></td>
+<td>获取指定日期中的月份英文名称</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/dayname.html">DAYNAME</a></td>
+<td>获取指定曰期对应的星期几的英文名称</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/dayofweek.html">DAYOFWEEK</a></td>
+<td>获取指定日期对应的一周的索引位置值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/week.html">WEEK</a></td>
+<td>获取指定日期是一年中的第几周，返回值的范围是否为 0〜52 或 1〜53</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/dayofyear.html">DAYOFYEAR</a></td>
+<td>获取指定曰期是一年中的第几天，返回值范围是1~366</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/dayofmonth.html">DAYOFMONTH</a></td>
+<td>获取指定日期是一个月中是第几天，返回值范围是1~31</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/year.html">YEAR</a></td>
+<td>获取年份，返回值范围是 1970〜2069</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/time_to_sec.html">TIME_TO_SEC</a></td>
+<td>将时间参数转换为秒数</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/sec_to_time.html">SEC_TO_TIME</a></td>
+<td>将秒数转换为时间，与TIME_TO_SEC 互为反函数</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/date_add_adddate.html">DATE_ADD 和 ADDDATE</a></td>
+<td>两个函数功能相同，都是向日期添加指定的时间间隔</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/date_sub_subdate.html">DATE_SUB 和 SUBDATE</a></td>
+<td>两个函数功能相同，都是向日期减去指定的时间间隔</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/addtime.html">ADDTIME</a></td>
+<td>时间加法运算，在原始时间上添加指定的时间</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/subtime.html">SUBTIME</a></td>
+<td>时间减法运算，在原始时间上减去指定的时间</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/datediff.html">DATEDIFF</a></td>
+<td>获取两个日期之间间隔，返回参数 1 减去参数 2 的值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/date_format.html">DATE_FORMAT</a></td>
+<td>格式化指定的日期，根据参数返回指定格式的值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/weekday.html">WEEKDAY</a></td>
+<td>获取指定日期在一周内的对应的工作日索引</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作 用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/length.html">LENGTH</a></td>
+<td>计算字符串长度函数，返回字符串的字节长度</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/concat.html">CONCAT</a></td>
+<td>合并字符串函数，返回结果为连接参数产生的字符串，参数可以使一个或多个</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/insert.html">INSERT</a></td>
+<td>替换字符串函数</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/lower.html">LOWER</a></td>
+<td>将字符串中的字母转换为小写</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/upper.html">UPPER</a></td>
+<td>将字符串中的字母转换为大写</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/left.html">LEFT</a></td>
+<td>从左侧字截取符串，返回字符串左边的若干个字符</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/right.html">RIGHT</a></td>
+<td>从右侧字截取符串，返回字符串右边的若干个字符</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/trim.html">TRIM</a></td>
+<td>删除字符串左右两侧的空格</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/replace.html">REPLACE</a></td>
+<td>字符串替换函数，返回替换后的新字符串</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/substring.html">SUBSTRING</a></td>
+<td>截取字符串，返回从指定位置开始的指定长度的字符换</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/reverse.html">REVERSE</a></td>
+<td>字符串反转（逆序）函数，返回与原始字符串顺序相反的字符串</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="数值型函数"><a href="#数值型函数" class="headerlink" title="数值型函数"></a>数值型函数</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作 用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/abc.html">ABS</a></td>
+<td>求绝对值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/sqrt.html">SQRT</a></td>
+<td>求二次方根</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/mod.html">MOD</a></td>
+<td>求余数</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/ceil_celing.html">CEIL 和 CEILING</a></td>
+<td>两个函数功能相同，都是返回不小于参数的最小整数，即向上取整</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/floor.html">FLOOR</a></td>
+<td>向下取整，返回值转化为一个BIGINT</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/rand.html">RAND</a></td>
+<td>生成一个0~1之间的随机数，传入整数参数是，用来产生重复序列</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/round.html">ROUND</a></td>
+<td>对所传参数进行四舍五入</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/sign.html">SIGN</a></td>
+<td>返回参数的符号</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/pow_power.html">POW 和 POWER</a></td>
+<td>两个函数的功能相同，都是所传参数的次方的结果值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/sin.html">SIN</a></td>
+<td>求正弦值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/asin.html">ASIN</a></td>
+<td>求反正弦值，与函数 SIN 互为反函数</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/cos.html">COS</a></td>
+<td>求余弦值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/acos.html">ACOS</a></td>
+<td>求反余弦值，与函数 COS 互为反函数</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/tan.html">TAN</a></td>
+<td>求正切值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/atan.html">ATAN</a></td>
+<td>求反正切值，与函数 TAN 互为反函数</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/cot.html">COT</a></td>
+<td>求余切值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="流程控制函数"><a href="#流程控制函数" class="headerlink" title="流程控制函数"></a>流程控制函数</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/if.html">IF</a></td>
+<td>判断，流程控制</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/ifnull.html">IFNULL</a></td>
+<td>判断是否为空</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/case.html">CASE</a></td>
+<td>搜索语句</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/my_world/tags/mysql/">mysql</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/my_world/content/mongoDB%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">mongoDB的简单应用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/my_world/content/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%BE%AE%E5%A6%99%E7%90%86%E8%A7%A3/">
+                        <span class="hidden-mobile">多线程的微妙理解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content" id="times">
+    
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021041688号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/my_world/js/events.js" ></script>
+<script  src="/my_world/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/my_world/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://fastly.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/my_world/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://fastly.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://fastly.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/my_world/js/love.js"></script>
+<script src="/my_world/js/ribbon_flow.js"></script>
+<script src="/my_world/js/runningday.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/my_world/js/boot.js" ></script>
+
+
+</body>
+</html>
