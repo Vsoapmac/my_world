@@ -480,20 +480,20 @@ name = <span class="hljs-string">&quot;tom&quot;</span>  <span class="hljs-comme
 <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:
     a = A()
     a.method()</code></pre></div>
-<h4 id="init"><a href="#init" class="headerlink" title="_init_"></a>_<em>init_</em></h4><p>负责进行对象的初始化，它是python中的构造方法</p>
-<p>demo类中执行到_<em>init_</em>输出的是</p>
+<h4 id="init"><a href="#init" class="headerlink" title="__init__"></a>__init__</h4><p>负责进行对象的初始化，它是python中的构造方法</p>
+<p>demo类中执行到__init__输出的是</p>
 <div class="code-wrapper"><pre><code class="hljs csharp">我调用了<span class="hljs-keyword">init</span>方法</code></pre></div>
-<h4 id="new"><a href="#new" class="headerlink" title="_new_"></a>_<em>new_</em></h4><p>负责创建类实例的静态方法，_<em>new\</em>_的执行顺序优先于__init__</p>
-<p>依照Python官方文档的说法，<strong>new</strong>方法主要是当用户继承一些不可变的class时(比如int, str, tuple)， 提供给用户一个自定义这些类的实例化过程的途径。</p>
+<h4 id="new"><a href="#new" class="headerlink" title="__new__"></a>__new__</h4><p>负责创建类实例的静态方法，__new__的执行顺序优先于__init__</p>
+<p>依照Python官方文档的说法，__new__方法主要是当用户继承一些不可变的class时(比如int, str, tuple)， 提供给用户一个自定义这些类的实例化过程的途径。</p>
 <p>__new__至少要有一个参数cls，代表要实例化的类，此参数在实例化时由Python解释器自动提供</p>
 <p>__new__必须要有返回值，返回实例化出来的实例，这点在实现__new__时要特别注意，可以return父类__new__出来的实例，或者直接是object的__new__出来的实例</p>
-<p>demo类中执行到_<em>new_</em>输出的是</p>
+<p>demo类中执行到__new__输出的是</p>
 <div class="code-wrapper"><pre><code class="hljs csharp">我调用了<span class="hljs-keyword">new</span>方法
 我调用了<span class="hljs-keyword">init</span>方法</code></pre></div>
-<h4 id="del"><a href="#del" class="headerlink" title="_del_"></a>_<em>del_</em></h4><p>负责销毁实例化对象，在编写程序时，如果之前创建的类实例化对象后续不再使用，最好在适当位置手动将其销毁，释放其占用的内存空间。</p>
+<h4 id="del"><a href="#del" class="headerlink" title="__del__"></a>__del__</h4><p>负责销毁实例化对象，在编写程序时，如果之前创建的类实例化对象后续不再使用，最好在适当位置手动将其销毁，释放其占用的内存空间。</p>
 <p>大多数情况下，Python 开发者不需要手动进行垃圾回收，因为 Python 有自动的垃圾回收机制，能自动将不需要使用的实例对象进行销毁。</p>
 <p>无论是手动销毁，还是 Python垃圾回收机制自动销毁，都会调用 __del__方法。</p>
-<p>demo类中执行到_<em>del_</em>输出的是</p>
+<p>demo类中执行到__del__输出的是</p>
 <div class="code-wrapper"><pre><code class="hljs ada">我调用了<span class="hljs-keyword">new</span>方法
 我调用了init方法
 执行<span class="hljs-keyword">function</span>
