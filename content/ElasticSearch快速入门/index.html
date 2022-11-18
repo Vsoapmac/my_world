@@ -18,7 +18,7 @@
   <meta name="author" content="Vsoapmac">
   <meta name="keywords" content="">
   
-  <title>更新未完成--ElasticSearch快速入门 | My note</title>
+  <title>ElasticSearch快速入门 | My note</title>
 
   <link  rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -168,7 +168,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="更新未完成--ElasticSearch快速入门">
+            <span class="h2" id="subtitle" title="ElasticSearch快速入门">
               
             </span>
 
@@ -200,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      39
+      38
        分钟
     </span>
   
@@ -238,25 +238,19 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">更新未完成--ElasticSearch快速入门</h1>
+            <h1 style="display: none">ElasticSearch快速入门</h1>
             
             <div class="markdown-body">
               <p>ElasticSearch（简称es）是一个基于Lucene的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTful web接口。ElasticSearch是用Java语言开发的，并作为Apache许可条款下的开放源码发布，是一种流行的企业级搜索引擎。ElasticSearch用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。官方客户端在Java、.NET（C#）、PHP、Python、Apache Groovy、Ruby和许多其他语言中都是可用的。根据DB-Engines的排名显示，ElasticSearch是最受欢迎的企业搜索引擎，其次是Apache Solr，也是基于Lucene。</p>
 <blockquote>
 <p>以下大量引用至<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17a4y1x7zq?p=5">【狂神说Java】ElasticSearch7.6.x最新完整教程通俗易懂_哔哩哔哩_bilibili</a></p>
 </blockquote>
-<h1 id="ElasticSearch是干什么的"><a href="#ElasticSearch是干什么的" class="headerlink" title="ElasticSearch是干什么的"></a>ElasticSearch是干什么的</h1><ol>
+<h1 id="ElasticSearch用途"><a href="#ElasticSearch用途" class="headerlink" title="ElasticSearch用途"></a>ElasticSearch用途</h1><ol>
 <li>快速和近乎实时地存储、搜索和分析海量的数据</li>
 <li>为具有复杂搜索功能和需求的应用程序提供动力</li>
 </ol>
-<h1 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h1><p>这里是笔者的安装环境，可用作参考</p>
-<ul>
-<li>elasticsearch - 7.8.0</li>
-<li>java - 1.8</li>
-<li>node - 14.9.0</li>
-<li>kibana - 7.8.0</li>
-</ul>
-<h1 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h1><p>官方：</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>下载地址总结</p>
+<p>官方：</p>
 <ul>
 <li>ElasticSearch：<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/elasticsearch">Download Elasticsearch Free | Get Started Now | Elastic | Elastic</a></li>
 <li>kibana：<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/kibana">Download Kibana Free | Get Started Now | Elastic | Elastic</a></li>
@@ -267,29 +261,29 @@
 <li>logstash: <a target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/logstash/?C=N&amp;O=D">https://mirrors.huaweicloud.com/logstash/?C=N&amp;O=D</a></li>
 <li>kibana: <a target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/kibana/?C=N&amp;O=D">https://mirrors.huaweicloud.com/kibana/?C=N&amp;O=D</a></li>
 </ul>
-<h1 id="ElasticSearch安装"><a href="#ElasticSearch安装" class="headerlink" title="ElasticSearch安装"></a>ElasticSearch安装</h1><p>前提：</p>
+<h2 id="ElasticSearch安装"><a href="#ElasticSearch安装" class="headerlink" title="ElasticSearch安装"></a>ElasticSearch安装</h2><p>前提：</p>
 <ul>
-<li>java-1.8，JDK8</li>
+<li>java环境</li>
 <li>ElasticSearch的版本对应java的核心jar包。</li>
 <li>安装node.js环境</li>
 </ul>
-<blockquote>
-<p>下载</p>
-</blockquote>
-<p>地址为：<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/elasticsearch">Download Elasticsearch Free | Get Started Now | Elastic | Elastic</a></p>
+<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>地址为：<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/elasticsearch">Download Elasticsearch Free | Get Started Now | Elastic | Elastic</a></p>
 <p>根据自己的系统需求下载相应的压缩包即可</p>
-<blockquote>
-<p>目录</p>
-</blockquote>
-<div class="code-wrapper"><pre><code class="hljs mipsasm"><span class="hljs-keyword">bin </span>     用于启动软件
-<span class="hljs-built_in">config</span>   配置文件
-	log4j2             日志配置文件
-	<span class="hljs-keyword">jvm.options </span>       <span class="hljs-keyword">java虚拟机相关的配置</span>
-<span class="hljs-keyword"></span>	elasticsearch.yml  elasticsearch的配置文件，默认<span class="hljs-number">9200</span>端口，跨域
-lib      相关<span class="hljs-keyword">jar包</span>
-<span class="hljs-keyword"></span>logs     日志文件
-modules  功能模块
-plugins  插件，例如ik分词器等等</code></pre></div>
+<h3 id="目录说明"><a href="#目录说明" class="headerlink" title="目录说明"></a>目录说明</h3><ul>
+<li>bin：用于启动软件<ul>
+<li>config：配置文件</li>
+<li>log4j2：日志配置文件<ul>
+<li>jvm.options：java虚拟机相关的配置</li>
+<li>elasticsearch.yml：elasticsearch的配置文件，默认9200端口，跨域</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>lib：相关jar包</li>
+<li>logs     日志文件</li>
+<li>modules  功能模块</li>
+<li>plugins  插件，例如ik分词器等等</li>
+</ul>
 <h1 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h1><p>双击bin/elasticsearch.bat的文件</p>
 <p>若出现以下的提示，按回车键即可，不影响。</p>
 <p><img src="../../image/tmpF09E.png" srcset="/my_world/img/loading.gif" lazyload alt="更新提示"></p>
@@ -582,7 +576,7 @@ GET _analyze
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/my_world/categories/springboot/">springboot</a>
+                      <a class="hover-with-bg" href="/my_world/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
                     
                   </div>
                 
