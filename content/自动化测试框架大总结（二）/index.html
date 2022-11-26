@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.1k 字
+      8.4k 字
     </span>
   
 
@@ -200,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      81
+      132
        分钟
     </span>
   
@@ -537,7 +537,91 @@ d = u2.connect(<span class="hljs-string">&#x27;xxxxx&#x27;</span>)
 
 d.app_start(<span class="hljs-string">&quot;com.taobao.taobao&quot;</span>)
 touch(Template(<span class="hljs-string">r&quot;taobao.png&quot;</span>))</code></pre></div>
-<h1 id="uiautomation"><a href="#uiautomation" class="headerlink" title="uiautomation"></a>uiautomation</h1><h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><p>uiautomation是<code>yinkaisheng</code>业余时间开发的供其自己使用的一个模块，uiautomation封装了微软UIAutomation API，支持自动化Win32，MFC，WPF，Modern UI(Metro UI), Qt, IE, Firefox等UI框架，最新版uiautomation2.0目前只支持Python 3版本，依赖comtypes和typing这两个包，但不要使用3.7.6和3.8.1这两个版本，comtypes在这两个版本中不能正常工作。</p>
+<h1 id="Auto-js"><a href="#Auto-js" class="headerlink" title="Auto.js"></a>Auto.js</h1><p>官网/文档：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://hyb1996.github.io/AutoJs-Docs/#/">首页 - Auto.js (hyb1996.github.io)</a></li>
+<li><a target="_blank" rel="noopener" href="https://pro.autojs.org/docs/#/">Auto.js Pro | Auto.js Pro文档 (autojs.org)</a></li>
+</ul>
+<h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><p>Auto.js是Android上<strong>不需要Root权限</strong>的JavaScript自动化软件，基于JavaScript的面向自动化、工作流、小工具、小应用的代码开发平台。但Auto.js 开源版本已不再维护，原因：<a target="_blank" rel="noopener" href="https://pro.autojs.org/faq">Auto.js Pro (autojs.org)</a>，后续将只维护<a target="_blank" rel="noopener" href="https://pro.autojs.org/">Auto.js Pro专业版</a>，Auto.js Pro自2017年1月诞生以来，已从1.0版本发展到最新的9.0版本。</p>
+<p>Auto.js使用<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript">JavaScript</a>作为脚本语言，目前使用<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Mozilla/Projects/Rhino">Rhino 1.7.7.2</a>作为脚本引擎，支持ES5与部分ES6特性。</p>
+<ul>
+<li>因为Auto.js是基于JavaScript的，学习Auto.js的API之前建议先学习JavaScript的基本语法和内置对象，可以使用教程前面的两个JavaScript教程链接来学习。</li>
+<li>如果您想要使用TypeScript来开发，目前已经有开发者公布了一个可以把使用TypeScript进行Auto.js开发的工具，参见<a target="_blank" rel="noopener" href="https://github.com/pboymt/autojs-dev">Auto.js DevTools</a>。</li>
+<li>如果想要在电脑而不是手机上开发Auto.js，可以使用VS Code以及相应的Auto.js插件使得在电脑上编辑的脚本能推送到手机运行，参见<a target="_blank" rel="noopener" href="https://github.com/hyb1996/Auto.js-VSCode-Extension">Auto.js-VSCode-Extension</a>。</li>
+</ul>
+<p>基于Auto，Auto.js Pro的新特性有：</p>
+<ul>
+<li>基于特征匹配的全分辨率找图API</li>
+<li>内置OCR插件，支持速度极快的MLKitOCR和准确率较高的PaddleOCR，支持打包</li>
+<li>高强度Node.js加密，目前未被破解</li>
+<li>全新VSCode插件，自动发现设备、自动连接，直接打开手机上文件夹编辑和调试，无需额外同步和拷贝（开发中，预计9.3版本上线）</li>
+<li>VS Code调试，用VS Code单步执行脚本、查看变量、暂停和继续等</li>
+<li>基于Node.js引擎的全新API，效率提升一个数量级，连接npm、Android、Java的生态</li>
+<li>Vue/React等前端框架支持，无需用Android控件编写即可编写优美界面</li>
+<li>编辑器增强，基于Language Server Protocol自动补全，多Tab工作区编辑，完美手机端调试体验</li>
+<li>代码与插件商店，上千代码提供学习，插件支持打包后免安装</li>
+<li>代码与插件商店，上千代码提供学习，插件支持打包后免安装</li>
+<li>布局调试功能，可以保存当前布局，在Auto.js Pro打开保存的布局任意查阅，和执行选择器代码验证想法（开发中）</li>
+<li>悬浮窗调试，可以用悬浮窗控制脚本的单步执行、查看变量、暂停和继续等</li>
+<li>VS Code插件支持截屏手机，获取布局等，未来还将支持取色工具</li>
+<li>可视化UI设计，轻松搭建你的UI界面</li>
+<li>极大提升了找色、多点找色速度，支持透明背景图片找图</li>
+<li>打包支持自定义签名、混淆组件、自定义架构、自定义权限、自定义启动图、体积优化等等</li>
+<li>使用Shizuku在电脑激活后，没有root也可以使用部分需要root权限的命令，包括坐标点击等</li>
+<li>AES/RSA等加密，MD5/SHA等消息摘要，以及base64编码支持</li>
+<li>支持zip模块，可以解压和压缩文件，支持带密码</li>
+<li>获取已安装的应用、获取apk文件的信息，WebSocket、数据库API的支持</li>
+<li>允许代码中调整稳定模式、前台服务、Root权限开启无障碍、音量上键关闭脚本等开关（包括打包后应用）</li>
+<li>全权限（指的是在Manifest声明了所有权限，但是Auto.js Pro本身不主动申请）</li>
+</ul>
+<h2 id="第一个DEMO"><a href="#第一个DEMO" class="headerlink" title="第一个DEMO"></a>第一个DEMO</h2><p>点击<code>+</code>，点击文件</p>
+<p><img src="../../image/image-20221125145011026.png" srcset="/my_world/img/loading.gif" lazyload alt="点击文件"></p>
+<p>输入文件名，点击确定新建脚本成功</p>
+<p><img src="../../image/image-20221125145139322.png" srcset="/my_world/img/loading.gif" lazyload alt="输入FirstAutoJs"></p>
+<p>输入以下代码：</p>
+<div class="code-wrapper"><pre><code class="hljs javascript">launch(<span class="hljs-string">&quot;com.taobao.taobao&quot;</span>);
+alert(<span class="hljs-string">&quot;helloworld&quot;</span>);</code></pre></div>
+<p><img src="../../image/image-20221125145642141.png" srcset="/my_world/img/loading.gif" lazyload alt="输入代码"></p>
+<p>点击保存后运行，会打开淘宝，退出淘宝后，在auto.js中会弹出helloworld字样</p>
+<h2 id="API-1"><a href="#API-1" class="headerlink" title="API"></a>API</h2><h3 id="启动应用"><a href="#启动应用" class="headerlink" title="启动应用"></a>启动应用</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> packaga_name = <span class="hljs-string">&quot;com.taobao.taobao&quot;</span>
+launch(packaga_name);</code></pre></div>
+<p>Auto.js似乎没有给出关闭应用的API</p>
+<h3 id="坐标点击"><a href="#坐标点击" class="headerlink" title="坐标点击"></a>坐标点击</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 点击一次，坐标(x,y)</span>
+click(x, y);
+<span class="hljs-comment">// 长按，坐标(x,y)</span>
+longClick(x, y);
+<span class="hljs-comment">// 模拟按住坐标(x,y), 并返回是否成功。duration单位为毫秒，如果时长超过500毫秒，则认为是长按。</span>
+press(x, y, duration);</code></pre></div>
+<h3 id="滑动-1"><a href="#滑动-1" class="headerlink" title="滑动"></a>滑动</h3><div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">// 模拟从坐标(x1, y1)滑动到坐标(x2, y2)，并返回是否成功。duration为滑动时长，单位毫秒</span>
+swipe(x1, y1, x2, y2, duration);</code></pre></div>
+<h3 id="控件点击"><a href="#控件点击" class="headerlink" title="控件点击"></a>控件点击</h3><p>Auto.js的控件可以通过悬浮球中查看，首先点击悬浮球，并且点击蓝色的图标</p>
+<p><img src="../../image/image-20221125152615220.png" srcset="/my_world/img/loading.gif" lazyload alt="点击小悬浮球"></p>
+<p>点击布局范围分析，随机生成很多绿框，点击目标的布局，然后点击查看控件信息</p>
+<p><img src="../../image/image-20221125152809278.png" srcset="/my_world/img/loading.gif" lazyload alt="绿框与查看控件信息"></p>
+<p>控件信息中的属性基本可作为选择器调用</p>
+<p><img src="../../image/image-20221125152920087.png" srcset="/my_world/img/loading.gif" lazyload alt="查看控件属性"></p>
+<p>如果想要点击<code>消息</code>，假设查看到控件信息中的属性<code>desc</code>的值为”消息”，那么可以这样调用：</p>
+<div class="code-wrapper"><pre><code class="hljs javascript">desc(<span class="hljs-string">&quot;EditText&quot;</span>).findOne().click();</code></pre></div>
+<p>其他同理，想要退出绿框只需要点击返回键即可</p>
+<p>控件可调用的操作为：</p>
+<ul>
+<li><code>click()</code> 点击。点击一个控件，前提是这个控件的clickable属性为true</li>
+<li><code>longClick()</code> 长按。长按一个控件，前提是这个控件的longClickable属性为true</li>
+<li><code>setText()</code> 设置文本，用于编辑框控件设置文本。</li>
+<li><code>scrollForward()</code>, <code>scrollBackward()</code> 滑动。滑动一个控件(列表等), 前提是这个控件的scrollable属性为true</li>
+<li><code>exits()</code> 判断控件是否存在</li>
+<li><code>waitFor()</code> 等待控件出现</li>
+</ul>
+<p>有时候只靠一个属性并不能唯一确定一个控件，这时需要通过属性的组合来完成定位，例如<code>className(&quot;ImageView&quot;).depth(10).findOne().click()</code>，通过链式调用来组合条件。</p>
+<p>示例：</p>
+<div class="code-wrapper"><pre><code class="hljs javascript">className(<span class="hljs-string">&quot;EditText&quot;</span>).findOne().setText(<span class="hljs-string">&quot;helloworld&quot;</span>);
+text(<span class="hljs-string">&quot;发送&quot;</span>).findOne().clicK();</code></pre></div>
+<h3 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h3><p>sleep(n)；暂停运行n<strong>毫秒</strong>的时间。1秒等于1000毫秒。</p>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//暂停5毫秒</span>
+sleep(<span class="hljs-number">5000</span>);</code></pre></div>
+<p>toast(message)；以气泡显示信息。停顿的时间取决于安卓系统，一般2s</p>
+<div class="code-wrapper"><pre><code class="hljs javascript">toast(<span class="hljs-string">&quot;helloworld&quot;</span>);</code></pre></div>
+<h1 id="uiautomation"><a href="#uiautomation" class="headerlink" title="uiautomation"></a>uiautomation</h1><h2 id="简介-3"><a href="#简介-3" class="headerlink" title="简介"></a>简介</h2><p>uiautomation是<code>yinkaisheng</code>业余时间开发的供其自己使用的一个模块，uiautomation封装了微软UIAutomation API，支持自动化Win32，MFC，WPF，Modern UI(Metro UI), Qt, IE, Firefox等UI框架，最新版uiautomation2.0目前只支持Python 3版本，依赖comtypes和typing这两个包，但不要使用3.7.6和3.8.1这两个版本，comtypes在这两个版本中不能正常工作。</p>
 <p>uiautomation支持在Windows XP SP3或更高版本的Windows桌面系统上运行。如果是Windows XP系统，请确保系统目录有这个文件：UIAutomationCore.dll。如果没有，需要安装补丁 KB971513 才能支持UIAutomtion.在Windows 7或更高版本Windows系统上使用uiautomation时，要以管理员权限运行Python,否则uiautomation运行时很多函数可能会执行失败或抛出异常。或者先以管理员权限运行cmd.exe，在cmd中再调用Python。</p>
 <h2 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h2><div class="code-wrapper"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> uiautomation</code></pre></div>
 <h2 id="Windows端元素定位工具及控件类型（backend）的判断"><a href="#Windows端元素定位工具及控件类型（backend）的判断" class="headerlink" title="Windows端元素定位工具及控件类型（backend）的判断"></a>Windows端元素定位工具及控件类型（backend）的判断</h2><p>所有的工具下载链接：<a target="_blank" rel="noopener" href="https://github.com/blackrosezy/gui-inspect-tool">GitHub - blackrosezy/gui-inspect-tool: Gui Inspect tool for Windows</a></p>
@@ -875,13 +959,294 @@ TestPytest.py::TestPytest::test_print PASSED                             [100%]h
 
 ============================== 1 passed in 0.01s ==============================</code></pre></div>
 <p>注意，若代码中出现异常，则不会执行测试</p>
-<h2 id="运行模式"><a href="#运行模式" class="headerlink" title="运行模式"></a>运行模式</h2><p>pytest的运行是使用命令行运行的</p>
-<p>直接运行py文件中所有test_方法，默认从上到下运行程序，使用mark标记更改运行的程序<code>@pytest.mark.run(order=3)</code></p>
+<h2 id="运行模式"><a href="#运行模式" class="headerlink" title="运行模式"></a>运行模式</h2><p>pytest的运行是使用命令行运行的，运行结构为：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">pytest [options] [file_or_dir] [file_or_dir] [...]</code></pre></div>
+<p>常用参数：</p>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ebf3b46507e8">pytest常用命令行选项 - 简书 (jianshu.com)</a></p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-V</td>
+<td style="text-align:center">查看pytest版本</td>
+</tr>
+<tr>
+<td style="text-align:center">-h</td>
+<td style="text-align:center">查看pytest的命令</td>
+</tr>
+<tr>
+<td style="text-align:center">-s</td>
+<td style="text-align:center">运行过程中执行print打印函数</td>
+</tr>
+<tr>
+<td style="text-align:center">-x</td>
+<td style="text-align:center">用例运行失败则立即停止执行</td>
+</tr>
+<tr>
+<td style="text-align:center">—maxfail=2</td>
+<td style="text-align:center">失败2次后停止运行，2代表2次，可修改</td>
+</tr>
+<tr>
+<td style="text-align:center">-v/-q</td>
+<td style="text-align:center">打印用例执行的详细/简略过程</td>
+</tr>
+<tr>
+<td style="text-align:center">-k</td>
+<td style="text-align:center">使用表达式指定希望执行的测试用例</td>
+</tr>
+<tr>
+<td style="text-align:center">-m</td>
+<td style="text-align:center">标记测试并分组</td>
+</tr>
+<tr>
+<td style="text-align:center">—collect-only</td>
+<td style="text-align:center">展示在给定配置下哪些用例被运行</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>直接运行py文件中所有test_方法，默认从上到下（根据代码编写的顺序）运行程序，使用mark标记更改运行的程序<code>@pytest.mark.run(order=3)</code></p>
 <div class="code-wrapper"><pre><code class="hljs shell">pytest test.py</code></pre></div>
 <p>当某个py文件中存在多个类时，想要运行其中某个类</p>
 <div class="code-wrapper"><pre><code class="hljs shell">pytest test.py::TestOne</code></pre></div>
 <p>运行py文件中某个类的某个方法</p>
 <div class="code-wrapper"><pre><code class="hljs shell">pytest test.py::TestOne::test_one</code></pre></div>
+<h3 id="pytest-main"><a href="#pytest-main" class="headerlink" title="pytest.main()"></a>pytest.main()</h3><p>pytest 运行用例的时候，一般用命令行去执行，<code>pytest.main()</code>可以以调用python类的方式去执行pytest</p>
+<p>在使用方法前，<code>import pytest</code></p>
+<p><strong>例子1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs python">pytest.main([<span class="hljs-string">&quot;test.py&quot;</span>])</code></pre></div>
+<p>等价于</p>
+<div class="code-wrapper"><pre><code class="hljs shell">pytest test.py</code></pre></div>
+<p><strong>例子2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs python">pytest.main([<span class="hljs-string">&quot;test.py::Test::test01&quot;</span>])</code></pre></div>
+<p>等价于</p>
+<div class="code-wrapper"><pre><code class="hljs shell">pytest test.py::Test::test01</code></pre></div>
+<p><strong>例子3：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs python">pytest.main([<span class="hljs-string">&quot;-s&quot;</span>,<span class="hljs-string">&quot;case/test.py::Test::test01&quot;</span>])</code></pre></div>
+<p>等价于</p>
+<div class="code-wrapper"><pre><code class="hljs shell">pytest -s case/test.py::Test::test01</code></pre></div>
+<p><strong>例子4：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs python">pytest.main([<span class="hljs-string">&quot;-s&quot;</span>,<span class="hljs-string">&quot;--maxfail=2&quot;</span>,<span class="hljs-string">&quot;case/test.py::Test::test01&quot;</span>])</code></pre></div>
+<p>等价于</p>
+<div class="code-wrapper"><pre><code class="hljs shell">pytest -s --maxfail=2 case/test.py::Test::test01</code></pre></div>
+<h2 id="fixture"><a href="#fixture" class="headerlink" title="fixture"></a>fixture</h2><blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/linuxchao/p/linuxchao-pytest-fixture.html">pytest进阶之fixture - linux超 - 博客园 (cnblogs.com)</a></p>
+</blockquote>
+<h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><ol>
+<li>做测试前后的初始化设置，如测试数据准备，链接数据库，打开浏览器等这些操作都可以使用fixture来实现</li>
+<li>测试用例的前置条件可以使用fixture实现</li>
+<li>支持经典的xunit fixture ，像unittest使用的setup和teardown</li>
+<li>fixture可以实现unittest不能实现的功能，比如unittest中的测试用例和测试用例之间是无法传递参数和数据的，但是fixture却可以解决这个问题</li>
+</ol>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>通过@pytest.fixture()装饰器装饰一个函数，标记该函数是一个fixture</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest
+
+<span class="hljs-meta">@pytest.fixture()</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fixtureFunc</span>():</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;fixtureFunc&#x27;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_fixture</span>(<span class="hljs-params">fixtureFunc</span>):</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;我调用了&#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(fixtureFunc))
+
+<span class="hljs-keyword">if</span> __name__==<span class="hljs-string">&#x27;__main__&#x27;</span>:
+    pytest.main([<span class="hljs-string">&#x27;-v&#x27;</span>, <span class="hljs-string">&#x27;test_fixture.py&#x27;</span>])</code></pre></div>
+<p>运行后，pytest调用test_fixture方法前会调用fixtureFunc方法。</p>
+<h3 id="作用范围"><a href="#作用范围" class="headerlink" title="作用范围"></a>作用范围</h3><blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1588490">pytest的fixture功能 - 腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
+</blockquote>
+<p>fixture包含一个叫scope（作用范围）的可选参数，用于控制fixture执行和销毁逻辑的频率。@pytest.fixture()的scope参数有4个值：function、class、module、session，默认为：function。</p>
+<h4 id="function"><a href="#function" class="headerlink" title="function"></a>function</h4><p>函数级别的的fixture每个测试方法只需要运行一次。</p>
+<p>配置代码（@pytest.fixture()部分）在调用方法（test_xxxx部分）之前运行，销毁代码在调用方法之后运行。</p>
+<p>由于是默认，在定义一章中已演示完毕</p>
+<h4 id="class"><a href="#class" class="headerlink" title="class"></a>class</h4><p>类级别的fixture的每个测试类只需要运行一次，无论测试类中有多少类方法都可以共享这个fixture。</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span>:</span>
+<span class="hljs-meta">    @pytest.fixture(<span class="hljs-params">scope=<span class="hljs-string">&quot;class&quot;</span></span>)</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fixtureFunc</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;fixtureFunc&#x27;</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_case01</span>(<span class="hljs-params">fixtureFunc</span>):</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;我调用了&#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(fixtureFunc))
+        
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_case02</span>(<span class="hljs-params">fixtureFunc</span>):</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;我调用了&#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(fixtureFunc))
+
+<span class="hljs-keyword">if</span> __name__==<span class="hljs-string">&#x27;__main__&#x27;</span>:
+    pytest.main([<span class="hljs-string">&#x27;-s&#x27;</span>, <span class="hljs-string">&#x27;test_fixture.py::A&#x27;</span>])</code></pre></div>
+<h4 id="module"><a href="#module" class="headerlink" title="module"></a>module</h4><p>模块级别的fixture每个模块只需要运行一次，无论模块里面有多少个测试函数、类方法或其他fixture都可以共享这个fixture。</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest
+
+<span class="hljs-meta">@pytest.fixture(<span class="hljs-params">scope=<span class="hljs-string">&quot;module&quot;</span></span>)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fixtureFunc</span>(<span class="hljs-params">self</span>):</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;fixtureFunc&#x27;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_case</span>(<span class="hljs-params">fixtureFunc</span>):</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;我调用了&#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(fixtureFunc))
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span>:</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_case01</span>(<span class="hljs-params">fixtureFunc</span>):</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;我调用了&#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(fixtureFunc))
+        
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_case02</span>(<span class="hljs-params">fixtureFunc</span>):</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;我调用了&#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(fixtureFunc))
+              
+<span class="hljs-keyword">if</span> __name__==<span class="hljs-string">&#x27;__main__&#x27;</span>:
+    pytest.main([<span class="hljs-string">&#x27;-s&#x27;</span>, <span class="hljs-string">&#x27;test_fixture.py&#x27;</span>])</code></pre></div>
+<h4 id="session"><a href="#session" class="headerlink" title="session"></a>session</h4><p>会话级别的fixture每次会话只需要运行一次，一次pytest会话中的所有测试函数、方法都可以共享这个fixture。</p>
+<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><h3 id="pytest-repeat"><a href="#pytest-repeat" class="headerlink" title="pytest-repeat"></a>pytest-repeat</h3><p>用于重复执行某个用例</p>
+<h4 id="安装-4"><a href="#安装-4" class="headerlink" title="安装"></a>安装</h4><div class="code-wrapper"><pre><code class="hljs shell">pip install pytest-repeat</code></pre></div>
+<h4 id="重复执行"><a href="#重复执行" class="headerlink" title="重复执行"></a>重复执行</h4><p>输入命令</p>
+<div class="code-wrapper"><pre><code class="hljs shell">pytest -s --count=2 Test01.py::TestA::test_case01 # 运行两次Test01.py中的TestA类中的test_case01方法</code></pre></div>
+<p>也可以与<code>-x</code>结合使用，重复执行直到失败后停下来</p>
+<div class="code-wrapper"><pre><code class="hljs shell">pytest -x --count=100 Test01.py::TestA::test_case01 # 运行100次Test01.py中的TestA类中的test_case01方法，直到失败</code></pre></div>
+<p>如果要在代码中将某些测试用例标记为执行重复n次，可以使用<code>@pytest.mark.repeat(n)</code>，例如：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">@pytest.mark.repeat(<span class="hljs-params"><span class="hljs-number">5</span></span>)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_case01</span>(<span class="hljs-params">self</span>):</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;执行用例&quot;</span>)</code></pre></div>
+<p>编辑完毕后执行命令<code>pytest -s Test01.py::TestA::test_case01</code>，可以看到重复执行了多次</p>
+<h3 id="Allure"><a href="#Allure" class="headerlink" title="Allure"></a>Allure</h3><p>Allure 框架是一种灵活的、轻量级、支持多语言测试报告工具，它不仅能够以简洁的 Web 报告形式显示已测试的内容，而且允许参与开发过程的每个人从测试的日常执行中提取最大限度的有用信息。同时支持多种语言包括 Java、Python、JavaScript、Ruby、Groovy、PHP、.Net、 Scala。</p>
+<h4 id="安装-5"><a href="#安装-5" class="headerlink" title="安装"></a>安装</h4><p>首先安装allure-pytest</p>
+<div class="code-wrapper"><pre><code class="hljs shell">pip install allure-pytest</code></pre></div>
+<p>之后，下载allure命令行工具</p>
+<ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://qameta.io/allure-report/">Qameta Software - Allure Report</a></li>
+<li>github：<a target="_blank" rel="noopener" href="https://github.com/allure-framework/allure2/tree/2.20.1">GitHub - allure-framework/allure2 at 2.20.1</a></li>
+</ul>
+<p>首先进入官网，往下滑动找到Download字样，也可以进入github</p>
+<p><img src="../../image/image-20221123144542925.png" srcset="/my_world/img/loading.gif" lazyload alt="download按钮"></p>
+<p>进入github后，点击releases，然后下载<code>allure-xxx.zip</code></p>
+<p><img src="../../image/image-20221123145426088.png" srcset="/my_world/img/loading.gif" lazyload alt="点击Releases"></p>
+<p>解压，配置环境变量，为：</p>
+<div class="code-wrapper"><pre><code class="hljs gcode"><span class="hljs-meta">%</span>allure_home<span class="hljs-meta">%</span>\bi<span class="hljs-symbol">n</span></code></pre></div>
+<p><img src="../../image/image-20221123145703623.png" srcset="/my_world/img/loading.gif" lazyload alt="设置环境变量"></p>
+<p>进入命令行，输入<code>allure --version</code>检查是否配置成功，若配置环境变量输入该命令行无效，则尝试重启电脑</p>
+<h4 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h4><blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1556151">pytest文档29-allure-pytest(最新最全，保证能搞成功！) - 腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
+</blockquote>
+<p>编辑代码：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> allure
+<span class="hljs-keyword">import</span> pytest
+
+<span class="hljs-meta">@pytest.fixture(<span class="hljs-params">scope=<span class="hljs-string">&quot;session&quot;</span></span>)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">login</span>():</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;用例先登录&quot;</span>)
+
+<span class="hljs-meta">@allure.step(<span class="hljs-params"><span class="hljs-string">&quot;步骤1:点xxx&quot;</span></span>)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">step_1</span>():</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;111&quot;</span>)
+
+<span class="hljs-meta">@allure.step(<span class="hljs-params"><span class="hljs-string">&quot;步骤2:点xxx&quot;</span></span>)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">step_2</span>():</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;222&quot;</span>)
+
+<span class="hljs-meta">@allure.feature(<span class="hljs-params"><span class="hljs-string">&quot;编辑页面&quot;</span></span>)</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestEditPage</span>():</span>
+    <span class="hljs-string">&#x27;&#x27;&#x27;编辑页面&#x27;&#x27;&#x27;</span>
+
+<span class="hljs-meta">    @allure.story(<span class="hljs-params"><span class="hljs-string">&quot;这是一个xxx的用例&quot;</span></span>)</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_1</span>(<span class="hljs-params">self, login</span>):</span>
+        <span class="hljs-string">&#x27;&#x27;&#x27;用例描述：先登录，再去执行xxx&#x27;&#x27;&#x27;</span>
+        step_1()
+        step_2()
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;xxx&quot;</span>)
+
+<span class="hljs-meta">    @allure.story(<span class="hljs-params"><span class="hljs-string">&quot;打开a页面&quot;</span></span>)</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_2</span>(<span class="hljs-params">self, login</span>):</span>
+        <span class="hljs-string">&#x27;&#x27;&#x27;用例描述：先登录，再去执行yyy&#x27;&#x27;&#x27;</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;yyy&quot;</span>)</code></pre></div>
+<p>使用以下命令执行用例：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">pytest -s --alluredir ./report Test01.py</code></pre></div>
+<p>执行完成后，在当前目录下，report目录会生成原始文件，这个只是测试报告的原始文件，不能打开成html的报告</p>
+<p>在当前目录下（若命令行不在则cd到该目录），执行命令启动服务：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">allure serve report/</code></pre></div>
+<p>完毕后弹出默认浏览器，命令行会出现以下文字：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">Generating report to temp directory...
+Report successfully generated to C:\Users\Bell\AppData\Local\Temp\17675750725245119916\allure-report
+Starting web server...
+2022-11-23 16:17:23.425:INFO::main: Logging initialized @2366ms to org.eclipse.jetty.util.log.StdErrLog
+Server started at &lt;http://192.168.3.136:2512/&gt;. Press &lt;Ctrl+C&gt; to exit</code></pre></div>
+<p>在浏览器中切换中文：</p>
+<p><img src="../../image/image-20221123163130556.png" srcset="/my_world/img/loading.gif" lazyload alt="切换显示文字"></p>
+<p>查看报告：</p>
+<p><img src="../../image/image-20221123163152612.png" srcset="/my_world/img/loading.gif" lazyload alt="报告"></p>
+<h4 id="Allure注解说明"><a href="#Allure注解说明" class="headerlink" title="Allure注解说明"></a>Allure注解说明</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">使用方法</th>
+<th style="text-align:center">参数值</th>
+<th style="text-align:center">参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">@allure.epic()</td>
+<td style="text-align:center">epic描述</td>
+<td style="text-align:center">敏捷里面的概念，定义史诗，往下是feature</td>
+</tr>
+<tr>
+<td style="text-align:center">@allure.feature()</td>
+<td style="text-align:center">模块名称</td>
+<td style="text-align:center">功能点的描述，往下是story</td>
+</tr>
+<tr>
+<td style="text-align:center">@allure.story()</td>
+<td style="text-align:center">用户故事</td>
+<td style="text-align:center">用户故事，往下是title</td>
+</tr>
+<tr>
+<td style="text-align:center">@allure.title(用例的标题)</td>
+<td style="text-align:center">用例的标题</td>
+<td style="text-align:center">重命名html报告名称</td>
+</tr>
+<tr>
+<td style="text-align:center">@allure.testcase()</td>
+<td style="text-align:center">测试用例的链接地址</td>
+<td style="text-align:center">对应功能测试用例系统里面的case</td>
+</tr>
+<tr>
+<td style="text-align:center">@allure.issue()</td>
+<td style="text-align:center">缺陷</td>
+<td style="text-align:center">对应缺陷管理系统里面的链接</td>
+</tr>
+<tr>
+<td style="text-align:center">@allure.description()</td>
+<td style="text-align:center">用例描述</td>
+<td style="text-align:center">测试用例的描述</td>
+</tr>
+<tr>
+<td style="text-align:center">@allure.step()</td>
+<td style="text-align:center">操作步骤</td>
+<td style="text-align:center">测试用例的步骤</td>
+</tr>
+<tr>
+<td style="text-align:center">@allure.severity()</td>
+<td style="text-align:center">用例等级</td>
+<td style="text-align:center">blocker,critical,normal,minor,trivial</td>
+</tr>
+<tr>
+<td style="text-align:center">@allure.link()</td>
+<td style="text-align:center">链接</td>
+<td style="text-align:center">定义一个链接，在测试报告展现</td>
+</tr>
+<tr>
+<td style="text-align:center">@allure.attachment()</td>
+<td style="text-align:center">附件</td>
+<td style="text-align:center">报告添加附件</td>
+</tr>
+</tbody>
+</table>
+</div>
 
             </div>
             <hr>
