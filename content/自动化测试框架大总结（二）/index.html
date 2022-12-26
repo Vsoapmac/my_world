@@ -190,7 +190,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8.4k 字
+      8.6k 字
     </span>
   
 
@@ -200,7 +200,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      132
+      134
        分钟
     </span>
   
@@ -1019,6 +1019,8 @@ TestPytest.py::TestPytest::test_print PASSED                             [100%]h
 <div class="code-wrapper"><pre><code class="hljs shell">pytest test.py::TestOne</code></pre></div>
 <p>运行py文件中某个类的某个方法</p>
 <div class="code-wrapper"><pre><code class="hljs shell">pytest test.py::TestOne::test_one</code></pre></div>
+<p>运行多个py文件</p>
+<div class="code-wrapper"><pre><code class="hljs shell">pytest test01.py test02.py</code></pre></div>
 <h3 id="pytest-main"><a href="#pytest-main" class="headerlink" title="pytest.main()"></a>pytest.main()</h3><p>pytest 运行用例的时候，一般用命令行去执行，<code>pytest.main()</code>可以以调用python类的方式去执行pytest</p>
 <p>在使用方法前，<code>import pytest</code></p>
 <p><strong>例子1：</strong></p>
@@ -1066,6 +1068,23 @@ TestPytest.py::TestPytest::test_print PASSED                             [100%]h
 <h4 id="function"><a href="#function" class="headerlink" title="function"></a>function</h4><p>函数级别的的fixture每个测试方法只需要运行一次。</p>
 <p>配置代码（@pytest.fixture()部分）在调用方法（test_xxxx部分）之前运行，销毁代码在调用方法之后运行。</p>
 <p>由于是默认，在定义一章中已演示完毕</p>
+<p>也可以在调用方法的时候提供多个fixture，在执行fixture时会根据形参的顺序执行，例如：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span>:</span>
+<span class="hljs-meta">    @pytest.fixture()</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fixtureFunc01</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;fixtureFunc01&#x27;</span>
+	
+<span class="hljs-meta">    @pytest.fixture()</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fixtureFunc02</span>(<span class="hljs-params">self</span>):</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;fixtureFunc02&#x27;</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_case01</span>(<span class="hljs-params">fixtureFunc01,fixtureFunc02</span>):</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;先调用<span class="hljs-subst">&#123;fixtureFunc01&#125;</span>，后调用<span class="hljs-subst">&#123;fixtureFunc02&#125;</span>&quot;</span>)
+
+<span class="hljs-keyword">if</span> __name__==<span class="hljs-string">&#x27;__main__&#x27;</span>:
+    pytest.main([<span class="hljs-string">&#x27;-s&#x27;</span>, <span class="hljs-string">&#x27;test_fixture.py::A&#x27;</span>])</code></pre></div>
 <h4 id="class"><a href="#class" class="headerlink" title="class"></a>class</h4><p>类级别的fixture的每个测试类只需要运行一次，无论测试类中有多少类方法都可以共享这个fixture。</p>
 <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pytest
 
